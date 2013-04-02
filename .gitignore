@@ -5,3 +5,6 @@
 *.out
 *.log
 *.aux
+*.oxt
+*.aff
+*.dic
