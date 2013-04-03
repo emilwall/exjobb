@@ -47,6 +47,14 @@ Särskilt allvarligt blir det när Javaskript-koden utgör en del av förutsätt
 
 Att använda sig av tester vid programmering med Javaskript breddar även för testdriven utveckling, vilket för med sig fördelar i form av att designen blir mer genomtänkt och ökar underhållbarheten, både genom att testerna fungerar som dokumentation för koden och genom att koden görs testbar vilket i sig tenderar att innebära efterlevnad av viktiga principer såsom separation av beroenden och att varje funktion gör exakt en sak.
 
+Målet med examensarbetet är att utreda varför testning av Javascript utförs i såpass liten utsträckning idag, undersöka vilka konsekvenser en ökad mängd testning skulle kunna ge för utvecklingsarbetet och affärsvärdet gentemot kund samt att redogöra för några möjliga tillvägagångssätt för testning av Javascript under olika förutsättningar.
+
+Att skriva tester för Javascript är inget nytt, det finns som sagt ett antal testramverk och det förekommer förstås att de används i projekt, men kunskapen om hur man på ett smidigt sätt kommer igång, hur man undviker att testerna blir icke-deterministiska och tidskrävande och vad det egentligen är man ska testa tycks vara sällsynt. Att sätta upp strukturen som krävs för att kunna skriva tester är en tröskel som de flesta Javascript-programmerare inte tar sig över och därmed går de miste om de vinster, såväl kortsiktiga som långsiktiga, som väl utförd testning ger.
+
+I guider för hur man använder testramverk för Javascript är exemplen ofta frikopplade från det typiska användningsområdet av Javascript - webben. Istället tenderar de att innehålla tester av funktioner utan sidoeffekter och beroenden. Under dessa förhållanden blir testningen trivial och de allra flestaJavascript-programmerare skulle säkerligen klara av att sätta upp en testmiljö för sådan enkel kod, men det är alltså inte det problemdomänet som kommer att beröras av det här arbetet utan fokus kommer istället att ligga på hur man testar beteendet hos Javascript som manipulerar DOM-element (Document Object Model, de element som html-kod består av), samt när och varför man bör göra det.
+
+Arbetet kommer att utföras i Valtechs lokaler i Stockholm, ett företag med cirka 150 anställda som ägnar sig åt konsultverksamhet primärt inriktad mot webben och agil utveckling.
+
 \section{Uppgiftsbeskrivning}
 
 \textit{Här beskrivs mer detaljerat innehållet i examensarbetet: vad som skall göras och vilka moment ingår. Speciellt skall det beskriva vad som är den intressanta delen i problemet, samt hur detta skall analyseras och lösas. Här bör det alltså framgå att arbetet uppfyller kraven som universitetet har på ett examensarbete på denna nivå.}
