@@ -49,7 +49,7 @@ Att använda sig av tester vid programmering med Javaskript breddar även för t
 
 Målet med examensarbetet är att utreda varför testning av Javascript utförs i såpass liten utsträckning idag, undersöka vilka konsekvenser en ökad mängd testning skulle kunna ge för utvecklingsarbetet och affärsvärdet gentemot kund samt att redogöra för några möjliga tillvägagångssätt för testning av Javascript under olika förutsättningar.
 
-Att skriva tester för Javascript är inget nytt, det finns som sagt ett antal testramverk och det förekommer förstås att de används i projekt, men kunskapen om hur man på ett smidigt sätt kommer igång, hur man undviker att testerna blir icke-deterministiska och tidskrävande och vad det egentligen är man ska testa tycks vara sällsynt. Att sätta upp strukturen som krävs för att kunna skriva tester är en tröskel som de flesta Javascript-programmerare inte tar sig över och därmed går de miste om de vinster, såväl kortsiktiga som långsiktiga, som väl utförd testning ger.
+Att skriva tester för Javascript är inget nytt, det första kända testramverket JsUnit skapades 2001 av Edward Hieatt\cite{GoingFaster}\cite{JsUnitGithub} och sedan dess har ett flertal andra testramverk tillkommit såsom JsUnits uppföljare Jasmine\cite{JasmineSite}, Mocha\cite{MochaSite} och QUnit\cite{QUnitSite}. Däremot tycks kunskapen om hur man på ett smidigt sätt kommer igång, hur man undviker att testerna blir icke-deterministiska och tidskrävande och vad det egentligen är man ska testa tycks vara sällsynt. Att sätta upp strukturen som krävs för att kunna skriva tester är en tröskel som de flesta Javascript-programmerare inte tar sig över och därmed går de miste om de vinster, såväl kortsiktiga som långsiktiga, som väl utförd testning ger.
 
 I guider för hur man använder testramverk för Javascript är exemplen ofta frikopplade från det typiska användningsområdet av Javascript - webben. Istället tenderar de att innehålla tester av funktioner utan sidoeffekter och beroenden. Under dessa förhållanden blir testningen trivial och de allra flestaJavascript-programmerare skulle säkerligen klara av att sätta upp en testmiljö för sådan enkel kod, men det är alltså inte det problemdomänet som kommer att beröras av det här arbetet utan fokus kommer istället att ligga på hur man testar beteendet hos Javascript som manipulerar DOM-element (Document Object Model, de element som html-kod består av), samt när och varför man bör göra det.
 
@@ -70,6 +70,40 @@ Arbetet kommer att utföras i Valtechs lokaler i Stockholm, ett företag med cir
 \section{Tidsplan}
 
 \textit{Här framgår det när jobbet ska göras och hur mycket tid som allokerats till varje moment (noggrannheten kan variera, men inget moment ska vara större än 4 veckor). Tidplanen skall ta hänsyn till faktorer som gör att man inte jobbar heltid med examensarbetet (semester, kurser som ska avslutas, andra åtaganden). Ofta genomförs moment parallellt, t.ex. rapportskrivningen pågår under hela arbetet. Rita gärna en bild som förtydligar sammanhanget mellan olika moment. Rapporteringsmöten bokas in med ämnesgranskaren.}
+
+\begin{thebibliography}{9}
+
+\bibitem{GoingFaster}
+  Edward Hieatt and Robert Mee,
+  \emph{Going Faster: Testing The Web Application}.
+  IEEE Software, p.~63
+  March/April 2002.
+
+\bibitem{JsUnitGithub}
+  Github,
+  \emph{pivotal/jsunit}.
+  \url{https://github.com/pivotal/jsunit}
+  Read on April 3, 2013.
+
+\bibitem{MochaSite}
+  TJ Holowaychuk,
+  \emph{mocha - simple, flexible, fun javascript test framework for node.js \& the browser}.
+  \url{http://visionmedia.github.com/mocha/}
+  Read on April 3, 2013.
+
+\bibitem{JasmineSite}
+  Running documentation,
+  \emph{Jasmine is a behavior-driven development framework for testing JavaScript code}.
+  \url{http://pivotal.github.com/jasmine/}
+  Read on April 3, 2013.
+
+\bibitem{QUnitSite}
+  The jQuery Foundation,
+  \emph{QUnit: A JavaScript Unit Testing framework.}
+  \url{http://qunitjs.com/}
+  Read on April 3, 2013.
+
+\end{thebibliography}
 
 \end{document}
 
