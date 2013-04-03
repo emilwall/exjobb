@@ -51,7 +51,7 @@ Målet med examensarbetet är att utreda varför testning av Javascript utförs 
 
 Att skriva tester för Javascript är inget nytt, det första kända testramverket JsUnit skapades 2001 av Edward Hieatt\cite{GoingFaster}\cite{JsUnitGithub} och sedan dess har ett flertal andra testramverk tillkommit såsom JsUnits uppföljare Jasmine\cite{JasmineSite}, Mocha\cite{MochaSite} och QUnit\cite{QUnitSite}, samt verktyg för mockning\footnote{Mockning och stubbning innebär simulering av beteenden hos verkliga objekt i syfte att isolera systemet under test från yttre beroenden}. Däremot tycks kunskapen om hur man på ett smidigt sätt kommer igång, hur man undviker att testerna blir icke-deterministiska och tidskrävande och vad det egentligen är man ska testa vara sällsynt. Att sätta upp strukturen som krävs för att kunna skriva tester är en tröskel som de flesta Javascript-programmerare inte tar sig över och därmed går de miste om de vinster, såväl kortsiktiga som långsiktiga, som väl utförd testning ger.
 
-Förutom testramverken så finns det dessutom en hel del tidigare akademiskt arbete som behandlar testning av webb-applikationer och även specifikt Javascript. Dessa arbeten kommer att redogöras för i den slutgiltiga rapporten.
+Förutom testramverken så finns det dessutom en hel del tidigare akademiskt arbete som behandlar testning av webb-applikationer och även specifikt Javascript. Dessa arbeten kommer att redogöras för i den slutgiltiga rapporten. Vissa arbeten behandlar automatisk generering av tester, vilket kommer att vara av begränsat intresse för examensarbetet eftersom det går emot vissa principer om vad tester är till för. Andra är i allra högsta grad relevanta, till exempel ett som behandlar enhetstestning av Javascript som manipulerar en underliggande webbsida\cite{DOMJavascript} och en empirisk studie av hur vanligt det är med buggar i Javascript-kod på produktionssatta webbsidor\cite{Wild}.
 
 I guider för hur man använder testramverk för Javascript är exemplen ofta frikopplade från det typiska användningsområdet av Javascript - webben. Istället tenderar de att innehålla tester av funktioner utan sidoeffekter och beroenden. Under dessa förhållanden blir testningen trivial och de allra flestaJavascript-programmerare skulle säkerligen klara av att sätta upp en testmiljö för sådan enkel kod, men det är alltså inte det problemdomänet som kommer att beröras av det här arbetet utan fokus kommer istället att ligga på hur man testar beteendet hos Javascript som manipulerar DOM-element (Document Object Model, de element som html-kod består av), samt när och varför man bör göra det.
 
@@ -119,6 +119,21 @@ Det finns även mer tekniska aspekter att analysera:
   \emph{QUnit: A JavaScript Unit Testing framework.}
   \url{http://qunitjs.com/}
   Read on April 3, 2013.
+
+\bibitem{DOMJavascript}
+  Phillip Heidegger, Annette Bieniusa, and Peter Thiemann,
+  \emph{DOM Transactions for Testing JavaScript}.
+  Albert-Ludwigs-Universität Freiburg, Germany.
+  Proceeding TAIC PART'10 Proceedings of the 5th international academic and industrial conference on Testing - practice and research techniques.
+  Pages 211-214.
+  2010.
+
+\bibitem{Wild}
+  Frolin S. Ocariza, Jr., Karthik Pattabiraman, Benjamin Zorn
+  \emph{JavaScript Errors in the Wild: An Empirical Study}.
+  2011 IEEE 22nd International Symposium on Software Reliability Engineering (ISSRE).
+  Pages 100-109.
+  Nov. 29 2011-Dec. 2 2011.
 
 \end{thebibliography}
 
