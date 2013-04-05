@@ -84,9 +84,11 @@ En redogörelse för hur man praktiskt kan gå till väga för att testa Javascr
 
 Arbetet kommer i första hand att utgå från kvalitativa metoder eftersom insikt i problemdomänen väger tyngre för de mål som satts upp än vad kvantitativt verifierade slutsatser gör. Chansen att hitta de verkliga skälen till varför Javascript testas i så liten utsträckning ökar med öppna frågeställningar. Dessa metoder kommer att involvera litteraturstudier, intervjuer av gränssnittsprogrammerare vars arbete involverar kodande i Javascript och analys av kod och verktyg. Det kommer även att ingå praktiskt arbete vid utvärdering av de olika testramverken samt tillämpning av testning i ett projekt som författaren tidigare varit delaktig i på företaget, i syfte att kunna beskriva en process för att skriva tester och ge inblick i typiska problem utifrån praktisk erfarenhet.
 
-Preliminärt så kommer följande testramverk att undersökas: Jasmine\cite{JasmineSite} (+ Jasmine-species\cite{JasmineSpecies}), qUnit\cite{QUnitSite}, Mocha\cite{MochaSite}, JsTestDriver\cite{JsTestDriver}, Buster.JS\cite{BusterJS}, Sinon.JS\cite{SinonJS}
+Preliminärt så kommer följande testramverk att undersökas: Jasmine\cite{JasmineSite} (+ Jasmine-species\cite{JasmineSpecies}), qUnit\cite{QUnitSite}, Mocha\cite{MochaSite}, JsTestDriver\cite{JsTestDriver}, Buster.JS\cite{BusterJS} och Sinon.JS\cite{SinonJS}.
 
 Det finns sedan tidigare akademiskt arbete som behandlar testning av webb-applikationer och även specifikt Javascript. Dessa arbeten kommer att redogöras för i den slutgiltiga rapporten. De arbeten som behandlar automatisk generering av tester\cite{AutomatedTesting} kommer att vara av begränsat intresse för examensarbetet eftersom sådana tekniker är mer relevanta för att uppnå olika grader av \textit{\foreignlanguage{english}{code coverage}} snarare än testdriven utveckling. Andra är i allra högsta grad relevanta, till exempel ett som behandlar enhetstestning av Javascript som manipulerar en underliggande webbsida\cite{DOMJavascript} och en empirisk studie av hur vanligt det är med buggar i Javascript-kod på produktionssatta webbsidor\cite{Wild}.
+
+En av de viktigaste källorna kommer att vara boken \textit{\foreignlanguage{english}{Test-Driven JavaScript Development}}\cite{Tddjs} av Christian Johansen, som tar upp testning av Javascript ur ett TDD-perspektiv. Författaren ligger bakom Sinon.JS\cite{SinonJS} och är även delaktig i utvecklingen av ett flertal av ramverken som nämnts ovan.
 
 \section{Avgränsningar}
 
@@ -189,6 +191,13 @@ Arbetet kommer att fokusera på testning av kod som körs på klientsidan, därm
   2011 IEEE 22nd International Symposium on Software Reliability Engineering (ISSRE).
   Pages 100-109.
   Nov. 29 2011-Dec. 2 2011.
+
+\bibitem{Tddjs}
+  Christian Johansen,
+  \emph{Test-Driven JavaScript Development}
+  ADDISON-WESLEY,
+  ISBN 9780321683915,
+  2010.
 
 \end{thebibliography}
 
