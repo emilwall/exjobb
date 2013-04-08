@@ -21,6 +21,7 @@
 \usepackage{sectsty} % Section title
 \allsectionsfont{\sffamily\mdseries\upshape} % Section font
 \usepackage{hyperref} % href
+\usepackage{nameref} % Enable referring to the actual name of the chapter
 
 \title{Specifikation av examensarbete}
 \author{Emil Wall}
@@ -77,6 +78,7 @@ Att undersöka vad testning av Javascript kan medföra i olika sammanhang kan sk
 En redogörelse för hur man praktiskt kan gå till väga för att testa Javascript utgår lämpligen från både de vanligaste och svåraste fallen och innebär samtidigt en utvärdering av de ramverk och verktyg som finns att tillgå. Här finns en skillnad mot de flesta introduktioner som finns för testramverken idag, som tenderar att fokusera på så enkla fall som möjligt. Denna del av arbetet har som mål att ge läsaren konkret vägledning i hur en testmiljö kan sättas upp för att testa Javascript och hur testerna kan utformas, allt beroende på vad det är som ska testas. Utformningen av testerna sker lämpligen utifrån tidigare resonemang kring vad testningen har för konsekvenser, så att mängden onödigt arbete som går åt till att underhålla testerna minimeras medan nyttan och värdet som testerna är tänkta att tillföra maximeras.
 
 \section{Tillvägagångssätt}
+\label{Methods}
 
 \textit{Vilka system, verktyg och metoder som skall användas. Relevant litteratur (det är oftast en del av arbetet att ta fram ytterligare litteratur). Hur resultatet skall utvärderas och dokumenteras. Studenten ska bidra med information om vilka kurser han/hon har tagit som är relevanta och viktiga för examensarbetet.}
 
@@ -166,6 +168,14 @@ Skrivandet av rapporten kommer att ske kontinuerligt genom hela projektet, och d
   \item Söka efter Javascript-kod att analysera, göra representativt urval för olika tillämpningar
   \item Analysera testbarhet genom att manuellt gå igenom utvalda delar
   \item Diskutera faktorer som påverkar validiteten i studien (open source, urval, etc.)
+\end{itemize}
+
+\item[Analysera testverktygens användbarhet] 4 veckor planeras gå åt till att utvärdera de olika ramverken för Javascript-testning som nämns i avsnitt \ref{Methods} (\nameref{Methods}):
+\begin{itemize}
+  \item Utför och dokumentera komplexitet av installationsprocessen för de olika ramverken
+  \item Följ ett par guider för att komma igång med varje ramverk
+  \item Kartlägg syntax, funktionalitet och beroenden
+  \item Diskutera vilka situationer varje ramverk är särskilt lämpat för
 \end{itemize}
 
 \end{description}
