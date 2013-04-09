@@ -22,6 +22,9 @@
 \allsectionsfont{\sffamily\mdseries\upshape} % Section font
 \usepackage{hyperref} % href
 \usepackage{nameref} % Enable referring to the actual name of the chapter
+\usepackage[numbers,sort]{natbib}
+\bibliographystyle{unsrtnat}
+\usepackage{url}
 
 \title{Practices and Benefits of Javascript Testing} % TDD and BDD Approaches to Client Side Testing
 \author{Emil Wall}
@@ -365,6 +368,8 @@ Här är en grov planering, gjord utan hänsyn till ledighet och att vissa momen
 \end{thebibliography}
 
 \end{comment}
+\nocite{Tddjs, BusinessJavascript}
+\bibliography{references}
 
 \end{document}
 
