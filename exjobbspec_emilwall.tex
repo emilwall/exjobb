@@ -54,9 +54,8 @@ I guider för hur man använder testramverk för Javascript är exemplen ofta fr
 
 Arbetet kommer att utföras i Valtechs lokaler i Stockholm, ett företag med cirka 180 anställda. Valtech ägnar sig åt konsultverksamhet med fokus på agil utveckling av moderna hemsidor, webbapplikationer och intranät. Namnet Valtech härrör från \textit{\foreignlanguage{english}{value through technology}} och grundtanken med företagets verksamhet är att skapa affärsnytta genom att applicera ny teknik och skapa användarvänliga system. Under examensarbetet kommer Valtech att tillhandahålla arbetsplats med teknisk utrustning och handledare. Enligt separat avtal har Valtech gemensam äganderätt till resultatet och immateriella rättigheter som följer av samarbetet. Valtech har inte haft några specifika önskemål utöver att arbetet ska genomföras på ett professionellt sätt och hålla hög kvalitet. Vilket område eller problemdomän som arbetet ska röra sig inom har lämnats upp till författaren av examensarbetet att besluta. Att arbetet kommer att handla om något som är relevant för Valtechs verksamhet beror alltså på välvilja snarare än påtvingade idéer.
 
+\newpage
 \section{Uppgiftsbeskrivning}
-
-\textit{Här beskrivs mer detaljerat innehållet i examensarbetet: vad som skall göras och vilka moment som ingår. Speciellt skall det beskriva vad som är den intressanta delen i problemet, samt hur detta skall analyseras och lösas. Här bör det alltså framgå att arbetet uppfyller kraven som universitetet har på ett examensarbete på denna nivå.}
 
 Att utreda orsaker till dagens begränsade testning av Javascript kan göras utifrån olika infallsvinklar. Det finns mjuka aspekter att ta hänsyn till såsom:
 \begin{itemize}
@@ -77,14 +76,11 @@ Att undersöka vad testning av Javascript kan medföra i olika sammanhang kan sk
 
 En redogörelse för hur man praktiskt kan gå till väga för att testa Javascript utgår lämpligen från både de vanligaste och svåraste fallen och innebär samtidigt en utvärdering av de ramverk och verktyg som finns att tillgå. Här finns en skillnad mot de flesta introduktioner som finns för testramverken idag, som tenderar att fokusera på så enkla fall som möjligt. Denna del av arbetet har som mål att ge läsaren konkret vägledning i hur en testmiljö kan sättas upp för att testa Javascript och hur testerna kan utformas, allt beroende på vad det är som ska testas. Utformningen av testerna sker lämpligen utifrån tidigare resonemang kring vad testningen har för konsekvenser, så att mängden onödigt arbete som går åt till att underhålla testerna minimeras medan nyttan och värdet som testerna är tänkta att tillföra maximeras.
 
+\newpage
 \section{Tillvägagångssätt}
 \label{Methods}
 
-\textit{Vilka system, verktyg och metoder som skall användas. Relevant litteratur (det är oftast en del av arbetet att ta fram ytterligare litteratur). Hur resultatet skall utvärderas och dokumenteras. Studenten ska bidra med information om vilka kurser han/hon har tagit som är relevanta och viktiga för examensarbetet.}
-
-\textit{TODO: Beskriv hur testramverken ska undersökas}
-
-Arbetet kommer i första hand att utgå från kvalitativa metoder eftersom insikt i problemdomänen väger tyngre för de mål som satts upp än vad kvantitativt verifierade slutsatser gör. Chansen att hitta de verkliga skälen till varför Javascript testas i så liten utsträckning ökar med öppna frågeställningar. Dessa metoder kommer att involvera litteraturstudier, intervjuer av gränssnittsprogrammerare vars arbete involverar kodande i Javascript och analys av kod och verktyg. Det kommer även att ingå praktiskt arbete vid utvärdering av de olika testramverken samt tillämpning av testning i ett projekt som författaren tidigare varit delaktig i på företaget, i syfte att kunna beskriva en process för att skriva tester och ge inblick i typiska problem utifrån praktisk erfarenhet.
+Arbetet kommer i första hand att utgå från kvalitativa metoder i syfte att prioritera insikt i problemdomänen framför kvantitativt verifierade slutsatser, för att på bästa sätt möta arbetets mål. Chansen att hitta de verkliga skälen till varför Javascript testas i så liten utsträckning ökar med öppna frågeställningar. Dessa metoder kommer att involvera litteraturstudier, intervjuer av gränssnittsprogrammerare vars arbete involverar kodande i Javascript och analys av kod och verktyg. Det kommer även att ingå utvärdering av de olika testramverken samt tillämpning av testning i ett projekt som författaren tidigare varit delaktig i på företaget, i syfte att kunna beskriva en process för att skriva tester och ge inblick i typiska problem utifrån praktisk erfarenhet.
 
 Preliminärt så kommer följande testramverk att undersökas: Jasmine\cite{JasmineSite} (+ Jasmine-species\cite{JasmineSpecies}), qUnit\cite{QUnitSite}, Mocha\cite{MochaSite}, JsTestDriver\cite{JsTestDriver}, Buster.JS\cite{BusterJS} och Sinon.JS\cite{SinonJS}.
 
@@ -94,6 +90,7 @@ Det finns sedan tidigare akademiskt arbete som behandlar testning av webb-applik
 
 En av de viktigaste källorna kommer att vara boken \textit{\foreignlanguage{english}{Test-Driven JavaScript Development}}\cite{Tddjs} av Christian Johansen, som tar upp testning av Javascript ur ett TDD-perspektiv. Författaren ligger bakom Sinon.JS\cite{SinonJS} och är även delaktig i utvecklingen av ett flertal av ramverken som nämnts ovan.
 
+\newpage
 \subsection{Relevanta kurser}
 
 Följande är ett axplock av de för arbetet mest relevanta kurser som författaren har läst. Utöver dessa har författaren anskaffat sig kunskap om ämnet genom egna studier och i projekt genom anställningar.
@@ -109,17 +106,14 @@ Följande är ett axplock av de för arbetet mest relevanta kurser som författa
 
 \section{Avgränsningar}
 
-\textit{Det är också viktigt att skriva ner vad som inte ingår i uppdraget. Detta förebygger att examensarbetet sväller ut okontrollerat. Med fördel kan du skriva ner några punkter som ingår i mån av tid, men räkna med att tiden ofta inte räcker.}
-
 Arbetet kommer att fokusera på testning av kod som körs på klientsidan, därmed kommer ramverk såsom vows\cite{Vows} och cucumis\cite{Cucumis} inte att ingå. Detta beror inte på att testning av klientkod på något sätt är viktigare än serverkod, utan är enbart ett sätt att hålla arbetet på en lagom omfattande nivå. Testramverk som inte längre underhålls, såsom JsUnit\cite{JsUnitGithub} och JSpec\cite{JSpec}, kommer inte heller att behandlas.
 
 Vissa ramverk har även sorterats bort för att de inte bedömts ha lika många användare eller unik funktionalitet för att vara värda att undersöka. Bland dessa finner vi Karma (tidigare känt som Testacular), TestSwarm, YUI Yeti och RhinoUnit. De är säkert användbara, men någonstans behöver en gräns dras för vad som ska tas med och inte. Om det blir tid över så kommer även dessa att undersökas.
 
+\newpage
 \section{Tidsplan}
 
-\textit{Här framgår det när jobbet ska göras och hur mycket tid som allokerats till varje moment (noggrannheten kan variera, men inget moment ska vara större än 4 veckor). Tidplanen skall ta hänsyn till faktorer som gör att man inte jobbar heltid med examensarbetet (semester, kurser som ska avslutas, andra åtaganden). Ofta genomförs moment parallellt, t.ex. rapportskrivningen pågår under hela arbetet. Rita gärna en bild som förtydligar sammanhanget mellan olika moment. Rapporteringsmöten bokas in med ämnesgranskaren.}
-
-Skrivandet av rapporten kommer att ske kontinuerligt genom hela projektet, och driva det övriga arbetet. Möten med handledare kommer att ske i genomsnitt varannan vecka, med variation beroende på tillgänglighet och behov.
+Skrivandet av rapporten kommer att ske kontinuerligt genom hela projektet, och driva det övriga arbetet. Möten med handledare och ämnesgranskare kommer att ske varannan till var fjärde vecka, med variation beroende på tillgänglighet och behov.
 
 \subsection{Moment}
 
