@@ -42,7 +42,7 @@ Rapporten kommer med allra största sannolikhet att skrivas på engelska, trots 
 
 Javascript är ett skriptspråk som främst används i webbläsare för att utföra mer komplicerad logik på klientsidan än vad som är möjligt med endast html och css. Det finns ett flertal testramverk för Javascript, men det är långt ifrån alltid som utvecklare utnyttjar dem. Detta innebär att otestad kod sätts i produktion, som kan orsaka stora ekonomiska förluster i samband med driftstopp på grund av oupptäckta buggar, förkortad livstid för produkten och förhöjda kostnader i samband med vidareutveckling och underhåll av koden.
 
-Särskilt allvarligt blir det när Javaskript-koden utgör en del av förutsättningarna för den affärskritiska verksamheten, vilket blir allt vanligare. Det kan till exempel röra sig om stora mängder uteblivna beställningar från en webbshop eller att varumärket skadas då en hemsida upplevs som trasig. Fel uppstår lätt vid ändringar om automatiska tester saknas och kan till exempel ha att göra med inkompatibilitet med olika versioner av webbläsare eller okända beroenden mellan olika delar av Javaskript-koden, saker som skulle gå att upptäcka innan produktionssättning med bra tester. Om enhetstesterna kompletteras med integrationstester och körs automatiskt i ett CI-bygge (på en byggserver som används för kontinuerlig integration) så kan man undvika fel som annars lätt uppstår till följd av oväntade konsekvenser av ändringar på annat håll i applikationen, som påverkar den funktionalitet som javascriptet är tänkt att bidra med.
+Särskilt allvarligt blir det när Javaskript-koden utgör en del av förutsättningarna för den affärskritiska verksamheten, vilket är vanligt då mer än 90 \% av dagens hemsidor använder sig av Javascript\cite{BusinessJavascript}. Det kan till exempel röra sig om stora mängder uteblivna beställningar från en webbshop eller att varumärket skadas då en hemsida upplevs som trasig. Fel uppstår lätt vid ändringar om automatiska tester saknas och kan till exempel ha att göra med inkompatibilitet med olika versioner av webbläsare eller okända beroenden mellan olika delar av Javaskript-koden, saker som skulle gå att upptäcka innan produktionssättning med bra tester. Om enhetstesterna kompletteras med integrationstester och körs automatiskt i ett CI-bygge (\textit{\foreignlanguage{english}{Continuous Integration}}, på en byggserver som används för automatisk produktionssättning) så kan man undvika fel som annars lätt uppstår till följd av oväntade konsekvenser av ändringar på annat håll i applikationen, som påverkar den funktionalitet som javascriptet är tänkt att bidra med.
 
 Att använda sig av tester vid programmering med Javaskript breddar även för testdriven utveckling, vilket för med sig fördelar i form av att designen blir mer genomtänkt och ökar underhållbarheten, både genom att testerna fungerar som dokumentation för koden och genom att koden görs testbar vilket i sig tenderar att innebära efterlevnad av viktiga principer såsom separation av beroenden och att varje funktion gör exakt en sak.
 
@@ -214,6 +214,12 @@ Under arbetet kommer studenten att ha viss planerad ledighet, sammanlagt cirka 4
 \end{description}
 
 \begin{thebibliography}{9}
+
+\bibitem{BusinessJavascript}
+  W3Techs - World Wide Web Technology Surveys,
+  \emph{Usage of JavaScript for websites}.
+  \url{http://w3techs.com/technologies/details/cp-javascript/all/all}
+  Read on April 9, 2013.
 
 \bibitem{GoingFaster}
   Edward Hieatt and Robert Mee,
