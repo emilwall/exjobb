@@ -75,11 +75,9 @@ Thanks goes to my supervisor Jimmy Larsson for providing me with valuable feedba
 
 JavaScript is a scripting language primarily used in web browsers to perform client-side actions not feasible through plain HTML and CSS. Despite the wide variety of testing frameworks that exists for JavaScript, it is generally considered that few developers use them. The consequences are that untested code is put into production, potentially causing large economic loss due to errors caused by bugs in the code, shortened product lifetime and increased costs in conjunction with further development and maintenance.
 
+The economic risk of untested JavaScript is especially high when the code is a prerequisite or direct part of the business critical operations, presumably increasingly common since more than 90 \% of today's websites use JavaScript\citep{BusinessJavascript}.
+
 \begin{comment}
-
-\section{Bakgrund}
-
-Javascript är ett skriptspråk som främst används i webbläsare för att utföra mer komplicerad logik på klientsidan än vad som är möjligt med endast html och css. Det finns ett flertal testramverk för Javascript, men det är långt ifrån alltid som utvecklare utnyttjar dem. Detta innebär att otestad kod sätts i produktion, som kan orsaka stora ekonomiska förluster i samband med driftstopp på grund av oupptäckta buggar, förkortad livstid för produkten och förhöjda kostnader i samband med vidareutveckling och underhåll av koden.
 
 Särskilt allvarligt blir det när Javaskript-koden utgör en del av förutsättningarna för den affärskritiska verksamheten, vilket är vanligt då mer än 90 \% av dagens hemsidor använder sig av Javascript\cite{BusinessJavascript}. Det kan till exempel röra sig om stora mängder uteblivna beställningar från en webbshop eller att varumärket skadas då en hemsida upplevs som trasig. Fel uppstår lätt vid ändringar om automatiska tester saknas och kan till exempel ha att göra med inkompatibilitet med olika versioner av webbläsare eller okända beroenden mellan olika delar av Javaskript-koden, saker som skulle gå att upptäcka innan produktionssättning med bra tester. Om enhetstesterna kompletteras med integrationstester och körs automatiskt i ett CI-bygge (\textit{\foreignlanguage{english}{Continuous Integration}}, på en byggserver som används för automatisk produktionssättning) så kan man undvika fel som annars lätt uppstår till följd av oväntade konsekvenser av ändringar på annat håll i applikationen, som påverkar den funktionalitet som javascriptet är tänkt att bidra med.
 
@@ -368,7 +366,7 @@ Här är en grov planering, gjord utan hänsyn till ledighet och att vissa momen
 \end{thebibliography}
 
 \end{comment}
-\nocite{Tddjs, BusinessJavascript}
+\nocite{Tddjs}
 \bibliography{references}
 
 \end{document}
