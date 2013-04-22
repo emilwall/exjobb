@@ -14,3 +14,6 @@
 *.blg
 *.bcf
 *.run.xml
+*.exe
+*.jar
+*.DS_Store
