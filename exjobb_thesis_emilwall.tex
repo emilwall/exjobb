@@ -91,9 +91,9 @@ Unit testing is particularly powerful when run in combination with integration t
 
 Testing JavaScript paves the way for test-driven development, which brings benefits in terms of the design becoming more refined and increased maintainability. Tests can serve as documentation for the code and forcing it to be written in a testable manner, which in itself tends to mean adherence to key principles such as separation of concerns, and single responsibility.
 
-\begin{comment}
+The goal with this thesis is to investigate why JavaScript testing is performed to such a small extent today, and what potential implications an increased amount of testing could provide for development and business value to customers. Providing possible approaches to testing JavaScript under different conditions are also part of the goal.
 
-Målet med examensarbetet är att utreda varför testning av Javascript utförs i såpass liten utsträckning idag, undersöka vilka konsekvenser en ökad mängd testning skulle kunna ge för utvecklingsarbete och affärsvärde gentemot kund samt att redogöra för några möjliga tillvägagångssätt för testning av Javascript under olika förutsättningar.
+\begin{comment}
 
 Att skriva tester för Javascript är inget nytt, det första kända testramverket JsUnit skapades 2001 av Edward Hieatt\cite{GoingFaster}\cite{JsUnitGithub} och sedan dess har ett flertal andra testramverk tillkommit såsom QUnit\cite{QUnitSite} och JsUnits uppföljare Jasmine\cite{JasmineSite}, samt verktyg för mockning\footnote{Mockning och stubbning innebär simulering av beteenden hos verkliga objekt i syfte att isolera systemet under test från yttre beroenden} som till exempel Sinon.JS\cite{SinonJS}. Däremot tycks kunskapen om hur man på ett smidigt sätt kommer igång, hur man undviker att testerna blir icke-deterministiska och tidskrävande och vad det egentligen är man ska testa vara sällsynt. Att sätta upp strukturen som krävs för att kunna skriva tester är en tröskel som de flesta Javascript-programmerare inte tar sig över\cite{TestingStatistics} och därmed går de miste om de vinster, såväl kortsiktiga som långsiktiga, som väl utförd testning ger.
 
