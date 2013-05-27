@@ -360,6 +360,10 @@ A mock has pre-programmed expectations and built-in behaviour verification\cite[
 
 Because JavaScript has no notion of interfaces, it is easy to accidentally use the wrong method name or argument order when stubbing a function\cite[p.~471]{Tddjs}.
 
+\section{Real world experiences}
+
+During a talk at a meetup on python APIs (2013-05-22 at Tictail's office, an e-commerce startup based in Stockholm), the speaker mentioned that their application depended heavily on JavaScript. It turned out that they had done some testing efforts but without any lasting results. During the open space after the talks, testing became a discussion subject in a group consisting of one of the developers of the application, among others. The developer explained that they had been unable to unit test their JavaScript because the functionality was so tightly coupled that the only observable output that they could possibly test was the appearance of the web page, via Selenium tests. He sought reassurance that they had done the right thing when deciding not to base their testing on Selenium due to instability (tests failing for the wrong reasons) and time required to run the tests. He also sought answers to how they should have proceeded.
+
 \printbibliography
 
 \end{document}
