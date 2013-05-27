@@ -22,6 +22,6 @@ report, and is really just intended for overview purposes.
 Other Git repositories
 ======================
 
-https://github.com/emilwall/tddjs-ajax -- Step by step implementation of application described in chapter 12 of tddjs
-https://github.com/emilwall/tddjs-streaming -- Dito, chapter 13
-https://github.com/emilwall/quiz -- A project meant to serve as basis for a workshop in TDD with JavaScript
+- https://github.com/emilwall/tddjs-ajax -- Step by step implementation of application described in chapter 12 of tddjs
+- https://github.com/emilwall/tddjs-streaming -- Dito, chapter 13
+- https://github.com/emilwall/quiz -- A project meant to serve as basis for a workshop in TDD with JavaScript
