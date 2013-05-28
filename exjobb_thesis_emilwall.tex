@@ -127,12 +127,11 @@ There are consequences (good and bad) of testing JavaScript both from a short an
 
 Accounting for how to conveniently proceed with JavaScript testing should cover not only the simplest cases but also the most common and the hardest ones, preferably while also providing evaluation and introduction to available tools and frameworks. Many introductions and tutorials found for the testing frameworks today tends to focus on the simple cases of testing, possibly because making an impression that the framework is simple to use has been more highly prioritised than covering different edge cases of how it can be used that might not be relevant to that many anyway. To provide valuable guidance in how to set up a testing environment and how to write the tests, attention must be paid to the varying needs of different kinds of applications. It is also important to keep in mind that the tests should be as maintainable as the system under test, to minimise maintenance costs and maximise gain.
 
+\section{Methods}
+
+The methods used are first and foremost qualitative in nature, in order to prioritise insight into the problem domain above quantitatively verifying hypotheses. The chance of finding out the true reasons to why JavaScript is tested to such a small extent increases with open questions. Specifically, aside from literature studies, the main method of this thesis work has been to perform and analyse interviews of JavaScript programmers (mainly those concerned with user interface). There has also been some hands on evaluation of tools and frameworks, and assessment of testability and impact of adding tests to existing projects. In order to describe methods of writing tests for JavaScript, the practical work involved testing an existing application, performing TDD as described in Test-driven JavaScript Development\cite{Tddjs} and doing some small TDD projects during the framework evaluation. Another method used was a workshop field study, where programmers were allowed to work in pairs to solve pre-defined problems using TDD.
+
 \begin{comment}
-
-\section{Tillvägagångssätt}
-\label{Methods}
-
-Arbetet kommer i första hand att utgå från kvalitativa metoder i syfte att prioritera insikt i problemdomänen framför kvantitativt verifierade slutsatser, för att på bästa sätt möta arbetets mål. Chansen att hitta de verkliga skälen till varför Javascript testas i så liten utsträckning ökar med öppna frågeställningar. Dessa metoder kommer att involvera litteraturstudier, intervjuer av gränssnittsprogrammerare vars arbete involverar kodande i Javascript och analys av kod och verktyg. Det kommer även att ingå utvärdering av de olika testramverken samt tillämpning av testning i ett projekt som författaren tidigare varit delaktig i på företaget, i syfte att kunna beskriva en process för att skriva tester och ge inblick i typiska problem utifrån praktisk erfarenhet.
 
 Preliminärt så kommer följande testramverk att undersökas: Jasmine\cite{JasmineSite} (+ Jasmine-species\cite{JasmineSpecies}), qUnit\cite{QUnitSite}, Mocha\cite{MochaSite}, JsTestDriver\cite{JsTestDriver}, Buster.JS\cite{BusterJS} och Sinon.JS\cite{SinonJS}.
 
