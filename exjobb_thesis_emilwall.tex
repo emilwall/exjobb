@@ -213,28 +213,29 @@ The scope of this thesis has been to look mainly at testing of \emph{client side
 
 Frameworks that are no longer maintained such as JsUnit\cite{JsUnitGithub} and JSpec\cite{JSpec} have deliberately been left out of the evaluation. Others have been left out because of fewer users or lack of unique functionality; among these we find TestSwarm, YUI Yeti and RhinoUnit. They are still useful tools that can be considered but including them would have a negative impact on the rest of the evaluation work because of the extra time consuming activities that would be imposed.
 
+\section{Analysis of Economic Impacts}
+
+\begin{itemize}
+  \item Identify cases where companies and authorities have suffered economic loss due to bugs in JavaScript code vital to business critical functions of web sites
+  \item Assess risks and undocumented cases of manifested bugs
+  \item Estimate maintenance costs of code that lack tests compared to well-tested code
+  \item Draw conclusions about how test-driven development can either shorten or prolong the time required to develop a product, depending on programmer experience and the size and type of the application being developed
+  \item Costs associated with acquiring developers with the skills necessary to write tests
+\end{itemize}
+
+\section{Testability}
+
+\begin{itemize}
+  \item Search for JavaScript code to analyse, do representative selection for different areas of application
+  \item Analyse testability of selected code segments by looking at how the applications are partitioned, how well single-purpose principles are followed, and what parts of the code is exposed and accessible by tests
+  \item Discuss validity factors, whether the selection is fair and really representative, how open source affects quality, etc. (self-criticism)
+\end{itemize}
+
 \begin{comment}
 
 \subsection{Moment}
 
 \begin{description}
-
-\item[Utvärdera ekonomiska aspekter av testning] 1 vecka planeras gå åt till att analysera vilka extra kostnader testning kan innebära eller förebygga. Arbetet inom detta område kan tänkas omfatta:
-\begin{itemize}
-  \item Identifiering av fall då företag upplevt ekonomisk förlust till följd av buggar i affärskritisk Javascript-kod
-  \item Uppskattningar av risker och odokumenterade fall av manifesterade buggar
-  \item Extra kostnader vid underhåll av kod som saknar tester och därför tar mer tid än vad som annars vore nödvändigt
-  \item Kostnader kopplade till hur testdriven utveckling påverkar tiden det tar att utveckla en produkt
-  \item Kostnader kopplade till extra kompetens som krävs hos utvecklarna
-  \item (Detta ämne kommer till viss del att ingå i intervjuerna)
-\end{itemize}
-
-\item[Analysera testbarhet hos existerande Javaskript-kod] 2 veckor planeras gå åt till att analysera kod ur ett testbarhets-perspektiv:
-\begin{itemize}
-  \item Söka efter Javascript-kod att analysera, göra representativt urval för olika tillämpningar
-  \item Analysera testbarhet genom att manuellt gå igenom utvalda delar
-  \item Diskutera faktorer som påverkar validiteten i studien (open source, urval, etc.)
-\end{itemize}
 
 \item[Analysera testverktygens användbarhet] 4 veckor planeras gå åt till att utvärdera de olika ramverken för Javascript-testning som nämns i avsnitt \ref{Methods} (\nameref{Methods}):
 \begin{itemize}
