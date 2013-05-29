@@ -204,15 +204,12 @@ Heidegger et al. cover unit testing of JavaScript that manipulates the DOM of a 
 
 The main source of reference within the field of JavaScript testing today is Test-Driven JavaScript Development\cite{Tddjs} by Christian Johansen which deals with JavaScript testing from a TDD perspective. Johansen is the creator of Sinon.JS\cite{SinonJS} and a contributor to a number of testing frameworks hosted in the open source community.
 
+The scope of this thesis has been to look mainly at testing of \emph{client side} JavaScript. This meant that framework specialised for server side code such as vows\cite{Vows} and cucumis\cite{Cucumis} are not included in the evaluation part. Testing client side code is by no means more important than the server side, but it can be argued that it is often harder and the parallels to testing in other languages are somewhat fewer since the architecture typically is different.
+
+Frameworks that are no longer maintained such as JsUnit\cite{JsUnitGithub} and JSpec\cite{JSpec} have deliberately been left out of the evaluation. Others have been left out because of fewer users or lack of unique functionality; among these we find TestSwarm, YUI Yeti and RhinoUnit. They are still useful tools that can be considered but including them would have a negative impact on the rest of the evaluation work because of the extra time consuming activities that would be imposed.
+
 \begin{comment}
 
-\section{Avgränsningar}
-
-Arbetet kommer att fokusera på testning av kod som körs på klientsidan, därmed kommer ramverk såsom vows\cite{Vows} och cucumis\cite{Cucumis} inte att ingå. Detta beror inte på att testning av klientkod på något sätt är viktigare än serverkod, utan är enbart ett sätt att hålla arbetet på en lagom omfattande nivå. Testramverk som inte längre underhålls, såsom JsUnit\cite{JsUnitGithub} och JSpec\cite{JSpec}, kommer inte heller att behandlas.
-
-Vissa ramverk har även sorterats bort för att de inte bedömts ha lika många användare eller unik funktionalitet för att vara värda att undersöka. Bland dessa finner vi Karma (tidigare känt som Testacular), TestSwarm, YUI Yeti och RhinoUnit. De är säkert användbara, men någonstans behöver en gräns dras för vad som ska tas med och inte. Om det blir tid över så kommer även dessa att undersökas.
-
-\newpage
 \section{Tidsplan}
 
 Skrivandet av rapporten kommer att ske kontinuerligt genom hela projektet, och driva det övriga arbetet. Möten med handledare och ämnesgranskare kommer att ske varannan till var fjärde vecka, med variation beroende på tillgänglighet och behov.
