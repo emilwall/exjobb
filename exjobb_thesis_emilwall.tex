@@ -133,6 +133,69 @@ The methods used are first and foremost qualitative in nature, in order to prior
 
 The following testing frameworks have been evaluated: Jasmine\cite{JasmineSite} (+ Jasmine-species\cite{JasmineSpecies}), qUnit\cite{QUnitSite}, Karma, Mocha\cite{MochaSite}, JsTestDriver\cite{JsTestDriver}, Buster.JS\cite{BusterJS} and Sinon.JS\cite{SinonJS}. The code written while evaluating the frameworks is publicly available as git repositories under my github account \emph{emilwall}, together with the \LaTeX~code for this report.
 
+Semi-structured interviews were used rather than surveys to gather individual views on the subject. This approach allowed for harnessing unique as well as common experiences which would not be picked up in a standardised survey.
+
+\subsection{Interview Questions}
+\subsubsection{Formalities}
+The interviews took place in calm, undisturbed locations, and began with a short recap on the background and purpose of the interviews. The interviewee was informed that the purpose of the interview was to gain a better understanding of different aspects of JavaScript testing. What problems and benefits exists and how it is connected with other software engineering practices and tools.
+
+\begin{itemize}
+\item Is it ok if I record our conversation?
+\item Do you want to be anonymous?
+\end{itemize}
+
+\subsubsection{The interviewee}
+\begin{itemize}
+\item What kind of applications do you typically develop with JavaScript?
+\item What tools and frameworks have you used? What roles have they played in your development processes?
+\item Which are your favourites among the frameworks? Why?
+\end{itemize}
+
+\subsubsection{JavaScript in general}
+\begin{itemize}
+\item How productive do you feel when coding in JavaScript compared to other languages?
+\item How do you typically perceive JavaScript code written by others?
+\item What advanced features of JavaScript do you use, such as prototypal inheritance, dynamic typing and closures?
+\item How do you think the JavaScript syntax and features impacts maintainability?
+\item How would you assess the probability of making mistakes while coding in JavaScript?
+\end{itemize}
+
+\subsubsection{JavaScript testing experience}
+\begin{itemize}
+\item What is your experience with unit testing of JavaScript?
+\item What is your experience with UI testing?
+\item What is your experience with integration and end-to-end tests?
+\item Have you practiced test driven development with JavaScript? To what extent? Has this been helpful? (if not, why? what did you do instead?)
+\item Have you used any mocking and stubbing tools? Which, and what has been your experience with these?
+\end{itemize}
+
+\subsubsection{Challenges in testing}
+\begin{itemize}
+\item How do you go about determining what to test?
+\item What principles do you apply when writing the tests? (short test methods, avoiding control flow, code duplication)
+\item Have you ever set up a testing environment? If so, did you find it hard? If not, do you imagine it to be difficult?
+\end{itemize}
+
+\subsubsection{Benefits of testing}
+\begin{itemize}
+\item In your opinion, what are the main benefits from testing your JavaScript?
+\item When do you think testing JavaScript pays off?
+\item Have you ever had tests that impaired your productivity by being too hard to change or even understand?
+\item Has tests helped you in debugging and quickly finding the source of a bug?
+\item Has testing helped you discover bugs in the first place? Has this saved you from trouble further on?
+\item Has testing helped your design?
+\item What role has JavaScript testing played in any continuous integration you've had?
+\item What type of JavaScript coding do you think is best suited for TDD?
+\end{itemize}
+
+\subsubsection{Adding tests to existing application}
+\begin{itemize}
+\item Have you ever been given the task of adding tests to an existing (JavaScript) application?
+\item Was this hard?
+\item What changes in the application were required in order to be able to write the tests?
+\item Did you feel safe in changing the application or were you afraid that you'd might introduce new bugs?
+\end{itemize}
+
 \begin{comment}
 
 Det finns sedan tidigare akademiskt arbete som behandlar testning av webb-applikationer och även specifikt Javascript. Dessa arbeten kommer att redogöras för i den slutgiltiga rapporten. De arbeten som behandlar automatisk generering av tester\cite{AutomatedTesting} kommer att vara av begränsat intresse för examensarbetet eftersom sådana tekniker är mer relevanta för att uppnå olika grader av \textit{\foreignlanguage{english}{code coverage}} snarare än testdriven utveckling. Andra är i allra högsta grad relevanta, till exempel det av Heidegger et al. som behandlar enhetstestning av Javascript som manipulerar en underliggande webbsida\cite{DOMJavascript} och den empiriska studien av Ocariza et al. om hur vanligt det är med buggar i Javascript-kod på produktionssatta webbsidor\cite{Wild}.
@@ -223,71 +286,6 @@ Skrivandet av rapporten kommer att ske kontinuerligt genom hela projektet, och d
 \end{description}
 
 \end{comment}
-
-\section{Methods}
-
-Semi-structured interviews were used rather than surveys to gather individual views on the subject. This approach allowed for harnessing unique as well as common experiences which would not be picked up in a standardised survey.
-
-\subsection{Interview Questions}
-\subsubsection{Formalities}
-The interviews took place in calm, undisturbed locations, and began with a short recap on the background and purpose of the interviews. The interviewee was informed that the purpose of the interview was to gain a better understanding of different aspects of JavaScript testing. What problems and benefits exists and how it is connected with other software engineering practices and tools.
-
-\begin{itemize}
-\item Is it ok if I record our conversation?
-\item Do you want to be anonymous?
-\end{itemize}
-
-\subsubsection{The interviewee}
-\begin{itemize}
-\item What kind of applications do you typically develop with JavaScript?
-\item What tools and frameworks have you used? What roles have they played in your development processes?
-\item Which are your favourites among the frameworks? Why?
-\end{itemize}
-
-\subsubsection{JavaScript in general}
-\begin{itemize}
-\item How productive do you feel when coding in JavaScript compared to other languages?
-\item How do you typically perceive JavaScript code written by others?
-\item What advanced features of JavaScript do you use, such as prototypal inheritance, dynamic typing and closures?
-\item How do you think the JavaScript syntax and features impacts maintainability?
-\item How would you assess the probability of making mistakes while coding in JavaScript?
-\end{itemize}
-
-\subsubsection{JavaScript testing experience}
-\begin{itemize}
-\item What is your experience with unit testing of JavaScript?
-\item What is your experience with UI testing?
-\item What is your experience with integration and end-to-end tests?
-\item Have you practiced test driven development with JavaScript? To what extent? Has this been helpful? (if not, why? what did you do instead?)
-\item Have you used any mocking and stubbing tools? Which, and what has been your experience with these?
-\end{itemize}
-
-\subsubsection{Challenges in testing}
-\begin{itemize}
-\item How do you go about determining what to test?
-\item What principles do you apply when writing the tests? (short test methods, avoiding control flow, code duplication)
-\item Have you ever set up a testing environment? If so, did you find it hard? If not, do you imagine it to be difficult?
-\end{itemize}
-
-\subsubsection{Benefits of testing}
-\begin{itemize}
-\item In your opinion, what are the main benefits from testing your JavaScript?
-\item When do you think testing JavaScript pays off?
-\item Have you ever had tests that impaired your productivity by being too hard to change or even understand?
-\item Has tests helped you in debugging and quickly finding the source of a bug?
-\item Has testing helped you discover bugs in the first place? Has this saved you from trouble further on?
-\item Has testing helped your design?
-\item What role has JavaScript testing played in any continuous integration you've had?
-\item What type of JavaScript coding do you think is best suited for TDD?
-\end{itemize}
-
-\subsubsection{Adding tests to existing application}
-\begin{itemize}
-\item Have you ever been given the task of adding tests to an existing (JavaScript) application?
-\item Was this hard?
-\item What changes in the application were required in order to be able to write the tests?
-\item Did you feel safe in changing the application or were you afraid that you'd might introduce new bugs?
-\end{itemize}
 
 \section{Patterns}
 
