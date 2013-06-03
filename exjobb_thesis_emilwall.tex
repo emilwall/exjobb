@@ -16,6 +16,7 @@
 \usepackage{graphicx} % support the \includegraphics command and options
 \usepackage[parfill]{parskip} % Begin paragraphs with an empty line rather than an indent
 \usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
+\usepackage{verbdef} % inline verbatim
 %\usepackage{titling} % required for setlength droptitle (below)
 %\setlength{\droptitle}{-70pt} % Adjust title height
 \usepackage{fancyhdr} % This should be set AFTER setting up the page geometry
@@ -295,6 +296,10 @@ This is likely a large contributing factor for increasing the probability of Ang
 A mock has pre-programmed expectations and built-in behaviour verification\cite[p.~453]{Tddjs}.
 
 Because JavaScript has no notion of interfaces, it is easy to accidentally use the wrong method name or argument order when stubbing a function\cite[p.~471]{Tddjs}.
+
+\subsection{Testability issues with main.js in asteroids application}
+
+Despite partitioning the JavaScript of the asteroids applications into separate classes, the problem of the canvas element not being available in the unit testing environment was not mitigated. The main.js file contained around 200 lines of code that could not be executed by tests without further refactoring since they were executed in a jQuery context (i.e. using \verbdef{\jquerycontext}{\$(function ()}\jquerycontext...) that included the selector \verbdef{\selector}{$("#canvas")}\selector. Efforts to load this code using ajax were of no gain, so the solution was instead to expose the contents of the context as a separate class and inject the canvas and other dependencies into that class.
 
 \section{Real world experiences}
 
