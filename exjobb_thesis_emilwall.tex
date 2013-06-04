@@ -299,7 +299,7 @@ Because JavaScript has no notion of interfaces, it is easy to accidentally use t
 
 \subsection{Testability issues with main.js in asteroids application}
 
-Despite partitioning the JavaScript of the asteroids applications into separate classes, the problem of the canvas element not being available in the unit testing environment was not mitigated. The main.js file contained around 200 lines of code that could not be executed by tests without further refactoring since they were executed in a jQuery context (i.e. using \verbdef{\jquerycontext}{\$(function ()}\jquerycontext...) that included the selector \verbdef{\selector}{$("#canvas")}\selector. Efforts to load this code using ajax were of no gain, so the solution was instead to expose the contents of the context as a separate class and inject the canvas and other dependencies into that class.
+Despite partitioning the JavaScript of the asteroids applications into separate classes, the problem of the canvas element not being available in the unit testing environment was not mitigated. The main.js file contained around 200 lines of code that could not be executed by tests without further refactoring since they were executed in a jQuery context (i.e. using \verbdef{\jquerycontext}{\$(function ()}\jquerycontext...) that included the selector \verbdef{\selector}{$("#canvas")}\selector. Efforts to load this code using ajax were of no gain, so the solution was instead to expose the contents of the context as a separate class and inject the canvas and other dependencies into that class. This required turning many local variables into attributes of the class to make them accessible from main.js such as the 2d-context.
 
 \section{Real world experiences}
 
