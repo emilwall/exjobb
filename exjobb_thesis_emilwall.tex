@@ -307,6 +307,26 @@ The problem was not solved entirely through this approach though, since some par
 
 Same goes with the main loop, which contains logic to draw grid boundaries. When refactoring main.js the main loop was left in main.js (which can not be tested) and this introduced a bug that was reproduced only when using the particular feature of displaying the grid. The feature is not important and could be removed. The bug could also be fixed by making a couple of variables globally accessible as attributes of the rendering class, but that too would introduce a code smell. A better solution was to move it into the rendering class, as it semantically belongs there.
 
+\subsection{JsTestDriver evaluation}
+
+When resuming from sleep on a mac the server needs to be stopped and the browsers need to be manually re-captured to the server, or else the driver hangs when trying to run the tests. This is both annoying and time consuming. However, the problem is not present on a windows machine (and it might not be reproducable on all mac machines either).
+
+Definitions are not cleared between test runs, meaning that some old definitions from a previous test run can remain and cause tests to pass although they should not because they are referring to objects that no longer exists or that tests can pass the first time they are run but then crash the second time although no change has been made to the code. Some of these problems indicate that the tests are bad, but it is inconvenient that the tool does not give you any indication when these problems occur, especially when there is false positives.
+
+If there is a syntax error in a test, the JsTestDriver still reports that the tests pass. For example:
+
+\begin{verbatim}
+setting runnermode QUIET
+...................................
+Total 35 tests (Passed: 35; Fails: 0; Errors: 0) (23,00 ms)
+  Chrome 27.0.1453.94 Windows: Run 36 tests (Passed: 35; Fails: 0;
+Errors 1) (23,00 ms)
+    error loading file: /test/sprites-spec/sprite-spec.js:101: Uncaught
+SyntaxError: Unexpected token )
+\end{verbatim}
+
+As a developer, you might miss the ''error loading file´´ message and that not all 36 tests were run, because the first line seems to say that everything went fine.
+
 \subsection{Meetup open space discussion}
 
 During a talk at a meetup on python APIs (2013-05-22 at Tictail's office, an e-commerce startup based in Stockholm), the speaker mentioned that their application depended heavily on JavaScript. It turned out that they had done some testing efforts but without any lasting results. During the open space after the talks, testing became a discussion subject in a group consisting of one of the developers of the application, among others. The developer explained that they had been unable to unit test their JavaScript because the functionality was so tightly coupled that the only observable output that they could possibly test was the appearance of the web page, via Selenium tests. He sought reassurance that they had done the right thing when deciding not to base their testing on Selenium due to instability (tests failing for the wrong reasons) and time required to run the tests. He also sought answers to how they should have proceeded.
