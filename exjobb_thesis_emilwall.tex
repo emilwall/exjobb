@@ -329,7 +329,7 @@ Errors 1) (23,00 ms)
 SyntaxError: Unexpected token )
 \end{verbatim}
 
-As a developer, you might miss the ''error loading file´´ message and that not all 36 tests were run, because the first line seems to say that everything went fine.
+As a developer, you might miss the ''error loading file´´ message and that not all 36 tests were run, because the first line seems to say that everything went fine. Sometimes Jasmine does not run any test at all when there is a syntax error, but does not report the syntax error either. It is therefore recommended that you pay close attention to the terminal output and check that the correct number of tests were run rather than just that there was no failures. This is impractical when running the tests in a CI build because the build screen will typically display success even if no tests were run. It can be of help to keep a close look on the order in which files are loaded and also to keep the console of a browser open in order to be notified of syntax errors\cite{MikeJansen}.
 
 Deficiencies such as these are important to note because they pose potential reasons to why JavaScript developers don't test their code. If using the tools and frameworks is perceived as cumbersome and demanding, fewer will use them and those who do will consider it worth doing so in fewer cases.
 
