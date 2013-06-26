@@ -13,8 +13,8 @@ WARMUP (please give short answers)
 
  What kind of applications do you typically develop with JavaScript?
  What tools and frameworks (both for testing and for JavaScript in general) have you used?
- What roles have frameworks played in your development processes? Don't give this too much thought, two or three sentences please.
- Which are your favourites among the frameworks? Why?
+ What roles have frameworks played in your development processes? Don't give this too much thought, two or three sentences please.
+ Which are your favorites among the frameworks? Why?
 
 
 === JavaScript testing experience ===
@@ -31,8 +31,8 @@ SERIOUS BUSINESS (please give longer answers)
 === Challenges in testing ===
 
  How do you go about determining what to test?
- What principles do you apply when writing the tests? Please give this question some thought, it is one of the most important. You can base your answer on these concepts: TDD (Test Driven Development), BDD (Behaviour Driven Development), length of test methods, amount of control flow, level of code duplication acceptable, number of tests, coverage ambitions, what to stub and mock.
- How crucial would you say that these principles are for the success and value of the tests?
+ What principles do you apply when writing the tests? Please give this question some thought, it is one of the most important. You can base your answer on these concepts: TDD (Test Driven Development), BDD (Behavior Driven Development), length of test methods, amount of control flow, level of code duplication acceptable, number of tests, coverage ambitions, what to stub and mock.
+ How crucial would you say that these principles are for the success and value of the tests?
  Have you ever set up a testing environment from scratch? If so, which parts did you find to be the hardest? If not, what do you imagine to be most difficult?
 
 
@@ -44,13 +44,13 @@ SERIOUS BUSINESS (please give longer answers)
  How has tests helped you in debugging and finding the source of a bug?
  How often have you found that testing has helped you discover bugs that would otherwise go unnoticed?
  In what ways do you find that testing has affected how you design an application?
- What role has JavaScript testing played in any continuous integration you've had? (Bare with me, just a few more to go)
+ What role has JavaScript testing played in any continuous integration you've had? (Bear with me, just a few more to go)
  What type of JavaScript coding do you think is best suited for TDD?
 
 
 === Adding tests to existing application ===
 
- Have you ever been given the task of adding tests to an existing (JavaScript) application?
+ Have you ever been given the task of adding tests to an existing (JavaScript) application? If not, try to answer the following questions hypothetically.
  Was this hard, why?
  What changes in the application were required in order to be able to write the tests?
  Did you feel safe in changing the application or were you afraid that you'd might introduce new bugs?
