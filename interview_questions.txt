@@ -1,0 +1,56 @@
+WARMUP (please give short answers)
+
+=== The JavaScript language ===
+
+ How productive do you feel when coding in JavaScript compared to other languages?
+ How do you typically perceive JavaScript code written by others?
+ To what extent do you harness advanced features of JavaScript, such as prototypal inheritance, dynamic typing and closures?
+ How do you think the JavaScript syntax and features impacts maintainability?
+ How would you assess the probability of making mistakes while coding in JavaScript?
+
+
+=== Frameworks ===
+
+ What kind of applications do you typically develop with JavaScript?
+ What tools and frameworks (both for testing and for JavaScript in general) have you used?
+ What roles have frameworks played in your development processes? Don't give this too much thought, two or three sentences please.
+ Which are your favourites among the frameworks? Why?
+
+
+=== JavaScript testing experience ===
+
+ What is your experience with unit testing of JavaScript? Try to answer with one or just a few words.
+ What is your experience with UI testing?
+ What is your experience with integration and end-to-end tests?
+ Have you practiced test driven development with JavaScript? To what extent? Has this been helpful? (if not, why? what did you do instead?)
+ Have you used any mocking and stubbing tools? Which, and what has been your experience with these?
+
+
+SERIOUS BUSINESS (please give longer answers)
+
+=== Challenges in testing ===
+
+ How do you go about determining what to test?
+ What principles do you apply when writing the tests? Please give this question some thought, it is one of the most important. You can base your answer on these concepts: TDD (Test Driven Development), BDD (Behaviour Driven Development), length of test methods, amount of control flow, level of code duplication acceptable, number of tests, coverage ambitions, what to stub and mock.
+ How crucial would you say that these principles are for the success and value of the tests?
+ Have you ever set up a testing environment from scratch? If so, which parts did you find to be the hardest? If not, what do you imagine to be most difficult?
+
+
+=== Effects of testing ===
+
+ In your opinion, what are the main benefits from testing your JavaScript?
+ When do you think testing JavaScript pays off and when would you consider it as a waste of time and effort (if ever)?
+ Have you ever had tests that impaired your productivity by being too hard to change or even understand? How does this connect to principles applied while writing the tests?
+ How has tests helped you in debugging and finding the source of a bug?
+ How often have you found that testing has helped you discover bugs that would otherwise go unnoticed?
+ In what ways do you find that testing has affected how you design an application?
+ What role has JavaScript testing played in any continuous integration you've had? (Bare with me, just a few more to go)
+ What type of JavaScript coding do you think is best suited for TDD?
+
+
+=== Adding tests to existing application ===
+
+ Have you ever been given the task of adding tests to an existing (JavaScript) application?
+ Was this hard, why?
+ What changes in the application were required in order to be able to write the tests?
+ Did you feel safe in changing the application or were you afraid that you'd might introduce new bugs?
