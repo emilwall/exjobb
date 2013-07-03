@@ -359,9 +359,11 @@ When an application is tightly coupled, stubbing becomes a daunting task. What y
 
 To detect improper stubbing, I ran each test isolated with just the file it was supposed to test. A problem with this was that trying to stub a function which is not defined produces an exception in order to prevent you from doing typos. This could be solved by saving the implementation in a local variable, defining the function to be an empty function, stub it with sinon.JS and then restore and re-set it to the original implementation, but this is inconvenient so instead I opted towards being careful not to miss any calls that should be stubbed. There is a point with interpreting the system under test before running any test code, since that allows for detection of typing mistakes and other integration issues.
 
-\sebsection{Deciding what to test}
+\subsection{Deciding what to test}
 
 During the interview with Johannes Edelstam, one of the things that came up was that you should focus on testing behaviour rather than appearance and implementation details. This is a good excuse for not testing that a certain class inherits from another but rather focus on that the methods of that class behaves as one would expect. Whether or not that is dependent on the inheritance patterns is mainly relevant for stubbing considerations - you may want to replace the prototype of an object in tests so that you can check that there are no unexpected dependencies.
+
+Another thing that came up during the interview with Johannes Edelstam was that when something feels like it is hard to test, it is likely that any test you write will become rather brittle as the code changes in the future. The proposed solution (TODO check this from the recording!) was to avoid testing it unless the code can be refactored so that testing becomes easier. When writing the tests for the asteroids application, I deliberately chose to write tests even when it felt hard or felt like it provided little value, to see whether this made the application harder to test later and if people would remove the bad tests during the workshop.
 
 \subsection{Meetup open space discussion}
 
