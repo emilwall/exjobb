@@ -419,6 +419,8 @@ A common case of user interface testing is form validation. Being test driven do
 
 Being too religious about testing principles leads to conflicts like ``writing tests take too much time from the real job''. If the tests do not provide enough value for them to be worth the effort then they should be written differently or not at all. There is no value in writing tests just for the sake of it. Thinking about architecture and the end product can be a good thing even when there are no tests, because awareness of the bigger picture is also important. There is the same risk with tests as with other pieces of code, sometimes you are especially proud or fond of a certain test and unwilling to throw it away, in order to avoid that situation it is often better to think ahead and try things out than to immediately spend time writing tests. \cite{Edelstam}
 
+Writing implementation specific tests is a common phenomena that can stem from poor experience of writing tests, extreme testing ambitions or, perhaps most commonly, poor understanding of the system under test. These kind of tests should be avoided since they tend to be hard to understand and usually have to be changed whenever an improvement of the implementation is considered. A large number of tests is not necessarily a good thing either, it is harder to overview and maintain a large collection of tests. Unless the system is inevitably so complicated that extensive testing is justified, it rarely pays off to strive for 100 \% coverage, since it takes too much time and the scenarios that might cause problems are at risk of being overlooked anyway. \cite{Edelstam}
+
 \printbibliography[heading=bibnumbered]
 
 \section{Appendix}
