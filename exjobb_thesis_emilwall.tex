@@ -413,6 +413,8 @@ An important difference between using a headless browser such as PhantomJS to ru
 
 One could argue that JavaScript is better suited for testing than most other programming languages because of the built in features than often make stubbing frameworks redundant. The object literals can be used to define fake objects and it is easy to manually replace a function with another and then restore it. An advantage with using manually written fakes is that it tends to make the code easier to understand since knowledge about specific frameworks or DSLs (Domain Specific Language) is not required. \cite{Edelstam}
 
+The problems that some people experience with testing frontend interfaces sometimes have to do with poor modularity. For instance, the presentation layer should not be responsible for calling large APIs. Tools such as RequireJS can be used to handle dependencies but if each part of the application has too many or large dependencies, mocking becomes daunting. Typically, these kinds of problems can be solved by introducing new layers of logic and services that separate responsibilities and allows for much cleaner tests. \cite{Edelstam}
+
 \printbibliography[heading=bibnumbered]
 
 \section{Appendix}
