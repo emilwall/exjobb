@@ -407,6 +407,8 @@ Tools are an important part of facilitating testing, so that people are not so d
 
 Error reports are useful feedback that tests provide. The quality of these reports vary depending on which testing frameworks you are using and how you write your tests. When using PhantomJS to run tests, some test failures require you to run the tests in a browser in order to get good error reports. \cite{Edelstam}
 
+An important difference between using a headless browser such as PhantomJS to run your tests compared to JsTestDriver, or other drivers that allow you to test in several broswers, is that a headless browser provides no information about how your code performs on different JavaScript implementations. Reasons why you might still decide to do so include speed, easier integration with build tools such as Jenkins, and that it yields the same results as long as the tests focus on logic rather than compatibility. \cite{Edelstam}
+
 \printbibliography[heading=bibnumbered]
 
 \section{Appendix}
