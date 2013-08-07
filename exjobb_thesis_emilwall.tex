@@ -423,6 +423,10 @@ Writing implementation specific tests is a common phenomena that can stem from p
 
 Tests can serve to prevent people from breaking code and as examples that help new people understand how an application works and how to continue development \cite{Edelstam}. Tests also help to give a clear image of how components fit together and can be a way to concretize a feature or bug.
 
+\subsubsection{Testing private APIs}
+
+Testing private APIs differs from testing calls to an external API in that the latter are often well documented, versioned and rarely changes. When using an external API, the main concerns are making sure that the correct version is used and that the API is called in a correct way with respect to that version.
+
 \printbibliography[heading=bibnumbered]
 
 \section{Appendix}
