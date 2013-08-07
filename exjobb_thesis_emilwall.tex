@@ -425,7 +425,7 @@ Tests can serve to prevent people from breaking code and as examples that help n
 
 \subsubsection{Testing private APIs}
 
-Testing private APIs differs from testing calls to an external API in that the latter are often well documented, versioned and rarely changes. When using an external API, the main concerns are making sure that the correct version is used and that the API is called in a correct way with respect to that version.
+Testing private APIs differs from testing calls to an external API in that the latter are often well documented, versioned and rarely changes. When using an external API, the main concerns are making sure that the correct version is used and that the API is called in a correct way with respect to that version. A private API on the other hand may change frequently which means that the fake objects representing requests and responses of the API in other tests need to change as well.
 
 \printbibliography[heading=bibnumbered]
 
