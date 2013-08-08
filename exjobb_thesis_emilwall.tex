@@ -775,6 +775,222 @@ Ja men gör det, absolut. Hade du något mer?
 
 Då ska jag nog börja dra mig. Men vad kul, det blir spännande att se, du får gärna skicka ditt arbete till mig när du är klar.
 
+\subsection{Transcript of Interview with Patrik Stenmark}
+
+\emph{Du skrev i ditt mail till mig att en nackdel med JavaScript är att det är ”mycket ceremoni för ett dynamiskt typat språk”. Vad menade du med det?}
+
+Jag borde kanske ha skrivit funktionellt språk snarare än dynamiskt typat. Jag menar att det till exempel är ganska klumpigt syntaxmässigt att skicka med en anonym funktion i ett anrop. Du måste skriva function med parenteser, klammer, i vissa fall semikolon efter definitionen, 20 rader nedanför, i andra fall ska det inte vara det, beroende på om det är ett objekt eller bara en funktion du definierar. Man behöver fundera rätt mycket på syntax.
+
+\emph{Det känner jag igen som har suttit rätt mycket med python, där tycker jag att det är bättre.}
+
+Jag är ju Ruby-utvecklare om jag får välja själv. Python är ännu renare, för i Ruby finns det en del saker som man får fundera på, men i JavaScript så är det så i stort sett hela tiden. Om man till exempel ska flytta en funktion från att vara anonym till att bli en egen funktion för att den har blivit för stor, då är det inte bara att flytta den utan man behöver även fundera på om den hamnar i ett objekt så att det måste finnas kommatecken på rätt ställe eller om det blir en vanlig funktionsdefinition som ska avslutas med semikolon. Om den flyttas sist i ett objekt så ska det inte vara kommatecken, för då blir det syntaxfel i vissa versioner av Internet Explorer. Det är mycket sånt som jag tycker blir väldigt jobbigt. Visserligen finns JSLint och JSHint och liknande som kan hjälpa till, men det är fortfarande lite för mycket saker som man inte borde behöva tänka på.
+
+\emph{Du skrev att du har använt JavaScript till både små saker och till lite större. Tycker du att det lämpar sig bra till stora applikationer?}
+
+Nej, *skratt*, egentligen inte. Jag tycker inte alls om JavaScript som språk, jag tycker att det är alldeles för mycket specialfall och konstiga quirks. Objectmodellen är väldigt konstig och känns schizofren i att man har ett prototyp-baserat system men också en new-operator som emulerar new-operatorn i Java, fast inte riktigt. Det är mycket sådana designbeslut som jag tycker är ganska konstiga. Däremot så är det ju ett språk som finns tillgängligt överallt, så det gör att det ändå funkar att hålla på med. Om det hade varit så att alla webbläsare hade stöd att exekvera Ruby utan att först ladda hem emscripten så skulle jag definitivt föredra det. Sen så finns det ju ramverk och grejer som hjälper till och gör att det fungerar bättre, men i grunden så nej, jag tycker inte att det är ett lämpligt språk att skriva stora applikationer i.
+
+\emph{Så det är mest att det är enda alternativet?}
+
+Ja.
+
+\emph{Nu är jag inte helt insatt, men Single Page Applications (SPA) känns som en typisk grej där JavaScript är enda valet.}
+
+Ja, där har du ju inte något alternativ egentligen. I varje fall så måste slutprodukten vara JavaScript. Den största grejen jag har gjort, som är en SPA, skrev jag i Coffeescript, men det är ju JavaScript.
+
+\emph{Hur ser du på testning när det kommer till stora program, blir det mer relevant då?}
+
+Ja, definitivt.
+
+\emph{Tror du att man klarar sig utan det överhuvudtaget?}
+
+Ja klarar sig gör man ju, men utifrån min erfarenhet med en tidigare applikation som jag har jobbat med, som tog in statistik på ena sidan och byggde upp grafer som gick att filtrera på olika parametrar, så blev jag flera gånger hjälpt av testerna, särskilt när ny funktionalitet skulle läggas till. Då fanns det en bekräftelse på att jag inte hade haft sönder någonting tidigare och testerna manade mig till att skriva lite mer välstrukturerat.
+
+Från vad jag sett i andra projekt så när man inte har tester så blir det bara en stor soppa till slut där varenda ändring man gör tar jättelång tid och har sönder fyra andra funktioner. För att man inte var medveten om att en viss jQuery-handler måste köras före en annan och så har man bytt plats på lite kod för att öka läsbarheten och helt plötsligt funkar ingenting längre.
+
+\emph{Jag vet inte hur mycket du har hållit på med node?}
+
+Ingenting.
+
+\emph{Det jag funderat lite på är hur attityden gentemot testning har förändrats genom tiden, det känns som att node har varit en milstolpe som gjort att man börjat utveckla i JavaScript mer seriöst.}
+
+Det har ju påverkat testning inom webb-JavaScript också, för trots att jag aldrig har kodat för node så har jag ändå haft nytta av att ha en JavaScript-runtime tillgänglig som gjort att man kunnat köra testverktyg. Tidigare behövde man skriva en html-sida och ladda i webbläsaren för att köra sina JavaScript-tester. Det var ganska meckigt, att sätta upp en ny testsvit var att sätta upp en ny html-sida. Det node har gjort för mig är att jag kan köra mina tester i terminal med PhantomJS eller Selenium beroende på vilken nivå jag vill lägga det på. Så på sätt och vis har jag använt node, men jag har inte kodat node.
+
+\emph{Varför tror du att JavaScript-kodare ofta föredrar quick-and-dirty?}
+
+Jag skyller på jQuery. *Skratt* Det har mycket att göra med hur JavaScript började, för 10 år sen så hade du inte kunnat skriva en SPA för du hade knappt AJAX men jag kan tänka mig att många har lärt sig JavaScript för att kunna animera en knapp, vilket är enkelt att göra genom att skriva några få rader jQuery i en fil och inkludera den. Sen utvecklas det till att man vill ha lite mer menyer som expanderar och andra effekter vilket i sin tur övergår till att man implementerar faktiska funktioner i JavaScript. Då har man läst tutorials på Internet som berättar att man skapar en viss handler i vilken man läser in något från DOMen och manipulerar det och använder en selektor för att hämta ut ett visst element och i det läget så är testbarheten i stort sett förlorad även om man har en utvecklarbakgrund sedan tidigare.
+
+Sen så tror jag att många JavaScript-utvecklare kommer från designer-sidan, som inte har kunskaperna som krävs för att riktigt veta vad det är de gör. De är designers som har lärt sig jQuery och kan det, utan att egentligen vara så insatta i programmering i stort. Sen så sitter de och lappar ihop saker och kan absolut vara asgrymma på jQuery och åstadkomma jättehäftiga effekter och bra saker på så sätt, men de har inte strukturen och koddesign-tänket som man får som utvecklare när man bygger stora saker. Det har jag märkt när jag jobbat med frontend-utvecklare att de tycker att det är helt rimligt att ha en fil med 3000 rader kod med en funktion som är 250 rader lång som bara innehåller DOM-uthämtning och AJAX-request och allting i en stor soppa. De tycker inte att det är något konstigt överhuvudtaget, för det är så de har lärt sig. Tidigare har det varit väldigt lite information på Internet om hur man gör. Tutorials, dokumentation och liknande visar inte det utan det är de snabba lösningarna som visas oftast.
+
+\emph{Så, det har varit lite information om hur man gör det bra.}
+
+Ja.
+
+\emph{I ditt mail nämnde du några ramverk som du använt: Backbone, Ember, Angular. Framförallt Backbone, vad jag fattade det som. Och så lite testning men Buster, Jasmine och Sinon. När tror du att de är lämpliga att använda sig av?}
+
+Idag skulle jag nog inte använda Backbone överhuvudtaget, det var jättebra när det kom men det känns som att det hade en hel del brister som har stannat kvar och sen så har det kommit en massa andra som har sett Backbone och tyckt att det varit bra men att vissa saker saknats och därför gjort något nytt som är snäppet bättre.
+
+Det finns olika komplexitetsnivåer på det, Backbone är ju i den lägre skalan, det är väldigt simpelt egentligen. Den typen av ramverk känns rimliga när det är små applikationer. Kanske som en del av en större site som hålls isolerad från övriga delar av siten. Däremot så om man ska bygga en SPA-style så skulle jag nog inte gå mot Backbone utan istället utgå från hur komplext det är och välja Angular eller CanJS om det var av medelstorlek eller Ember om det gäller en applikation i stil med Gmail och avancerade forum-mjukvaror, som ska konkurrera med desktop-applikationer. Att dra fram Ember för att göra en liten Todo-lista är bara overkill och onödigt.
+
+\emph{Du tror inte att det är risk att det är i vägen när det är så stort?}
+
+Jo, det är det, men jag tror också att när det är en så komplex applikation så är det värt att ha ett ramverk som hjälper till rätt mycket, i synnerhet när man måste använda JavaScript. Men absolut, jag är ju Rails-utvecklare och i den världen så är jag väldigt mycket inne på att försöka frikoppla så mycket som möjligt från Rails när jag bygger saker. Jag har inte sett det göras ordentligt eller på ett bra sätt i JavaScript-världen ännu. Det kanske går, jag kanske ändrar mig om ett par år eller någonting, men just nu så känns det som att det enklaste och mest effektiva är att ha ett ramverk som hjälper till rätt mycket. Sen kan man säkert hamna i att man får slåss lite mot det eller anpassa vad man vill göra till vad ramverket klarar av.
+
+\emph{Vad är de största vinsterna med de här då, vad är det man får hjälp med?}
+
+När det gäller Ember så får du ju strukturen på applikationen, hur den ska byggas upp. Allting bygger på någon slags state machine som styrs av vilken URL du är på. Sen att du får en riktig MVC, eller i varje fall riktigare än de flesta andra ramverk, och att du har databindningarna både på ren data och på det som kallas computer properties, så du kan ha en funktion som genererar ett värde från andra värden som du också kan binda till DOM-element, vilket gör att mycket av situationen där en händelse ska trigga en mängd andra händelser blir enklare.
+
+När det gäller de enklare verktygen så får man främst organisation och hjälp med boilerplate-kodning. Man vet vad vyer och controllers förväntas innehålla, vilket ger struktur.
+
+\emph{Känner du att det hjälper för att skriva tester också?}
+
+*Tankepaus* Ja, det gör det ju. Det får lite samma funktion, de hjälper varandra kan man säga. Du kan inte skriva tester för dåligt strukturerad kod utan att det blir komplicerat, så det hjälper ju dig att du redan har någon form av struktur, men jag tror också att testerna hjälper dig att få ännu bättre struktur även om du använder Backbone eller Ember. För du kan ju fortfarande skriva dålig kod i de ramverken, men då hjälper testerna till att förhindra det.
+
+Om du inte hade något ramverk från början så skulle du nog hamna i en bra struktur ändå om du bara körde testdrivet. Jag påstår inte att det blir bra bara man har tester, men testerna kan hjälpa dig även om du inte har ett ramverk. Båda hjälper från varsitt håll.
+
+\emph{Hur mycket har du testat just gränssnitt då?}
+
+En del, men du har det inte varit så mycket i JavaScript utan mer Selenium från Ruby. (Jag har skrivit tester med Jasmine som körs med Selenium aldrig så att alla tester körs via JavaScript.) Det är väldigt sällan värt det, för allting blir så känsligt för förändringar i utseende, det är långsamt och så fort du har någon form av asynkronitet så får du tester som failar ibland. Det kan bli så att de failar vissa tider på dygnet och kontentan blir att de gör mer skada än nytta för att de inte går att lita på och tar så lång tid att köra att man till slut inte orkar vänta på testerna.
+
+Däremot så tror jag att det är bra att ha väldigt övergripande för de viktigaste flödena. I mitt nuvarande projekt så har vi Selenium-tester för de flöden som har med pengar att göra trots att de involverar en del JavaScript, men vi testar inte att dropdown-menyer, växling mellan olika vyer och liknande fungerar utan bara det absolut viktigaste som ett smoke test.
+
+\emph{Vad menar du med smoke test?}
+
+Att prova att gå till sajten, se om den exploderar ungefär. Väldigt övergripande för att se om standardfallet fungerar som det ska. Testa siten och se om det ryker från den eller inte. *Skratt*
+
+\emph{Så det är just Selenium du har använt för gränssnitt då?}
+
+Ja, eller nej, inte bara. Jag har gjort en del genom att ladda in någon form av template i någon testhtml-sida och sen köra jQuery mot den div:en. Då hamnar man i det som jag nämnde i mitt mail, att man behöver hålla det i synk med vad som finns i produktion. Det kan bli så att man ändrar i designen på siten men att testerna fortfarande går igenom eftersom de är baserade på templates som du har skapat trots att siten har blivit trasig. Då har testerna körts av Selenium på en CI-maskin men det har inte varit Selenium som har klickat runt saker utan det används bara för att ladda sidan och sen har jQuery gjort resten.
+
+\emph{Jag hade några följdfrågor här men de är inte så relevanta nu. Vi pratade i vår mailkonversation om externa APIer, du tyckte att det var svårt att testa dem. Vad är det som gör det svårt?}
+
+Det är ju lite samma sak som med gränssnitt, att du har ett beroende på något som du själv inte har full kontroll över. Facebook är till exempel kända för att ändra i sina APIer lite hur som helst och när som helst, när de känner för det. Det finns inget vettigt sätt att testa dem mot live-miljön, för du vill inte att du går in och like:ar något tusen gånger per dag för att du kör testerna hela tiden. Då kan man förstås göra någon slags mock och bara testa att rätt metoder anropas och så där, men då har man problemet att om Facebook ändrar i sitt API så kommer ens tester fortfarande att gå igenom men siten kommer inte att fungera.
+
+Samma sak gäller för vilka APIer du än använder, det kan även vara så med APIer du har själv, för du vill ju inte köra dina enhetstester mot en riktig server för då är de inte riktigt enhetstester längre utan har blivit någonting annat. Det är enklare när det är APIer man själv har kontroll över för då kan man sätta upp någon slags integrationstestmiljö som man använder bara inför release eller liknande för att kontrollera att de mockade testerna fortfarande är uppdaterade. Så gjorde jag när jag arbetade med det där statistikhanteringsverktyget som jag nämnde tidigare och det fungerade riktigt bra, kanske för att det var ett API som jag själv byggde och hade full kontroll över. Så fort det blir något som man själv inte har kontroll över så blir det mer komplicerat.
+
+\emph{Det är väl så att privata APIer ändras ännu oftare och att det ytterligare späder på problemen med att den mockade datan kommer i osynk med den riktiga datan, så som du skrev i ditt mail till mig. När jag intervjuade Johannes Edelstam så föreslog han att man kan ha tester som kontrollerar att ett objekt är ett korrekt request eller ett korrekt response, och köra dem både på de riktiga objekten och på din fake som du har när du mockar ett API. Då märker du att om testerna slutar gå igenom på de riktiga objekten då behöver du ändra på dem och då kommer de att börja faila på faken, och då ändrar du på faken, och då kommer de tester som faken används i att faila. Har du använt dig av det någonting?}
+
+Inte i JavaScript-världen, men i Ruby-världen så gör jag det ofta nu för tiden. Man behöver oftast komma ut på Internet för att kunna göra det, vilket ibland är ett problem och ibland inte. Jag hade någon betalningslösning en gång där det kostade pengar att göra testbetalningar, och då vill man förstås inte göra en testbetalning varje gång man kör sina tester. Men ibland så är det inga problem, om det till exempel gäller en sökning på Twitter så är det säkert inga problem för det får du göra ganska många. Jag tycker absolut att det är en bra idé och jag använder den själv när jag jobbar med backend-kod, jag har dock inte provat det i JavaScript.
+
+\emph{Du skrev i ditt mail att DOM-beroende tester blir långsamma. Var det just Selenium du tänkte på då?}
+
+Oavsett om du kör Selenium eller PhantomJS eller någonting så är de ju långsammare än rena JavaScript-tester.
+
+\emph{Är det för att det är stora objekt som de skapar eller...?}
+
+Ja, och DOM:en är ganska tung att jobba med, antar jag. Jag vet faktiskt inte varför det går långsamt även när du kör Phantom, men det blir väl mer att göra helt enkelt. Det kanske inte är så jobbigt att köra ett test, men om du har 100 tester som är oberoende och varje test tar 100 ms så är du ändå uppe i 10 s körtid. I mitt nuvarande projekt så har vi väl 6-700 enhetstester och om alla de skulle ta 100 ms så skulle vi ju ha blivit gråhåriga vid det här laget. På enhetstestnivå så blir det rätt många tester, i varje fall för mig.
+
+\emph{Vad strävar du efter då när du har så många tester, försöker du täcka in många olika fall vill du bara ha ett test som talar om vad en sak ska göra?}
+
+Nej, på enhetstestnivå så vill jag ju täcka in allt i den mån det går. Det är ett slags mål som jag vet inte riktigt går att uppnå, men ändå det jag satsar på.
+
+\emph{Just för att kunna känna dig trygg sen när du gör ändringar?}
+
+Ja, precis. När jag ändrar och framförallt när andra ändrar. Om jag sitter själv på ett projekt så har jag oftast koll på vad som händer, men när man är flera personer, kanske geografiskt separerade som vi är i vårt nuvarande projekt med fem personer i Stockholm och två på Malta, så är det en stor fördel om man kan förvissa sig om att ingen annan har haft sönder någonting genom att se att testerna fortfarande går igenom.
+
+\emph{Jag såg att du skrev på intranätet att du kom tillbaka från semestern och fick sätta dig och fixa tester, var det någon annan som hade...?}
+
+Ja, eller, det var någon som hade stängt av testerna för att det skulle fortsätta vara grönt i Jenkins. Jag köpte inte riktigt det tankesättet. Så fort man har tester som ibland inte fungerar, så kan man lika gärna kasta dem, för om de spontanfailar så att man inte kan lita på dem så blir det bara onödigt jobb.
+
+\emph{Var det det som var fallet nu?}
+
+Ja, en av testerna hade lite för låg timeout tror jag att det var, så ibland hann den inte svara. Istället för att lösa det problemet så hade de bara stängt av alla testerna.
+
+\emph{Det är väl viktigt att folk har samma ambitioner, kanske.}
+
+Mm.
+
+\emph{Du listade lite olika saker som du brukar ta hänsyn till när du avgör vad du ska testa. Du sa att du gick mycket på känsla också, men. Hur relevant något var, det tolkade jag som att det var just funktionaliteten, hur relevant den var. Att om det är väldigt relevant så är det större chans att du testar.}
+
+Ja, som jag sa tidigare. Betalningsflöden kör jag i Selenium för att vara hundra på att det fungerar, men en liten dropdown-meny som visar kontaktinformation kanske jag bara fulhackar ihop med jQuery utan att skriva något test för det. Sen finns det en skala därimellan.
+
+\emph{Sannolikhet till förändring, om något förändras ofta, är det en anledning till att testa det?}
+
+Ja, precis. Om vi vet att vi kommer att lägga till funktioner och ta bort och ändra så vill man se till så att det man har byggt fungerar, men om man vet att det är något man gör en gång och som sen kommer att ligga kvar där, då tjänar man nog på att manuellt testa det så att det funkar och sen kommer det inte att förändras så därför kan man låta det vara. Den är väldigt svår, för man kan ju idag tro att något inte kommer att förändras och sen kommer en produktägare in imorgon och säger att det visst behöver ändras. Det är ganska vanligt. I de flesta fall skulle jag skriva något väldigt lätt happy path-test bara för att se till att ha den infrastrukturen på plats och förhoppningsvis så skulle personen som gör de här ändringarna inse att det var dåligt med tester just där och skriva dem då. Så försöker jag göra, att när jag ska göra en ändring på något som är otestat så försöker jag, om det går och passar in i projektkulturen, lägga upp det så att det får någon slags test runt sig.
+
+\emph{Det vore ju grymt att ha en sån i teamet. *Skratt*}
+
+Mm, men det kräver ju att teamet gör det, inte att en person gör det, för annars kommer den personen att bli galen efter ett tag. Om ingen annan gör det så kommer det att kännas som att alla andra har sönder saker.
+
+\emph{Hur mycket känner du att du får med dig andra när du gör så här? Behöver du slåss för att det ska bli som du vill?}
+
+Det har varit väldigt olika på olika ställen. Allt från ”va, ska man köra testerna också?” till folk som aldrig har kört testdrivet tidigare men som när man berättar fördelarna reagerar ”oh, det här är ju det bästa jag har hört talats om, det är klart vi ska göra det här”, och sen de som redan är medvetna om att det är bra såklart. Jag har varit tvungen att anpassa mig, på några projekt har jag velat göra mycket mer men ingen annan gör det och då tar jag hellre och gör mindre just för att jag annars blir den som inte producerar någon kod, jag skulle bara sitta och skriva tester. Som konsult så tycker jag att det viktigaste är att man anpassar sig till den redan existerande team-kulturen även om jag aldrig skulle sluta försöka övertala folk.
+
+\emph{Men om man hamnar i en sådan situation att man nästan bara skriver tester, då låter det som att man skriver tester till existerande kod?}
+
+Ja, precis. Det skrev jag väl också, att om det bara var ett nytt greenfield-projekt så skulle jag pusha ganska hårt för att få någon form av testkultur i teamet, men om man kommer in någonstans där det finns en massa kod som kanske inte är sådär välskriven, det är då det tar tid att skriva testerna. Då måste man ofta skriva om saker för att få dem testbara.
+
+Om man är den enda som vill göra det så kan det bli lite konstig stämning i teamet. Man sitter i två dagar och skriver om kod så att den går att testa, sen sitter man i två dagar och skriver tester och sen ägnar man en dag åt att faktiskt göra det man skulle göra från början. Om man däremot har ett team där alla är med på det så tror jag att det är en väldigt bra sak för du kan komma till ett läge då det går långsamt första tiden men ju längre man kommer desto snabbare går utvecklingen för att man blir säkrare på att man inte har sönder saker och man kan skriva om kod så att den blir mer lättförstådd. Det är i så fall en långtidsinvestering, som man inte kan göra som enskild team-medlem.
+
+\emph{Du nämnde komplexitet också, det framgick inte om det var komplex kod du syftade på eller om det var komplexa tester. Jag gissar att om det är väldigt komplex kod så vill man testa den och om det blir komplexa tester så vill man kanske inte ha dem.}
+
+Ja, precis. Det skrev jag väl också någonstans om det här med bra och dåliga tester, att man vill ha så lättförstådda och så enkla okomplicerade tester som möjligt. Om det är ett komplicerat flöde så blir ju testerna oftast komplicerade, men man kan ändå sträva efter att ha så enkla tester som möjligt. Vad gäller att bestämma vad som ska testas så är det nog ändå i första hand komplexiteten i det som ska testas som avgör, både i termer av komplexa algoritmer och affärsregler, det kan vara ganska enkel kod men många olika regler som spelar in. Ju mer komplext desto mer tester.
+
+\emph{Du skrev någonstans att man ska ”lyssna” på testerna. Vad menar du med det?}
+
+Det går ihop med att jag tycker att tester är mer ett designverktyg än ett verifikationsverktyg. Låt oss säga att jag har ett test som kräver 70 rader setup-kod för att få alla beroenden uppsatta och jag måste initiera 17 olika objekt med 10 parametrar var bara för att kunna testa att jag får ut ”Hello World” på skärmen, då kanske jag har en dålig arkitektur som jag borde förenkla eller förändra på något sätt. När man börjar hamna där så gäller det att lyssna på att det är någonting som börjar bli jobbigt, ta ett steg tillbaka och börja fundera på vad det egentligen är man håller på med och om det går att förenkla. Kanske introducera något nytt objekt som tar hand om lite av det ansvar som jag håller på med nu, eller ändra ansvarsområden för de redan existerande objekten, istället för att bara köra på och pressa in ännu mer saker.
+
+\emph{Hur tror du att det här hänger ihop med hur enkelt det är att köra tester?}
+
+Jag vet inte om det hänger ihop så jättemycket med att köra testerna, eller, på någon nivå gör det väl det.
+
+\emph{Hur resultatet presenteras.}
+
+Ja, alltså...
+
+\emph{Eller är det mer vid själva skrivandet av testerna som man behöver känna av sådant här?}
+
+Ja, fast det är både och, det finns olika nivåer på beroenden. När det handlar om att sätta upp ett enskilt test så handlar det ofta om beroenden mellan klasser och objekt, där har det inte så mycket att göra med att köra dem, men man kan ju däremot ha beroenden på en högre nivå: ”Jag måste ha en Java-applikationsserver igång för att kunna köra de här testerna och den måste vara konfigurerad på det här sättet med de här inställningarna”. Det tycker jag också är ett beroende på någonting som kräver en massa setup, men då är det ju på en högre nivå. Jag tror att man vill undvika den typen av beroenden så långt som möjligt.
+
+I idealfallet så tycker jag att man ska kunna checka ut koden och köra ett kommando så ska testerna köra. Det är inte alltid lätt att hamna där, men det är det som är målet, på samma sätt som jag tycker att 100 \% test coverage är mål som man ska sträva mot så tycker jag att man ska sträva mot att ha tester som man kan köra när som helst utan att behöva starta upp servrar och liknande. Om man vill ha ordentliga integrationstester så är det oftast svårt, eller omöjligt, men det ska ändå inte kräva att man startar upp en specifik tomcat-server manuellt utan allt ska skötas av test runnern.
+
+\emph{Jo, att automatisera kan verkligen vara guld värt, då blir det att man kör testerna oftare också, så att man verkligen får ut mer värde av dem, mer feedback. Vi pratade lite om hur det påverkar sättet man jobbar på, om man har tester jämfört med om man inte har det. Om vi tänker oss att du har en kund som tycker att testning är en bra sak, hur påverkar det hur du jobbar?}
+
+Om man bortser från alla andra faktorer, så tror jag att man kan jobba mycket mer med refaktorisering och kodkvalitet om man har en vettig testkultur, för att man kan vara mer säker på att förändringar man gör inte har sönder någonting. Det tror jag betalar sig i längden, för man kan hålla högre hastighet.
+
+\emph{Man blir mer flexibel också.}
+
+Ja, den andra biten är att man förhoppningsvis får en bättre arkitektur som gör leder till ett mer flexibelt system. Man kan ta till sig nya krav istället för att vissa saker inte går att göra i det system som man har byggt. Ny funktionalitet kan fortfarande ta tid att implementera, men förhoppningsvis så finns det alltid en möjlighet. Det finns förstås en mängd andra faktorer som också spelar in för att man ska kunna åstadkomma hög kodkvalitet, men en bra testkultur är helt klart ett steg i rätt riktning. Man behöver fortfarande anstränga sig, men det blir enklare att göra det med testning.
+
+\emph{Vad tror du om att använda tester som ett kommunikationsredskap? Både gentemot kund och nya utvecklare.}
+
+Det låter väldigt bra. *Skratt* Jag har aldrig upplevt att det har fungerat.
+
+\emph{Om du tittar på någon annans kod och det finns tester, kollar du på dem först då eller försöker du förstå koden först?}
+
+Jag brukar kolla på testerna, men de brukar väldigt sällan vara skrivna på ett sätt som gör det uppenbart.
+
+\emph{Det tänkte jag på innan när du sa det här med att man försöker täcka in så mycket som möjligt med sina enhetstester, att det skulle kunna finnas en vits med att skriva ganska enkla enhetstester som inte alls har ambitionen att hitta alla buggar utan istället är tänkta mer som en specifikation.}
+
+Jag tycker att om man har ett vettigt testverktyg så kan man dra upp det på olika nivåer, både Buster och Jasmine har ju nästlade describe-block, så att man kan skilja grundfunktionaliteten från specialfallen. Det är något som jag vill bli bättre på för det är riktigt bra när det fungerar, som i vissa Open Source-projekt. Jag har aldrig sett ett kundprojekt där det har varit så.
+
+RSpec och Cucumber har så att deras webbsite är deras features i ett mer webbvänligt format, vilket är häftigt. Vi har även boken Specification by Example av Gojko Adzic som tar upp mycket av det. Jag tror att det på vissa ställen skulle vara väldigt värdefullt att tänka så, i synnerhet ut mot resten av organisationen men även på enhetstestnivå. Jag vill träna på det mer och faktiskt kunna få till sådana tester som gör att man kan förstå hur allting fungerar direkt utifrån att köra spec-outputen.
+
+Testning är sjukt svårt, jag har försökt köra någon form av testdriven utveckling i sex år och jag tycker inte att jag riktigt kan det ännu. Det kan vara så att dåligt skriva tester är sämre än inga tester, för de är ofta så beroende av implementationen att fördelarna av att kunna ändra på saker uteblir för att en ändring av implementationen gör att testerna slutar fungera. Då har du tester som bara är i vägen, och samma sak blir det när du inte lyssnar på dina tester. Du hamnar i att du har beroenden mellan allting, men i testerna så sätts allting upp och därför går de ändå igenom. Då blir det så att du ändrar en sak och allting ändå går sönder, så att man blir frustrerad över att behöva fixa tester som slutar fungera av helt orelaterade anledningar. I de lägena är det kanske bättre att inte ha några tester alls, och det var där jag var för kanske fem år sedan. Jag hittade kod från den tiden för ett år sedan där vi hade Ruby-tester med 160 raders setup-block för att sätta upp nästan alla objekt i hela applikationen. Jag minns att vi svor dagligen över de testerna för att de kändes i vägen och onödiga. Det är svårt. Det är ännu svårare i JavaScript, för där har man en DOM som har en tendens att komma in överallt.
+
+\emph{Sista frågan var just vad du skulle ge för tips till någon som vill börja testa sin JavaScript.}
+
+Försök inte att göra det på redan existerande kod, är väl det första. I princip enda sättet du kan testa en jQuery-byggd site är med Selenium eller en liknande helt integrerad lösning. Det är inte värt att försöka gå in och skriva enhetstester med en DOM inblandad. Sen skulle jag ta det steg för steg, så att man skriver tester för de delar man är inne och meckar i.
+
+Vad gäller att lära sig så har Katas fungerat väldigt bra för mig. Genom att köra kodkatas så kan man lära sig grunderna, som behövs för att man inte ska få det väldigt jobbigt. Börja med de enkla fallen, som att testa en strängomvändare och liknande. Då slipper du lära dig alla saker samtidigt, och kan istället fokusera på att lära dig testramverket först och sen lägga på saker allt eftersom. Det är också väldigt givande om du har någon som kan mycket som du kan sitta tillsammans med.
+
+Börja någonstans, använd tester i egna projekt eller kundprojekt om det finns tillräckligt stöd från resten av teamet. Någonting nytt då, inte något som redan har massor med JavaScript, för då blir det bara jobbigt.
+
+\emph{Jag tänker också på det nu när jag kommer in i Live, där det just nu finns en ambition om att börja testa mer. Hur det kommer att gå till där, vad tror du skulle vara lämpligt?}
+
+Det är svårt att säga allmänt.
+
+\emph{Det jag känner spontant är väl just det att man ser till att skriva tester för det man går in och ändrar.}
+
+Läs refactoring-boken och jobba med att kontinuerligt förbättra kodbasen, för det räcker inte med att skriva ett test och sedan känna sig nöjd. Annars kommer du att ha en testsvit på flera hundra tester som tar flera minuter att köra lokalt och då kommer ingen att orka köra dem. Du kanske har en CI-maskin som kör testerna varje natt.
+
+\emph{Selenium tänker jag försöka undvika, förutom för det absolut mest kritiska.}
+
+Det är oftast dit du måste gå om du inte börjar förbättra kodstrukturen, annars blir det ofta så att man inte kommer undan att behöva kolla i sin DOM någonstans. Jag ska inte säga att du inte ska vara rädd för att strukturera om kod, för det kommer man att vara, men gör det ändå. Det spelar egentligen ingen roll om det är .NET-kod eller JavaScript-kod, samma principer gäller ändå. Se till att automatisera allt, för annars kommer ingen att orka köra testerna.
+
+Börja med inställningen att stoppa produktionslinan om testerna går sönder, som i Toyota-fabrikerna. Inte skjuta på att fixa tester som gått sönder. Det har med kulturen att göra, man måste få alla med på det. Det är problem jag haft på många ställen att folk säger att de vill göra det och är väldigt positiva när man pratar om det men sedan så märker man att vissa tester på byggservern har varit röda i nästan ett dygn och får ett svävande svar om att det ska fixas imorgon när man frågar varför det blivit så. Då hamnar man i att ingen litar på testerna efter ett tag, för att man inte vet om det är rött för att något är trasigt eller för att testerna inte har uppdaterats på grund av att någon inte förstod någonting. Så fort man får den osäkerheten så går testernas värde ner ganska hårt.
+
+\emph{Tack ska du ha!}
+
 \end{document}
 
 
