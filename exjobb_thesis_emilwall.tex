@@ -453,37 +453,37 @@ Introducing versioning for private APIs is not always feasible, for at least two
 
 \subsection{Transcript of Interview with Johannes Edelstam}
 
-\emph{Vad är dina erfarenheter av hur folk testar sitt JavaScript?}
+\emph{1. Vad är dina erfarenheter av hur folk testar sitt JavaScript?}
 
 För 1,5-2 år sen, höll jag i en träff om testning av JavaScript. Jag hade handuppräckning och frågade ”Hur många testar sitt JavaScript?”. Då var det bara tre personer som hade gjort det överhuvudtaget. Nu, nästan två år senare, är i princip alla händer i luften. Trenden har gått från ”Vad konstig du är som testar ditt JavaScript” till ”Vad kör du för tools” på bara ett och ett halvt år.
 
-\emph{Vad tror du har lett till det?}
+\emph{2. Vad tror du har lett till det?}
 
 Verktyg, dels att de har blivit bättre och att det finns fler exempel på hur man gör. Folk var inte emot testning eller test-driven utveckling, många Ruby-utvecklare hade redan positiva erfarenheter av att testa, men hade inställningen att JavaScript var för inriktat på gränssnitt för att det ska gå att testa det.
 
-\emph{Det tycker jag att man fortfarande kan se lite grann.}
+\emph{3. Det tycker jag att man fortfarande kan se lite grann.}
 
 Samtidigt är det konstigt att säga så, för i ett Ruby-projekt testas saker och ting rigoröst, trots att det är en massa gränssnitt som du testar igenom. Det handlar bara om att det är dålig tooling, inte att det inte behövs göras.
 
 En annan aspekt kan vara att folk helt enkelt skriver kass kod. Om man i ett läge inte vet hur man ska testa en viss sak så kan det vara så att det inte går för att koden inte har skrivits på ett sätt som gör den testbar.
 
-\emph{Jag funderar på om att använda ramverk som strukturerar upp koden är en lösning för att faktiskt kunna testa kod bättre.}
+\emph{4. Jag funderar på om att använda ramverk som strukturerar upp koden är en lösning för att faktiskt kunna testa kod bättre.}
 
 Vad tänker du på för ramverk?
 
-\emph{Det jag hittills hunnit skaffa mig erfarenhet av är AngularJS, som har vyer och controllers. Controllers är enkla att testa.}
+\emph{5. Det jag hittills hunnit skaffa mig erfarenhet av är AngularJS, som har vyer och controllers. Controllers är enkla att testa.}
 
 Precis.
 
-\emph{Sen det här spelet som jag tänkte köra en workshop om framöver, det kanske jag inte har berättat något om. Jag tänkte köra med ett arkadspel, Asteroids, och TDD:a lite på det.}
+\emph{6. Sen det här spelet som jag tänkte köra en workshop om framöver, det kanske jag inte har berättat något om. Jag tänkte köra med ett arkadspel, Asteroids, och TDD:a lite på det.}
 
 Schysst.
 
-\emph{Det är inte uppbyggt kring något ramverk, men är uppdelat i klasser och känns i allmänhet som rätt så schysst kod. Då går det att testa. Det fanns inga tester, så det har jag lagt till nu i efterhand (vilket har varit lärorikt). Jag tror att om man inte är såpass duktig som han som skrev det var, och faktiskt är så disciplinerad att man ser till att dela upp så att det bildas klasser med metoder som går att testa, så blir det kaos.}
+\emph{7. Det är inte uppbyggt kring något ramverk, men är uppdelat i klasser och känns i allmänhet som rätt så schysst kod. Då går det att testa. Det fanns inga tester, så det har jag lagt till nu i efterhand (vilket har varit lärorikt). Jag tror att om man inte är såpass duktig som han som skrev det var, och faktiskt är så disciplinerad att man ser till att dela upp så att det bildas klasser med metoder som går att testa, så blir det kaos.}
 
 Verkligen.
 
-\emph{Det där med Ruby vs JavaScript har jag sett innan också, jag inleder min rapport med det just nu, ett liknande citat som det du just sa, bara att det var från när det fortfarande bara var tre händer.}
+\emph{8. Det där med Ruby vs JavaScript har jag sett innan också, jag inleder min rapport med det just nu, ett liknande citat som det du just sa, bara att det var från när det fortfarande bara var tre händer.}
 
 Det är vanligt och gäller överallt, folk gillar att hitta ursäkter till varför man inte ska testa grejer. Det är en liknande paradox som den att man tror att man blir så effektiv när man multitaskar, man luras att tro att man begränsas av testerna. Det som folk ofta menar när de säger att de begränsas av testerna är att de i själva verket inte riktigt vet vart de ska. Om man inte vet vad det är man ska bygga och hur allting ska fungera så tar det väldigt lång tid om man ska test-driva någon form av lekstuga. Det blir rätt stökigt, så där handlar det om att hitta bra egna principer för hur man tar sig fram till den punkt då man vet vad något ska bli. När man väl har en klar bild av vart man vill så är det ofta ganska lätt att börja skriva tester och det väcker bra tankar som man inte har stött på när man tagit sig fram till sin målbild.
 
@@ -491,15 +491,15 @@ Det som ofta blir när man skriver tester är att man lägger mycket av sin tid 
 
 Framförallt blir man bättre på att göra begränsningar, om man kodar utan tester så är det lätt att man kommer på att en viss funktion skulle kunna göra flera saker, medan om man skriver tester för koden så är det enklare att inse att en extra parameter kan innebära att det behövs dubbelt så många tester. Just i JavaScript är det ett vanligt misstag att frångå single purpose-principen och det kan man alltså undvika med hjälp av tester.
 
-\emph{Ja, i JavaScript är det ju enkelt att skriva funktioner som tar olika antal parametrar och bara kör på oavsett hur de anropas.}
+\emph{9. Ja, i JavaScript är det ju enkelt att skriva funktioner som tar olika antal parametrar och bara kör på oavsett hur de anropas.}
 
 Jag skulle säga att jag testar betydligt mer av just logik-kod än till exempel grafer. Det är mest för att de ändras snabbt och risken för fel är lägre. Det är värre att ha ett konsekvent logik-fel än om en stapel blir lite för kort.
 
-\emph{Du tänker på Tink?}
+\emph{10. Du tänker på Tink?}
 
 Ja, precis. Det är samma mönster som när jag testdriver Ruby-kod. Man driver beteende, inte utseende. Sen tror jag också att det har att göra med att det är dåliga tools, det är omständigt att skriva hållbara och värdefulla tester för att en svg har rätt parametrar. I situationer där något kan vara rätt ändå, fast det inte är precis som man skrev, så uppstår bräckliga tester om man inte har tagit hänsyn till detta när man skrivit sina tester. Dåliga tester kännetecknas av att man behöver ta bort dem för att kunna komma vidare i utvecklingen. Det är en svår gränsdragning var man ska lägga sin energi.
 
-\emph{Jag läste ett inlägg på twitter alldeles nyss av Kent Beck, om att han hade spenderat 6 timmar på att skriva ett test. Han hade researchat och konstaterat att det var ett komplicerat domän och någon påpekade att detta var anledningen till att folk inte skriver tester, att andra hade gett upp här. Kent Beck kontrade med att om han inte vet hur han ska skriva testet så vet han verkligen inte hur han ska skriva koden.}
+\emph{11. Jag läste ett inlägg på twitter alldeles nyss av Kent Beck, om att han hade spenderat 6 timmar på att skriva ett test. Han hade researchat och konstaterat att det var ett komplicerat domän och någon påpekade att detta var anledningen till att folk inte skriver tester, att andra hade gett upp här. Kent Beck kontrade med att om han inte vet hur han ska skriva testet så vet han verkligen inte hur han ska skriva koden.}
 
 Exakt! Det där är jätteintressant, jag tror att folk hänger upp sig för mycket på att det är att skriva testerna som är svårt. Om man sätter sig och skriver testerna först så är det där man springer på problemet. Någon annan hade säkert lagt samma sex timmar fast på att stirra på produktionskod.
 
@@ -509,45 +509,45 @@ Det är en viss startsträcka så att det tar längre tid att komma igång, vilk
 
 I början när jag kollade på det här så var det väldigt experimentellt att överhuvudtaget köra tester i terminalen. Innan PhantomJS var bra så fanns det headless drivers som var svåra att använda.
 
-\emph{Hur bra är PhantomJS nu?}
+\emph{12. Hur bra är PhantomJS nu?}
 
 Nu är det bra, jag kör testerna i princip jämt genom PhantomJS. Det kunde fortfarande vara bättre, men för det mesta så är det nog testramverken som inte använder det på rätt sätt. Vissa test failures måste man fortfarande dra upp i browsern för att få bra felrapportering. Vi kör våra tester i PhantomJS i byggen på Jenkins, så det är en del av byggflödet.
 
-\emph{Det jag har gjort nu är att jag har använt JsTestDriver, det känns som att det kan vara knepigt att få in det i Jenkins.}
+\emph{13. Det jag har gjort nu är att jag har använt JsTestDriver, det känns som att det kan vara knepigt att få in det i Jenkins.}
 
 Det är det säkert, men där handlar det om att man måste skilja på tester som testar ren logik där värdet av att testa i en massa olika webbläsare kanske inte är sådär gigantiskt stort.
 
-\emph{Nej, mina tester skulle jag kunna köra headless.}
+\emph{14. Nej, mina tester skulle jag kunna köra headless.}
 
 Exakt, och då kan man lika gärna köra dem i något abstrakt som till exempel phantom, för du får samma resultat och det är mycket smidigare. Jag har i och för sig inte provat att sätta upp JsTestDriver och har nog aldrig kört det faktiskt och har hållt mig till andra verktyg.
 
-\emph{Det är egentligen bara att man har en jar-fil som man använder som lokal server och så skickar man requests dit. Det är smidigt att använda men oklart hur det skulle funka med Jenkins, eftersom man behöver hooka upp webbläsare mot servern för att ha någonstans att köra testerna. Att få det att ske automatiskt är kanske inte trivialt. Dessutom så har det varit lite buggigt, att om något test handlar i en oändlig loop så har jag varit tvungen att stänga ner den fliken i webbläsaren, starta om servern och återansluta. När jag satt med Mac innan så var jag tvungen att starta om servern varje gång datorn gått i vänteläge, typiskt sådant som man som användare blir frustrerad av.}
+\emph{15. Det är egentligen bara att man har en jar-fil som man använder som lokal server och så skickar man requests dit. Det är smidigt att använda men oklart hur det skulle funka med Jenkins, eftersom man behöver hooka upp webbläsare mot servern för att ha någonstans att köra testerna. Att få det att ske automatiskt är kanske inte trivialt. Dessutom så har det varit lite buggigt, att om något test handlar i en oändlig loop så har jag varit tvungen att stänga ner den fliken i webbläsaren, starta om servern och återansluta. När jag satt med Mac innan så var jag tvungen att starta om servern varje gång datorn gått i vänteläge, typiskt sådant som man som användare blir frustrerad av.}
 
 Sånt kan vara väldigt irriterande och det är sådana saker som gör att folk inte vill hålla på med tester.
 
-\emph{Du hade använt Mocha rätt mycket, det tänkte jag titta på sen.}
+\emph{16. Du hade använt Mocha rätt mycket, det tänkte jag titta på sen.}
 
 Mm, vad kör du nu?
 
-\emph{Nu kör jag JsTestDriver och Jasmine.}
+\emph{17. Nu kör jag JsTestDriver och Jasmine.}
 
 Det är väldigt likt, Jasmine och Mocha.
 
-\emph{Så du kör Mocha istället för Jasmine?}
+\emph{18. Så du kör Mocha istället för Jasmine?}
 
 Ja.
 
-\emph{Är Mocha en test driver? För Jasmine kan väl inte köra testerna i en webbläsare, utan är i första hand ett assertion framework?}
+\emph{19. Är Mocha en test driver? För Jasmine kan väl inte köra testerna i en webbläsare, utan är i första hand ett assertion framework?}
 
 Det var så länge sen jag körde det, men ja man kanske behöver ha en driver till det för att kunna köra i webbläsaren.
 
-\emph{Jag har uppfattat det som att Mocha är lite mer kompetent som driver och liknande.}
+\emph{20. Jag har uppfattat det som att Mocha är lite mer kompetent som driver och liknande.}
 
 Ja, det är det. Det är enkelt att dra upp tester i webbläsaren om man vill ha det.
 
 Jag gillar nästan bättre att skriva tester i JavaScript än i Ruby, det finns så mycket praktiska språk-features.
 
-\emph{Att manuellt kunna definiera om en funktion.}
+\emph{21. Att manuellt kunna definiera om en funktion.}
 
 Precis, och hur lätt det är att göra nya fake-objekt, det är så enkelt. Ofta blir mocknings- och stubbningsramverk ganska överflödiga, förutom till att göra vissa call-assertions som man använder det till, men i övrigt så försöker jag att alltid hålla mig till fakes som är skrivna för hand för att det blir lättare för någon annan som sätter sig in i det.
 
@@ -555,29 +555,29 @@ När nästa person tittar på koden så är det en fördel om den personen inte 
 
 Sen kan det vara så att hela Node-rörelsen också har bidragit till att det testas mer.
 
-\emph{Det har väl också ändrat vad JavaScript används till, rätt mycket?}
+\emph{22. Det har väl också ändrat vad JavaScript används till, rätt mycket?}
 
 Ja, det har det garanterat.
 
-\emph{Argumentet ”det är gränssnitt så det är svårt att testa” håller inte riktigt. Jag fokuserar på klientsidan nu, för att jag var tvungen att avgränsa på något sätt och för att det känns som att problemen ligger på gränssnitt snarare än Node och liknande.}
+\emph{23. Argumentet ”det är gränssnitt så det är svårt att testa” håller inte riktigt. Jag fokuserar på klientsidan nu, för att jag var tvungen att avgränsa på något sätt och för att det känns som att problemen ligger på gränssnitt snarare än Node och liknande.}
 
 Om vi tar ett login-formulär som exempel, med en vy-klass som du kan anropa render på. Alla dependencies, inklusive templates, som den använder, laddas via RequireJS. Så i mitt test så använder jag RequireJS för att få in den filen och då är den redo att köra och det går att anropa render. Här gäller det att ha sina dependencies rätt, för om den vet om en massa saker utanför så uppstår situationer där man behöver mocka väldigt mycket.
 
 Det är ytterligare en fördel med tester, att det blir tydligt vad som krävs för att kunna använda ett visst objekt och man blir uppmärksam på dependencies som inte ska vara där. Bara genom att anropa render och göra en submit på formuläret så hanteras det i vyn och man kan testa att rätt tjänster anropas, m.m. Igen så handlar det om att man måste hitta bra modularitet i hur man lägger upp det, så att man inte gör anrop direkt till ett API från en vy, utan ha ett servicelager emellan så att man kan swappa ut testerna och kolla att den går mot servicelagret. Det är sånt som folk fastnar på, att man har för dålig separation.
 
-\emph{Vid själva utvecklingen av det här, vad skriver du tester för först då? Skriver du tester för vyerna innan du har de här tjänsterna igång?}
+\emph{24. Vid själva utvecklingen av det här, vad skriver du tester för först då? Skriver du tester för vyerna innan du har de här tjänsterna igång?}
 
 Det beror på, det typiska man vill testa här är en validering. I det fallet skulle jag sätta upp formuläret först och sen fixa ett failande test som letar efter en validering som inte finns. Först därefter skriva själva valideringen. Man får ta det till en bra nivå, det känns inte jättevärt att testdriva varje steg av boilerplate-grejer när man vet exakt vad det ska bli och det nästan är copypaste-varning på det man gör. Då ger det mer att testdriva när man börjar komma till nästa nivå. Det känner man själv, när man måste börja tänka efter.
 
-\emph{Det gäller att höra de varningssignalerna.}
+\emph{25. Det gäller att höra de varningssignalerna.}
 
 Ja, det här tror jag också är det svåra med testning, att det handlar om avvägningar. Det är som allt man gör med kod, att man måste ha med sunt förnuft när man gör det. Folk gillar att sätta upp principer och det tror jag att andra blir provocerade av. Principer behöver användas i sitt sammanhang och man får inte bli för religiös kring dem. Man behöver känna när det ger något och när det är i vägen.
 
-\emph{Mm, det jag hoppas få som slutsats i mitt examensarbete är något i stil med ”om du är i den här situationen, gör så här”. ”Om du gör en sån här app, använd ett ramverk av den här typen”.}
+\emph{26. Mm, det jag hoppas få som slutsats i mitt examensarbete är något i stil med ”om du är i den här situationen, gör så här”. ”Om du gör en sån här app, använd ett ramverk av den här typen”.}
 
 Ja, men då tror jag tyvärr att du kommer att landa i att ”är du i den här situationen, använd ditt sunda förnuft”.
 
-\emph{*båda skrattar*}
+\emph{27. *båda skrattar*}
 
 För det där tycker jag att man ser rätt tydligt, som nybörjare så behöver man kunna reglerna för att bryta mot dem. De som är mer seniora kan reglerna och är inte så rädda att bryta mot dem när de är i vägen. Man måste vara väldigt pragmatisk med sina principer. Det är om man inte är det som det uppstår konflikter av typen ”att skriva tester tar så mycket tid från det riktiga jobbet”. Om det inte ger dig något värde att skriva tester, gör inte det då! Det är ingen idé att göra det om du inte tror på det. Om du har något bättre sätt, go ahead! Om 20 år så är det kanske inte TDD som är grejen längre för att det kommit fram mycket smartare sätt och det kanske är ditt sätt.
 
@@ -585,7 +585,7 @@ Man måste se testning som ett verktyg man har, något man kan ta fram och stöd
 
 Man ska inte glömma att precis som ens kod lätt blir ens baby så kan ens tester också bli det. Man kan skriva tester som man är riktigt nöjd med och då kommer det att ta emot att kasta den koden. Det ska man akta sig för, att bli för kär i sin kod. Då måste man ibland tänka till lite först, innan man bara sätter sig och hamrar igång. Där måste man hitta sin avvägning i vad man tror på.
 
-\emph{Jag funderar nu på vilken nivå man väljer att hålla testerna på. De flesta av testerna jag skrev till asteroids-applikationen återspeglade hur jag förväntade mig att programmet skulle bete sig. Sedan var det någon kod som var rätt dåligt modulariserad och då hamnade testerna väldigt mycket på detaljnivå och det blev väldigt många tester som var svåra att överblicka. Testerna kan ju bli som en kravspecifikation och det är svårt att läsa dem som en sådan när det blir för mycket. Jag funderar på hur man egentligen ska tänka, ska man hålla en jämn nivå? Om man börjar inse att ok, nu skriver jag väldigt mycket tester på detaljnivå, jag kanske borde slänga de här testerna och skriva om koden istället?}
+\emph{28. Jag funderar nu på vilken nivå man väljer att hålla testerna på. De flesta av testerna jag skrev till asteroids-applikationen återspeglade hur jag förväntade mig att programmet skulle bete sig. Sedan var det någon kod som var rätt dåligt modulariserad och då hamnade testerna väldigt mycket på detaljnivå och det blev väldigt många tester som var svåra att överblicka. Testerna kan ju bli som en kravspecifikation och det är svårt att läsa dem som en sådan när det blir för mycket. Jag funderar på hur man egentligen ska tänka, ska man hålla en jämn nivå? Om man börjar inse att ok, nu skriver jag väldigt mycket tester på detaljnivå, jag kanske borde slänga de här testerna och skriva om koden istället?}
 
 Ja, egentligen så tror jag att det där är sådant som man verkligen måste känna efter vid varje situation. Om man till exempel har en jättekomplicerad och ointuitiv prisberäkning, för all del, skriv hur mycket tester du vill, men jag ser inget egenvärde i att ha en 100-procentig test coverage, för det slinker ändå igenom saker. Det finns alltid scenarios som du inte har tänkt på. Det är förmodligen det fallet du inte har skrivit ett test för som skapar problem, och det är för att du inte kom på det när du skrev testerna. Det finns ingen större mening med att försöka trycka in alla fall, utan det viktiga är att man skapar en känsla av att täcka in det ganska bra, att man har rimliga fall och framförallt tänka på den som kommer efter.
 
@@ -593,39 +593,39 @@ Om du öppnar en fil med 700 rader testkod så kommer du inte att engagera dig p
 
 De bästa utvecklarna som jag har jobbat med har haft ett netto att det försvinner kod med varje commit, så att det kommer till grejer men samtidigt så försvinner kod. Det är imponerande, och har att göra med att de är bra på att se vad som inte behövs och hur man kan tänka om, ibland genom att ändra på vissa grundantaganden för att få koden att bli renare. Med det vill jag inte säga att man ska gå över till någon sorts kodgolfande, men det är ändå intressant att det kan bli resultatet.
 
-\emph{Vi kom in lite på att lägga till tester till kod som redan finns, vilket jag upplever är rätt så jobbigt och förstår att du tycker är lite dumt. Men är det inte också risk för dubbelarbete om man tänker att man bara skriver tester för ny kod och ersätter gammal kod som man inser inte funkar så bra?}
+\emph{29. Vi kom in lite på att lägga till tester till kod som redan finns, vilket jag upplever är rätt så jobbigt och förstår att du tycker är lite dumt. Men är det inte också risk för dubbelarbete om man tänker att man bara skriver tester för ny kod och ersätter gammal kod som man inser inte funkar så bra?}
 
 Det beror på vad den gamla koden är i för skick.
 
-\emph{Det kan vara lätt att tro att den är i sämre skick än den egentligen är. Om man tar över kod som någon annan har skrivit.}
+\emph{30. Det kan vara lätt att tro att den är i sämre skick än den egentligen är. Om man tar över kod som någon annan har skrivit.}
 
 Javisst, om jag skulle ersätta ett banksystem, då är det klart att jag skulle börja försöka skriva tester för precis den lilla biten man ska in och härja i. Men med ny kod så tänker jag också som så att om man ska lägga till någonting nytt eller bara är inne och roddar, då kan man se till att lägga till tester för just det man gör. Då gör man det som en del i det nya man skriver. Det är svårt, för det är inte alltid det går. En del gammal kod är så ruttet skriven att testerna ändå blir så komplicerade att man måste mocka precis allting för att ens komma till objektet och logiken där bygger på så krångliga kedjor av anrop att testerna blir bräckliga och svåra att förstå oavsett. Frågan är om det ger så mycket då. Å andra sidan, i fallet med banksystemet, så måste det bli rätt. Då måste man hitta ett sätt att verifiera att systemet fortfarande beter sig rätt. Jag har nog aldrig varit i ett sådant fall att jag suttit med något så kritiskt som ett banksystem eller en cancerlaser eller liknande där jag behövt ersätta gammal kod, men det finns bra böcker på det där, som tar upp de situationerna.
 
 De gånger det inte går att skriva meningsfulla tester så tror jag att det beror på att koden inte är skriven för att vara testbar. Oftast när folk pratar om legacy JavaScript så är det kod som ändå inte är banksystems-kritisk. Då skulle jag säga att en bättre approach är att testa allt nytt man skriver än att försöka täcka in allt gammalt.
 
-\emph{Min tanke nu var att i min workshop/kompetensdragning så vill jag ge möjlighet att se om man har råkat ha sönder någonting gammalt och se den effekten av testerna. Jag tänkte ställa några frågor efteråt, ”hjälpte testerna er någonting?”}
+\emph{31. Min tanke nu var att i min workshop/kompetensdragning så vill jag ge möjlighet att se om man har råkat ha sönder någonting gammalt och se den effekten av testerna. Jag tänkte ställa några frågor efteråt, ”hjälpte testerna er någonting?”}
 
 Det är nog bra, för det är ju också ett jättevärde med tester, när man släpper in nytt folk i ett projekt. Det är alltid så att folk tenderar att ha sönder grejer när de är inne och härjar i dem för första gången, vilket inte är så konstigt.
 
-\emph{Och framförallt är rädda att ha sönder saker.}
+\emph{32. Och framförallt är rädda att ha sönder saker.}
 
 Ja, precis. Finns det då en bra testsvit så är det bara att köra. Jag tror att det är ett bra sätt att komma in i nya projekt också, genom att det finns en bra testsvit som man kan börja bygga vidare på så blir man tryggare i det man gör och kan imitera hur de tidigare testerna har skrivits. Då kan man lita på det man skriver, att det blir rätt.
 
-\emph{Vinsten med att lägga till tester i efterhand så som jag har gjort är att jag verkligen fått lära mig, det känns nästan som att det är jag som har skrivit koden jag testat, trots att jag bara har varit och fingrat på några få rader i den.}
+\emph{33. Vinsten med att lägga till tester i efterhand så som jag har gjort är att jag verkligen fått lära mig, det känns nästan som att det är jag som har skrivit koden jag testat, trots att jag bara har varit och fingrat på några få rader i den.}
 
 Verkligen, man får en helt annan uppfattning för den. Men det är en utmaning att skriva bra kod som blir testbar. Sen det här problemet som du också var inne på, att det kan finnas integrationstestnings-problematiker, det kanske jag skulle vilja säga är det svåraste. Fallen då man har egna API:er. Hur man ska testa det rakt igenom.
 
-\emph{Du skrev i ditt mail att du tyckte att det var knepigt att testa privata API:er för att de ändras så mycket.}
+\emph{34. Du skrev i ditt mail att du tyckte att det var knepigt att testa privata API:er för att de ändras så mycket.}
 
 Säg att jag integrerar mot Twitter eller någonting, deras API:er. Det är lätt att testa, genom att kolla att de anropas på rätt sätt. Det är väldokumenterade, stora, bra API:er. Det som är problemet är att hålla hastighet när man ändrar på sina egna API:er. Ett bra sätt att göra det internt är att du har ett test för någon typ av domän-modell som definierar vad som gäller för en viss sak, till exempel hur ett cykelhjul ska fungera. Då har man en uppsättning tester som testar att ett objekt är ett giltigt cykelhjul, och så kan man köra samma tester på sin fake av ett cykelhjul för att verifiera att den också är ett giltigt sådant. Denna fake kan sedan användas i andra test, som gör saker med cykelhjul. Om API:et för cykelhjulet ändras så kommer testerna för fakeobjektet också att faila, eftersom samma tester används på det riktiga objektet som på fakeobjektet. Då uppdateras den tills den uppfyller testerna för att vara ett giltigt cykelhjul och då kommer de andra testerna som involverar fakeobjektet att börja faila.
 
 Egentligen skulle man vilja göra ungefär samma sak med sina egna API:er, genom att med tester definiera vad som är ett giltigt respons. Då kan man ha samma tester till att kolla att API-endpointen ger ett giltigt respons och att ens fakerespons är ett giltigt respons. Problemet man ofta har är att man separerar det där, istället för att ha en delad testsvit. Det blir oerhört komplicerat, framförallt om man skriver i olika språk. Det är ett problem som jag vet att många har och som jag inte har sett någon riktigt bra lösning på.
 
-\emph{Och det är lite mitt emellan Selenium och enhetstester då?}
+\emph{35. Och det är lite mitt emellan Selenium och enhetstester då?}
 
 Ja, precis.
 
-\emph{Hur stort är behovet av att ha de här testerna?}
+\emph{36. Hur stort är behovet av att ha de här testerna?}
 
 Tyvärr så är det stort. Dels är det något som ändras snabbt och så är det någonting som påverkas mycket. Det är ju egentligen ingen skillnad på de testerna och tester mot andra API:er som du har i din kod, bara att de ligger i samma kodbas. Det är ju precis lika viktiga API:er.
 
@@ -633,49 +633,49 @@ På samma sätt, när du gör ändringar i en endpoint som du använder på någ
 
 Ur samarbetssynpunkt, när det gjorts en lokal överrenskommelse som inte alla fått ta del av så kan det vara knepigt för andra att veta vad som har beslutats om det inte finns tester som specificerar detta. Alternativet att ha ett kravdokument är inte så lockande.
 
-\emph{Det är väl mycket det som många ser som vitsen med tester nu, att de blir som ett kravdokument fast ett bra sådant, som man inte behöver läsa utan man kör det istället.}
+\emph{37. Det är väl mycket det som många ser som vitsen med tester nu, att de blir som ett kravdokument fast ett bra sådant, som man inte behöver läsa utan man kör det istället.}
 
 Jo men verkligen, så är det ju.
 
-\emph{Vad skulle du ge för tips till någon som är ovan vid att testa? Om vi säger att du skulle ha träffat mig för ett halvår sen, innan jag skrivit mitt första JavaScript-test?}
+\emph{38. Vad skulle du ge för tips till någon som är ovan vid att testa? Om vi säger att du skulle ha träffat mig för ett halvår sen, innan jag skrivit mitt första JavaScript-test?}
 
 Testa inte gammal kod, haha. Idag skulle jag säga ”kör Yeoman, sätt upp ett projekt, prova lite”. Det finns tyvärr fortfarande rätt så lite skrivet om det tror jag, inga riktigt bra resurser om JavaScript-testning, men jag skulle nog rekommendera att läsa clean code-böckerna och förstå vad det är du ska ha testning till. Utan den grundläggande förståelsen så är det svårt att se värdet i det och man hamnar lätt i tankesätt som ”men vadå, trots att jag har skrivit det här testet så kan det ju ändå bli buggar”. Utan att förstå konceptet testning och varför man gör det så har man svårt att väga olika verktyg mot varandra och motivera de val man gör.
 
-\emph{Sen pratade vi också om att involvera alla i testningen. Det kan kanske vara en hjälp för en enskild programmerare att istället för att behöva kämpa för att få testa sin kod  och hetsas till ett högre tempo ha testning som en del av det man förväntas göra.}
+\emph{39. Sen pratade vi också om att involvera alla i testningen. Det kan kanske vara en hjälp för en enskild programmerare att istället för att behöva kämpa för att få testa sin kod  och hetsas till ett högre tempo ha testning som en del av det man förväntas göra.}
 
 Ja, absolut. Där handlar det igen om att vara överens om att det är viktigt och att det är ett sätt man vill jobba på, annars tror jag att det är svårt.
 
-\emph{Vilka ser du som viktiga att involvera då? Teamet gissar jag är fundamentalt, men vill man även få ut det till produktägare, till chef, till kund, till användare? Var vill man lägga detaljnivån?}
+\emph{40. Vilka ser du som viktiga att involvera då? Teamet gissar jag är fundamentalt, men vill man även få ut det till produktägare, till chef, till kund, till användare? Var vill man lägga detaljnivån?}
 
 Det där beror så mycket på vad det är för kund och så vidare. Men framförallt så kommer det i arbetet att speca upp stories och liknande, för även om man kan komma bort från kravspecen så tror jag inte att man kommer bort från kravarbetet. Först och främst, hur funkar prisalgoritmen, hur är prissättningen, vart kommer grejerna ifrån? Där har man inget annat val än att jobba med produktägare och kund i att ta fram vad som ska hända, så det är snarare att vara involverade i story-arbetet tillsammans. Där tar man fram input till testerna så att man är överens om den. Sen tror jag inte så mycket på att man ska sitta och gå igenom testerna tillsammans med kunden för det brukar inte ge så mycket och blir ett onödigt steg.
 
-\emph{Cucumber och liknande?}
+\emph{41. Cucumber och liknande?}
 
 Ja, precis. Det finns ju bra exempel på det, men man ska veta vad man håller på med om man gör det.
 
-\emph{Vi hade en tanke i vårt tidigare projekt om att låta användare skriva selenium-tester genom att ha ett plugin i firefox som genererar tester, så varje gång någon hittar något som inte funkar så skapas ett test för det.}
+\emph{42. Vi hade en tanke i vårt tidigare projekt om att låta användare skriva selenium-tester genom att ha ett plugin i firefox som genererar tester, så varje gång någon hittar något som inte funkar så skapas ett test för det.}
 
 Det är ju ascoolt.
 
-\emph{Det blev aldrig så.}
+\emph{43. Det blev aldrig så.}
 
 Det vore tufft om man kunde göra det, att en användare får repetera vad man gjorde. Det kan potentiellt bli hur häftigt som helst.
 
-\emph{Hur ser du på selenium-tester i allmänhet, hur mycket tycker du att man ska använda det och till vad?}
+\emph{44. Hur ser du på selenium-tester i allmänhet, hur mycket tycker du att man ska använda det och till vad?}
 
 Det där är svårt, jag har kört det ganska mycket förut men det är mest för att jag inte har kunnat få ihop en runtime annars. I en gammal webb där man var tvungen att requesta sida för sida så är det ditt enda sätt att testa flöden. Nu när jag jobbar med en SPA (single page application) så kan man testa flöden ändå, då är man inte lika beroende av selenium. Jag tror inte heller på att testa flöden utöver att speca ner den mest grundläggande funktionaliteten.
 
-\emph{*Lunch*}
+\emph{45. *Lunch*}
 
-\emph{Jag tycker att det var kul att du ser JavaScript som vilket annat språk som helst, för det är det verkligen inte alla som gör.}
+\emph{46. Jag tycker att det var kul att du ser JavaScript som vilket annat språk som helst, för det är det verkligen inte alla som gör.}
 
 Nej, det är lite stående på mitt jobb också, när man hittar diverse bra grejer och reaktionen blir ”Ah, det är nästan som att programmera på riktigt” och man får flika in att de borde vara tysta.
 
-\emph{*skratt*}
+\emph{47. *skratt*}
 
 Det har att göra med vad man gör i språket, om man använder ett språk till riktiga saker så blir det ju till ett riktigt språk.
 
-\emph{Sen så funderar jag på alla de här ramverken, vad det är som du brukar tänka när du väljer vilka du ska använda, tycker du att det är svårt att veta vad de kan och så?}
+\emph{48. Sen så funderar jag på alla de här ramverken, vad det är som du brukar tänka när du väljer vilka du ska använda, tycker du att det är svårt att veta vad de kan och så?}
 
 Jag går ofta fram och tillbaka där, det viktigaste är att man inte sätter sig i situationer där man måste jobba mot ramverket. Det leder ofta till dåligt resultat för att ”det blir en massa kod som ingen förstår som motverkar en massa annan kod som ingen förstår” (obegriplig kod). Det där är ett problem som man nästan alltid hamnar i med de här magic bullet-ramverken, som Ruby on Rails till exempel. Man inbillar sig att man har ett ramverks som gör allt åt en, så att man kan göra en blogg på en kvart eller liknande. Så kan det också vara i små projekt, och då är det bra. När man däremot använder det i ett större projekt så uppstår lätt en känsla av att något inte är riktigt som det ska. Man lägger oproportionerligt mycket tid på att använda ramverket till saker det inte är tänkt för från början. Frågor som ”hur gör man det här i ramverket?” uppstår och när man kommit till det stadiet så är man verkligen låst i ramverket. Det blir att man försöker anpassa sig till hur ramverket är tänkt att användas snarare än att man tar fram sin lösning utefter den vision man har.
 
@@ -683,39 +683,39 @@ I fallet med rails så tror jag att en stor del av problemet är att man har ”
 
 Det viktigaste när man väljer ramverk är att hitta ett ramverk där man känner att man har frihet att strukturera koden som man behöver. Det är samtidigt något som man behöver känna sig fram med.
 
-\emph{Jag tänker på det du sa om integrationstestning, att man ofta har separerat det, det skulle kanske kunna vara en ramverksfråga också? Om man har ett ramverk där man får uppfattningen av att man behöver strukturera koden på ett visst sätt så kan det hindra en från att skriva integrationstester för saker som tvingats isär av ramverket?}
+\emph{49. Jag tänker på det du sa om integrationstestning, att man ofta har separerat det, det skulle kanske kunna vara en ramverksfråga också? Om man har ett ramverk där man får uppfattningen av att man behöver strukturera koden på ett visst sätt så kan det hindra en från att skriva integrationstester för saker som tvingats isär av ramverket?}
 
 Det är ett stort problem och något man inte vill hamna i, att man inte kan testa grejer för att ramverket säger så. Det är verkligen grunden i att välja ramverk att man måste kunna undvika det.
 
-\emph{Du sa att du gärna har ganska små ramverk.}
+\emph{50. Du sa att du gärna har ganska små ramverk.}
 
 Ja, och där kan man nämna backbone som ett exempel. Jag gillar att det håller sig ur vägen (unobtrusive). Den ger förslag till hur man ska göra vissa grejer som har med infrastruktur att göra och sen så får jag själv bestämma till exempel hur modeller ska läsas upp. Tyvärr är det inte alltid man kan bestämma vilket ramverk man ska ha och ibland så måste man välja stora ramverk för att man är beroende av ett stort CMS för något projekt eller liknande och då är det inte så mycket att göra egentligen.
 
-\emph{Det är väl ofta så inom valtech att kunden säger ”jag vill ha EPiServer” eller liknande.}
+\emph{51. Det är väl ofta så inom valtech att kunden säger ”jag vill ha EPiServer” eller liknande.}
 
 Ja och då får man gilla läget mer, men det är klart, får man välja själv så... Ska det vara någonting litet tycker jag.
 
-\emph{Jag har inte hunnit skaffa mig stenkoll på alla de här. Grunt, har du använt det?}
+\emph{52. Jag har inte hunnit skaffa mig stenkoll på alla de här. Grunt, har du använt det?}
 
 Grunt är ett byggverktyg skulle man kunna säga. Vi använder det för att köra testerna, då tar det hand om att starta en lokal server och att packa ihop en distribution. Det är något av en motsvarighet till Rubys Rake eller Javas Maven. Det är viktigt för att det ska bli av att man kör tester och liknande, det måste vara lätt och tydligt hur man ändrar och därför behöver man bra byggverktyg.
 
-\emph{Sen tänkte jag på stubbning med Sinon, vanillaJS och egentligen Jasmine också.}
+\emph{53. Sen tänkte jag på stubbning med Sinon, vanillaJS och egentligen Jasmine också.}
 
 VanillaJS är ju bara ett skämt, man driver med...
 
-\emph{När du själv skriver funktioner och ersätter...}
+\emph{54. När du själv skriver funktioner och ersätter...}
 
 Ja, men återigen så är det samma princip som i att välja små ramverk, när det gäller mockning och stubbning så tycker jag att det är bra att använda JavaScript så långt det går. Vilket jag egentligen tycker gäller för alla språk, även i Ruby använder jag i första hand det som finns inbyggt i språket.
 
-\emph{Jag har läst en bok som är skriven av Christian Johansen som gjort SinonJS, Test-Driven JavaScript Development, där hela boken går ut på att man använder sig av manuell stubbning. Du sparar en kopia av en funktion, skriver över den med en egen och återställer efter testet. Det är först i sista kapitlet som han skriver ”och förresten, det finns det här ramverket som jag råkar ha skrivit”.}
+\emph{55. Jag har läst en bok som är skriven av Christian Johansen som gjort SinonJS, Test-Driven JavaScript Development, där hela boken går ut på att man använder sig av manuell stubbning. Du sparar en kopia av en funktion, skriver över den med en egen och återställer efter testet. Det är först i sista kapitlet som han skriver ”och förresten, det finns det här ramverket som jag råkar ha skrivit”.}
 
 Det ligger ju jättemycket i det, för det är samma sak där som för andra ramverk. Annars sitter du där och slåss mot ett stubbningsramverk, helt ovärt, det är tid du aldrig kommer att få tillbaka. Dessutom blir det bräckligt, ju fler dependencies du har desto bräckligare blir det.
 
-\emph{Jag insåg ganska sent att Jasmine har spies, och du kan välja om de ska anropa funktioner du stubbar eller inte, så varför använde jag sinonJS då? Sen insåg jag att Jasmine verkar återställa alla metoder du stubbar automatiskt efteråt, men det betyder ju också att jag inte kan stubba en sak, återställa och stubba på ett annat sätt i ett test. Låt oss säga att jag har en testsvit med en describe som jag har 20 test i och alla förutom ett stubbar en viss metod på ett visst sätt, då blir det knepigt. Det kanske går att komma runt, jag har inte försökt. Där funderar jag på vad man ska ge för rekommendation, för det är ändå det jag vill göra någonstans, ”om du inte kommer göra det här och det här fancy grejerna så behöver du inte sinonJS, du kan nöja dig med Jasmine och att stubba manuellt”.}
+\emph{56. Jag insåg ganska sent att Jasmine har spies, och du kan välja om de ska anropa funktioner du stubbar eller inte, så varför använde jag sinonJS då? Sen insåg jag att Jasmine verkar återställa alla metoder du stubbar automatiskt efteråt, men det betyder ju också att jag inte kan stubba en sak, återställa och stubba på ett annat sätt i ett test. Låt oss säga att jag har en testsvit med en describe som jag har 20 test i och alla förutom ett stubbar en viss metod på ett visst sätt, då blir det knepigt. Det kanske går att komma runt, jag har inte försökt. Där funderar jag på vad man ska ge för rekommendation, för det är ändå det jag vill göra någonstans, ”om du inte kommer göra det här och det här fancy grejerna så behöver du inte sinonJS, du kan nöja dig med Jasmine och att stubba manuellt”.}
 
 Jag tror att det är bra med exempel, där man visar hur man kan lösa olika fall.
 
-\emph{Tidigt i mitt arbete så insåg jag att de exempel som finns är ofta väldigt grundläggande, ”så här testar du ett hello world”. Men det är ju inte det som folk är oroliga över.}
+\emph{57. Tidigt i mitt arbete så insåg jag att de exempel som finns är ofta väldigt grundläggande, ”så här testar du ett hello world”. Men det är ju inte det som folk är oroliga över.}
 
 Det där är också problemet, för ofta vill man ju demonstrera en princip som är lika sann för hello world som jättestora JavaScript-applikationer. Folk gör det ofta väldigt lätt för sig så det vore nog bra att försöka hitta lite svårare fall, men inte krångla till det onödigt. Ofta gäller samma principer, tricket är ju att lyckas separera det så bra att ditt test blir som ett hello world.
 
@@ -727,69 +727,69 @@ Sen är det ju så att när man väl har insett varför man vill testa och best�
 
 Nej men ta fram bra exempel för det där om sånt som du hittar på vägen, det tror jag är bra.
 
-\emph{Just ja, du skrev spikes i vår mailkonversation, om hur du gör när du inte vet hur du ska testa någonting.}
+\emph{58. Just ja, du skrev spikes i vår mailkonversation, om hur du gör när du inte vet hur du ska testa någonting.}
 
 Det är ett TDD-begrepp. Säg till exempel att man ska bygga något och det finns många osäkerhetsfaktorer kring vad slutresultatet ska bli och vad som kommer att fungera. Då är det användbart att ha versionshantering med Git, det är bara att skapa en ny branch och köra loss, skriv inte test utan gör bara. Kasta in grejer, prova, gör, kör hårt. Sen när du har gaffat ihop din prototyp och den börjar fungera något sånär, då går du ur den branchen, gör en ny branch från samma ursprungscommit och börjar om fast med tester. Det är att göra en spike.
 
 Man vill inte ha för långa spikes, för då blir det bökigt. Man ska inte sitta i två veckor och sen kasta och göra om, utan det handlar bara om att hitta en riktning och en känsla för hur man ska lösa problemet. Ofta är det så att man tror att det borde gå om man tänker på ett visst sätt och då kan man göra en snabb validering av det. Ofta kommer man till ett läge då man känner att det kommer att gå att göra på ett visst sätt, man är inte klar men börjar se hur saker och ting kommer att hänga ihop. Då är det läge att avsluta sin spike och börja om med tester.
 
-\emph{Hur undviker man känslan då av att man gör dubbelarbete?}
+\emph{59. Hur undviker man känslan då av att man gör dubbelarbete?}
 
 En motfråga är, vilken kod sätter du dig och skriver en gång? Du itererar, det är bara att du tar en iteration tidigare, en spike kan vara den första iterationen av din kod. Det är jämt att ”typing is not the bottleneck”, det är inte att skriva koden som tar tid, utan det som tar tid är att komma på hur man ska lösa problemet. Har man väl den lösningen, om man fattar vad som är rätt svar, då är det ganska lätt att skriva tester för det och sen skriva koden. Det där är intressant, för där kan man testa sig själv om det blir samma lösning om man testdriver något som när man bara häver ur sig något.
 
-\emph{Det är väl en väldigt bra grej. Jag tror att det är något som många upplever med TDD, att de inte har det här verktyget och då står de där och försöker komma på tester för något som de inte har en aning om hur de tänker implementera.}
+\emph{60. Det är väl en väldigt bra grej. Jag tror att det är något som många upplever med TDD, att de inte har det här verktyget och då står de där och försöker komma på tester för något som de inte har en aning om hur de tänker implementera.}
 
 Där har vi det igen, principer är inte till för att begränsa dig. Om man låter sig begränsas så hamnar man i läget där man känner sig oproduktiv, man måste ju tro på det man gör. Eller i varje fall vilja testa det, sen när man kan reglerna så får man bryta mot dem.
 
-\emph{Du hade skrivit i ditt mail att du bara testar det publika API:et.}
+\emph{61. Du hade skrivit i ditt mail att du bara testar det publika API:et.}
 
 Ja, och då menade jag publikt API i termer av att jag aldrig skulle skriva ett test för en privat metod. Nu har man ju inte riktigt det i JavaScript, men...
 
-\emph{Jag var nyligen hos Sony-mobile teamet och pratade med Kristoffer och han ville verkligen testa en privat metod. Det vi kom fram till var att vi kunde exponera den i testmiljön och gömma den i produktionsmiljön.}
+\emph{62. Jag var nyligen hos Sony-mobile teamet och pratade med Kristoffer och han ville verkligen testa en privat metod. Det vi kom fram till var att vi kunde exponera den i testmiljön och gömma den i produktionsmiljön.}
 
 Jo, men... Jag tycker ändå inte att det är ett bra test. För det är en implementationsdetalj, det är som att testa variabelnamn. Om det blir för stort så kanske man exponerar fel saker.  Man kanske vill ha ett annat API, dela upp i två objekt till exempel, som har API:n sinsemellan. Jag tror att... det finns säkert undantag. Vet man vad man gör, by all means, testa privata metoder, man kommer inte att hamna i TDD-domstolen för det. Men generellt så är det en varningsflagga när man vill skriva ett test för en privat metod, då är det läge att tänka efter.
 
-\emph{Min reaktion var att han kanske kan skapa en klass för det som han vill testa. Då var det tydligen tio rader kod och han var rätt nöjd med att det såg ut så.}
+\emph{63. Min reaktion var att han kanske kan skapa en klass för det som han vill testa. Då var det tydligen tio rader kod och han var rätt nöjd med att det såg ut så.}
 
 Jag hade nog inte gjort så, men det är ju en pågående diskussion och folk säger att de har ett case för att göra det och visst jag kanske någon gång hamnar i ett case där jag känner att nu måste jag testa den här privata metoden, men jag har inte varit där än.
 
-\emph{Jag hade planer på att skriva tester för det vi gjorde i våras med konsultprofil-sidan, och där hade vi mycket jQuery och använde module pattern. På ett felaktigt sätt förmodligen. När jag sedan tittade på det här och frågade mig hur jag ska kunna testa det så var det verkligen som du sa innan om legacy JavaScript att det inte gick att testa alls. De enda testerna jag kunde skriva var ”existerar den här funktionen?” och det är ju i princip att testa variabelnamn.}
+\emph{64. Jag hade planer på att skriva tester för det vi gjorde i våras med konsultprofil-sidan, och där hade vi mycket jQuery och använde module pattern. På ett felaktigt sätt förmodligen. När jag sedan tittade på det här och frågade mig hur jag ska kunna testa det så var det verkligen som du sa innan om legacy JavaScript att det inte gick att testa alls. De enda testerna jag kunde skriva var ”existerar den här funktionen?” och det är ju i princip att testa variabelnamn.}
 
 Ja och det är ju ganska pointless (meningslöst) egentligen, det kommer du inte ifrån. Den viktiga grejen med att inte testa privata metoder är att tester är till för att kolla att saker blir rätt och i övrigt är du fri att göra vad du vill. Jag tänker att problemet med hans privata metod det är när du kommer in i kodbasen och har ett mycket elegantare sätt att lösa hans problem på, då finns det ett test som säger att den här metoden måste fungera så här och då kan du ju inte göra din eleganta lösning för den måste ju tydligen göra så. Då måste du gå till någon som vet och fråga vad tanken bakom testet är för att i bästa fall kunna våga ta bort det. Det är faran med att testa för djupt.
 
-\emph{Det kan jag nog känna med de tester jag skriver nu också, inför det här workshopen, att det kan eventuellt uppstå en sådan situation att jag har skrivit ett test utifrån en specifik implementation och missat poängen med den. Att hitta rätt nivå att lägga sig på är inte lätt. Framförallt inte när man skriver tester i efterhand, vilket han ju också gjorde.}
+\emph{65. Det kan jag nog känna med de tester jag skriver nu också, inför det här workshopen, att det kan eventuellt uppstå en sådan situation att jag har skrivit ett test utifrån en specifik implementation och missat poängen med den. Att hitta rätt nivå att lägga sig på är inte lätt. Framförallt inte när man skriver tester i efterhand, vilket han ju också gjorde.}
 
 Nej, det är ju inte det. Då är det rätt hopplöst. Man får även skilja på konceptet privat metod som i att det står private i koden och att det är en privat metod. I JavaScript så kan man inte göra en metod privat, men den kan ändå vara tänkt att användas som om det vore det och inte är till för att exponera. Det är bra om detta framgår i testerna.
 
-\emph{Du kan testa att en metod är privat? *skratt*}
+\emph{66. Du kan testa att en metod är privat? *skratt*}
 
 Även om du skulle fälla in (inline) den metoden direkt i din kod så skulle testerna fortfarande gå igenom. Koden gör fortfarande rätt även fast den är skriven på ett annat sätt.
 
-\emph{Kodduplicering, när man ser till att hålla testen korta så är det kanske inte ett lika stort problem om det bara är tre rader i varje test.}
+\emph{67. Kodduplicering, när man ser till att hålla testen korta så är det kanske inte ett lika stort problem om det bara är tre rader i varje test.}
 
 Jag tycker att där är läsbarhet viktigast. Man ska inte behöva läsa 700 rader testkod för att komma till kärnan med det.
 
-\emph{Det är många som säger att DRY-principen inte behöver tillämpas på tester och det är samtidigt många som säger att tester behöver vara maintainable.}
+\emph{68. Det är många som säger att DRY-principen inte behöver tillämpas på tester och det är samtidigt många som säger att tester behöver vara maintainable.}
 
 Det är absolut en avvägning, men jag tror helt klart att caset är annorlunda jämfört med när man skriver produktionskod. Det är också det här med premature optimization, att folk använder DRY-principen fel, både i test och i produktion. Om man tolkar det som att samma kodrad inte får förekomma två gånger i ett projekt så har man missat poängen, det handlar ju snarare om att man inte ska duplicera funktionalitet. Om två olika saker råkar som en del av deras funktionalitet göra samma sak så betyder inte det att det ska dras ut till en metod, alltid. Det är likadant med tester, ofta är det så att saker ser väldigt lika ut, som att de gör samma sak, men ofta är så inte fallet. Då hamnar man i dåliga abstraktioner som i själva verket gör testerna mindre maintainable.
 
-\emph{Det tycker jag ofta att man kan märka, man tänker ”ok, om jag ska ta ut det här till en separat metod, vad ska jag döpa den metoden till?” Om namnet börjar innehålla villkor ”om det är så här gör så här” och liknande så kanske det inte är rätt sak att göra.}
+\emph{69. Det tycker jag ofta att man kan märka, man tänker ”ok, om jag ska ta ut det här till en separat metod, vad ska jag döpa den metoden till?” Om namnet börjar innehålla villkor ”om det är så här gör så här” och liknande så kanske det inte är rätt sak att göra.}
 
 Där kan jag ofta testa mig själv genom att göra kodduplicerings-spåret och i efterhand fråga mig hur lika de olika delarna blev. Ofta visar det sig att det inte var så mycket samma grej som man skulle göra i de olika situationerna. Så det är en princip som har förstörts lite, det har på vissa håll gått för långt och övergått till att man kodgolfar.
 
-\emph{Ja det är ju ofta man kan minska antalet rader kod och det är ju det folk börjar sikta på nu så. Det är väl det du menar med kodgolfning?}
+\emph{70. Ja det är ju ofta man kan minska antalet rader kod och det är ju det folk börjar sikta på nu så. Det är väl det du menar med kodgolfning?}
 
 Ja, precis, och det är inte alltid så bra.
 
-\emph{Hur mycket tid har vi kvar förresten?}
+\emph{71. Hur mycket tid har vi kvar förresten?}
 
 Jag måste nog börja röra på mig.
 
-\emph{Jag kan maila frågor om det är så.}
+\emph{72. Jag kan maila frågor om det är så.}
 
 Ja men gör det, absolut. Hade du något mer?
 
-\emph{Nej, inget viktigt.}
+\emph{73. Nej, inget viktigt.}
 
 Då ska jag nog börja dra mig. Men vad kul, det blir spännande att se, du får gärna skicka ditt arbete till mig när du är klar.
 
