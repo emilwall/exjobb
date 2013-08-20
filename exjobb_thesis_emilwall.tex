@@ -449,11 +449,9 @@ Testing private APIs differs from testing calls to an external API in that the l
 
 Introducing versioning for private APIs is not always feasible, for at least two reasons. There can be difficulties in keeping track of the different versions and there can be a risk of hampering development since the parts that use the API are dependent on the new version of the API to be released before they can be updated. However, there exists testing techniques that can be employed regardless if versioning is in place or not. One such technique is to write tests for what characterizes an object that the API serves as an interface for, to be able to determine if an object is a valid response or request. These tests can then be used on both real objects and on the fake objects that are used in other tests, which means that when the API changes the tests can be updated accordingly and then the tests involving the fake will fail. Changing the fakes so that the tests passes will hopefully result in that any incompatibility is discovered since the fakes are used in other parts of the testing suite as well. \cite[question~34]{Edelstam}
 
-\subsection{Purposes of Testing}
-
-Testing is not about eliminating the risk of bugs or ensuring that every line of code is executed exactly the way it was originally meant to be executed. In order to better understand the main benefits of testing, it is recommended to read books such as Clean Code, and to work together with experienced programmers and testers. Without this understanding there is a risk of frustration, inability to decide which tools to use and difficulties in motivating choices related to testing. \cite[question~38]{Edelstam}
-
 \subsection{Culture, Collaboration and Consensus}
+
+Testing is not about eliminating the risk of bugs or ensuring that every line of code is executed exactly the way it was originally meant to be executed. In order to better understand the main benefits of testing, it is recommended to read books such as Clean Code, and to work together with experienced programmers and testers. Without this understanding there is a risk of frustration, inability to decide which tools to use and difficulties in motivating choices related to testing. Collaboration problems may occur when members of a team have different opinions about the purpose of testing. \cite[question~38]{Edelstam}
 
 To get as much benefit as possible from testing, every developer should be involved in the testing effort and preferably the product owners too. The work of specifying stories can involve agreeing on testing scenarios, thinking about what the desired behavior is and coming up with examples that can be used as input and expected output in end-to-end tests. \cite[questions~39-40]{Edelstam}
 
