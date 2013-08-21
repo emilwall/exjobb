@@ -472,6 +472,12 @@ As mentioned in section~\ref{sec:browserautomation}, Selenium is currently the m
 
 With Selenium IDE (see section~\ref{sec:browserautomation}), there is a possibility of recording a certain interaction and generate code for it. This could potentially be used to reproduce bugs by letting the user that encountered the bug record the actions that led to it, and communicate with a developer so that proper assertions are added at the end of the sequence. This has some interesting implications, but experience shows that it is hard to do it in practice since it requires the users to be trained in how to use the plugin and to invest extra time whenever an error occurs. \cite[questions~42-43]{Edelstam}
 
+\subsection{Build tools} % Technical background
+
+There exists some general build tools that can be used for any programming language, these are often installed on build servers and integrated with version control systems. Examples include GNU Make, which is typically controlled through CLI, and Jenkins, which is often controlled through its web interface although it too has a CLI. Then there are language specific tools: Ruby has Rake, Java has Maven, Gradle and Ant, C\nolinebreak\hspace{-.05em}\raisebox{.3ex}{\scriptsize\bf \#} has MSBuild and NAnt.
+
+Naturally, there are such tools for JavaScript as well, Grunt being the most popular, which can be installed as a node.js package, has plugins for common tasks such as lint, testing and minification, and can be invoked through CLI. Jake is another well known and maintained alternative and it is also possible to use Rake, Ant or similar.
+
 \printbibliography[heading=bibnumbered]
 
 \section{Appendix}
