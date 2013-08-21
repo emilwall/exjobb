@@ -474,9 +474,9 @@ With Selenium IDE (see section~\ref{sec:browserautomation}), there is a possibil
 
 \subsection{Build tools} % Technical background
 
-There exists some general build tools that can be used for any programming language, these are often installed on build servers and integrated with version control systems. Examples include GNU Make, which is typically controlled through CLI, and Jenkins, which is often controlled through its web interface although it too has a CLI. Then there are language specific tools: Ruby has Rake, Java has Maven, Gradle and Ant, C\nolinebreak\hspace{-.05em}\raisebox{.3ex}{\scriptsize\bf \#} has MSBuild and NAnt.
+There exists some general build tools that can be used for any programming language, these are often installed on build servers and integrated with version control systems. Examples include Jenkins, which is often configured and controlled through its web interface although it also has a CLI, and GNU Make, which is typically configured using makefiles and controlled through CLI. In addition to these, there are also language specific tools: Ruby has Rake, Java has Maven, Gradle and Ant, C\nolinebreak\hspace{-.05em}\raisebox{.3ex}{\scriptsize\bf \#} has MSBuild and NAnt.
 
-Naturally, there are such tools for JavaScript as well, Grunt being the most popular, which can be installed as a node.js package, has plugins for common tasks such as lint, testing and minification, and can be invoked through CLI. Jake is another well known and maintained alternative and it is also possible to use Rake, Ant or similar.
+Naturally, there are build tools designed specifically for JavaScript as well, Grunt being the most popular, which can be installed as a node.js package, has plugins for common tasks such as lint, testing and minification, and can be invoked through CLI. \cite{Grunt}\cite[question~52]{Edelstam} Jake and Mimosa are other well known and maintained alternatives. It is also possible to use Rake, Ant or similar. \cite{BuildTools}
 
 \printbibliography[heading=bibnumbered]
 
