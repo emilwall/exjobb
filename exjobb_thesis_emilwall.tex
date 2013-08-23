@@ -484,6 +484,10 @@ In JavaScript, tools for stubbing can be superfluous because you are able to man
 
 Typical cases for using a stubbing or mocking framework rather than VanillaJS include when your assertion framework has support for it, as is the case for Jasmine, when you feel the need to do a complex call assertion, mock a large API or state expectations up front as is done with mocks. Bear in mind that this might be a symptom for that the code is in need of refactoring though, and strive for consistency by using a single method for stubbing -- mixing VanillaJS with Jasmine spies and sinonJS stubs will make the tests harder to understand.
 
+\subsection{Patterns, Examples and Documentation}
+
+Examples are useful when learning idiomatic ways of solving problems. Those who write examples to illustrate a concept always have to find a tradeoff between simplicity, generality and usefulness \cite[questions~56-57]{Edelstam}. Combining different concepts may help to achieve code with good separation, that can be tested by simple tests. Today blog posts and books about patterns in JavaScript are in abundance and you can often find examples in the documentation of frameworks. When it comes to examples of testing in general there are several classics to refer to \cite{KentBeck}\cite{TestPatterns}. For examples of JavaScript testing specifically the alternatives are scarce but they do exist \cite{Tddjs}\cite{BDDJS}\cite{TestableJS}.
+
 \printbibliography[heading=bibnumbered]
 
 \section{Appendix}
