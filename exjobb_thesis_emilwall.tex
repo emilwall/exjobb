@@ -433,7 +433,7 @@ An important difference between using a headless browser such as PhantomJS to ru
 
 % TODO: section: Ways of testing, selenium vs unit test in browser. headless vs real browser.
 
-One could argue that JavaScript is better suited for testing than most other programming languages because of the built in features than often make stubbing frameworks redundant. The object literals can be used to define fake objects and it is easy to manually replace a function with another and then restore it. An advantage with using manually written fakes is that it tends to make the code easier to understand since knowledge about specific frameworks or DSLs (Domain Specific Language) is not required. \cite[questions~20-21]{Edelstam}
+One could argue that JavaScript is better suited for testing than most other programming languages because of the built in features than often make stubbing frameworks redundant. The object literals can be used to define fake objects and it is easy to manually replace a function with another and then restore it. An advantage with using manually written fakes is that it tends to make the code easier to understand since knowledge about specific frameworks or DSLs (Domain Specific Language) is not required. \cite[questions~20-21]{Edelstam}\label{LiteralFakes}
 
 The problems that some people experience with testing frontend interfaces sometimes have to do with poor modularity. For instance, the presentation layer should not be responsible for calling large APIs. Tools such as RequireJS can be used to handle dependencies but if each part of the application has too many or large dependencies, mocking becomes a daunting task. Typically, these kinds of problems can be solved by introducing new layers of logic and services that separate responsibilities and allows for much cleaner tests. \cite[question~23]{Edelstam}
 
@@ -480,7 +480,7 @@ Naturally, there are build tools designed specifically for JavaScript as well, G
 
 \subsection{Stubbing and Mocking} % Technical background
 
-In JavaScript, tools for stubbing can be superfluous because you are able to manually replace functions with custom anonymous functions that have attributes for call assertion purposes.
+In JavaScript, tools for stubbing can be superfluous because you are able to manually replace functions with custom anonymous functions, that can have attributes for call assertion purposes. The stubbed functions can be stored in local variables in the tests and restored during teardown. This is what some refer to as VanillaJS \cite[question~53]{Edelstam}. It might come across as manual work that you can avoid by using a stubbing tool, but the benefits include fewer dependencies and sometimes more readable code, as mentioned in section \ref{LiteralFakes}. \cite[questions~54-55]{Edelstam}
 
 \printbibliography[heading=bibnumbered]
 
