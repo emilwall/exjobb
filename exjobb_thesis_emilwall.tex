@@ -764,73 +764,73 @@ Om jag skulle skriva en bok så skulle jag inte vilja ha med mina tester. De sku
 
 Till slut så kommer man ner till problemet att man måste hitta bra abstraktioner. När det är precis rätt så blir det elegant. Därför tror jag att många exempel är så korta, för man är inte nöjd med de komplicerade testerna, det är inget man vill skryta med.
 
-Sen är det ju så att när man väl har insett varför man vill testa och bestämt sig för att göra det så kommer man väl komma fram, men det vore skönt om jag kunde göra den resan lite enklare för folk.
+\emph{58. Sen är det ju så att när man väl har insett varför man vill testa och bestämt sig för att göra det så kommer man väl komma fram, men det vore skönt om jag kunde göra den resan lite enklare för folk.}
 
 Nej men ta fram bra exempel för det där om sånt som du hittar på vägen, det tror jag är bra.
 
-\emph{58. Just ja, du skrev spikes i vår mailkonversation, om hur du gör när du inte vet hur du ska testa någonting.}
+\emph{59. Just ja, du skrev spikes i vår mailkonversation, om hur du gör när du inte vet hur du ska testa någonting.}
 
 Det är ett TDD-begrepp. Säg till exempel att man ska bygga något och det finns många osäkerhetsfaktorer kring vad slutresultatet ska bli och vad som kommer att fungera. Då är det användbart att ha versionshantering med Git, det är bara att skapa en ny branch och köra loss, skriv inte test utan gör bara. Kasta in grejer, prova, gör, kör hårt. Sen när du har gaffat ihop din prototyp och den börjar fungera något sånär, då går du ur den branchen, gör en ny branch från samma ursprungscommit och börjar om fast med tester. Det är att göra en spike.
 
 Man vill inte ha för långa spikes, för då blir det bökigt. Man ska inte sitta i två veckor och sen kasta och göra om, utan det handlar bara om att hitta en riktning och en känsla för hur man ska lösa problemet. Ofta är det så att man tror att det borde gå om man tänker på ett visst sätt och då kan man göra en snabb validering av det. Ofta kommer man till ett läge då man känner att det kommer att gå att göra på ett visst sätt, man är inte klar men börjar se hur saker och ting kommer att hänga ihop. Då är det läge att avsluta sin spike och börja om med tester.
 
-\emph{59. Hur undviker man känslan då av att man gör dubbelarbete?}
+\emph{60. Hur undviker man känslan då av att man gör dubbelarbete?}
 
 En motfråga är, vilken kod sätter du dig och skriver en gång? Du itererar, det är bara att du tar en iteration tidigare, en spike kan vara den första iterationen av din kod. Det är jämt att ”typing is not the bottleneck”, det är inte att skriva koden som tar tid, utan det som tar tid är att komma på hur man ska lösa problemet. Har man väl den lösningen, om man fattar vad som är rätt svar, då är det ganska lätt att skriva tester för det och sen skriva koden. Det där är intressant, för där kan man testa sig själv om det blir samma lösning om man testdriver något som när man bara häver ur sig något.
 
-\emph{60. Det är väl en väldigt bra grej. Jag tror att det är något som många upplever med TDD, att de inte har det här verktyget och då står de där och försöker komma på tester för något som de inte har en aning om hur de tänker implementera.}
+\emph{61. Det är väl en väldigt bra grej. Jag tror att det är något som många upplever med TDD, att de inte har det här verktyget och då står de där och försöker komma på tester för något som de inte har en aning om hur de tänker implementera.}
 
 Där har vi det igen, principer är inte till för att begränsa dig. Om man låter sig begränsas så hamnar man i läget där man känner sig oproduktiv, man måste ju tro på det man gör. Eller i varje fall vilja testa det, sen när man kan reglerna så får man bryta mot dem.
 
-\emph{61. Du hade skrivit i ditt mail att du bara testar det publika API:et.}
+\emph{62. Du hade skrivit i ditt mail att du bara testar det publika API:et.}
 
 Ja, och då menade jag publikt API i termer av att jag aldrig skulle skriva ett test för en privat metod. Nu har man ju inte riktigt det i JavaScript, men...
 
-\emph{62. Jag var nyligen hos Sony-mobile teamet och pratade med Kristoffer och han ville verkligen testa en privat metod. Det vi kom fram till var att vi kunde exponera den i testmiljön och gömma den i produktionsmiljön.}
+\emph{63. Jag var nyligen hos Sony-mobile teamet och pratade med Kristoffer och han ville verkligen testa en privat metod. Det vi kom fram till var att vi kunde exponera den i testmiljön och gömma den i produktionsmiljön.}
 
 Jo, men... Jag tycker ändå inte att det är ett bra test. För det är en implementationsdetalj, det är som att testa variabelnamn. Om det blir för stort så kanske man exponerar fel saker.  Man kanske vill ha ett annat API, dela upp i två objekt till exempel, som har API:n sinsemellan. Jag tror att... det finns säkert undantag. Vet man vad man gör, by all means, testa privata metoder, man kommer inte att hamna i TDD-domstolen för det. Men generellt så är det en varningsflagga när man vill skriva ett test för en privat metod, då är det läge att tänka efter.
 
-\emph{63. Min reaktion var att han kanske kan skapa en klass för det som han vill testa. Då var det tydligen tio rader kod och han var rätt nöjd med att det såg ut så.}
+\emph{64. Min reaktion var att han kanske kan skapa en klass för det som han vill testa. Då var det tydligen tio rader kod och han var rätt nöjd med att det såg ut så.}
 
 Jag hade nog inte gjort så, men det är ju en pågående diskussion och folk säger att de har ett case för att göra det och visst jag kanske någon gång hamnar i ett case där jag känner att nu måste jag testa den här privata metoden, men jag har inte varit där än.
 
-\emph{64. Jag hade planer på att skriva tester för det vi gjorde i våras med konsultprofil-sidan, och där hade vi mycket jQuery och använde module pattern. På ett felaktigt sätt förmodligen. När jag sedan tittade på det här och frågade mig hur jag ska kunna testa det så var det verkligen som du sa innan om legacy JavaScript att det inte gick att testa alls. De enda testerna jag kunde skriva var ”existerar den här funktionen?” och det är ju i princip att testa variabelnamn.}
+\emph{65. Jag hade planer på att skriva tester för det vi gjorde i våras med konsultprofil-sidan, och där hade vi mycket jQuery och använde module pattern. På ett felaktigt sätt förmodligen. När jag sedan tittade på det här och frågade mig hur jag ska kunna testa det så var det verkligen som du sa innan om legacy JavaScript att det inte gick att testa alls. De enda testerna jag kunde skriva var ”existerar den här funktionen?” och det är ju i princip att testa variabelnamn.}
 
 Ja och det är ju ganska pointless (meningslöst) egentligen, det kommer du inte ifrån. Den viktiga grejen med att inte testa privata metoder är att tester är till för att kolla att saker blir rätt och i övrigt är du fri att göra vad du vill. Jag tänker att problemet med hans privata metod det är när du kommer in i kodbasen och har ett mycket elegantare sätt att lösa hans problem på, då finns det ett test som säger att den här metoden måste fungera så här och då kan du ju inte göra din eleganta lösning för den måste ju tydligen göra så. Då måste du gå till någon som vet och fråga vad tanken bakom testet är för att i bästa fall kunna våga ta bort det. Det är faran med att testa för djupt.
 
-\emph{65. Det kan jag nog känna med de tester jag skriver nu också, inför det här workshopen, att det kan eventuellt uppstå en sådan situation att jag har skrivit ett test utifrån en specifik implementation och missat poängen med den. Att hitta rätt nivå att lägga sig på är inte lätt. Framförallt inte när man skriver tester i efterhand, vilket han ju också gjorde.}
+\emph{66. Det kan jag nog känna med de tester jag skriver nu också, inför det här workshopen, att det kan eventuellt uppstå en sådan situation att jag har skrivit ett test utifrån en specifik implementation och missat poängen med den. Att hitta rätt nivå att lägga sig på är inte lätt. Framförallt inte när man skriver tester i efterhand, vilket han ju också gjorde.}
 
 Nej, det är ju inte det. Då är det rätt hopplöst. Man får även skilja på konceptet privat metod som i att det står private i koden och att det är en privat metod. I JavaScript så kan man inte göra en metod privat, men den kan ändå vara tänkt att användas som om det vore det och inte är till för att exponera. Det är bra om detta framgår i testerna.
 
-\emph{66. Du kan testa att en metod är privat? *skratt*}
+\emph{67. Du kan testa att en metod är privat? *skratt*}
 
 Även om du skulle fälla in (inline) den metoden direkt i din kod så skulle testerna fortfarande gå igenom. Koden gör fortfarande rätt även fast den är skriven på ett annat sätt.
 
-\emph{67. Kodduplicering, när man ser till att hålla testen korta så är det kanske inte ett lika stort problem om det bara är tre rader i varje test.}
+\emph{68. Kodduplicering, när man ser till att hålla testen korta så är det kanske inte ett lika stort problem om det bara är tre rader i varje test.}
 
 Jag tycker att där är läsbarhet viktigast. Man ska inte behöva läsa 700 rader testkod för att komma till kärnan med det.
 
-\emph{68. Det är många som säger att DRY-principen inte behöver tillämpas på tester och det är samtidigt många som säger att tester behöver vara maintainable.}
+\emph{69. Det är många som säger att DRY-principen inte behöver tillämpas på tester och det är samtidigt många som säger att tester behöver vara maintainable.}
 
 Det är absolut en avvägning, men jag tror helt klart att caset är annorlunda jämfört med när man skriver produktionskod. Det är också det här med premature optimization, att folk använder DRY-principen fel, både i test och i produktion. Om man tolkar det som att samma kodrad inte får förekomma två gånger i ett projekt så har man missat poängen, det handlar ju snarare om att man inte ska duplicera funktionalitet. Om två olika saker råkar som en del av deras funktionalitet göra samma sak så betyder inte det att det ska dras ut till en metod, alltid. Det är likadant med tester, ofta är det så att saker ser väldigt lika ut, som att de gör samma sak, men ofta är så inte fallet. Då hamnar man i dåliga abstraktioner som i själva verket gör testerna mindre maintainable.
 
-\emph{69. Det tycker jag ofta att man kan märka, man tänker ”ok, om jag ska ta ut det här till en separat metod, vad ska jag döpa den metoden till?” Om namnet börjar innehålla villkor ”om det är så här gör så här” och liknande så kanske det inte är rätt sak att göra.}
+\emph{70. Det tycker jag ofta att man kan märka, man tänker ”ok, om jag ska ta ut det här till en separat metod, vad ska jag döpa den metoden till?” Om namnet börjar innehålla villkor ”om det är så här gör så här” och liknande så kanske det inte är rätt sak att göra.}
 
 Där kan jag ofta testa mig själv genom att göra kodduplicerings-spåret och i efterhand fråga mig hur lika de olika delarna blev. Ofta visar det sig att det inte var så mycket samma grej som man skulle göra i de olika situationerna. Så det är en princip som har förstörts lite, det har på vissa håll gått för långt och övergått till att man kodgolfar.
 
-\emph{70. Ja det är ju ofta man kan minska antalet rader kod och det är ju det folk börjar sikta på nu så. Det är väl det du menar med kodgolfning?}
+\emph{71. Ja det är ju ofta man kan minska antalet rader kod och det är ju det folk börjar sikta på nu så. Det är väl det du menar med kodgolfning?}
 
 Ja, precis, och det är inte alltid så bra.
 
-\emph{71. Hur mycket tid har vi kvar förresten?}
+\emph{72. Hur mycket tid har vi kvar förresten?}
 
 Jag måste nog börja röra på mig.
 
-\emph{72. Jag kan maila frågor om det är så.}
+\emph{73. Jag kan maila frågor om det är så.}
 
 Ja men gör det, absolut. Hade du något mer?
 
-\emph{73. Nej, inget viktigt.}
+\emph{74. Nej, inget viktigt.}
 
 Då ska jag nog börja dra mig. Men vad kul, det blir spännande att se, du får gärna skicka ditt arbete till mig när du är klar.
 
