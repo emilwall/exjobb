@@ -482,6 +482,8 @@ Naturally, there are build tools designed specifically for JavaScript as well, G
 
 In JavaScript, tools for stubbing can be superfluous because you are able to manually replace functions with custom anonymous functions, that can have attributes for call assertion purposes. The stubbed functions can be stored in local variables in the tests and restored during teardown. This is what some refer to as VanillaJS \cite[question~53]{Edelstam}. It might come across as manual work that you can avoid by using a stubbing tool, but the benefits include fewer dependencies and sometimes more readable code, as mentioned in section \ref{LiteralFakes}. \cite[questions~54-55]{Edelstam}
 
+Typical cases for using a stubbing or mocking framework rather than VanillaJS include when your assertion framework has support for it, as is the case for Jasmine, when you feel the need to do a complex call assertion, mock a large API or state expectations up front as is done with mocks. Bear in mind that this might be a symptom for that the code is in need of refactoring though, and strive for consistency by using a single method for stubbing -- mixing VanillaJS with Jasmine spies and sinonJS stubs will make the tests harder to understand.
+
 \printbibliography[heading=bibnumbered]
 
 \section{Appendix}
