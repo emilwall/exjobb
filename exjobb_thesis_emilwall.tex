@@ -500,6 +500,10 @@ There is an ongoing discussion about whether or not you have to start over after
 
 Counterintuitive it may seem, throwing away a prototype and starting from scratch to test drive the same feature can improve efficiency in the long run. The hard part of coding is not typing, it is learning and problem solving. A spike should be short and incomplete, its main purpose is to help you get your mind set on what tests you can write and what the main points in a solution would be. \cite[question~60]{Edelstam}
 
+\subsection{The DRY principle in testing}
+
+The point of the Don't Repeat Yourself (DRY) principle is \emph{not} that the same lines of code cannot occur twice in a project, but that the same \emph{functionality} must not occur twice. Two bits of code may seem to do the same thing while in reality they don't. This applies to eliminating duplication both in production code and tests, do not overdo it since that will harm maintainability rather than improve it. Sometimes it is beneficial to allow for some duplication up front and then refactor once you have a clear picture about how alike the two scenarios actually are, if necessary. \cite[questions~69-70]{Edelstam}
+
 \printbibliography[heading=bibnumbered]
 
 \section{Appendix}
