@@ -837,7 +837,7 @@ Grymma, det är bara att köra. Det är faktiskt intressant, jag har nog aldrig 
 
 \emph{1. Vad har du för erfarenhet av testning av JavaScript?}
 
-Jag har jobbat på ett JavaScript-projekt senaste året med AngularJS, med ett antal 1000 JavaScript-tester som använder Jasmine-ramverket. Dessförinnan har jag ägnat mig åt Node.js med Mocha.
+Du syftar på automatiserade tester antar jag. Jag har jobbat på ett JavaScript-projekt senaste året med AngularJS, med ett antal 1000 JavaScript-tester som använder Jasmine-ramverket. Dessförinnan har jag ägnat mig åt Node.js med Mocha.
 
 \emph{2. Har du så att alla de testerna går igenom när ni kör dem?}
 
@@ -853,11 +853,11 @@ Det var ett tag sen jag använde Mocha men jag vill minnas att de är ganska sna
 
 \emph{5. Vad är det som gjort att du blivit trött på Jasmine?}
 
-I Jasmine har man nästlade describes och its och med stora testfiler och många tester som körs så kan det bli ganska mycket till slut. Det enda du har stöd för är att exkludera specar. Man kan då hacka ihop sätt att köra enskilda describes som inte är överdrivet komplicerade, men det har inte tagits in i kodbasen till jasmine och det har gjort att jag upplever det som att utvecklingen har stannat av för jasmine.
+I Jasmine har man nästlade describes och its och med stora testfiler och många tester som körs så kan det bli ganska mycket till slut. Det enda du har stöd för är att exkludera specar. Det är inte överdrivet komplicerat att hacka ihop sätt att köra enskilda describes, men det har inte tagits in i kodbasen till jasmine och det har gjort att jag upplever det som att utvecklingen har blivit fientlig mot nya features från communityn som till exempel den gamla patchen för ddescribe/iit som du säkert sett och en del annat såsom beforeAll.
 
-I andra språk finns ofta möjlighet att göra en fixture-setup, som körs en gång för alla före samtliga tester. Man kan föra en filosofisk diskussion kring huruvida det är bra eller dåligt. En fixture-setup tvingar dig att skriva tester som inte påverkar varandra i termer av delat state. Det leder också till att testerna går snabbare att köra, vilket kan vara användbart för tester som har en setup som tar lång tid att köra. I Jasmine finns inte beforeAll eller någon motsvarighet och de försök att komma runt det som finns fungerar inte så bra.
+I andra testramverk finns ofta möjlighet att göra en fixture-setup, som körs en gång för alla före samtliga tester. Man kan föra en filosofisk diskussion kring huruvida det är bra eller dåligt. En fixture-setup tvingar dig att skriva tester som inte påverkar varandra i termer av delat state. Det leder också till att testerna går snabbare att köra, vilket kan vara användbart för tester som har en setup som tar lång tid att köra. I Jasmine finns inte beforeAll eller någon motsvarighet och de försök att komma runt det som finns fungerar inte så bra.
 
-Nu har jag förvisso inte använt Jasmine 2, utan enbart 1.3 alltså senaste, men de har en ny på gång och det är möjligt att de har fått in det där men jag har inte sett det i så fall. Problemet med existerande lösningar som extendar Jasmine för att få beforeAll uppstår när du nästlar och har en beforeAll mitt i en kedja där du någonstans har en beforeEach, då körs de lite tokigt.
+Nu har jag förvisso inte använt Jasmine 2, utan enbart 1.3 alltså senaste, men de har en ny på gång och det är möjligt att de har fått in det där men jag har inte sett det i så fall. Problemet med existerande lösningar som extendar Jasmine för att få beforeAll uppstår när du nästlar och inte har beforeAll i hela kedjan ``uppåt''.
 
 Detta har lett till att jag funderar på att byta till något annat.
 
@@ -867,7 +867,7 @@ Ja just det. Men det är fortfarande så att om du har en testfil med 100 tester
 
 \emph{7. Har du upptäckt någon fördel med Angular ur ett testnings-perspektiv?}
 
-Fördelen är att Angular-gänget gillar tester vilket innebär att det är tämligen enkelt att testdriva sin kod. Min upplevelse har varit odelat positiv förutom två saker. Angular använder en IOC-container, dependency injection för services och annat, vilket generellt kan vara komplicerat när det kommer till testning. Du har en massa regler för hur saker instantieras som i viss mån kan konfigureras men i många fall följer defaultregler vilket kan leda till konstigheter i testningen genom att du inte får injicera på det sätt du vill. Dessutom är det väldigt tight kopplat till just Jasmine, AngularMocks är inne i Jasmine och stuvar om för att göra det smidigare och enklare att testa men det betyder också att du binder väldigt mycket till just detta testramverk.
+Fördelen är att Angular-gänget gillar tester vilket innebär att det är tämligen enkelt att testdriva sin kod. Min upplevelse har varit positiv förutom två saker. Angular använder en IOC-container, dependency injection för services och annat, vilket generellt kan vara komplicerat när det kommer till testning. Du har en massa regler för hur saker instantieras som i viss mån kan konfigureras men i många fall följer defaultregler vilket kan leda till konstigheter i testningen genom att du inte får injicera på det sätt du vill. Dessutom är det väldigt tight kopplat till just Jasmine, AngularMocks är inne i Jasmine och stuvar om för att göra det smidigare och enklare att testa men det betyder också att du binder väldigt mycket till just detta testramverk.
 
 \emph{8. Det som hette Testacular innan, Karma, använder ni det?}
 
@@ -881,11 +881,11 @@ Har du stöd för uråldriga browsers, som IE8, som inte stödjer ECMAScript 5, 
 
 \emph{10. När anser du att det är särskilt lämpligt med testning av JavaScript? I allmänhet, inte bara i Angular.}
 
-Alltid, eftersom JavaScript inte är starkt typat så är min åsikt att de enda gånger du kan skippa att testa din JavaScript är i egna hobbyprojekt. Gör du något seriöst så måste du ha tester, allting annat är dömt att misslyckas. Det tycker jag å andra sidan om allting, även om du frågar mig om .NET. Du kan inte ändra någonting om du inte har tester. Inte om du inte kan garantera att du har ett stabilt beteende.
+Alltid, eftersom JavaScript inte är starkt typat så är min åsikt att de enda gånger du kan skippa att testa din JavaScript är i egna hobbyprojekt. Gör du något seriöst så måste du ha tester, allting annat är dömt att misslyckas. Det tycker jag å andra sidan om allting, även om du frågar mig om .NET. Du kan inte ändra någonting om du inte har tester, det är enda sättet att garantera att du har ett stabilt beteende.
 
 \emph{11. Har du sett något trendskifte?}
 
-Tidigare har JavaScript handlat mycket om att få till häftiga effekter i browsern, animationer och annat som har med utseendet att göra. I och med inträdet av Angular och andra MVC-ramverk så kan man numera skriva riktiga applikationer som körs i browsern och i och med det så blir det ett större fokus på testning. Åtminstone bland de som ser poängen i att skriva kvalitativ applikationskod.
+Tidigare har JavaScript handlat mycket om att få till häftiga effekter i browsern, animationer och annat som har med utseendet att göra. I och med inträdet av Angular och andra MVC-ramverk så har man nu en annan möjlighet att skala och strukturera koden till applikationer som körs i browsern och i och med det så blir det ett större fokus på testning. Åtminstone bland de som ser poängen i att skriva kvalitativ applikationskod.
 
 Jag har varit med om en hel del projekt där de inte har haft tester men där de har börjat smyga in det då och då. Det blir ganska uppenbart, jag var inne i ett JavaScript coverage-projekt där jag skapade ett tiotal issues på saker som inte fungerade och som slutade fungera från version till version och till sist förstod utvecklaren att han kanske skulle ta och börja med lite testning trots allt.
 
@@ -913,7 +913,7 @@ Ja.
 
 \emph{17. Hur har ditt tidigare jobb på Ericsson påverkat din syn på testning?}
 
-När jag jobbade på Ericsson så var det inom telecom, jag jobbade med motorn som ser till att du debiteras för samtal på telefonnätet. Det är förstås viktigt att den beter sig på rätt sätt så att inte operatören råkar ut för extra kostnader genom att ta för mycket eller för lite betalt. Vikten av ordentliga tester blev därför väldigt stor.
+När jag jobbade på Ericsson så var det inom telecom, jag jobbade med motorn som ser till att du debiteras för samtal på telefonnätet. Det är förstås viktigt att den beter sig på rätt sätt så att inte operatören råkar ut för extra kostnader genom att ta felaktigt betalt. Vikten av ordentliga tester blev därför väldigt stor.
 
 Man kan kanske argumentera för att testning är bransch-specifikt för telekom, banker och liknande, samtidigt kan jag inte komma på någon bransch där det skulle vara oviktigt att ha koll på sin kod. Till och med när jag kört hobbyprojekt så har jag upplevt att så fort du fuskar med en annan utvecklingsapproach och inte kör tester, då måste du köra din applikation och klicka dig fram vilket ger extremt långa feedback-cykler. Med testning så kortar du ner de cyklerna väsentligt.
 
