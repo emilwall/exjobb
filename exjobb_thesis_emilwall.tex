@@ -1514,6 +1514,278 @@ Nej, det är jag inte.
 
 Det finns en skillnad där jämfört med Microsoft-gänget, och vi som jobbar som gränssnittare är oftast med Microsoft-gänget för att Java Open Systems-gänget brukar göra allting själva, så vi hamnar aldrig i de projekten. Tyvärr, annars kanske vi skulle ha lärt oss mer om testning. Så jag tror att om du skulle prata med flera gränssnittare så kommer de antagligen inte att ha testat någon kod heller. Jag känner inte till att det görs i något Microsoft-projekt alls.
 
+\subsection{Mail conversation with Fredrik Wendt}
+
+\emph{Previous to this mail, I had presented myself and my work and given Fredrik questions. His answers are given in Swedish below.}
+
+Hej.
+
+Jag svarar lite huller om buller här - känns som att det hade varit
+lättare att ta i en intervju/över telefon. :-)
+
+Till att börja vill jag säga att jag ser väldigt få som funderar över
+VAD/VARFÖR de testar sin JavaScript-kod (utgår från webapp-världen, inte
+server side JS). Bara för att det går att få ett mätetal på %
+kodtäckning så är det alltför vanligt att folk skall dra upp feta
+maskiner där hela systemet kan köra, Selenium i någon form (webdriver
+etc) och långa körningar med många browsers. GUI-test? Nja.
+
+GUI-kod (JavaScript) är ett lager precis som t ex JDBC/Linq och de
+flesta utvecklare tycker att det kan vara bra att testa denna, med hjälp
+av enhetstest. Därav följer att enheterna skall isoleras, ofta med hjälp
+av mockning eller stubbning.
+
+Att testa sitt GUI-lager (JavaScript) kan man mena då följer samma
+princip, dvs vi skall ha hög kodtäckningsgrad på vårt GUI-lager och vi
+skall kunna köra enhetstesten i isolation, dvs vi mockar/stubbar bort
+server side. Om man börjar ``mocka bort'' hela browsern också, då drar de
+flesta lite på munnen och tycker att det blir lite för mycket isolation
+- de litar fortfarande inte på att browsers är så pass enhetliga, eller
+iaf enhetliga under ett ramverk (jQuery?), att de vågar lita på att
+någon lyckas göra en abstraktion av ``browsern'' (ofta DOM:en + events)
+att det känns tillförlitligt, att man litar på testen. (Och då är det ju
+mycket tveksamt med test, om man inte tror att de gör något bra eller
+fyller någon värdefull funktion.)
+
+Så, men den bakgrunden biter jag tag i dina frågor en och en. :-)
+
+Brasklapp: Jag utgår hela tiden nedan från ett scenario där
+``JavaScript-kod'' avser kod i en webapp, där JS-koden körs i användarens
+browser. För annan form av kod så blir vissa frågor konstiga, eller så
+har jag missförstått vad du vill uppnå med din uppsats. :-)
+
+\emph{1. På din blogg framgår det att du i slutet av oktober 2011, alltså för
+snart 2 år sedan, höll en dragning om JsTestDriver (JSTD), JsHamcrest
+och JsMockito. Jag har själv använt mig av JSTD en del och känner igen
+mig i problemen med att det ibland inte framfår tillräckligt tydligt
+när något test inte körs och att man kan behöva rensa webbläsar-cachen
+för att få ett korrekt beteende. Vad är din syn på JSTD såhär i
+efterhand, är det något du fortfarande använder? Varför/varför inte?}
+
+Jag sitter inte längre i projekt med samma webbtyngd. Jag använde JSTD
+flera gånger när jag testdrev fram ``logik''. Jag använde inte JSTD för
+att testa GUIt, utan snarare kollade att Observable-pattern fungerade i
+olika sammanhang. Applikationen hade en meddelandebus och på den skulle
+olika saker hända beroende på vilka meddelanden som kom och hur
+applikationen var konfigurerad. Ofta slutade det med ett par ajax-anrop
+som skulle skickas (vilka fångades upp och verifierades att de kom), men
+när svaret kom och datan fylldes på någonstans i någon modell så använde
+jag inte JSTD för att kolla att View-koden ritade upp saker rätt utifrån
+Modellen (och de event den skickade).
+
+För att kolla View-koden användes tyvärr just Selenium Core(!) och ett
+hemmaknackat ramverk för att köra tester på många browsers parallellt.
+Det fungerade fint, men det fanns inget mockat back-end så det var en
+hel del uppsättning av databaser, tabeller osv för att göra körningar.
+
+\emph{2. Vad gäller JsHamcrest så har jag inte någon personlig erfarenhet av
+att använda det. Jag får intrycket av att det kan användas till bland
+annat filtrering av datamängder och som grund till JsMockito. Har du
+något att tillägga om JsHamcrest och vad du har använt det till? När
+har man som mest nytta av det, i testningssammanhang? Känner du till
+alternativ som kan vara värda att överväga?}
+
+Känner inte till alternativ. Hamcrest är ordlek med bokstäverna i
+Matchers - det JsHamcrest och andra Hamcrest portningar (Java,
+Python, ...) gör är - i testsammahang - att tillföra matcher-funktioner
+som gör testkoden mer läsbar.
+
+PSEUDOKOD:
+\begin{verbatim}
+testThat(anObject).hasProperty('color');
+testThat(anObject).hasProperty('color').withValue('green');
+\end{verbatim}
+
+Minns inte syntax för JsHamcrest och nätet är kass just nu på tåget (på
+väg mot Sthlm för att hålla kurs).
+
+\emph{3. JsMockito har jag heller ingen erfarenhet av. Är det på grund av
+bakgrund inom Java eller något annat som gjorde att du bestämde dig
+för att använda dig av det? Har du någon uppfattning om hur det står
+sig jämfört med till exempel sinon.JS, de inbyggda stubbnings-
+funktionerna i Jasmine och ``VanillaJS'' (dvs. manuell stubbning helt
+utan ramverk)? Jag tänker särskilt på aspekter som hur enkelt det är
+att lära sig och använda, hur läsbar koden blir och hur setup oc
+ teardown av fake-objekten fungerar.}
+
+För mig som java-människa var det lätt att lära sig och sättet att
+stubba- och mocka (dvs INTE tre-stegsmodellen: prepare, replay, verify)
+tilltalar mig då det tenderar att ge mycket mindre brus i testkoden.
+
+Jag har använt Jasmine mycket lite, så pass att jag inte skall uttala
+mig om hur de mäter sig mot varandra.
+
+Jag har använt mig av VanillaJS och överlagrat funktioner på objekt.
+Fördelen med ett bra mocknings/stubbningsramverk är att felmeddelandena
+kan vara mycket användbara. Istället för att testet bara blir rött och
+man behöver börja debugga, kan ``expected call to method setColor with
+parameters 'blue', but got call to method setColor with parameters
+'green''' vara mycket insiktsfullt och ``snabbt'' ge tillräckligt med
+information för att kunna bedöma vad som är fel.
+
+\emph{4. Vilka verktyg använder du idag för testning av JavaScript och varför?}
+
+Inga. Föräldraledig. Använder mycket lite JavaScript för närvarande, men
+jag är intresserad av vad Angular har att erbjuda. (Samtidigt är jag
+besviken över hur begränsat Angular är, och hur omoget Ember är. När jag
+satte mig ner för att skriva om ett par applikationer i våras blev jag
+verkligen bedrövad över Embers überdåliga dokumentation (så fort man
+skrapar lite på ytan blir det stopp) och naïviteten i Angular (nested
+views?!).)
+
+\emph{5. Har du någon tanke kring hur ramverk som Angular, CanJS och Ember kan
+inverka på testbarhet hos koden man skriver? Vilka andra åtgärder ser
+du som viktiga för att åstadkomma hög testbarhet?}
+
+Återigen - man skall inte skriva test ``för att det går'' och att
+``ramverket gör att vi kan testa ...''. GUI-kod är inget magiskt och borde
+inte behandlas som det heller.
+
+\emph{6. Vad jag förstår det som så har du engagerat dig i att anordna coding
+dojos och i att hjälpa andra med att göra det. Har du haft sådana med
+fokus på JavaScript och vilken roll har testning i så fall fyllt?
+Anser du att aktiviteter av den här typen är lämpliga för att lära sig
+att programmera testdrivet i JavaScript? Vad behöver man komplettera
+med för att det ska generera värde inom en organisation?}
+
+Nej, inte för JavaScript. Bara Python och Java och C\nolinebreak\hspace{-.05em}\raisebox{.3ex}{\scriptsize\bf \#}. ``Testning'' har varit TDD.
+Acceptanstestning är ett område jag önskade jag hade mer praktisk
+erfarenhet av.
+
+Dojos, om de utförs rätt, har ett enormt värde för organisationer. Detta
+är något jag talat om på många konferenser (hur man faktiskt levererar
+värde och inte bara pizza och något att dricka).
+Se http://www.slideshare.net/fwendt/coding-dojos-p-arbetstid för värde av
+dojos.
+
+\emph{7. I vilka fall tror du att det lönar sig att skriva tester för sin
+JavaScript-kod?}
+
+I samma fall som för all annan kod - det är som sagt inget magiskt bara
+för att det är ett annat språk som sitter närmast användaren. Tänk en
+C\nolinebreak\hspace{-.05em}\raisebox{.3ex}{\scriptsize\bf \#}- eller
+VB.Net-applikation som pratar med en NodeJS-tjänst -
+hur/varför skall man testa GUI-delen?
+
+(Påminner om att jag utgår från att du menar JavaScript-kod som körs i
+användarens browser.)
+
+\emph{8. Upplever du att testningskulturen skiljer sig bland
+JavaScript-utvecklare jämfört med till exempel Java, Ruby och C\nolinebreak\hspace{-.05em}\raisebox{.3ex}{\scriptsize\bf \#}? Vad
+tror du att det beror på?}
+
+1. Det är VÄLDIGT stora generaliseringar det där.
+
+1b. Jag kan tänka mig att ``profiler'' inom respektive communitys har
+olika inställning till testning, och att det finns subkulturer inom
+communitys som kan avgränsas till användare av olika språk, men det är
+VÄLDIGT stora generaliseringar.
+
+1bb. Jag kan tänka mig att tillgången på ``lätt att använda''-verktyg,
+utformning av ramverk och ``reference projects'' eller användandet av
+templates som skapar upp tomma testklasser från börjar påverkar
+utvecklare, mer än språk eller egentliga möjligheter att utföra bra
+testning.
+
+2. Nej, det finns större variationer inom grupperna än det finns
+homogena trender och skillnader mellan dem.
+
+3. Ja, jag tycker mig se fler som arbetar med Ruby som skriver olika
+former av pre-produktionstest för sin kod.
+
+Det finns grupper som INTE skriver enhetstest, utan istället ser till
+att ha ordentligt med feedback i sin applikation som berättar hur
+systemet mår. Med bra monitorering och snabba sätt att rulla tillbaka
+utrullade system/kod/versioner, så kan pre-produktionstest ibland vara
+omotiverad kostnad. Detta diskuterades bland annat på CITCONf i Budapest
+okt 2012. (Bör finnas anteckningar att googla upp, Dave Squirrel (osäker
+på förnamnet) var det som anordnade sessionen.)
+
+\emph{9. Har du uppfattat någon form av trendskifte när det kommer till
+testning av JavaScript? Hur skulle du spå att utvecklingen kommer att
+se ut framöver?}
+
+Trenden, generellt sett, är att det är fler som bryr sig om att skriva
+test. De som brydde sig tidigare är mer angelägna om att det skall vara
+``bra'' test, med olika tolkning av ``bra''. Exempeltolkning är ``kunna läsas
+av Business Analyst-folk'', skall ge ``värde'' (vad nu ``värde'' är), skall
+passa ihop med en övergripande teststrategi, skall vara enkla att kasta,
+skall vara tydliga att härföra från krav, skall vara skrivna så att de
+väl dokumenterar förväntat beteende av enheten/systemet under test ...
+
+Två bra trender helt enkelt.
+
+En liten ny trend är som sagt de som helt skippar pre-produktionstest.
+Deras arbetsuppgifter är små och de kan driftsätta dem och slå på/av dem
+i produktion = liten risk och ``det är inte förrän i produktion som man
+verkligen kan veta om det fungerar eller inte, oavsett nivå av
+pre-produktionstestning''.
+
+En annan trend är att fler och fler tar sig högra i stegen mot att test
+även omfattar A/B-testning. Du känner säkert till Netflix t ex och hur
+de testar olika features mot olika delar av sin användarbas, och jämför
+resultaten mellan varandra för att avgöra vilka features som ger bolaget
+``värde'' (likes, genomförda transaktioner, antal clicks to ``action'', ...)
+
+\emph{10. Vad anser du att enhetstestning (med rigorös mockning/stubbning)
+tillför i jämförelse med att testa flöden och integration av APIer? I
+vilka sammanhang lämpar sig de olika sätten att testa på?}
+
+Nu börjar jag bli lite trött märker jag, så med risk för att missa
+hälften:
+
+Välskrivna test dokumenterar hur enheten/funktionen/systemet under
+test förväntas bete sig (i programmerarnas huvud), är de välskrivna så
+verifierar testen att koden också faktiskt beter sig så som utvecklarna
+som skrev produktionskoden TROR att den beter sig.
+
+Den tillåter att man, givet att API:er man ansluter sig mot är
+väldokumenterade och stabila, kan parallellisera utvecklingen. Om vi har
+5 features som skall gå mot samma datalagringstjänst, men den tjänsten
+ännu inte finns, så kan man definiera ett API och därefter sätta igång
+att jobba på 5 fronter parallellt. (Finns givetvis många risker med att
+göra så också, som att API:et saknar funktioner som behövs om det
+designas up-front, men det finns risker med allt. :-)
+
+Jag har erfarenhet från olika variationer av detta sätt att arbeta med
+integration också, och ibland är det så att konsumentdelen helt enkelt
+rent schemamässigt har möjlighet att göra ``sitt'' arbete nu och
+producentdelen (som tillhandahåller implementationen av tjänsten) pga
+``real life (ledigheter, sjukdom, dödsfall, dålig
+organisation/projekt, ...)'' behöver skrivas senare. Att jobba med
+mockning då gör att en hela applikation kan utvecklas till den grad att
+den ser ut att fungera, medan den faktiska implementationen av bakänden
+skrivs senare. Detta har jag flera gånger sett fungera utomordentligt
+bra (gick raka spåret ut till betalande kunders produktion), och
+utomordentligt dåligt (bakänden klarade inte av lasten som genererades).
+Oavsett om det gick bra eller dåligt - att jobba med mockning och
+stubbning MÖJLIGGÖR att man kan fortsätta utveckla/utforska sin
+applikation.
+
+(Det går givetvis tvärs emot ``full slice''-tänket inom agil utveckling,
+men verkligheten får ibland ha företräde över optimala situationer.)
+
+\emph{11. Har du stött på eller känner till några ``olösta problem'' inom testning
+av JavaScript, områden där det är oklart hur man bör gå tillväga för
+att skriva bra tester?}
+
+Inget jag kommer på nu på tåget.
+
+\emph{12. Vad skulle du ge för tips till någon som upplever att testning av
+JavaScript är problematiskt?}
+
+Det är en för bred fråga för att förstå problemet - i vilken kontext?
+Jag hade bett personen förklara vad han/hon menar, i vilket sammanhang
+är det svårt att testa? ``Ge exempel på vad du tycker är svårt!''
+
+\emph{13. Jag hoppas att det inte var för många frågor, haha... Om det är så, så
+får du be mig att avgränsa eller anpassa längden på svaren. Du får
+gärna fokusera på de frågor som du tycker känns mest intressanta. :)}
+
+Jag fokuserade på det jag tycket jag har något att säga om. Hoppas det
+hjälper och du får gärna höra av dig igen, eller ringa och ställa
+följdfrågor.
+
 \end{document}
 
 
