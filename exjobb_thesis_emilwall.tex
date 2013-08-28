@@ -1314,6 +1314,91 @@ Grymma, det är bara att köra. Det är faktiskt intressant, jag har nog aldrig 
 
 \emph{48. Då tycker jag att vi avslutar med den tanken.}
 
+
+\subsection{Transcript of interview with Per Rovegård}
+
+\emph{1. Vad har du för erfarenhet av testning av JavaScript?}
+
+Jag har jobbat på ett JavaScript-projekt senaste året med AngularJS, med ett antal 1000 JavaScript-tester som använder Jasmine-ramverket. Dessförinnan har jag ägnat mig åt Node.js med Mocha.
+
+\emph{2. Har du så att alla de testerna går igenom när ni kör dem?}
+
+Javisst, annars är det inte ett riktigt bygge.
+
+\emph{3. Jag har hört historier där det inte varit så, det har varit ganska spännande.}
+
+Ja, det är ganska vanligt att inte alla tester går grönt, men vi har gjort så att det inte ska gå att deploya utan att testerna går igenom.
+
+\emph{4. Vad tyckte du om Mocha versus Jasmine?}
+
+Det var ett tag sen jag använde Mocha men jag vill minnas att de är ganska snarlika. På senare tid har jag blivit lite trött på Jasmine så jag har varit sugen på att byta till qUnit eller Mocha.
+
+\emph{5. Vad är det som gjort att du blivit trött på Jasmine?}
+
+I Jasmine har man nästlade describes och its och med stora testfiler och många tester som körs så kan det bli ganska mycket till slut. Det enda du har stöd för är att exkludera specar. Man kan då hacka ihop sätt att köra enskilda describes som inte är överdrivet komplicerade, men det har inte tagits in i kodbasen till jasmine och det har gjort att jag upplever det som att utvecklingen har stannat av för jasmine.
+
+I andra språk finns ofta möjlighet att göra en fixture-setup, som körs en gång för alla före samtliga tester. Man kan föra en filosofisk diskussion kring huruvida det är bra eller dåligt. En fixture-setup tvingar dig att skriva tester som inte påverkar varandra i termer av delat state. Det leder också till att testerna går snabbare att köra, vilket kan vara användbart för tester som har en setup som tar lång tid att köra. I Jasmine finns inte beforeAll eller någon motsvarighet och de försök att komma runt det som finns fungerar inte så bra.
+
+Nu har jag förvisso inte använt Jasmine 2, utan enbart 1.3 alltså senaste, men de har en ny på gång och det är möjligt att de har fått in det där men jag har inte sett det i så fall. Problemet med existerande lösningar som extendar Jasmine för att få beforeAll uppstår när du nästlar och har en beforeAll mitt i en kedja där du någonstans har en beforeEach, då körs de lite tokigt.
+
+Detta har lett till att jag funderar på att byta till något annat.
+
+\emph{6. Jag har använt Jasmine med JsTestDriver och delat upp testerna i olika filer och därigenom hadft möjligheten att välja vilka filer jag vill köra.}
+
+Ja just det. Men det är fortfarande så att om du har en testfil med 100 tester i och du ska debugga ett fel, så kanske du bara vill köra ett av dem.
+
+\emph{7. Har du upptäckt någon fördel med Angular ur ett testnings-perspektiv?}
+
+Fördelen är att Angular-gänget gillar tester vilket innebär att det är tämligen enkelt att testdriva sin kod. Min upplevelse har varit odelat positiv förutom två saker. Angular använder en IOC-container, dependency injection för services och annat, vilket generellt kan vara komplicerat när det kommer till testning. Du har en massa regler för hur saker instantieras som i viss mån kan konfigureras men i många fall följer defaultregler vilket kan leda till konstigheter i testningen genom att du inte får injicera på det sätt du vill. Dessutom är det väldigt tight kopplat till just Jasmine, AngularMocks är inne i Jasmine och stuvar om för att göra det smidigare och enklare att testa men det betyder också att du binder väldigt mycket till just detta testramverk.
+
+\emph{8. Det som hette Testacular innan, Karma, använder ni det?}
+
+Det finns en nackdel med Karma för oss som har över 3000 tester. Vi använder en testdriver som heter Chutzpah med fördelen att den kan köra tester parallellt. Säg att vi har våra tester uppdelade i ett 30-tal spec-filer, då kör den dem parallellt vilket innebär att det blir en ganska snabb testkörning. Vi kör alltihop i PhantomJS. Fördelen med Karma är ju att du kan ställa in och köra i Chrome, IE, Firefox, osv. men de har ännu inte stöd för att parallellisera. Senast jag kollade, före sommaren, så fanns en issue för att fixa det stödet men jag vet inte om det har kommit ännu. Det är såklart bra att köra testerna i olika browsers för även om du följer ECMAScript standard så har olika browsers olika beteenden.
+
+\emph{9. Johannes berättade att han också bara kör PhantomJS, för att han inte har upplevt att det funnits något behov av annat ännu. Jag förstår att om man har riktigt stora applikationer så behöver man göra det.}
+
+Har du stöd för uråldriga browsers, som IE8, som inte stödjer ECMAScript 5, så vill du ha in shim och liknande. Det fångar du inte om du enbart kör dina tester i PhantomJS, utan det är först när du deployar på en testserver som du märker att det inte fungerar i en gammal browser.
+
+Även om allting verkar fungera så kan det uppstå problem med olika sorteringsordning i olika browsers. Om du gör en sort på en array eller localeCompare på strängar så kan du få olika resultat i olika browsers. Dina sorteringar blir inte stabila, resultatlistorna kan till exempel skilja sig mellan IE och Chrome. Om man kör sina tester i olika browsers så är chansen stor att man fångar en sådan sak.
+
+\emph{10. När anser du att det är särskilt lämpligt med testning av JavaScript? I allmänhet, inte bara i Angular.}
+
+Alltid, eftersom JavaScript inte är starkt typat så är min åsikt att de enda gånger du kan skippa att testa din JavaScript är i egna hobbyprojekt. Gör du något seriöst så måste du ha tester, allting annat är dömt att misslyckas. Det tycker jag å andra sidan om allting, även om du frågar mig om .NET. Du kan inte ändra någonting om du inte har tester. Inte om du inte kan garantera att du har ett stabilt beteende.
+
+\emph{11. Har du sett något trendskifte?}
+
+Tidigare har JavaScript handlat mycket om att få till häftiga effekter i browsern, animationer och annat som har med utseendet att göra. I och med inträdet av Angular och andra MVC-ramverk så kan man numera skriva riktiga applikationer som körs i browsern och i och med det så blir det ett större fokus på testning. Åtminstone bland de som ser poängen i att skriva kvalitativ applikationskod.
+
+Jag har varit med om en hel del projekt där de inte har haft tester men där de har börjat smyga in det då och då. Det blir ganska uppenbart, jag var inne i ett JavaScript coverage-projekt där jag skapade ett tiotal issues på saker som inte fungerade och som slutade fungera från version till version och till sist förstod utvecklaren att han kanske skulle ta och börja med lite testning trots allt.
+
+Det är en fråga dels om att applikationsutvecklingen kräver det och dels om att enskilda utvecklare inser poängen med det.
+
+\emph{12. Vad ser du som de viktigaste förutsättningarna för att lyckas med JavaScript-testning?}
+
+Det är en generell fråga som gäller för testning i allmänhet. Bra testfall är en viktig punkt, vilket tenderar att komma naturligt om du använder TDD på rätt sätt. I och med att JavaScript inte har något naturligt sätt att organisera filer med namespaces eller assemblies så kan både applikationsfilerna och specarna bli svåra att hålla reda på. Det kräver att man har en struktur för hur man lägger upp sina testfiler.
+
+\emph{13. När jag nämner dig i min rapport så behöver jag kunna tala om vem du är. Då tänkte jag nämna att du har doktorsexamen i mjukvaruutveckling, att du driver programatically speaking, att du kommer att prata på sthlm.js... Har du pratat på liknande grejer tidigare?}
+
+Inte JavaScript just, jag ska prata på JavaZone i Oslo i september, jag pratade på Microsoft TechEd i New Orleans och Madrid i juni. Sen har jag pratat på lite lokala konferenser här i Karlskrona där jag bor. Inte så mycket mer än så länge.
+
+\emph{14. Handlar JavaZone om enbart Java?}
+
+Nej, när jag kollade i programmet så såg jag att det fanns lite om Angular, så de verkar ha lite om JavaScript också.
+
+\emph{15. Hur länge har du hållit på med JavaScript?}
+
+Jag höll på med JavaScript för kanske 12 år sedan, i en browser som hette Netscape Communicator, väldigt basic grejer. Projektet jag håller på med nu startade för lite mer än ett år sedan och det är första gången som jag skrivit riktig applikationskod i JavaScript. Dessförinnan har det i första hand varit hobbyprojekt i Node.js och liknande. Så det är väl inte jättemånga år så, men det har varit rätt intensivt senaste året. Jag har inte någon erfarenhet av andra ramverk än Angular, som Ember och Knockout.
+
+\emph{16. Är det på factor10 som du har det här projektet?}
+
+Ja.
+
+\emph{17. Hur har ditt tidigare jobb på Ericsson påverkat din syn på testning?}
+
+När jag jobbade på Ericsson så var det inom telecom, jag jobbade med motorn som ser till att du debiteras för samtal på telefonnätet. Det är förstås viktigt att den beter sig på rätt sätt så att inte operatören råkar ut för extra kostnader genom att ta för mycket eller för lite betalt. Vikten av ordentliga tester blev därför väldigt stor.
+
+Man kan kanske argumentera för att testning är bransch-specifikt för telekom, banker och liknande, samtidigt kan jag inte komma på någon bransch där det skulle vara oviktigt att ha koll på sin kod. Till och med när jag kört hobbyprojekt så har jag upplevt att så fort du fuskar med en annan utvecklingsapproach och inte kör tester, då måste du köra din applikation och klicka dig fram vilket ger extremt långa feedback-cykler. Med testning så kortar du ner de cyklerna väsentligt.
+
 \end{document}
 
 
