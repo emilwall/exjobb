@@ -1399,6 +1399,121 @@ När jag jobbade på Ericsson så var det inom telecom, jag jobbade med motorn s
 
 Man kan kanske argumentera för att testning är bransch-specifikt för telekom, banker och liknande, samtidigt kan jag inte komma på någon bransch där det skulle vara oviktigt att ha koll på sin kod. Till och med när jag kört hobbyprojekt så har jag upplevt att så fort du fuskar med en annan utvecklingsapproach och inte kör tester, då måste du köra din applikation och klicka dig fram vilket ger extremt långa feedback-cykler. Med testning så kortar du ner de cyklerna väsentligt.
 
+
+\subsection{Transcript of interview with Henrik Ekelöf}
+
+\emph{1. Vad har du för erfarenhet av testning av JavaScript?}
+
+Väldigt lite, jag har labbat med det privat, aldrig använt det i ett kundprojekt.
+
+\emph{2. Hur kommer det sig?}
+
+Jag vet inte, de flesta info-siter är mest jQuery, DOM-manipulation så jag är inte säker på om man har någon särskild nytta av testramverk för JavaScript på den typen av grejer som man oftast gör. Det är nog snarare Selenium-tester som man kan använda för att täcka upp det mesta med.
+
+Min känsla är att JavaScript-testning är mer för skript-bibliotek eller om man skriver mer applikationskod.
+
+\emph{3. Så du har inte använt något MVC-ramverk?}
+
+Nej, aldrig. Inte i kundprojekt. Vi har diskuterat testning i olika projekt men jag har inte upplevt att det varit någon som tyckt att det varit värt att göra.
+
+\emph{4. Har du varit med om att det funnits någon som verkligen velat testa och haft bra argument för det?}
+
+Nej, jag har aldrig jobbat med någon sådan. Jag har hört folk som haft sådana synpunkter men aldrig jobbat i något projekt tillsammans med någon som har haft det.
+
+\emph{5. Hur mycket tror du att det har att göra med just kulturen, man kan ju tänka att det har att göra med att man gör just info-siter och inte så mycket applikationssiter, men också att det kan ha att göra med just vilka man jobbar med. Hur viktigt tror du att det är?}
+
+Det är klart att vad utvecklarna vill göra styr mycket. Det inverkar definitivt, men jag är fortfarande inte säker på att det ger så mycket. De vanligaste fallen man skriptar i den här typen av siter är att det ska ploppa upp en ruta, man ska kunna göra några saker i rutan, kanske posta något med AJAX och få den att stänga sig. De funktioner man skriver behöver inte testas så mycket, man använder ju bibliotek som är testade i sig och man gör mest anrop till dem, så jag är skeptisk till att lägga tid på att skriva tester till den typen av skript.
+
+\emph{6. Hur testar ni att det fungerar då, med sådana siter? Klickar ni runt, är det ofta som ni öppnar upp browsern för att kolla hur det ser ut?}
+
+Ja, absolut, det gör man. Annars är det ju Selenium som kan plocka om det blir fel på något JavaScript, så märker man det många gånger i de testerna. Sen är det den manuella testningen, JSHint kör vi, det är ingen testning men det hjälper en att kolla att man inte skrivit trasig kod. Det är ett slags kvalitetsverktyg som vi har kört i alla projekt som jag har varit med i de senaste åren.
+
+\emph{7. Hur tror du att strukturen av koden påverkar ens benägenhet att testa?}
+
+Det är självklart, om man kan ha en väldigt bra struktur, kanske objektorienterad, att det blir smidigare att testa. Sen är det kanske inte alltid som man vill skriva det så, det känns som att man krånglar till koden för att göra den testbar.
+
+\emph{8. Det kanske blir en effekt av testningen snarare än att det leder till testning. Jag tror att det har mycket att göra med det du säger om olika typer av siter, att de jag intervjuat tidigare har pratat mycket om att arbete med TDD höjer kvaliteten på koden, men samtidigt så om man vet att det inte kommer att vara ett problem... Har du underhållit någon sida under lång tid, behövt lägga till ny funktionalitet i efterhand och så?}
+
+Ja absolut, vårdguiden var ett sådant projekt. Jag var delaktig i det under lång tid och vi hade löpande releaser och även underhåll på befintlig kod. Där körde vi enbart Selenium-tester för JavaScript-koden, och givetvis enhetstester på backend-koden. Selenium-testerna plockade väl en del grejer men det var mest stök med dem tycker jag för att de kanske var lite dåligt skrivna.
+
+Det är nog en konst att kunna det där, både att skriva koden på rätt sätt och att skriva testerna på rätt sätt. Jag behärskar det inte, så det är nog en del av det. Det är egentligen ingen annan som jag jobbat med som har gjort det heller.
+
+\emph{9. Det har väl lite med tekniken att göra, det var några år sen som det projektet startade? Jag tror att Selenium har blivit lite bättre sen dess. Jag minns också i vårt projekt att vi hade problem med att testerna failade av konstiga anledningar.}
+
+Vi fick mycket fel för att det var tester på innehåll som ändrades, då har man gjort fel när man skrivit testerna.
+
+\emph{10. Hur tror du man skulle göra ett bra Selenium-test?}
+
+Försöka efterapa det som folk gör på siten. Se till att skriva tester så att man inte är beroende av exakta formuleringar i texter och rubriker.
+
+\emph{11. Det kanske beror lite på vad man har för stories och så också tänker jag. Man kan försöka knyta testerna till det?}
+
+Oh, ja. Men om man bygger ett flöde för till exempel att jämföra olika vårdcentraler så får man försöka klicka så som man tror att besökarna kommer att klicka sig genom det. Lista ut var man kan tänkas klicka fel eller var det kan gå fel av andra anledningar.
+
+\emph{12. Vad har du för tankar kring tiden det tar att köra testerna?}
+
+Det är dåligt när det tar en kvart innan man vet om bygget gick igenom. Det är klart att ju snabbare man kan få det att gå desto bättre. Samtidigt så är det många saker som tar tid. Nu när man börjar med Sass, Compass och liknande tekniker så tar det plötsligt tid innan man kan ladda om sidan när man jobbar för att den ska bygga klart CSSerna först. Så det är svårt när projekten växer och man får mer och mer kod, att allt tar längre tid. Så det är en viktig grej att optimera.
+
+\emph{13. Det är en vits med enhetstester, att de går snabbare att köra. Så att man istället för att vänta i en kvart på Selenium-testerna har några få Selenium-tester och sedan kompletterar med enhetstester. Men jag är med på att det inte är helt trivialt att veta när det är värt det.}
+
+Det jag kanske saknar är väl att jag inte vet hur man skulle göra i ett typiskt projekt som vi har och även om man kan leda reda på saker på nätet och lista ut själv hur man borde göra så vore det bra med enkla och bra exempel på hur man kan strukturera koden och då inte för applikationssiter utan mer exempel på hur man kan göra om man vill köra testdrivet på en vanlig infosite, där man använder jQuery och bara manipulerar DOM. I stil med ”Det kan vara värt att testa de här sakerna på det här sättet, och då behöver man skriva koden så här”, enkla praktiska exempel vore intressant att läsa för att kunna ta ställning till om jag tycker att det är bra.
+
+\emph{14. Javisst, sen är det säkert värdefullt också att jobba med andra som är vana vid att testa. Det är väl som i alla sammanhang att man tjänar på att sätta någon som är nybörjare inom ett område med en erfaren, för att få ut så mycket som möjligt av det. Där har vi även en möjlighet med kodkatas, om man kör en ganska enkel övning. Sådana är å andra sidan ofta baserade på ganska låg nivå, strängmanipulation och liknande, rena logiksaker. Man kanske skulle kunna hitta en kodkata som är mer fokuserad på gränssnitt och öva sig på testning med en sådan, lösa samma problem flera gånger och upptäcka nya sätt att göra det på. Även där kanske göra det tillsammans med någon, så att man kan diskutera lösningen. Det är jätteintressant, om det är värt det, hur man ska göra. Det har varit lite mitt problem i det här exjobbet att jag har inte kunnat ge ett definitivt svar på om det är värt att testa eller inte för att det beror lite på vad det är för applikation.}
+
+Sen är det så att när man är några stycken i ett projekt och många är inne i koden, så är det svårt som det är bara att få folk att skriva skript som går igenom med JSHint-valideringen. Det är nog en ganska lång startsträcka på att få folk att skriva kod enligt något visst mönster för att det ska bli testbart, för de flesta är inte tillräckligt bra, eller intresserade av att skriva JavaScript bra, man vill bara göra någonting snabbt oftast.
+
+\emph{15. Hur tror du att det är kopplat till vilken bakgrund man har?}
+
+Eller intresse för JavaScript, gränssnitt...
+
+\emph{16. Jag tänker att om man kommer från en design-sida eller från att koda assembler och C, hur sådant påverkar. Jag har fått intrycket av att folk som har kört mycket Ruby (on Rails) har en tendens att testa mer. För att folk gör det i den communityn helt enkelt. Att det på sätt och viss är en community-fråga.}
+
+Det kan säkert vara en del av det. Min erfarenhet är att de som inte i första hand är webbmänniskor utan med systemutvecklarbakgrund som skriver C\nolinebreak\hspace{-.05em}\raisebox{.3ex}{\scriptsize\bf \#} och använder EPiServer har synen att HTML, CSS och JavaScript är något som finns vid sidan av deras egentliga intresse, programmeringen. Då har man kanske inte rätt förkunskaper för att förstå att det påverkar mycket om man optimerar skript-koden. Känslan för hur man kan skriva en selektor och undvika att göra det 20 gånger i rad på samma objekt i jQuery. Man tänker inte på vissa grundläggande saker. Om man inte ens kan de grejerna i JavaScript så känns det långt bort att man ska slänga på ett speciellt sätt att skriva kod på för att få det testbart.
+
+\emph{17. Tror du att testning kan vara i vägen för att skriva effektiv kod?}
+
+Nej, effektiv kod, det vet jag inte. Det kan säkert på många sätt bli bättre men jag tror också att det i vissa fall kan bli onödigt krångligt. Jag tror att det blir i vägen för en del för att skriva JavaScript överhuvudtaget för man kan det inte tillräckligt bra.
+
+\emph{18. Samtidigt tänker jag att testning kan vara ett stöd för den som inte är så bra. Då kan man titta på hur andra gör och hela tiden få bekräftelse på om man har gjort rätt om testerna går igenom.}
+
+Ja, kanske. Absolut.
+
+\emph{19. Har du sett något trendskifte, någon förändring inom det här? Hos folk som håller på med JavaScript, känns det som att fler pratar om att testa sin kod nu än innan? Kommer det upp ofta?}
+
+Ja lite, men det känns fortfarande som att det är långt borta innan vi kommer att göra det i alla projekt tror jag.
+
+\emph{20. Mm, är det så att man inte vet var man ska börja riktigt, eller helt enkelt vill bli klar så snabbt som möjligt, eller vad ser du som största anledningen till det?}
+
+Att man inte vet hur det ska gå till, att man inte vet hur man behöver skriva koden i så fall, att man inte vet att man får någon vinst på att göra det. Mest att man inte har kunskapen och inte vet om man vinner något på att försöka göra det.
+
+\emph{21. Saken är ju den att om man tittar på en typisk infosite med jQuery och mycket callbacks och liknande, då är det svårt att skriva tester i efterhand. Det vet jag från den koden jag kollat på under mitt exjobb, att det kan vara väldigt svårt att titta på existerande kod och inse hur man ska testa den. Det kräver nästan att man tänker på det före.}
+
+Ja, det tror jag också.
+
+\emph{22. För att kunna presentera dig på ett bra sätt i min rapport så behöver jag veta hur du titulerar dig och hur länge du har hållit på med JavaScript.}
+
+Jag är gränssnittsutvecklare på valtech. Jag har ägnat mig åt JavaScript professionellt i cirka 7 år, lite längre om man räknar med hobby-hack men säg 7 år.
+
+\emph{23. Och ganska intensivt?}
+
+Ja, det får man väl säga. De senaste åren i varje fall. Det har ju blivit mer och mer JavaScript hela tiden. De siter som jag byggde 2005-2006 hade relativt lite JavaScript. Idag använder man det hej vilt.
+
+\emph{24. Har du varit engagerad i någon blogg eller hållit föredrag eller så?}
+
+Lite grann på valtech, men inte om JavaScript i första hand utan andra webbrelaterade saker.
+
+\emph{25. Du höll ju i en grej för oss i talangprogrammet.}
+
+Ja, det var JavaScript som jag pratade om. Ja, det har jag gjort. Just det, bra. *skratt* Men jag är inte superaktiv vare sig bloggare eller liknande. Jag har konto på twitter men skriver inte så mycket numera. Jag läser rätt mycket däremot.
+
+\emph{26. Du är inte engagerad i något open source-projekt eller så?}
+
+Nej, det är jag inte.
+
+\emph{27. Tack ska du ha, det är värdefullt att få ett nytt perspektiv för de jag pratat med innan har varit personer med bakgrund inom Ruby och annan backend som gått in med inställningen att det är självklart att man ska testa.}
+
+Det finns en skillnad där jämfört med Microsoft-gänget, och vi som jobbar som gränssnittare är oftast med Microsoft-gänget för att Java Open Systems-gänget brukar göra allting själva, så vi hamnar aldrig i de projekten. Tyvärr, annars kanske vi skulle ha lärt oss mer om testning. Så jag tror att om du skulle prata med flera gränssnittare så kommer de antagligen inte att ha testat någon kod heller. Jag känner inte till att det görs i något Microsoft-projekt alls.
+
 \end{document}
 
 
