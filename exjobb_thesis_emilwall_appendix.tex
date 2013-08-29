@@ -368,6 +368,121 @@ Ja men gör det, absolut. Hade du något mer?
 
 Då ska jag nog börja dra mig. Men vad kul, det blir spännande att se, du får gärna skicka ditt arbete till mig när du är klar.
 
+\subsection*{Mail conversation with Patrik Stenmark}
+
+\emph{Vad har du använt JavaScript till under din yrkeskarriär?}
+
+Allt från enklare "få små saker att röra sig och animeras" på små siter
+till stora applikationer (single page application-style).
+
+\emph{Vad ser du som de främsta fördelarna, respektive nackdelarna, med språket?}
+
+Fördel: Det finns i alla webbläsare.
+
+Nackdelar: Det är ju helt konstigt språk. Objektmodellen är schizofren
+(varför finns new-operatorn?). ===/==. Mycket ceremoni för ett dynamiskt
+typat språk. typeof NaN === ``number'', och andra sköna inkonsistenta saker.
+
+\emph{Vilka verktyg och ramverk har du använt mest?}
+
+I produktion: Bara backbone.js som ramverk. Labbat med halvstora grejer i
+Ember.js och Angular. Testning via Jasmine och Buster.js. Sinon.js som
+mock/double/spy/whatever-ramverk.
+
+\emph{Vad är din syn på testning av JavaScript jämfört med Ruby, är det
+svårare/enklare, lika viktigt, ovanligare?}
+
+Beror på. Testa saker som har med DOM att göra är svårt, men det är minst
+lika svårt att testa något som är skrivet i Ruby som har ett UI.
+
+Jag skulle snarare säga att det är vad man ska testa snarare än språket
+som avgör om det är svårt/lätt. Väl strukturerad testdriven JS-kod är
+mycket lättare att testa än fulhackad organiskt framväxt Ruby. Vettig
+struktur gör att det blir lätt att testa.
+
+Tester är för mig inte främst ett verktyg för verifiering av
+funktionalitet utan ett verktyg som hjälper mig att skriva väldesignad
+kod. Testerna tvingar mig att fundera på beroenden mellan delar av
+systemet och gör att jag känner mig säker på att saker funkar trots att
+jag refaktoriserat kod.
+
+Viktigheten beror också på och har inget med JS eller inte JS att göra. Är
+det javascript som är byggt för att hantera ett komplicerat betalflöde i
+en webbshot så är det viktigt. Är det för att animera företagets logga,
+not so much.
+
+Det är definitivt ovanligare. Min erfarenhet är att JS-kodare ofta gillar
+quick-and-dirty, fulhacklösningar och inte tycker det behövs nån direkt
+struktur. Denna typ av kod är i stort sett omöjlig att testa (enhetstesta)
+och därför är det många som är av åsikten att ``javascript går inte att
+testa''.
+
+\emph{Vad inom testning i allmänhet tycker du är särskilt svårt? Vilka är de
+främsta utmaningarna du har stått på inom testning och hur hanterade du
+dem?}
+
+Gränssnitt är alltid svårt. Även saker som är beroende på externa saker, i
+JS-fallet kan detta t ex vara twitter eller facebooks API:er. Eller ett
+egetutvecklat API som används av JS.
+
+En lösning på detta är att använda sig av någon form av mockning, men då
+får man istället problemet att den mockade datan kan komma i osynk med den
+riktiga datan.
+
+Kod som beror på DOMen. Detta går att göra mycket mindre genom att flytta
+så mycket logik som möjligt från DOM-beroende saker till icke-DOM-beroende
+och testa detta och sedan bara ha ett tunt gränssnitt som använder sig av
+detta underliggande. Problemet ligger i att DOM-beroende tester blir
+långsamma och beroende av HTML-strukturen på siten.
+
+\emph{Vad ser du för problem i samband med testning av JavaScript och
+gränssnitt?}
+
+Tja, se ovan :)
+
+\emph{Vad anser du kännetecknar bra tester?}
+
+Snabba. Tydliga. Både att de är tydligt vad de testar och att setup-biten
+är lätt att förstå. Inte för mycket ``magi''. Jag tycker det är bättre att
+duplicera lite kod i ett test än att bygga komplicerade hjälpfunktioner
+eller arvsstrukturer för att göra testerna mer ``DRY''.
+
+Sen så klart det förhoppningsvis uppenbara, de ska gå sönder när appen
+inte fungerar :)
+
+\emph{Hur går du tillväga för att avgöra vad du ska testa?}
+
+Mest magkänsla :) Men det jag funderar på är väl
+
+\begin{itemize}
+\item Hur viktig är denna funktionalitet?
+\item Hur sannolikt är det att den kommer ändras i framtiden?
+\item Hur komplext blir det?
+\item Hur mycket av lösningen är rent GUI och hur mycket är ``logik''?
+\end{itemize}
+
+\emph{Vad ser du som de främsta fördelarna med testning?}
+
+Bättre design på koden eftersom testerna (Om man ``lyssnar'' på dem) tvingar
+att man tänker på beroenden mellan delar av koden och mellan ``logik'' och
+GUI och man kan refaktorisera koden. Man kan lita (mer) på att de
+ändringar man gör inte har sönder funktionalitet. Om man ser till att
+skriva tester för buggar kan man se till att en bugg bara uppstår en gång.
+
+\emph{Hur påverkar testning sättet du arbetar på i ett team och tillsammans
+med en kund?}
+
+Jag tycker nog att det viktigaste som konsult är att anpassa sig till
+teamet/kunden. Skulle jag komma till ett greenfield-projekt eller till ett
+projekt där jag ska utveckla en väldigt isolerad del av en site (Ex:
+Kartan på antagning.se) skulle jag pusha väldigt hårt för att vi skulle
+börja jobba testdrivet.
+
+Är det en redan existerande kodbas skulle jag pusha för att försöka få den
+testbar, men inte lika hårt eftersom ROI:n på detta är mycket lägre på
+kort sikt. Då skulle jag nog försöka få till någonting i alla fall, men
+anpassa mig till den existerande kodbasen och teamet.
+
 \subsection*{Transcript of Interview with Patrik Stenmark}
 
 \emph{1. Du skrev i ditt mail till mig att en nackdel med JavaScript är att det är ”mycket ceremoni för ett dynamiskt typat språk”. Vad menade du med det?}
