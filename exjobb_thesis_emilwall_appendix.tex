@@ -1033,6 +1033,125 @@ När jag jobbade på Ericsson så var det inom telecom, jag jobbade med motorn s
 Man kan kanske argumentera för att testning är bransch-specifikt för telekom, banker och liknande, samtidigt kan jag inte komma på någon bransch där det skulle vara oviktigt att ha koll på sin kod. Till och med när jag kört hobbyprojekt så har jag upplevt att så fort du fuskar med en annan utvecklingsapproach och inte kör tester, då måste du köra din applikation och klicka dig fram vilket ger extremt långa feedback-cykler. Med testning så kortar du ner de cyklerna väsentligt.
 
 
+\subsection*{Transcript of second interview with Per Rovegård}
+
+\emph{18. Du nämnde att det har blivit mer testning i och med MVC-ramverken, men att det också finns de som inte bryr sig så mycket om den kvalitet som tester kan medföra. Jag funderar kring vad dessa personer har för argument, ett av dem är att det är svårt och i vissa fall inte går att testa användargränssnitt och utseende. Hur ser du på det?}
+
+Det går att göra om man vill. Det är svårt, men det går att testa en del. Jag tror snarare att det är så att de som inte gör det helt enkelt inte kan. De har inte förstått vinsten med det, tycker att det är svårt och vet inte var de ska börja. De tror att det är snabbare att bara hacka.
+
+\emph{19. Hur ser du själv på sådant som är nära användargränssnittet? Känner du att det är värt att testa sådant?}
+
+Ja, det kan finnas en poäng i det. Det finns ett par sätt att göra det på, Selenium WebDriver i webb-sammanhang, sen har Angular en e2e-stöd (end-to-end testing) som jag dock inte har använt själv. Det är tänkt att testa på strukturen, det är DOMen du testar på då.
+
+Det är rätt bra att ha tester som kan köra viktiga flöden, så att de håller. Annars är enda sättet att fånga eventuella felaktigheter att sitta och klicka igenom GUIs efter deploy och problemet som programmerare är att man tenderar att klicka igenom sådant som man vet fungerar.
+
+Så jag tycker att det finns ett värde, sen kan det naturligtvis vara svårt. Om vi tar Selenium WebDriver, eller FEST Swing på Javasidan, så finns det ett problem med att de kan vara instabila av anledningar som du inte har kontroll över. Vi har kört Selenium WebDriver en del och ibland så går tester rött och nästa gång så går de grönt därför att integrationen inte fungerar som den ska.
+
+\emph{20. Ofta tar de ganska lång tid att köra också.}
+
+Ett fåtal sådana för att testa det viktiga tror jag är bra.
+
+\emph{21. Jag kan tänka mig att vissa tycker att testning är tråkigt, att det finns en attityd.}
+
+Här kommer vi till det som jag skrev till dig, du har ju två typer av testning. Det ena är den manuella testningen, den är jättetråkig, men det andra att skriva tester och jobba testdrivet det är mer en del av programmeringen. Det är ett verktyg för att du får bättre kod.
+
+\emph{22. Jag tänker bara på automatiserade tester.}
+
+Ja, precis, och det är ett verktyg för att få bättre kod, kvalitet. Jag tycker även att det är det  är det överlägset effektivaste sättet att jobba på, det går mycket snabbare. Den enda gången jag inte har använt det är när man prototypar.
+
+\emph{23. Jag hade nyligen en intervju med en gränssnittsutvecklare och han uppvisade en osäkerhet kring hur man faktiskt gör. Det vore kul att kunna råda bot på det på något plan genom min rapport, men det är svårt att hitta de där konkreta tipsen som går att tillämpa direkt utan att man behöver lägga ner två månader på det.}
+
+Det beror på vad man är ute efter, vad man vill åstadkomma med testerna. Vill du kontrollera att användare kan gå igenom ett visst flöde så är det väl ändå ok att ha WebDriver-tester på det viktigaste. Och med Angular, e2e och andra tester, att kolla att DOM-elementen faktiskt kommer ut är ju rätt så vettigt.
+
+Just nu sitter jag och skriver tester på en hjälp-popup som är baserad på jQuery och Angular. Man kan lockas att tänka att det inte går att testa en bootstrap popover som det heter, men det gör det för man kan kolla i DOM-strukturen att de appendas (läggs till) på rätt ställe, får rätt klasser på sig och liknande. Så det är inte särskilt komplicerat alls egentligen.
+
+\emph{24. Och det blir stabila tester då?}
+
+Ja visst, det är phantomJS, den har ett DOM-träd den också, som bygger på WebKit.
+
+\emph{25. Jag tänker att det är viktigt att undvika onödiga beroenden i testerna, så att de inte går sönder av fel anledningar. Jag är helt med på att de kommer att gå igenom varje gång du kör dem nu, men när det börjar ske ändringar i andra delar av applikationen, som ändrar andra delar av DOMen och kanske strukturerar om, att det kan bli ett problem då.}
+
+Fast i det här fallet så är det ju en isolerad företeelse. I Angular kan du komponentifiera med direktiv och har en avgränsad funktionalitet som du kan testa och använda dig av. Om du ser till att den inte beror på en massa annat och vet att den fungerar så undviker du sådana problem.
+
+\emph{26. Vad menade du i vår förra intervju när du sa att det finns projekt som inte har tester men där de börjat smyga in det då och då?}
+
+Om du kollar på Open Source-communityn så vet utvecklarna att det borde finnas tester, men att det inte alltid finns ännu. De vill ha det men vet inte hur. Det har att göra med hur populärt projektet är och vilken skala det är på. Att nya versioner kan ha sönder gammalt tror jag är en sådan sak som får folk att förstå att tester är ett sätt att undvika återkommande buggar och att saker som har fungerat tidigare slutar funka.
+
+\emph{27. Så ibland händer det att enskilda programmerare väljer att lägga in tester i projekt som inte har det sen tidigare?}
+
+Så kan det ju vara, att du kommer till ett Open Source-projekt och vill göra ett bidrag till det. Då kan ju du välja att lägga till tester, så kan maintainern ta det och kanske inse vitsen med det och själv börja använda det. Men det handlar återigen mycket om personliga attityder.
+
+\emph{28. Du nämnde att man behöver ha ett tänk kring hur man lägger upp sina testfiler. Vad menade du med det?}
+
+Det var att JavaScript inte har något färdig stöd för namnrymder, paket och liknande som finns i Java och .NET till exempel. Du har inte samma fördefinierade strukturer. Där får du hitta på något eget eller använda dig av RequireJS eller liknande. Det är en förutsättning för att lyckas med testning, att man har tänkt igenom hur man vill lägga upp sina tester. Vilken nivå man vill lägga sig på, om man vill undvika att ha testfiler med flera hundra specar så behöver man fundera över hur man ska åstadkomma det.
+
+\emph{29. Har du provat att testa asynkron kod någonting? Har du använt Jasmines runs och waitsFor?}
+
+Ja. Det är lite fult, men jag har använt det lite. En fin sak med Angular är att du kan överrida de servicarna som finns, till exempel timeout, som gör det möjligt att exekvera saker senare. I testerna kan du då använda en synkron version, så att testerna får ett synkront beteende.
+
+\emph{30. Uppstår det inte ett problem då i och med att du inte testar koden på det sätt som den kommer att köras i produktion?}
+
+Det beror lite på vad du är ute efter att testa. Det kan vara ett problem, så man får göra det när man vet vad man håller på med, när man vet att det inte påverkar.
+
+\emph{31. Ser du det som ett problem i allmänhet att testa asynkron kod, är det svårare än att testa synkron kod?}
+
+Inte om du kör testdrivet och tänker på det från början. Att i efterhand testa asynkron kod kan vara krångligt.
+
+\emph{32. Är det något annat som du tycker är krångligt med testning? Jag vill lägga fokus på det som folk faktiskt tycker är svårt.}
+
+Något som alltid är svårt är att hantera den data som ingår i testerna. Särskilt om testerna är av integrationskaraktär, då vill du kanske ha riktig data som hämtas från en databas eller filer eller liknande, samtidigt så vill du ha möjlighet att se datan i testerna, så där uppstår direkt en konflikt. Tittar du på ett test så är det ofta lättare att förstå testet och veta om det är korrekt om du kan se vilken data det använder, och om anropen till andra metoder görs korrekt.
+
+Det finns ett mönster som heter Object Mother, som går ut på att du har en speciell klass som skapar dina objekt. Det är smidigt för att det gör dina tester renare men du gör det svårare att se vilken data som faktiskt används, plus att du skapar beroenden mellan testerna genom den här objektmodern. Samma problem uppstår om du använder riktig data i dina tester, det är bra på så sätt att det är äkta data, inte konstruerad, samtidigt så uppstår ett beroende mot saker och ting som kan ändras. Du kan tänka dig om du har en databas med ett gäng personer i med adresser och liknande. Då kan det hända att du gör en schemaändring och att testerna börjar fallera efter det, inte för att det de är tänkta att testa har slutat att fungera utan för att datan de berodde på inte ser ut som innan. Så det finns helt klart en svårighet i att hantera testdata.
+
+En annan problematik är när du har en klient-server arkitektur, där servern producerar JSON-data som klienten konsumerar. Det blir lätt så att du har tester på serversidan och på klientsidan, men inga tester som baseras på att både klienten och servern körs. Så hur vet du att interfacet mellan klienten och servern är korrekt? Man kan tänka sig ett JSON-schema men den tekniken är inte riktigt mogen, så där finns också en utmaning.
+
+\emph{33. Har ni vidtagit några konkreta åtgärder för att öka testbarheten mer än TDD?}
+
+Behövs det någon annan menar du?
+
+\emph{34. Jag tänker att man kommer till vissa insikter när man jobbar testdrivet, kan du komma på några saker som TDD har lett till?}
+
+TDD leder till att du får avgränsade enheter. Vi kan ta ett exempel. Nu i sommar har jag skrivit ett plugin till ps3 media server, som ju ursprungligen utvecklades för att serva content till playstation 3, men som nu klarar en massa andra enheter. Den är extremt dåligt testad, de har inga automatiska tester, och när man är inne och roddar så märker man att allt sitter ihop med allting annat, i en enda stor röra. Om du vill använda en liten del så går inte det, för den sitter samman med 10 andra delar som inte går att få bort. Gör man saker testdrivet så blir det istället av naturliga skäl mer löskopplat därför för att testa en liten sak så, testar du bara den då, och då kan du inte ha en massa jobbiga beroenden. Så TDD leder till att saker och ting blir löskopplade och fristående, så att du sen komponenar ihop det på ett annat sätt.
+
+\emph{35. Har du någon erfarenhet av kodkatas? Om man vill omsätta TDD-principer i praktiken så kanske det är ett bra ställe att börja på, tänker jag.}
+
+Ja, jag har erfarenhet av kodkatas. Kanske kan det vara så. Jag har gjort några enstaka och även lett någon övning som man skulle kunna kalla för kodkata. Problemet som jag ser det är att man tenderar att välja saker och ting där det är väldigt rakt fram (straight forward) att använda TDD och så. När man sen kommer till sitt riktiga projekt så är det plötsligt inte lika svart eller vitt längre. Men visst, för att förstå principerna så är det givetvis bra. Absolut.
+
+\emph{36. Vad har du för filosofi kring coverage? Du sa att ni hade flera tusen tester, då är jag nyfiken på vad det i första hand är ni testar.}
+
+Allt. Eller vad menar du? All funktionalitet. Arbetar du testdrivet så får du en väldigt god coverage av sig själv. Jag tycker inte att det finns något självändamål att sträva efter 100 \% coverage, om inte annat för att det i vissa språk kan vara svårt att uppnå. Ta Java som exempel, där du måste fånga vissa Exceptions. Du måste fånga IOException när du läser en fil, men du vet att enda gången det kommer hända är om filen är korrupt på något sätt och det är väldigt svårt att återskapa i testerna, så därför kanske just den koden inte går att testa så väl. Då tar det kanske för mycket tid att försöka få testtäckning just där och då kan det vara bättre att acceptera att man inte har full testtäckning. Men i allmänhet så anser jag att allt normalbeteende ska vara täckt av tester.
+
+Jag brukar ha som princip att om jag går in och gör en förändring, och jag ser till att testtäcka den, och alla befintliga tester går gröna, då är allting safe. Är det sen så att något beteende går sönder i produktion då är det den personen som skrev den koden som gick sönder från början som är skyldig till att inte ha skrivit tillräckligt bra tester. Man har ett ansvar att se till att den kod man skriver är så väl testad att någon annan ska kunna göra ändringar och märka om något slutar fungera genom att ett test går rött. Det är ett ansvarsskifte, då får inte skylla på den som checkade in koden som ledde till att någonting hände i produktion, utan det är den som slarvade med testerna som bär skulden.
+
+\emph{37. Hur ser du på när tester går röda utan att man egentligen gjort något fel? Hur ofta händer det för dig?}
+
+I projektet jag är på nu så händer det uteslutande i WebDriver-testerna. När jag jobbade på Ericsson så jobbade vi väldigt mycket med ett ramverk som heter FEST Swing, som är baserat på Javas robot-interface. Det är också peka-klicka, fast i ett Swing-GUI. Det var samma sak där, ibland gick tester rött för att maskinen som körde testerna var hårt lastad, så att det blev längre delays vilket fick testerna att balla ur med timeouts. Vi hade stora problem med att knapparna inte fick fokus ordentligt. Jag vet att även systerprodukter ofta hade problem med tester som gick rött. Problemet i det läget är att man slutar lita på testerna.
+
+Om du vet att det alltid är några tester som går rött, så slutar du bry dig, och när ett test plötsligt går rött för att något är fel på riktigt så ser du inte det. Så att ha röda tester och acceptera det, det är inte bra. Inte alls bra. Då får du ha en separat testsvit för dem, som heter instabila tester. Där du räknar med att det ska vara stabilt måste det alltid vara grönt. Man kan då diskutera, om man har tester som ibland går rött, då kanske man inte ska ha kvar de testerna, för de är inte tillförlitliga ändå. De har inget värde.
+
+\emph{38. Det jag tänkte på är om man råkar skriva testerna så att de blir implementationsberoende och någon sedan gör en ändring som borde vara ok.}
+
+Ah, du menar att man lägger det på fel nivå? Sådant är såklart jobbigt. Om du skriver enhetstester så tenderar de att bli ganska implementationsberoende, medan integrationstester brukar gå att göra ganska oberoende av implementationen. Samtidigt så tenderar integrationstester att vara långsamma och inte lika precisa i sin formulering. Så det är en avvägning där helt klart.
+
+Det är ju jobbigt när du vill ändra ett beteende och har en massa tester som... Eller, du vill bibehålla ett beteende men implementera det på ett annat sätt, och det finns en massa tester som är beroende på exakt hur det är implementerat. Då får man bita i det sura äpplet.
+
+\emph{39. Och skriva om dem.}
+
+Ja.
+
+\emph{40. Ser du något mönster i de tester ni har, alltså att det förekommer tester som är skrivna på ungefär samma sätt? Finns det olika grupperingar av tester, olika typer av tester? Då tänker jag i första hand på enhetstesterna, om de går att dela upp sinsemellan.}
+
+I vår svit så har vi blandat integrationstester och enhetstester. Testar du Angular controllers till exempel så ser jag det som en form av integrationstest. Medan enstaka domänklasser blir det enhetstester på. Vi har vissa tester som testar DOM-struktur. Vissa som testar just Angular controllers, interaction med scope och sådana saker. Sedan andra tester som testar ren vanilj-kod, som inte har med Angular att göra alls. Man skulle kunna dela upp det bättre, att tänka mer på hur man strukturerar testerna är en lärdom, det har inte vi riktigt gjort. Hade vi gjort det från början så hade jag kanske delat upp det lite grann och sagt att här är tester som är beroende på Angular och här är tester som kör ren vanilj-JavaScript.
+
+\emph{41. Är det något annat som du skulle ha gjort annorlunda om du skulle börja om nu?}
+
+Ja, jag skulle nog ha valt något annat än Jasmine. Samtidigt så är Angular så knutet till Jasmine. Jag tänker att någon borde ha skrivit någon liten kodsnutt som gör att du kan använda Mocha eller qUnit till Angular också. Det finns säkert någon som har gjort det.
+
+\emph{42. Vad är du riktigt nöjd med?}
+
+Jag tror att vi har totalt 5000 tester, alltså 4000 tester i JavaScript och cirka 1000 på serversidan. Den är ganska tunn, serversidan. Det är en trygghet. Gör jag en ändring, en refaktorering eller ett tillägg av någonting, och alla 5000 tester går igenom, då är allting frid och fröjd. Då behöver jag inte sitta och klicka runt i GUI:t, för jag vet att allting fungerar som det ska. Det blir en inre frid *skratt*, är det grönt så är det lugnt.
+
+
 \subsection*{Transcript of interview with Henrik Ekelöf}
 
 \emph{1. Vad har du för erfarenhet av testning av JavaScript?}
