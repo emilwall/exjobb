@@ -514,6 +514,13 @@ Counterintuitive it may seem, throwing away a prototype and starting from scratc
 
 The point of the Don't Repeat Yourself (DRY) principle is \emph{not} that the same lines of code cannot occur twice in a project, but that the same \emph{functionality} must not occur twice. Two bits of code may seem to do the same thing while in reality they don't. This applies to eliminating duplication both in production code and tests, do not overdo it since that will harm maintainability rather than improve it. Sometimes it is beneficial to allow for some duplication up front and then refactor once you have a clear picture about how alike the two scenarios actually are, if necessary. \cite[questions~69-70]{Edelstam}
 
+
+\section{Stenmark Interview Summary}
+
+\subsection{When to test}
+
+Testing is especially important for large applications. It is extra valuable when new functionality is added because it helps to verify that old functionality is not broken and that the new code is structured appropriately. \cite[questions~6-7]{Stenmark}
+
 \printbibliography
 
 \end{document}
