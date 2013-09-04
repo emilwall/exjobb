@@ -413,7 +413,7 @@ During my work on this thesis, I have explained to numerous people what it is th
 
 One not so uncommon response is that testing of JavaScript probably is so uncommon because people programming in JavaScript often have a background as web graphic designers, without that much experience of automated testing. Another common conception is that JavaScript in practise is usually not testable because it has too much to do with the front-end parts of an application, so tests are inevitably slow, unmaintainable and/or unreliable because of the environment they have to run in.
 
-\section{Edelstam Interview summary}
+\section{Interview summary}
 
 Johannes Edelstam has many years of experience with JavaScript development and testing and has a background in Ruby development. He is a former valtech employee and currently works at a company called Tink which develops a Singe Page Application (SPA) based on JavaScript. Organizer of sthlm.js meetups and A Helping Hack.
 
@@ -515,9 +515,6 @@ Counterintuitive it may seem, throwing away a prototype and starting from scratc
 \subsection{The DRY principle in testing}
 
 The point of the Don't Repeat Yourself (DRY) principle is \emph{not} that the same lines of code cannot occur twice in a project, but that the same \emph{functionality} must not occur twice. Two bits of code may seem to do the same thing while in reality they don't. This applies to eliminating duplication both in production code and tests, do not overdo it since that will harm maintainability rather than improve it. Sometimes it is beneficial to allow for some duplication up front and then refactor once you have a clear picture about how alike the two scenarios actually are, if necessary. \cite[questions~69-70]{Edelstam}
-
-
-\section{Stenmark Interview Summary}
 
 \subsection{When to test}
 
