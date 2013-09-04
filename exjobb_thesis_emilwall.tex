@@ -394,7 +394,9 @@ When an application is tightly coupled, stubbing becomes a daunting task. What y
 
 To detect improper stubbing, I ran each test isolated with just the file it was supposed to test. A problem with this was that trying to stub a function which is not defined produces an exception in order to prevent you from doing typos. This could be solved by saving the implementation in a local variable, defining the function to be an empty function, stub it with sinon.JS and then restore and re-set it to the original implementation, but this is inconvenient so instead I opted towards being careful not to miss any calls that should be stubbed. There is a point with interpreting the system under test before running any test code, since that allows for detection of typing mistakes and other integration issues.
 
-\subsection{Deciding what to test}
+\subsection{Deciding what and when to test}
+
+Testing is especially important for large applications. It is extra valuable when new functionality is added because it helps to verify that old functionality is not broken and that the new code is structured appropriately. \cite[questions~6-7]{Stenmark}
 
 During the interview with Johannes Edelstam, one of the things that came up was that you should focus on testing behaviour rather than appearance and implementation details. This is a good excuse for not testing that a certain class inherits from another but rather focus on that the methods of that class behaves as one would expect. Whether or not that is dependent on the inheritance patterns is mainly relevant for stubbing considerations - you may want to replace the prototype of an object in tests so that you can check that there are no unexpected dependencies.
 
@@ -515,10 +517,6 @@ Counterintuitive it may seem, throwing away a prototype and starting from scratc
 \subsection{The DRY principle in testing}
 
 The point of the Don't Repeat Yourself (DRY) principle is \emph{not} that the same lines of code cannot occur twice in a project, but that the same \emph{functionality} must not occur twice. Two bits of code may seem to do the same thing while in reality they don't. This applies to eliminating duplication both in production code and tests, do not overdo it since that will harm maintainability rather than improve it. Sometimes it is beneficial to allow for some duplication up front and then refactor once you have a clear picture about how alike the two scenarios actually are, if necessary. \cite[questions~69-70]{Edelstam}
-
-\subsection{When to test}
-
-Testing is especially important for large applications. It is extra valuable when new functionality is added because it helps to verify that old functionality is not broken and that the new code is structured appropriately. \cite[questions~6-7]{Stenmark}
 
 \subsection{Impact of Node.js on testing}
 
