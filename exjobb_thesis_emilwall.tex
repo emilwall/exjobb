@@ -157,6 +157,11 @@ Selenium WebDriver is a collection of language specific bindings to drive a brow
 
 There is also a Firefox plugin called Selenium IDE, that allows the user to record interactions and generate code for them that can be used to repeat the procedure or as a starting point in tests. In the remaining parts of this thesis, we will mean Selenium WebDriver when we say Selenium, and refer to Selenium IDE by its full name.
 
+\subsection{The DOM}
+\label{sec:dom}
+
+The Document Object Model (DOM) is ... % TODO
+
 \section{Methods}
 
 The methods used are first and foremost qualitative in nature, in order to prioritise insight into the problem domain above quantitatively verifying hypotheses. The chance of finding out the true reasons to why JavaScript is tested to such a small extent increases with open questions. Specifically, aside from literature studies, the main method of this thesis work has been to perform and analyse interviews of JavaScript programmers (mainly those concerned with user interface). There has also been some hands on evaluation of tools and frameworks, and assessment of testability and impact of adding tests to existing projects. In order to describe methods of writing tests for JavaScript, the practical work involved testing an existing application, performing TDD as described in Test-driven JavaScript Development\cite{Tddjs} and doing some small TDD projects during the framework evaluation. Another method used was a workshop field study, where programmers were allowed to work in pairs to solve pre-defined problems using TDD.
@@ -530,6 +535,10 @@ Aside from the increased awareness and knowledge of testing that Node.js has bro
 \subsection{The JavaScript Community}
 
 In order to understand the problems with testability that can be seen in JavaScript applications, it is important to understand how many were first introduced to the language. When jQuery was released in 2006, a coding style evolved based on handlers with DOM manipulation through selectors and asynchronous callbacks. Since tutorials were written in a quick-and-dirty fashion, even experienced developers failed to apply principles for writing testable and maintainable code. Others lacked the background of software engineering altogether. \cite[question~10]{Stenmark}
+
+\subsection{Tests that depend on the DOM}
+
+Tests that depend on the DOM (see section \ref{sec:dom}) tend to be relatively slow. \cite[question~21]{Stenmark}
 
 \printbibliography
 
