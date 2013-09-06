@@ -542,9 +542,9 @@ Aside from the increased awareness and knowledge of testing that Node.js has bro
 
 In order to understand the problems with testability that can be seen in JavaScript applications, it is important to understand how many were first introduced to the language. When jQuery was released in 2006, a coding style evolved based on handlers with DOM manipulation through selectors and asynchronous callbacks. Since tutorials were written in a quick-and-dirty fashion, even experienced developers failed to apply principles for writing testable and maintainable code. Others lacked the background of software engineering altogether. \cite[question~10]{Stenmark}
 
-\subsection{Tests that depend on the DOM}
+\subsection{Time required to run tests}
 
-Tests that depend on the DOM (see section \ref{sec:dom}) tend to be relatively slow. Therefore, it would be impractical to base every unit test on DOM manipulation, at least for large applications. \cite[questions~21-22]{Stenmark}
+Tests that depend on the DOM (see section \ref{sec:dom}) tend to be relatively slow, so it would be impractical to have hundreds of unit tests with DOM manipulation if you want to be able to run them often \cite[questions~21-22]{Stenmark}. Selenium tests are also known to be slow, the same principle applies there. Only running tests that are connected with changes that have been made is one way to get around this, there is support for this in many testing tools. An alternative is to separate the fast tests from the slow, and configure Autotest\footnote{\url{http://autotest.github.io/}} or some tool based on Guard\footnote{\url{https://github.com/guard/guard/}} such as guard-jasmine\footnote{\url{https://github.com/netzpirat/guard-jasmine/}} to run the fast tests each time a file changes, and only run the slow tests before sending the code to a central source control repository or deploying the application.
 
 \printbibliography
 
