@@ -168,6 +168,17 @@ The Document Object Model (DOM) is a model for the content, structure and style 
 
 Refactoring is ``a change made to the internal structure of software to make it easier to understand and cheaper to modify without changing its observable behavior'', or the act of applying such changes \cite[p.~46]{Refactoring}. As mentioned in the \nameref{sec:motivation} section (section \ref{sec:motivation}), refactoring prevents program decay and helps to maintain productivity. Just like testing, refactoring is no magic bullet that solves all problems and it is important to know when to do it and when it might not be worth the effort. Common rules of thumb are to refactor when doing something similar for the third time (a pragmatic approach to the DRY principle), when it helps to understand a piece of code, when it facilitates addition of a new feature, when searching for a bug and when discussing the code with others, e.g. in code reviews \cite[p.~49-51]{Refactoring}.
 
+Using refactoring tools can be very helpful to see which parts of the code is in most need of refactoring, and to automate certain refactoring actions by facilitating renaming, method extraction, etc. \cite[ch.~5]{Legacy}. There is some support in IDEs such as Visual Studio (using
+JSLint.VS\footnote{\url{http://jslint.codeplex.com/}},
+ReSharper\footnote{\url{http://www.jetbrains.com/resharper/}} and/or
+CodeRush\footnote{\url{http://www.devexpress.com/Products/CodeRush/}}),
+WebStorm IDE\footnote{\url{http://www.jetbrains.com/webstorm/features}} (or
+IntelliJ Idea\footnote{\url{http://www.jetbrains.com/editors/javascript_editor.jsp?ide=idea}} using a plugin) and
+NetBeans\footnote{\url{https://netbeans.org/kb/docs/ide/javascript-editor.html}}. There are also standalone statistical tools such as
+kratko.js\footnote{\url{https://github.com/kangax/kratko.js}} and
+jsmeter\footnote{\url{https://code.google.com/p/jsmeter/}} (not to be confused with the
+Microsoft Research project\footnote{\url{http://research.microsoft.com/en-us/projects/jsmeter/}}) that helps you to identify which objects have too many methods and which methods do too many things (or have too many arguments). Relying on metrics such as lines of code is of course not always appropriate due to different coding styles, but at least it provides an overall picture \cite{Kratko}.
+
 \section{Methods}
 
 The methods used are first and foremost qualitative in nature, in order to prioritise insight into the problem domain above quantitatively verifying hypotheses. The chance of finding out the true reasons to why JavaScript is tested to such a small extent increases with open questions. Specifically, aside from literature studies, the main method of this thesis work has been to perform and analyse interviews of JavaScript programmers (mainly those concerned with user interface). There has also been some hands on evaluation of tools and frameworks, and assessment of testability and impact of adding tests to existing projects. In order to describe methods of writing tests for JavaScript, the practical work involved testing an existing application, performing TDD as described in Test-driven JavaScript Development\cite{Tddjs} and doing some small TDD projects during the framework evaluation. Another method used was a workshop field study, where programmers were allowed to work in pairs to solve pre-defined problems using TDD.
