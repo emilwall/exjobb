@@ -368,6 +368,30 @@ Ja men gör det, absolut. Hade du något mer?
 
 Då ska jag nog börja dra mig. Men vad kul, det blir spännande att se, du får gärna skicka ditt arbete till mig när du är klar.
 
+
+\subsection*{Post interview mail conversation with Johannes Edelstam}
+
+\emph{75. Vad var det för event du körde handuppräckning på?}
+
+Tror det var ett sthlm.js event!
+
+\emph{76. Hur anser du att sannolikheten för förändringar bör påverka testningsambitionerna?}
+
+Vet man att det är en prototyp man bygger kanske man inte ska ha lika hög ambition som när man bygger nästa cancer laser.
+
+\emph{77. På vilket sätt underlättar require.js vid testning?}
+
+I och med att du har ett strukturerat projekt med separata och isolerade moduler slipper du den dependency soppa som oftast gör saker svåra att testa. Dessutom blir det enkelt att fakea objekt!
+
+\emph{78. Hur påverkas behovet av mockning av hur man skriver sina tester?}
+
+Skulle snarare säga att det beror på hur du skriver produktionskoden. Om du lyckas decoupla din kod ordentligt så behöver du generellt färre mocka.
+
+\emph{79. När förekommer "det riktiga objektet" vid testning av privata APIer?}
+
+Jag tycker inte man ska testa privata API:er :) Men om du menar att man internt har ett backend som pratar med ett frontend genom ett internt API så är det ett problem att skriva integrationstester som testar hela systemet på ett enkelt sätt utan att sätta upp komplexa seedningar och liknande. I vissa fall går det att komma runt (man behöver inte en massa state i backend t.ex.), men inte alltid.
+
+
 \subsection*{Mail conversation with Patrik Stenmark}
 
 \emph{Vad har du använt JavaScript till under din yrkeskarriär?}
