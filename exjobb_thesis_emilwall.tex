@@ -68,7 +68,7 @@ Testing JavaScript paves the way for test-driven development, which brings benef
 
 The goal with this thesis is to investigate why JavaScript testing has been performed to such a small extent, and what potential implications an increased amount of testing could provide for development and business value. Providing possible approaches to testing JavaScript under different conditions are also part of the goal. % TODO elaborate and update
 
-\subsection{Background to project}
+\subsection{Background to Project}
 
 The first known testing framework JsUnit\footnote{\url{https://github.com/pivotal/jsunit}} was created in 2001 by Edward Hieatt\cite{GoingFaster} and since then several other test framework has appeared such as the testing framework for jQuery, which goes under the name QUnit\footnote{\url{http://qunitjs.com/}}, and JsUnits sequel Jasmine\footnote{\url{http://pivotal.github.com/jasmine/}}. There are also tools for mocking (see section~\ref{sec:mocking}) such as Sinon.JS\footnote{\url{http://sinonjs.org/}}. It seems as if the knowledge of how to smoothly get started, how to avoid making the tests non-deterministic and time consuming, and what to test, is rare. Setting up the structure needed to write tests is a threshold that most JavaScript programmers do not overcome\cite{TestingStatistics} and thus, they lose the benefits, both short and long term, otherwise provided by testing.
 
@@ -97,15 +97,15 @@ There are also more technical aspects:
 
 There are consequences (good and bad) of testing JavaScript both from a short and from a longer perspective. The development process is affected; through time spent thinking about and writing tests, shorter feedback loops, executable documentation and new ways of communicating requirements with customers. The the quality and maintainability of the end result is also likely to be positively affected. Making changes becomes easier when the application is supported by a rigorous set of tests, so ideally, the pace of development does not stagnate. The extra time required to set up the test environment and write the actual tests may or may not turn out to pay off, depending on how the application will be used and maintained.
 
-\subsection{Covering common and advanced cases}
+\subsection{Covering Common and Advanced Cases}
 
 Accounting for how to conveniently proceed with JavaScript testing should cover not only the simplest cases but also the most common and the hardest ones, preferably while also providing evaluation and introduction to available tools and frameworks. Many introductions and tutorials found for the testing frameworks today tends to focus on the simple cases of testing, possibly because making an impression that the framework is simple to use has been more highly prioritised than covering different edge cases of how it can be used that might not be relevant to that many anyway. To provide valuable guidance in how to set up a testing environment and how to write the tests, attention must be paid to the varying needs of different kinds of applications. It is also important to keep in mind that the tests should be as maintainable as the system under test, to minimise maintenance costs and maximise gain.
 
-\section{Technical background}
+\section{Technical Background}
 
 This section gives an overview of concepts and tools relevant to understanding this thesis. Readers with significant prior knowledge about JavaScript testing may skip this section.
 
-\subsection{Lint tools for JavaScript}
+\subsection{Lint Tools for JavaScript}
 \label{sec:Lint}
 
 Linting is a static analysis tool for detecting syntax errors, risky programming styles and failure to comply to coding conventions. There are lint tools available for JavaScript such as JSLint, JSHint, JavaScript Lint, JSure, the Closure compiler and PHP CodeSniffer. JSLint does provide some help to avoid common programming mistakes, but does not perform flow analysis\cite{JSLint} and type checking as a fully featured compiler would do, rendering proper testing routines the appropriate measure against programming mistakes.
@@ -149,9 +149,15 @@ Microsoft Research project\footnote{\url{http://research.microsoft.com/en-us/pro
 
 The methods used were first and foremost qualitative in nature, in order to prioritise insight into the problem domain above quantitatively verifying hypotheses. The chance of finding the true difficulties of JavaScript testing was expected to increase with open questions.
 
-The work of this thesis began with an extensive literature study and an overview of technologies and frameworks. Relevant books, articles and Internet sources were identified and read to a great extent. Later on, several new titles were published and some older literature was also included as the need became apparent.
+The work of this thesis began with an extensive literature study and an overview of technologies and frameworks. Interviews of JavaScript developers of different background were performed and analysed. There was also some hands on evaluation of tools and frameworks, assessment of testability and impact of adding tests to existing projects.
 
-Aside from literature studies, the main method of this thesis work was to perform and analyse interviews of JavaScript developers of different background. There was also some hands on evaluation of tools and frameworks, and assessment of testability and impact of adding tests to existing projects. In order to describe methods of writing tests for JavaScript, the practical work involved testing an existing application, performing TDD as described in Test-driven JavaScript Development\cite{Tddjs} and doing some small TDD projects during the framework evaluation. There were plans to have a workshop field study, where programmers would work in pairs to solve pre-defined problems using TDD, but in the end it was decided that it would be too difficult to extract useful data from such an activity.
+In order to describe ways of writing tests for JavaScript, the practical work involved testing an existing application, performing TDD exercises from Test-driven JavaScript Development \cite{Tddjs} and doing some small TDD projects during the framework evaluation. There were plans to have a workshop field study, where programmers would work in pairs to solve pre-defined problems using TDD, but in the end it was decided that it would be too difficult to extract useful data from such an activity.
+
+\subsection{Literature Study}
+
+Relevant books, articles and Internet sources were identified and skimmed, some were read through thoroughly. Over time, several new titles were published and some older literature was also included as the need became apparent.
+
+\subsection{Framework Overview and Evaluation}
 
 The following testing frameworks have been evaluated:
 Jasmine\footnote{\url{http://pivotal.github.com/jasmine/}} (+ Jasmine-species\footnote{\url{http://rudylattae.github.com/jasmine-species/}}),
@@ -162,9 +168,11 @@ JsTestDriver\footnote{\url{https://code.google.com/p/js-test-driver/}},
 Buster.JS\footnote{\url{http://docs.busterjs.org/}} and
 Sinon.JS\footnote{\url{http://sinonjs.org/}}. The code written while evaluating the frameworks is publicly available as git repositories under my github account \emph{emilwall}, together with the \LaTeX~code for this report.
 
+\subsection{Interviews}
+
 Semi-structured interviews were used rather than surveys to gather individual views on the subject. This approach allowed for harnessing unique as well as common experiences which would not be picked up in a standardised survey.
 
-\subsection{Interview Considerations}
+\subsubsection{Interview Considerations}
 
 The preparations before the interviews included specifying purpose and which subjects to include, select interviewees, preparing questions and adjust the material to fit each interviewee. The interviews took place rather late so that preliminary results and insights from the literature study could be used as basis for the discussions.
 
@@ -174,7 +182,7 @@ The interviews were performed in swedish to allow for a more fluent conversation
 
 The interviewees received questions beforehand via mail which most of them answered before the interview. This allowed the interviews to focus on the vital parts rather than personal background and opinions about the JavaScript language. The questions that was sent out before the interviews were mainly about previous experience with JavaScript and testing, frameworks, attitudes towards the language, difficulties with testing and opinions and observations on benefits of testing.
 
-\subsection{The interviewees}
+\subsubsection{The Interviewees}
 
 The first person I interviewed was Johannes Edelstam, an experienced Ruby and JavaScript developer, organizer of the sthlm.js meetup group and a former employee of Valtech, now working at Tink. He has a positive attitude towards JavaScript as a programming language and has extensive experience of test driven development.
 
