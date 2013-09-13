@@ -210,21 +210,6 @@ The scope of this thesis has been to look mainly at testing of \emph{client side
 
 Frameworks that are no longer maintained such as JsUnit\footnote{\url{https://github.com/pivotal/jsunit}} and JSpec\footnote{\url{https://github.com/liblime/jspec}} have deliberately been left out of the evaluation. Others have been left out because of fewer users or lack of unique functionality; among these we find TestSwarm, YUI Yeti and RhinoUnit. They are still useful tools that can be considered but including them would have a negative impact on the rest of the evaluation work because of the extra time consuming activities that would be imposed.
 
-\section{The frameworks}
-
-Programming languages in use today typically have frameworks to help with standard structure and other generic problems. JavaScript is certainly no exception, the number of web application frameworks that focus on JavaScript has increased a lot during the last few years alone.
-
-A full evaluation of the most popular MVC and testing frameworks is not within the scope of this thesis, but others have done it. \cite{JackFranklin, SebastianPorto}
-
-\section{High quality tests}
-\label{sec:quality}
-
-As mentioned in section~\ref{sec:motivation}, tests should be maintainable and test the right thing. Otherwise, responding to changes is harder, and the tests will tend to cause frustration among the developers instead of detecting bugs and driving the understanding and development of the software \cite{Clean}.
-
-The criteria for maintainability in this context are that the tests should have low complexity (typically short test methods without any control flow), consist of readable code, use informative variable names, have reasonably low level of repeated code (this can be accomplished through using Test Utility Methods \cite[599]{TestPatterns}), be independent of implementations and have meaningful comments (if any). Structuring the code according to a testing pattern such as the Arrange-Act-Assert \cite{C2} and writing the code so that it reads like sentences will help in making the code more readable, in essence by honouring the communicate intent principle \cite[p.~41]{TestPatterns}.
-
-Testing the right thing means focusing on the specifications and behaviour that provides true business value rather than e.g. coverage criteria, and to avoid writing tests for things that does not really matter. Typically some parts of the system will be more complex and require more rigorous testing but there should also be consistency in the level of ambition regarding testing across the entire application. If some part of the code is hard to test it is likely to be beneficial in the long run to refactor the design to provide better testability than to leave the code untested.
-
 \section{Draft without title}
 
 \subsection{Patterns}
@@ -266,6 +251,22 @@ This is likely a large contributing factor for increasing the probability of Ang
 A mock has pre-programmed expectations and built-in behaviour verification\cite[p.~453]{Tddjs}.
 
 Because JavaScript has no notion of interfaces, it is easy to accidentally use the wrong method name or argument order when stubbing a function\cite[p.~471]{Tddjs}.
+
+\subsection{The frameworks}
+
+Programming languages in use today typically have frameworks to help with standard structure and other generic problems. JavaScript is certainly no exception, the number of web application frameworks that focus on JavaScript has increased a lot during the last few years alone.
+
+A full evaluation of the most popular MVC and testing frameworks is not within the scope of this thesis, but others have done it. \cite{JackFranklin, SebastianPorto}
+
+\subsection{High quality tests}
+\label{sec:quality}
+
+As mentioned in section~\ref{sec:motivation}, tests should be maintainable and test the right thing. Otherwise, responding to changes is harder, and the tests will tend to cause frustration among the developers instead of detecting bugs and driving the understanding and development of the software \cite{Clean}.
+
+The criteria for maintainability in this context are that the tests should have low complexity (typically short test methods without any control flow), consist of readable code, use informative variable names, have reasonably low level of repeated code (this can be accomplished through using Test Utility Methods \cite[599]{TestPatterns}), be independent of implementations and have meaningful comments (if any). Structuring the code according to a testing pattern such as the Arrange-Act-Assert \cite{C2} and writing the code so that it reads like sentences will help in making the code more readable, in essence by honouring the communicate intent principle \cite[p.~41]{TestPatterns}.
+
+Testing the right thing means focusing on the specifications and behaviour that provides true business value rather than e.g. coverage criteria, and to avoid writing tests for things that does not really matter. Typically some parts of the system will be more complex and require more rigorous testing but there should also be consistency in the level of ambition regarding testing across the entire application. If some part of the code is hard to test it is likely to be beneficial in the long run to refactor the design to provide better testability than to leave the code untested.
+
 
 \section{Real world experiences}
 
