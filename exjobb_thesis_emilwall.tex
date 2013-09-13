@@ -210,47 +210,6 @@ The scope of this thesis has been to look mainly at testing of \emph{client side
 
 Frameworks that are no longer maintained such as JsUnit\footnote{\url{https://github.com/pivotal/jsunit}} and JSpec\footnote{\url{https://github.com/liblime/jspec}} have deliberately been left out of the evaluation. Others have been left out because of fewer users or lack of unique functionality; among these we find TestSwarm, YUI Yeti and RhinoUnit. They are still useful tools that can be considered but including them would have a negative impact on the rest of the evaluation work because of the extra time consuming activities that would be imposed.
 
-\section{Analysis of Economic Impacts}
-
-\begin{itemize}
-  \item Identify cases where companies and authorities have suffered economic loss due to bugs in JavaScript code vital to business critical functions of web sites
-  \item Assess risks and undocumented cases of manifested bugs
-  \item Estimate maintenance costs of code that lack tests compared to well-tested code
-  \item Draw conclusions about how test-driven development can either shorten or prolong the time required to develop a product, depending on programmer experience and the size and type of the application being developed
-  \item Costs associated with acquiring developers with the skills necessary to write tests
-\end{itemize}
-
-\section{Testability}
-
-\begin{itemize}
-  \item Search for JavaScript code to analyse, do representative selection for different areas of application
-  \item Analyse testability of selected code segments by looking at how the applications are partitioned, how well single-purpose principles are followed, and what parts of the code is exposed and accessible by tests
-  \item Discuss validity factors, whether the selection is fair and really representative, how open source affects quality, etc. (self-criticism)
-\end{itemize}
-
-\section{Framework evaluation}
-
-\begin{itemize}
-  \item Perform and document complexity of installation process
-  \item Try different ``Getting Started'' instructions
-  \item Compare syntax, functionality and dependencies
-  \item Discuss suitable areas of application
-  \item Create example implementations of different types of tests to illustrare practical use
-\end{itemize}
-
-\section{Adding tests to an existing project}
-
-The current content of this section could be rewritten and placed in the method section, while replaced by actual results.
-
-\begin{itemize}
-  \item Identify what parts of the project are currently testable
-  \item Identify what functionality should be tested
-  \item Decide on testing framework and motivate choice based on circumstances and previous analysis
-  \item Set up the testing environment so the tests can run automatically on a build server
-  \item Write the actual tests and continually refactor the code, while documenting decisions in this report
-  \item Analyse impact on code quality and number of bugs found
-\end{itemize}
-
 \section{The frameworks}
 
 Programming languages in use today typically have frameworks to help with standard structure and other generic problems. JavaScript is certainly no exception, the number of web application frameworks that focus on JavaScript has increased a lot during the last few years alone.
@@ -533,6 +492,47 @@ There is a lot of previous work on testing patterns and how to write concise, us
 \subsection{Learning TDD}
 
 In order to get started with testing JavaScript, you need to understand why you should do it \cite[question~38]{Edelstam} and then practise with katas and begin to use testing in your projects.
+
+\section{Analysis of Economic Impacts}
+
+\begin{itemize}
+  \item Identify cases where companies and authorities have suffered economic loss due to bugs in JavaScript code vital to business critical functions of web sites
+  \item Assess risks and undocumented cases of manifested bugs
+  \item Estimate maintenance costs of code that lack tests compared to well-tested code
+  \item Draw conclusions about how test-driven development can either shorten or prolong the time required to develop a product, depending on programmer experience and the size and type of the application being developed
+  \item Costs associated with acquiring developers with the skills necessary to write tests
+\end{itemize}
+
+\section{Testability}
+
+\begin{itemize}
+  \item Search for JavaScript code to analyse, do representative selection for different areas of application
+  \item Analyse testability of selected code segments by looking at how the applications are partitioned, how well single-purpose principles are followed, and what parts of the code is exposed and accessible by tests
+  \item Discuss validity factors, whether the selection is fair and really representative, how open source affects quality, etc. (self-criticism)
+\end{itemize}
+
+\section{Framework evaluation}
+
+\begin{itemize}
+  \item Perform and document complexity of installation process
+  \item Try different ``Getting Started'' instructions
+  \item Compare syntax, functionality and dependencies
+  \item Discuss suitable areas of application
+  \item Create example implementations of different types of tests to illustrare practical use
+\end{itemize}
+
+\section{Adding tests to an existing project}
+
+The current content of this section could be rewritten and placed in the method section, while replaced by actual results.
+
+\begin{itemize}
+  \item Identify what parts of the project are currently testable
+  \item Identify what functionality should be tested
+  \item Decide on testing framework and motivate choice based on circumstances and previous analysis
+  \item Set up the testing environment so the tests can run automatically on a build server
+  \item Write the actual tests and continually refactor the code, while documenting decisions in this report
+  \item Analyse impact on code quality and number of bugs found
+\end{itemize}
 
 \printbibliography
 
