@@ -320,7 +320,9 @@ One not so uncommon response is that testing of JavaScript probably is so uncomm
 
 \subsection{Asynchronous events}
 
-JavaScript is often loaded asynchronously in browsers to improve performance in page loads and minimize interference with the display of the page. Asynchronous events are also commonly used, e.g. AJAX calls. Testing asynchronous events can be hard because the order in which things happen is not predetermined and it can be hard to know whether the asynchronous code has finished execution, leading to assertions being executed at the wrong time.
+JavaScript is often loaded asynchronously in browsers to improve performance in page loads and minimize interference with the display of the page. Asynchronous events are also commonly used, e.g. AJAX calls. Testing asynchronous events can be hard because the order in which things happen is not predetermined, so the number of possible states can be very large, thus demanding many convoluted tests to cover all the relevant cases. It can also be hard to know if the asynchronous code has finished execution or not, leading to assertions being executed at the wrong time.
+
+Two basic approaches to testing asynchronous code are to force the execution into a certain path by faking the asynchrony and to set up waiting conditions for when assertions should be executed. In the first alternative, the code is not executed asynchronously but you can test different scenarios and thereby get a good feel of how the code will behave when run asynchronously. In the second alternative, a timeout needs to be set for when the test should fail if the waiting condition is not met.
 
 \subsection{DOM manipulation}
 
