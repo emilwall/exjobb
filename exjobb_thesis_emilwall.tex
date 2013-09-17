@@ -115,6 +115,10 @@ Linting is a static analysis tool for detecting syntax errors, risky programming
 
 Mocking and stubbing involves simulation of behaviour of real objects in order to isolate the system under test from external dependencies. This is typically done in order to improve error localization and execution time, and to avoid unwanted side-effects and dependencies such as communication with databases, across networks or with a file system \cite[ch.~2]{Legacy}.
 
+In JavaScript, tools for stubbing can be superfluous because you are able to manually replace functions with custom anonymous functions, that can have attributes for call assertion purposes. The stubbed functions can be stored in local variables in the tests and restored during teardown. This is what some refer to as VanillaJS \cite[question~53]{Edelstam}. It might come across as manual work that you can avoid by using a stubbing tool, but the benefits include fewer dependencies and sometimes more readable code, as mentioned in section \ref{LiteralFakes}. \cite[questions~54-55]{Edelstam}
+
+Typical cases for using a stubbing or mocking framework rather than VanillaJS include when your assertion framework has support for it, as is the case for Jasmine, when you feel the need to do a complex call assertion, mock a large API or state expectations up front as is done with mocks. Bear in mind that this might be a symptom for that the code is in need of refactoring though, and strive for consistency by using a single method for stubbing -- mixing VanillaJS with Jasmine spies and sinonJS stubs will make the tests harder to understand.
+
 \subsection{Browser Automation}
 \label{sec:browserautomation}
 
@@ -151,12 +155,6 @@ Microsoft Research project\footnote{\url{http://research.microsoft.com/en-us/pro
 There exists some general build tools that can be used for any programming language, these are often installed on build servers and integrated with version control systems. Examples include Jenkins, which is often configured and controlled through its web interface although it also has a CLI, and GNU Make, which is typically configured using makefiles and controlled through CLI. In addition to these, there are also language specific tools: Ruby has Rake, Java has Maven, Gradle and Ant, C\nolinebreak\hspace{-.05em}\raisebox{.3ex}{\scriptsize\bf \#} has MSBuild and NAnt.
 
 Naturally, there are build tools designed specifically for JavaScript as well, Grunt\footnote{\url{http://gruntjs.com/}} being the most popular, which can be installed as a node.js package, has plugins for common tasks such as lint, testing and minification, and can be invoked through CLI. \cite[question~52]{Edelstam} Jake and Mimosa are other well known and maintained alternatives. It is also possible to use Rake, Ant or similar. \cite{BuildTools}
-
-\subsection{Stubbing and Mocking}
-
-In JavaScript, tools for stubbing can be superfluous because you are able to manually replace functions with custom anonymous functions, that can have attributes for call assertion purposes. The stubbed functions can be stored in local variables in the tests and restored during teardown. This is what some refer to as VanillaJS \cite[question~53]{Edelstam}. It might come across as manual work that you can avoid by using a stubbing tool, but the benefits include fewer dependencies and sometimes more readable code, as mentioned in section \ref{LiteralFakes}. \cite[questions~54-55]{Edelstam}
-
-Typical cases for using a stubbing or mocking framework rather than VanillaJS include when your assertion framework has support for it, as is the case for Jasmine, when you feel the need to do a complex call assertion, mock a large API or state expectations up front as is done with mocks. Bear in mind that this might be a symptom for that the code is in need of refactoring though, and strive for consistency by using a single method for stubbing -- mixing VanillaJS with Jasmine spies and sinonJS stubs will make the tests harder to understand.
 
 \subsection{Setting up a test suite}
 
