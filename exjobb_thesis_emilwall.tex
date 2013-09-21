@@ -105,6 +105,14 @@ Accounting for how to conveniently proceed with JavaScript testing should cover 
 
 This section gives an overview of concepts and tools relevant to understanding this thesis. Readers with significant prior knowledge about web development and JavaScript testing may skip this section.
 
+\subsection{Basics of Testing}
+
+Every developer performs testing in one way or another. Usually you start out with manual testing, where you run the application, interact with it and observe the results. The more time spent on developing the application, the more evident the need for automated tests tends to become, to reduce the amount of manual work and time spent repeating the same procedures.
+
+Automated testing is commonly divided into different categories of tests, that exercise the code in different ways and for different reasons. Unit testing and integration testing is perhaps the most common concepts. The definitions vary, but to simplify we can say that unit testing focus on testing units (parts) of an application in isolation from the rest of the application whereas integration testing is about testing that the units fit together.
+
+Commonly, unit tests are more low level and integration tests are more like user interactions. This does not have to be the case however, unit tests can be written in a business value focused fashion too and integration tests can usually be written before there is a GUI to interact with. \cite[question~20]{Ahnve}
+
 \subsection{Behaviour-Driven Development}
 
 Behaviour-Driven Development (BDD) is about describing expected behaviour of systems and writing tests from the outside in. It replaces and adds terminology traditionally used within TDD and encourages descriptive naming of tests (often referred to as specs, which is short for specifications, in BDD) that helps readability and to make failure messages more helpful. \cite[questions~17-18]{Ahnve}
