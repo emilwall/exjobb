@@ -109,6 +109,8 @@ This section gives an overview of concepts and tools relevant to understanding t
 
 Behaviour-Driven Development (BDD) is about describing expected behaviour of systems and writing tests from the outside in. It replaces and adds terminology traditionally used within TDD and encourages descriptive naming of tests (often referred to as specs, which is short for specifications, in BDD) that helps readability and to make failure messages more helpful. \cite[questions~17-18]{Ahnve}
 
+Another advantage with BDD is the Given, When, Then (GWT) form (which is also mentioned in section \ref{sec:tools}). It provides a context for the specs and can help in avoiding having a single setup for all tests of a specific class, which is otherwise common in classical TDD in languages such as Java. Having a single setup can be problematic because it creates dependencies between tests and can make them harder to understand. \cite[question~19]{Ahnve}
+
 \subsection{Lint Tools for JavaScript}
 \label{sec:Lint}
 
@@ -524,6 +526,7 @@ To get as much benefit as possible from testing, every developer should be invol
 The attitude towards and experience with testing varies heavily, so as a developer you can be forced to not test as much as you would otherwise want to, in order to avoid frustration and dips in productivity by testing other people's code. You should advocate methods that you believe in, especially in the beginning of a new project, but in the end adjusting to the culture is also essential since most benefits of testing appear only after a long term commitment by the whole team. \cite[questions~31-32]{Stenmark}
 
 \subsection{Frameworks and tools}
+\label{sec:tools}
 
 There are a number of BDD frameworks available that are meant to bring testing closer to the specification and story work, as proposed in section~\ref{sec:ccc}. They aim to mimic the way stories are written to create a ubiquitous natural language that can be understood by both programmers and non-programmers. The way this is done is by building sentences with a Given, Then, When (GTW) form. Cucumber\footnote{\url{http://cukes.info/}} is a popular framework that was designed for this in the Ruby programming language and there is a JavaScript version called Cucumber.js\footnote{\url{https://github.com/cucumber/cucumber-js}}.
 Yadda,\footnote{\url{https://github.com/acuminous/yadda}}
