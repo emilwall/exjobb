@@ -1176,6 +1176,33 @@ Ja, jag skulle nog ha valt något annat än Jasmine. Samtidigt så är Angular s
 Jag tror att vi har totalt 5000 tester, alltså 4000 tester i JavaScript och cirka 1000 på serversidan. Den är ganska tunn, serversidan. Det är en trygghet. Gör jag en ändring, en refaktorering eller ett tillägg av någonting, och alla 5000 tester går igenom, då är allting frid och fröjd. Då behöver jag inte sitta och klicka runt i GUI:t, för jag vet att allting fungerar som det ska. Det blir en inre frid *skratt*, är det grönt så är det lugnt.
 
 
+\subsection*{Mail conversation with Per Rovegård after the interview}
+
+\emph{43. Hur tror du att kundens förväntningar tenderar att påverka hur mycket man testar? Om man får betalt per timme eller har en budget som man känner sig stressad av så kanske man låter bli att testa av den anledningen. Särskilt om man inte är van vid att testa. Hur tycker du att man bör gå tillväga för att ta sig ur en sådan situation?}
+
+Jag är van vid att göra TDD, och då är TDD ett verktyg för att leverera kod med hög kvalitet. För mig är TDD ett nödvändigt verktyg, likt ett tangentbord. Kunden eller chefen eller någon annan har inte att göra med vilka verktyg jag använder för att producera kod. Med andra ord ingår tiden att skriva tester i estimatet för kodningen. Det finns inget separat estimat för att skriva tester.
+
+Sen är det så att när jag har mycket att göra inför en leverans och stressnivån är hög, då är TDD/testning det överlägset snabbaste sättet för mig att leverera något jag vet fungerar. All form av koda-och-kör-och-hoppas-det-funkar går bort.
+
+\emph{44. Vad har du för tankar kring parprogrammering? Är det något du har ägnat dig åt mycket i dina projekt? Under vilka former i så fall? Vilken roll har testning spelat då?}
+
+Har inte så stor erfarenhet. Teorin är bra. :-)
+
+\emph{45. Gränssnittsutvecklaren som jag nämnde ansåg att det finns en stor skillnad på webbapplikationer och mer enkla infositer, som är det som han har ägnat sig mest åt. Han uttryckte det så här: ”De flesta info-siter är mest jQuery, DOM-manipulation så jag är inte säker på om man har någon särskild nytta av testramverk för JavaScript på den typen av grejer som man oftast gör. Det är nog snarare Selenium-tester som man kan använda för att täcka upp det mesta med. Min känsla är att JavaScript-testning är mer för skript-bibliotek eller om man skriver mer applikationskod.” I vår första intervju (fråga 10) så uttryckte du att det alltid är lämpligt med testning av JavaScript. Står du fast vid denna synpunkt?}
+
+Ja, om man bryr sig om kvaliteten på det man gör.
+
+\emph{46. Vad var det du menade med precision när vi pratade om integrationstester och närhet till implementation (fråga 38)?}
+
+Enhetstester kan testa många detaljer därför att de har stor frihet i att variera indatan. De kan vara väldigt precisa.
+
+Integrationstester har typiskt högre uppsättnings- och körtid och är begränsade till faktorer såsom i nuläget möjlig användarinteraktion och kanske äkta data. Därför lämpar sig de mer för testing på högre nivå. Ska man testa precist med integrationstester får man ofta ganska slöa testsviter. Det är min erferenhet åtminstone. YMMV!
+
+\emph{47. Vad ser du för vinster med BDD? Finns det någon del av BDD som du tycker mindre om?}
+
+Det beror på vad du menar med BDD. Jasmine utger sig för att vara ett BDD-ramverk, men för mig är det ett TDD-ramverk. BDD får full kraft om du jobbar med ett verktyg som RBehave, NBehave, SpecFlow, Cucumber, Lettuce etc. där du kan omsätta acceptanskriterier i scenarier uttryckta i naturligt språk som sedan mappas mot kod. BDD för mig är ett verktyg som överbryggar gapet mellan utvecklare och kravställare/domänexperter, och är således ett utmärkt verktyg om du jobbar med DDD.
+
+
 \subsection*{Transcript of interview with Henrik Ekelöf}
 
 \emph{1. Vad har du för erfarenhet av testning av JavaScript?}
@@ -1289,6 +1316,7 @@ Nej, det är jag inte.
 \emph{27. Tack ska du ha, det är värdefullt att få ett nytt perspektiv för de jag pratat med innan har varit personer med bakgrund inom Ruby och annan backend som gått in med inställningen att det är självklart att man ska testa.}
 
 Det finns en skillnad där jämfört med Microsoft-gänget, och vi som jobbar som gränssnittare är oftast med Microsoft-gänget för att Java Open Systems-gänget brukar göra allting själva, så vi hamnar aldrig i de projekten. Tyvärr, annars kanske vi skulle ha lärt oss mer om testning. Så jag tror att om du skulle prata med flera gränssnittare så kommer de antagligen inte att ha testat någon kod heller. Jag känner inte till att det görs i något Microsoft-projekt alls.
+
 
 \subsection*{Mail conversation with Fredrik Wendt}
 
