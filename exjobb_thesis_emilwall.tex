@@ -109,7 +109,7 @@ This section gives an overview of concepts and tools relevant to understanding t
 
 Behaviour-Driven Development (BDD) is about describing expected behaviour of systems and writing tests from the outside in. It replaces and adds terminology traditionally used within TDD and encourages descriptive naming of tests (often referred to as specs, which is short for specifications, in BDD) that helps readability and to make failure messages more helpful. \cite[questions~17-18]{Ahnve}
 
-Another advantage with BDD is the Given, When, Then (GWT) form (which is also mentioned in section \ref{sec:tools}). It provides a context for the specs and can help in avoiding having a single setup for all tests of a specific class, which is otherwise common in classical TDD in languages such as Java. Having a single setup can be problematic because it creates dependencies between tests and can make them harder to understand. \cite[question~19]{Ahnve}
+Another advantage with BDD is the Given, When, Then (GWT) form (which is also mentioned in section \ref{sec:tools}). It provides a context for the specs and can help in avoiding having a single setup for all tests of a specific class, which is otherwise common in classical TDD in languages such as Java. Having a single setup can be problematic because it creates dependencies between tests and can make them harder to understand. A common alternative to the GWT form is nested describe clauses with it-specs as in Jasmine and BDD style mocha. This requires more discipline from the developer because the context has to be covered by the describe text. p\cite[question~19]{Ahnve}
 
 \subsection{Lint Tools for JavaScript}
 \label{sec:Lint}
