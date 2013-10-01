@@ -32,7 +32,7 @@
 \bibliography{references.bib}
 \usepackage{url}
 
-\title{Rationales and Approaches for Automated Testing of JavaScript and ML}
+\title{Rationales and Approaches for Automated Testing of JavaScript and Standard ML}
 \author{Emil Wall}
 %\date{} % Uncomment to hide date, or provide a date to display
 
@@ -51,7 +51,7 @@ The automated testing community around JavaScript still has some ground to cover
 
 JavaScript is a scripting language primarily used in web browsers to perform client-side actions not feasible through plain HTML and CSS. It is formally defined in the ECMAScript Language Specification (5.1 version) \cite{ECMAScriptSpecification}, ISO/IEC 16262:2011. Implementations differ, especially for host objects such as document and XMLHttpRequest that are not fully defined in the specification but also for native objects that may be missing or behaving differently in some implementations because they were not defined in previous specifications. Automated testing can help you discover bugs that appear due to such deviant behaviour in present and future versions. JavaScript is also particularly important to test due to its dynamic properties that complicate static analysis (however, there are lint tools, see section~\ref{sec:Lint} and \ref{sec:refactor}), unwieldy syntax and aberrant object orientation support. Despite the wide variety of testing frameworks that exists for JavaScript, it is generally considered that few developers use them.
 
-Standard ML, henceforth referred to as ML, is a functional language that performs type inference at compile time and has few mutable state features, used primarily in computer science and mathematical research. Like JavaScript, the language has a formal specification, in The Definition of Standard ML \cite{DefinitionStandardML}, but although several implementations exist they do not have as many differences as JavaScript implementations do. ML has extensive static analysis capabilities and since side effects are relatively rare, the output of functions tends to be predictable, leading to lower complexity in many cases, at the cost of flexibility. ML has no built in support for automated testing and there are few testing frameworks available, which is unfortunate since most programming activities can benefit from testing. From this point forth, any mention of testing refers to automated testing, unless otherwise specified.
+Standard ML, henceforth referred to as SML, is a functional language that performs type inference at compile time and has few mutable state features, used primarily in computer science and mathematical research. Like JavaScript, the language has a formal specification, in The Definition of Standard ML \cite{DefinitionStandardML}, but although several implementations exist they do not have as many differences as JavaScript implementations do. SML has extensive static analysis capabilities and since side effects are relatively rare, the output of functions tends to be predictable, leading to lower complexity in many cases, at the cost of flexibility. SML has no built in support for automated testing and there are few testing frameworks available, which is unfortunate since most programming activities can benefit from testing. From this point forth, any mention of testing refers to automated testing, unless otherwise specified.
 
 \subsection{Motivation}
 \label{sec:motivation}
@@ -246,11 +246,11 @@ The main source of reference within the field of JavaScript testing today is Tes
 
 \subsection{Delimitations}
 
-The scope of this thesis was to look mainly at \emph{automated} testing of ML and \emph{client side} JavaScript. This meant that the impact of frameworks specialised for server side code such as vows\footnote{\url{http://vowsjs.org/}} and cucumis\footnote{\url{https://github.com/noblesamurai/cucumis}} was not considered. Testing client side code is by no means more important than server side, but in many aspects it is different and sometimes harder.
+The scope of this thesis was to look mainly at \emph{automated} testing of SML and \emph{client side} JavaScript. This meant that the impact of frameworks specialised for server side code such as vows\footnote{\url{http://vowsjs.org/}} and cucumis\footnote{\url{https://github.com/noblesamurai/cucumis}} was not considered. Testing client side code is by no means more important than server side, but in many aspects it is different and sometimes harder.
 
 JavaScript testing frameworks that are no longer maintained such as JsUnit\footnote{\url{https://github.com/pivotal/jsunit}} and JSpec\footnote{\url{https://github.com/liblime/jspec}} was deliberately left out of consideration. Others were left out because of a smaller user base or lack of unique functionality; among these we find TestSwarm, YUI Yeti and RhinoUnit. These are useful tools but since they are so many it would not have been realistic to include them all.
 
-The choice of looking at ML and JavaScript specifically was based on that they both have problems with testing culture, but for different reasons. During preliminary studies, many people seemed concerned about how to test JavaScript, so looking into it seemed like a good idea. The main reason to also look at testing of ML was that there was previously no BDD framework available for it, and that it is a functional language just like JavaScript, but typically used differently.
+The choice of looking at SML and JavaScript specifically was based on that they both have problems with testing culture, but for different reasons. During preliminary studies, many people seemed concerned about how to test JavaScript, so looking into it seemed like a good idea. The main reason to also look at testing of SML was that there was previously no BDD framework available for it, and that it is a functional language just like JavaScript, but typically used differently.
 
 Manual testing was not covered to any significant extent, since there were enough issues to deal with in automated testing. Naturally, there are many situations where manual testing is required, but in this thesis \emph{testing} typically refers to automated testing.
 
