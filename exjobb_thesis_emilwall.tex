@@ -234,7 +234,9 @@ The last interview was with Henrik Ekelöf, a front-end developer that has seven
 
 As can be seen at the end of the Appendix, there were some email conversations with people that was not interviewed as well. Among those are: Fredrik Wendt, who is a senior developer and consultant at Squeed specialising in team coaching with coding dojos, TDD and agile methodologies. David Waller, teacher at Linnéuniversitetet in a course about Rich Internet Applications with JavaScript. Marcus Bendtsen, teacher at Linköpings Universitet in a course about Web Programming and Interactivity.
 
-\section{Previous work and Delimitations}
+\section{Scope}
+
+\subsection{Previous work}
 
 There exists academic papers on testing web applications and a few focus on JavaScript specifically. Some focus on automatically generating tests \cite{AutomatedTesting} and although useful for meeting code coverage criteria, these methods will not be discussed to any great length here since such tests are hard to maintain and likely to cause false positives when refactoring code. In this thesis, there will be more focus on how to employ test driven development than achieving various degrees of code coverage.
 
@@ -242,9 +244,13 @@ Heidegger et al. cover unit testing of JavaScript that manipulates the DOM of a 
 
 The main source of reference within the field of JavaScript testing today is Test-Driven JavaScript Development \cite{Tddjs} by Christian Johansen which deals with JavaScript testing from a TDD perspective. Johansen is the creator of Sinon.JS\footnote{\url{http://sinonjs.org/}} and a contributor to a number of testing frameworks hosted in the open source community.
 
-The scope of this thesis has been to look mainly at testing of \emph{client side} JavaScript. This meant that framework specialised for server side code such as vows\footnote{\url{http://vowsjs.org/}} and cucumis\footnote{\url{https://github.com/noblesamurai/cucumis}} are not included in the evaluation part. Testing client side code is by no means more important than the server side, but it can be argued that it is often harder and the parallels to testing in other languages are somewhat fewer since the architecture typically is different.
+\subsection{Delimitations}
 
-Frameworks that are no longer maintained such as JsUnit\footnote{\url{https://github.com/pivotal/jsunit}} and JSpec\footnote{\url{https://github.com/liblime/jspec}} have deliberately been left out of the evaluation. Others have been left out because of fewer users or lack of unique functionality; among these we find TestSwarm, YUI Yeti and RhinoUnit. They are still useful tools that can be considered but including them would have a negative impact on the rest of the evaluation work because of the extra time consuming activities that would be imposed.
+The scope of this thesis has been to look mainly at automated testing of ML and \emph{client side} JavaScript. This meant that the impact of frameworks specialised for server side code such as vows\footnote{\url{http://vowsjs.org/}} and cucumis\footnote{\url{https://github.com/noblesamurai/cucumis}} have not been considered. Testing client side code is by no means more important than the server side, but often harder and less obvious how to generalise from testing principles in other languages.
+
+Frameworks that are no longer maintained such as JsUnit\footnote{\url{https://github.com/pivotal/jsunit}} and JSpec\footnote{\url{https://github.com/liblime/jspec}} have deliberately been left out of consideration. Others have been left out because of a smaller user base or lack of unique functionality; among these we find TestSwarm, YUI Yeti and RhinoUnit. These are useful tools but since they are so many it would not be realistic to include them all.
+
+Manual testing is not covered to any significant extent, since there are enough issues to deal with in automated testing. Naturally, there are many situations where manual testing is required, but in this thesis when we say testing we typically refer to automated testing.
 
 
 \section{Testability -- Real world experiences}
