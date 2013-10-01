@@ -246,11 +246,13 @@ The main source of reference within the field of JavaScript testing today is Tes
 
 \subsection{Delimitations}
 
-The scope of this thesis has been to look mainly at automated testing of ML and \emph{client side} JavaScript. This meant that the impact of frameworks specialised for server side code such as vows\footnote{\url{http://vowsjs.org/}} and cucumis\footnote{\url{https://github.com/noblesamurai/cucumis}} have not been considered. Testing client side code is by no means more important than the server side, but often harder and less obvious how to generalise from testing principles in other languages.
+The scope of this thesis was to look mainly at \emph{automated} testing of ML and \emph{client side} JavaScript. This meant that the impact of frameworks specialised for server side code such as vows\footnote{\url{http://vowsjs.org/}} and cucumis\footnote{\url{https://github.com/noblesamurai/cucumis}} was not considered. Testing client side code is by no means more important than server side, but in many aspects it is different and sometimes harder.
 
-Frameworks that are no longer maintained such as JsUnit\footnote{\url{https://github.com/pivotal/jsunit}} and JSpec\footnote{\url{https://github.com/liblime/jspec}} have deliberately been left out of consideration. Others have been left out because of a smaller user base or lack of unique functionality; among these we find TestSwarm, YUI Yeti and RhinoUnit. These are useful tools but since they are so many it would not be realistic to include them all.
+JavaScript testing frameworks that are no longer maintained such as JsUnit\footnote{\url{https://github.com/pivotal/jsunit}} and JSpec\footnote{\url{https://github.com/liblime/jspec}} was deliberately left out of consideration. Others were left out because of a smaller user base or lack of unique functionality; among these we find TestSwarm, YUI Yeti and RhinoUnit. These are useful tools but since they are so many it would not have been realistic to include them all.
 
-Manual testing is not covered to any significant extent, since there are enough issues to deal with in automated testing. Naturally, there are many situations where manual testing is required, but in this thesis when we say testing we typically refer to automated testing.
+The choice of looking at ML and JavaScript specifically was based on that they both have problems with testing culture, but for different reasons. During preliminary studies, many people seemed concerned about how to test JavaScript, so looking into it seemed like a good idea. The main reason to also look at testing of ML was that there was previously no BDD framework available for it, and that it is a functional language just like JavaScript, but typically used differently.
+
+Manual testing was not covered to any significant extent, since there were enough issues to deal with in automated testing. Naturally, there are many situations where manual testing is required, but in this thesis \emph{testing} typically refers to automated testing.
 
 
 \section{Testability -- Real world experiences}
