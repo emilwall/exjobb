@@ -238,6 +238,14 @@ As can be seen at the end of the Appendix, there were some email conversations w
 
 \subsection{Previous work}
 
+\subsubsection{Books}
+
+The main source of reference within the field of JavaScript testing today is Test-Driven JavaScript Development \cite{Tddjs} by Christian Johansen which deals with JavaScript testing from a TDD perspective. Johansen is the creator of Sinon.JS\footnote{\url{http://sinonjs.org/}} and a contributor to a number of testing frameworks hosted in the open source community.
+
+Except for discussions on how to perform mathematical proofs and equality tests of polymorphic types, there are no books that cover testing of SML. The main sources of reference for SML is \emph{The Definition of Standard ML} \cite{DefinitionStandardML} which cover the language syntax and semantics, \emph{The Standard ML Basis Manual} \cite{BasisManual} which describes the standard library, \emph{ML for the Working Programmer} \cite{WorkingProgrammer} which is a somewhat outdated but comprehensive work about ML, and various lecture notes \cite{ProgSml97}\cite{ProgSmlHarper}\cite{FunctionalML}\cite{NotesSMLNJ}.
+
+\subsubsection{Articles}
+
 There are many academic papers about testing web applications available, and quite a few of them focus on JavaScript specifically (whereas practically none involve ML). Papers on testing of ML are hard to find even outside of the web applications context, most that are of any interest are concerned with formal verification or related to the QuickCheck tool which can be used to generate tests for Haskell code, using ML as an intermediate language.
 
 This idea of generating tests has also been applied to ML and JavaScript. \emph{A Framework for Automated Testing of JavaScript Web Applications} \cite{AutomatedTesting} focus on automatically generating tests to achieve a high degree of code coverage. The problem with this is that the ability to employ test driven development is generally more valuable than high code coverage, due to its effect on the system design. Most likely, automatically generated tests tend to be harder to maintain and cause false positives as the code changes after the tests have been generated.
@@ -251,8 +259,6 @@ Sebastien Salva and Patrice Laurencot has described how STS automata can be appl
 Heidegger et al. cover unit testing of JavaScript that manipulates the DOM of a web page using techniques from software transactional memory (STM) to restore test fixtures \cite{DOMJavascript}. Ocariza et al. have investigated frequency of bugs in live web pages and applications \cite{Wild}. These are both aimed at testing client side JavaScript that runs as part of web sites.
 
 Phillip Heidegger and Peter Thiemann has addressed the issue of type related errors in JavaScript by introducing JSConTest, a contract framework that enables guided random testing by specifying types and relations of the arguments and return value of functions \cite{ContractTesting}.
-
-The main source of reference within the field of JavaScript testing today is Test-Driven JavaScript Development \cite{Tddjs} by Christian Johansen which deals with JavaScript testing from a TDD perspective. Johansen is the creator of Sinon.JS\footnote{\url{http://sinonjs.org/}} and a contributor to a number of testing frameworks hosted in the open source community.
 
 \subsection{Delimitations}
 
