@@ -246,7 +246,9 @@ QuickCheck and its ML counterpart QCheck are based on another principle than the
 
 \emph{Automated Acceptance Testing of JavaScript Web Applications} \cite{AutomatedAcceptance} describes a way to specify intended behaviour of a web application and use a web crawler to verify the expectations. It appears as a promising alternative to using Cucumber in conjunction with Selenium (see section~\ref{sec:browserautomation}), but more case studies are needed in order to evaluate its usefulness, applicability and scalability. %TODO describe Cucumber
 
-In \emph{Automatic Ajax application testing} \cite{AutomatedAjax} by Sebastien Salva and Patrice Laurencot, STS automata is applied to describe asynchronous applications and generate test cases.
+Sebastien Salva and Patrice Laurencot has described how STS automata can be applied to describe asynchronous applications and generate test cases \cite{AutomatedAjax}.
+
+Phillip Heidegger and Peter Thiemann has addressed the issue of type related errors by introducing JSConTest, a contract framework that enables guided random testing by specifying types and relations of the arguments and return value of functions \cite{ContractTesting}.
 
 Heidegger et al. cover unit testing of JavaScript that manipulates the DOM of a web page \cite{DOMJavascript} and Ocariza et al. have investigated frequency of bugs in live web pages and applications \cite{Wild}. These are of more interest to this thesis since they are aimed at testing of client side JavaScript that runs as part of web sites.
 
