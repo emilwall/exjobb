@@ -268,6 +268,17 @@ The scope of this thesis was to look mainly at \emph{automated} testing of SML a
 
 JavaScript testing frameworks that are no longer maintained such as JsUnit\footnote{\url{https://github.com/pivotal/jsunit}} and JSpec\footnote{\url{https://github.com/liblime/jspec}} was deliberately left out of consideration. Others were left out because of a smaller user base or lack of unique functionality; among these we find TestSwarm, YUI Yeti and RhinoUnit. These are useful tools but since they are so many it would not have been realistic to include them all.
 
+There is only one major testing framework available for SML, namely QCheck\footnote{\url{https://github.com/league/qcheck}}. A few others exist but have not gained any traction and are relatively small: three of them are called
+smlunit\footnote{\url{https://github.com/dellsystem/smlunit}}
+\footnote{\url{https://github.com/smlsharp/SMLUnit}}
+\footnote{\url{https://github.com/CyberLight/smlunit}} and there is also
+tests.sml\footnote{\url{https://github.com/spacemanaki/tests.sml}},
+sml-testing\footnote{\url{https://github.com/kvalle/sml-testing}},
+SMLTest\footnote{\url{https://github.com/Yankovsky/SMLTest}},
+smell\footnote{\url{https://github.com/Morriphi/smell}},
+smell-spec\footnote{\url{https://github.com/davidpdrsn/smell-spec}} and
+stupid\footnote{\url{https://github.com/teebrz/stupid}}. Most of them are small, smell-spec is the only one with BDD syntax and stupid is unique in offering watch capabilities so that the tests are run when files change.
+
 The choice of looking at SML and JavaScript specifically was based on that they both have problems with testing culture, but for different reasons. During preliminary studies, many people seemed concerned about how to test JavaScript, so looking into it seemed like a good idea. The main reason to also look at testing of SML was that there was previously no BDD framework available for it, and that it is a functional language just like JavaScript, but typically used differently.
 
 Manual testing was not covered to any significant extent, since there were enough issues to deal with in automated testing. Naturally, there are many situations where manual testing is required, but in this thesis \emph{testing} typically refers to automated testing.
