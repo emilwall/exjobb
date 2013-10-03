@@ -72,7 +72,18 @@ The goal with this thesis is to investigate why JavaScript testing has been perf
 
 \subsection{Background to Project}
 
-The first known testing framework JsUnit\footnote{\url{https://github.com/pivotal/jsunit}} was created in 2001 by Edward Hieatt \cite{GoingFaster} and since then several other test framework has appeared such as the testing framework for jQuery, which goes under the name QUnit\footnote{\url{http://qunitjs.com/}}, and JsUnits sequel Jasmine\footnote{\url{http://pivotal.github.com/jasmine/}}. There are also tools for mocking (see section~\ref{sec:mocking}) such as Sinon.JS\footnote{\url{http://sinonjs.org/}}. It seems as if the knowledge of how to smoothly get started, how to avoid making the tests non-deterministic and time consuming, and what to test, is rare. Setting up the structure needed to write tests is a threshold that most JavaScript programmers do not overcome \cite{TestingStatistics} and thus, they lose the benefits, both short and long term, otherwise provided by testing.
+The first known JavaScript testing framework JsUnit\footnote{\url{https://github.com/pivotal/jsunit}} was created in 2001 by Edward Hieatt \cite{GoingFaster} and since then several other test framework has appeared such as the testing framework for jQuery, which goes under the name QUnit\footnote{\url{http://qunitjs.com/}}, and JsUnits sequel Jasmine\footnote{\url{http://pivotal.github.com/jasmine/}}. There are also tools for mocking (see section~\ref{sec:mocking}) such as Sinon.JS\footnote{\url{http://sinonjs.org/}}. It seems as if the knowledge of how to smoothly get started, how to avoid making the tests non-stable and time consuming, and what to test, is rare. Setting up the structure needed to write tests is a threshold that most JavaScript programmers do not overcome \cite{TestingStatistics} and thus, they lose the benefits, both short and long term, otherwise provided by testing.
+
+There is only one production quality testing framework available for SML, namely QCheck\footnote{\url{https://github.com/league/qcheck}}. A few others exist but have not gained any traction and are relatively small, here is an exhaustive list: three of them are called
+smlunit\footnote{\url{https://github.com/dellsystem/smlunit}}
+\footnote{\url{https://github.com/smlsharp/SMLUnit}}
+\footnote{\url{https://github.com/CyberLight/smlunit}} and there is also
+tests.sml\footnote{\url{https://github.com/spacemanaki/tests.sml}},
+sml-testing\footnote{\url{https://github.com/kvalle/sml-testing}},
+SMLTest\footnote{\url{https://github.com/Yankovsky/SMLTest}},
+smell\footnote{\url{https://github.com/Morriphi/smell}},
+smell-spec\footnote{\url{https://github.com/davidpdrsn/smell-spec}} and
+stupid\footnote{\url{https://github.com/teebrz/stupid}}. The smlsharp version of SMLUnit is tailored for a non-standard SML distribution, smell-spec is the only one with BDD syntax and stupid is unique in offering watch capabilities so that the tests are run when files change. All except QCheck and the dellsystem version of smlunit are less than a year old and none are under active development compared to their JavaScript counterparts.
 
 In section \ref{sec:patternsexamples}, it is mentioned that examples are often simple and seldom provide a full picture. In contrast, the problem domain of this thesis is to focus on how to test the behaviour of JavaScript that manipulates DOM elements (see \ref{sec:dom}), fetches data using asynchronous calls, validates forms, communicates through APIs or manipulates the appearance of a web page. We also look at when and why you should test your JavaScript.
 
@@ -267,17 +278,6 @@ Phillip Heidegger and Peter Thiemann has addressed the issue of type related err
 The scope of this thesis was to look mainly at \emph{automated} testing of SML and \emph{client side} JavaScript. This meant that the impact of frameworks specialised for server side code such as vows\footnote{\url{http://vowsjs.org/}} and cucumis\footnote{\url{https://github.com/noblesamurai/cucumis}} was not considered. Testing client side code is by no means more important than server side, but in many aspects it is different and sometimes harder.
 
 JavaScript testing frameworks that are no longer maintained such as JsUnit\footnote{\url{https://github.com/pivotal/jsunit}} and JSpec\footnote{\url{https://github.com/liblime/jspec}} was deliberately left out of consideration. Others were left out because of a smaller user base or lack of unique functionality; among these we find TestSwarm, YUI Yeti and RhinoUnit. These are useful tools but since they are so many it would not have been realistic to include them all.
-
-There is only one major testing framework available for SML, namely QCheck\footnote{\url{https://github.com/league/qcheck}}. A few others exist but have not gained any traction and are relatively small: three of them are called
-smlunit\footnote{\url{https://github.com/dellsystem/smlunit}}
-\footnote{\url{https://github.com/smlsharp/SMLUnit}}
-\footnote{\url{https://github.com/CyberLight/smlunit}} and there is also
-tests.sml\footnote{\url{https://github.com/spacemanaki/tests.sml}},
-sml-testing\footnote{\url{https://github.com/kvalle/sml-testing}},
-SMLTest\footnote{\url{https://github.com/Yankovsky/SMLTest}},
-smell\footnote{\url{https://github.com/Morriphi/smell}},
-smell-spec\footnote{\url{https://github.com/davidpdrsn/smell-spec}} and
-stupid\footnote{\url{https://github.com/teebrz/stupid}}. Most of them are small, smell-spec is the only one with BDD syntax and stupid is unique in offering watch capabilities so that the tests are run when files change.
 
 The choice of looking at SML and JavaScript specifically was based on that they both have problems with testing culture, but for different reasons. During preliminary studies, many people seemed concerned about how to test JavaScript, so looking into it seemed like a good idea. The main reason to also look at testing of SML was that there was previously no BDD framework available for it, and that it is a functional language just like JavaScript, but typically used differently.
 
