@@ -92,17 +92,16 @@ In section \ref{sec:patternsexamples}, it is mentioned that examples are often s
 \section{Description of Work}
 
 Researching today's limited testing of JavaScript may be done from a multiple different points of view. There are soft aspects such as:
-\begin{itemize}
-\item Differences in attitudes towards testing between different communities and professional groups
-\item How JavaScript is typically conceived as a language and how it is used
-\item Knowledge about testing among JavaScript developers
-\item Economic viability and risk awareness
+\begin{itemize}[label={--}]
+\item Differences in attitudes towards testing between different communities and professional groupsm and nowledge about testing among JavaScript developers (section~\ref{sec:testingculture})
+\item How JavaScript is typically conceived as a language and how it is used (section~\ref{sec:interviewees})
+\item Economic viability and risk awareness (section~\ref{sec:projectrisks})
 \end{itemize}
 
 There are also more technical aspects:
-\begin{itemize}
-\item Testability of JavaScript code written without tests in mind
-\item Usability of testing tools and frameworks
+\begin{itemize}[label={--}]
+\item Testability of JavaScript code written without tests in mind (section~\ref{sec:testability})
+\item Usability of testing tools and frameworks (sections \ref{sec:angularjasminekarma}, \ref{sec:jstestdriverintegration} and \ref{sec:jstestdriver})
 \item Reasons not to include frameworks in a project for the sole purpose of facilitating testing
 \item Limitations in what can be tested
 \item Complexity in setting up the test environment; installing frameworks, configuring build server, exposing functions to testing but not to users in production, etc.
@@ -232,6 +231,7 @@ The interviews were performed in swedish to allow for a more fluent conversation
 The interviewees received questions beforehand via mail which most of them answered before the interview. This allowed the interviews to focus on the vital parts rather than personal background and opinions about the JavaScript language. The questions that was sent out before the interviews were mainly about previous experience with JavaScript and testing, frameworks, attitudes towards the language, difficulties with testing and opinions and observations on benefits of testing.
 
 \subsubsection{The Interviewees}
+\label{sec:interviewees}
 
 The first person I interviewed was Johannes Edelstam, an experienced Ruby and JavaScript developer, organiser of the sthlm.js meet-up group, a helping hack, and a former employee of Valtech, now working at Tink. He has a positive attitude towards JavaScript as a programming language and has extensive experience of test driven development.
 
@@ -287,6 +287,7 @@ Manual testing was not covered to any significant extent, since there were enoug
 
 
 \section{Testability -- Real world experiences}
+\label{sec:testability}
 
 Adding tests for code that was written without testing in mind is challenging \cite[p.~18]{Tddjs}. In this section an effort to do so is described, in order to highlight the problems and solutions to some of them.
 
@@ -316,6 +317,7 @@ As a consequence of being unable to extract all code from main.js into testable 
 One has to be careful when adding code to beforeEach, setUp and similar constructs in testing frameworks. If it fails the result is unpredictable. At least when using Jasmine with JsTestDriver, not all tests fail even when the beforeEach causes failure, and subsequent test runs may produce false negatives even though the problem has been fixed. This is likely due to optimisations in the test driver and is especially apparent when the system under test is divided into multiple files and contain globally defined objects (rather than constructors). In this case, game.js contains such a globally defined object and its tests commonly fails after some other test has failed, even after passing the other test. Restarting the test driver and emptying the cache in the captured browser usually solves this problem, but is time demanding.
 
 \subsection{JsTestDriver evaluation}
+\label{sec:jstestdriver}
 
 When resuming from sleep on a mac the server needs to be stopped and the browsers need to be manually re-captured to the server, or else the driver hangs when trying to run the tests. This is both annoying and time consuming. However, the problem is not present on a windows machine (and it might not be reproducible on all mac machines either). In the interview with Johannes Edelstam, he agreed that this is one example of something that deters people from testing \cite{Edelstam}.
 
@@ -439,21 +441,24 @@ Model based (FSM)
 
 
 \section{Testing culture}
+\label{sec:testingculture}
 
 Different people have different opinions about testing: how it should be done, when it pays off and how exciting it is. Some see testing as a tool that helps to provide structure and improve the design of code, whereas others see it as a way to detect bugs and prevent others from braking the code. Most people agree that testing is hard, but many struggle to do it anyway. Attitudes towards testing are essential to whether or not it is carried out or not, and to how worthwhile it turns out to be in the end.
 
 \subsection{State of events}
+\label{sec:stateofevents}
 
 It's possible that the overall quality of JavaScript code has improved over the last few years, partly as a consequence of testing methodologies entering the JavaScript community. One might argue that the new application frameworks has brought not only new capabilities (as mentioned in section~\ref{sec:appframeworks}) but also brought people with background from backend-programming with tests, experienced with for example Ruby on Rails development, to JavaScript. In fact, most of the new frameworks have been developed by people with such background. This has influenced the way JavaScript code is written and given birth to a novel testing culture. \cite[questions~12-15]{Ahnve}
 
 \subsection{Individual Motivation and Concerns}
+\label{sec:motivationconcerns}
 
 What defines successful testing is not which tools are used, the degree of coverage that is achieved or how strictly a certain set of principles or methodologies are followed. Successful testing is defined by how easy it is to make changes, find errors and understand the code. In order to get there, developers must feel that testing is meaningful and that they are allowed to spend time on testing as part of their professional tasks.
 
 Some think that as long as the code works, testing is unnecessary \cite[question~13]{Ahnve}. Perhaps this is true for these people, testing is not for everyone, there are programmers out there that do not test their code but still manage to produce brilliant software. In most cases however, if not always, testing leads to better maintainability. \cite[question~33]{Ahnve}
 
 \subsection{Project risks}
-\label{sec:risks}
+\label{sec:projectrisks}
 
 Different projects have different fault tolerance. Sometimes a single bug can cause loss of millions of dollars, whereas in other projects the economic impact can be relatively small. The risk with untested JavaScript is especially high when the code supports business critical operations. For instance, there have been several cases of banks and finance systems being fined for not reporting transactions to the government \cite{Bug1} or giving faulty advice to investors \cite{Bug2} due to application failure. A web-shop may lose orders and any website that is perceived as broken can harm trademarks associated with it and change people's attitudes for the worse.
 
@@ -471,6 +476,7 @@ Rather than proposing best practices for JavaScript testing, the reader should b
 Considering all the different options in available frameworks, one is easily deceived into believing that the main reason why people don't test their JavaScript is because they are lazy or uninformed. This is not necessarily true, there are respectable obstacles for doing TDD both in the process of fitting the frameworks into your application and in writing the JavaScript code in a testable way.
 
 \subsection{JsTestDriver and Jasmine integration problems}
+\label{sec:jstestdriverintegration}
 
 When setting up JsTestDriver\footnote{\url{https://code.google.com/p/js-test-driver/}} (JSTD) with the Jasmine adapter there are pitfalls in which version you're using. At the time of writing, the latest version of the Jasmine JSTD adapter (1.1) is not compatible with the latest version of Jasmine (1.3.1), so in order to use it you need to find an older version of Jasmine (such as 1.0.1 or 1.1.0) or figure out how to modify the adapter to make it compatible. Moreover, the latest version of JSTD (1.3.5) does not support relative paths to parent folders when referencing script files in jsTestDriver.conf although a few older versions do (such as 1.3.3d), which is a problem if you want to place the test driver separate from the system under test rather than in a parent folder, or if you want to reference another framework such as Jasmine if it is placed in another directory.
 
@@ -487,6 +493,7 @@ There is a serious risk involved in refactoring untested code\cite[p.~17]{Refact
 If refactoring is required in order to make the code testable, the architecture likely needs to change. Sometimes introducing a new object or changing how some dependency is handled is all that is needed. The important thing is to not continue in a direction that will cause the codebase to deteriorate over time. \cite[question~34]{Stenmark} If a lot of work goes into mocking dependencies then the tests take longer to write, require more maintenance and the need for integration tests increases. The proper remedy is usually not to reduce the isolation of the unit tests but to refactor the architecture so that each unit becomes easier to isolate. \cite[question~42]{Stenmark}
 
 \subsection{AngularJS, Jasmine and Karma}
+\label{sec:angularjasminekarma}
 
 The AngularJS framework uses Jasmine and Karma in the official tutorial.
 
