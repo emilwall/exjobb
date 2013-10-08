@@ -53,16 +53,16 @@ The main difference between these scenarios is that one of them requires a perva
 ``Around the beginning of 2012, I gave a presentation for the Boston Ruby Group, in which I asked the crowd of 100 people a few questions. I began, `Who here writes Ruby?' The entire audience raised their hands. Next I asked, `Who tests their Ruby?' Again, everyone raised their hands. `Who writes JavaScript or CoffeeScript?' Once more, 100 hands rose. My final question: `Who tests their JavaScript or CoffeeScript?' A hush fell over the crowd as a mere six hands rose. Of 100 people in that room, 94\% wrote in those languages, but didn't test their code. That number saddened me, but it didn't surprise me.''
 \end{quote}
 
-JavaScript, henceforth referred to as JS, is a scripting language primarily used in web browsers to perform client-side actions not feasible through plain HTML and CSS. It is formally defined in the ECMAScript Language Specification (5.1 version) \cite{ECMAScriptSpecification}, ISO/IEC 16262:2011. Implementations differ, especially for host objects such as document and XMLHttpRequest whose semantics are not fully defined in the specification but also for native objects that may be missing or behave differently in some implementations because they were not defined in previous specifications. Automated testing can help you discover bugs that appear due to such deviant behaviour in present and future versions. JS is also particularly important to test due to its dynamic properties \cite{AutomatedTesting} that complicate static analysis (however, there are lint tools, see sections~\ref{sec:Lint} and \ref{sec:refactor}), unwieldy syntax and aberrant object orientation support. JS is a complex language that requires many work-arounds because of its scoping rules and other unexpected behaviour \cite[appendix A]{GoodParts}. Despite the wide variety of testing frameworks that exists for JS, it is generally considered that few developers use them and instead rely on manual testing \cite{AutomatedTesting}.
+JavaScript, henceforth referred to as JS, is a scripting language primarily used in web browsers to perform client-side actions not feasible through plain HTML and CSS. It is formally defined in the ECMAScript Language Specification (5.1 version) \cite{ECMAScriptSpecification}, ISO/IEC 16262:2011. Implementations differ, especially for host objects such as document and XMLHttpRequest whose semantics are not fully defined in the specification but also for native objects that may be missing or behave differently in some implementations because they were not defined in previous specifications. Automated testing can help you discover bugs that appear due to such deviant behaviour in present and future versions. JS is also particularly important to test due to its dynamic properties \cite{AutomatedTesting} that complicate static analysis (however, there are lint tools, see sections~\ref{subsec:Lint} and \ref{subsec:refactor}), unwieldy syntax and aberrant object orientation support. JS is a complex language that requires many work-arounds because of its scoping rules and other unexpected behaviour \cite[appendix A]{GoodParts}. Despite the wide variety of testing frameworks that exists for JS, it is generally considered that few developers use them and instead rely on manual testing \cite{AutomatedTesting}.
 
 Standard ML, henceforth referred to as SML, is a functional language that performs type inference at compile time and has few mutable state features, used primarily in computer science and mathematical research. Like JS, the language has a formal specification, in The Definition of Standard ML \cite{DefinitionStandardML}. Several implementations exist and just as with JS, there are some differences between them. SML has extensive static analysis capabilities and since side effects are relatively rare, the output of functions tends to be predictable, leading to lower complexity in many cases, at the cost of flexibility. SML has no built in support for automated testing and there are few testing frameworks available (see section \ref{mltestingframeworks}).
 
 From this point forth, any mention of testing refers to automated testing, unless otherwise specified.
 
 \subsection{Motivation}
-\label{sec:motivation}
+\label{subsec:motivation}
 
-Why testing, you may ask. Jack Franklin, a young JS blogger from the UK, gives three reasons: it helps you to plan out your APIs, it allows you to refactor with confidence, and it helps you to discover regression bugs (i.e. when old code breaks because new code has been added). Writing tests to use a library before actually writing the library puts focus on intended usage, leading to a cleaner API. Being able to change and add code without fear of breaking something greatly accelerates productivity, especially for large applications. \cite{JackFranklin} Without tests, the ability to refactor (see section \ref{sec:refactor}) is greatly hampered. Without refactoring, making changes becomes harder over time, the code becomes harder to understand, the number of bugs increases and more time will be spent debugging \cite[p.~47-49]{Refactoring}. In order to avoid this, code should be tested, preferably writing tests first.
+Why testing, you may ask. Jack Franklin, a young JS blogger from the UK, gives three reasons: it helps you to plan out your APIs, it allows you to refactor with confidence, and it helps you to discover regression bugs (i.e. when old code breaks because new code has been added). Writing tests to use a library before actually writing the library puts focus on intended usage, leading to a cleaner API. Being able to change and add code without fear of breaking something greatly accelerates productivity, especially for large applications. \cite{JackFranklin} Without tests, the ability to refactor (see section \ref{subsec:refactor}) is greatly hampered. Without refactoring, making changes becomes harder over time, the code becomes harder to understand, the number of bugs increases and more time will be spent debugging \cite[p.~47-49]{Refactoring}. In order to avoid this, code should be tested, preferably writing tests first.
 
 More than 90 \% of today's websites use JS \cite{BusinessJavascript} and its applications have become increasingly complex \cite[question~23]{Ekelof}. SML on the other hand, although not nearly as widespread, is used in critical applications. The potential risk of economic loss associated with untested code being put into production, due to undetected bugs, shortened product lifetime and increased costs in conjunction with further development and maintenance, constitutes the main motivation for this thesis.
 
@@ -70,7 +70,7 @@ When automatic regression tests are missing, making changes to the code is error
 
 For SML programs, usage scenarios tend to be different from JS in that SML tends to be used more for back-end logic and algorithm design than web application front-ends. SML is well suited for formal verification, so it is sometimes used to eliminate risk of software failure. In theory this is of course excellent, but how about practical aspects such as how difficult it is to do, how much benefits there are for maintainability, modularity and code design, and how much time is consumed to perform the verification? In which scenarios is it feasible and how does it affect productivity and the ability to make large changes to the code and get quick and frequent feedback whether the program is still correct? Even though testing can seldom provide the same guarantees as formal verification, there are many scenarios in which it is more cost effective and makes life easier for the developer. The two can of course also be used in parallel.
 
-To achieve maximal gain from testing, the tests need to be of high quality, which means that they should be maintainable and test the right thing. How to achieve this is an important part of this thesis, which is discussed in section~\ref{sec:quality}.
+To achieve maximal gain from testing, the tests need to be of high quality, which means that they should be maintainable and test the right thing. How to achieve this is an important part of this thesis, which is discussed in section~\ref{subsec:quality}.
 
 Unit testing is particularly powerful when in combination with integration tests in a Continuous Integration (CI) build. This enables you to harness the power of CI, avoiding errors otherwise easily introduced as changes propagate and affect other parts of the system in an unexpected way. The integration tests will make developers aware if they are breaking previous functionality, when changing parts of the system that the JS depends upon.
 
@@ -80,7 +80,7 @@ The goal with this thesis is to investigate why JS testing has been performed to
 
 \subsection{Background to Project}
 
-The first known JS testing framework JsUnit\footnote{\url{https://github.com/pivotal/jsunit}} was created in 2001 by Edward Hieatt \cite{GoingFaster} and since then several other test framework has appeared such as the testing framework for jQuery, which goes under the name QUnit\footnote{\url{http://qunitjs.com/}}, and JsUnits sequel Jasmine\footnote{\url{http://pivotal.github.com/jasmine/}}. There are also tools for mocking (see section~\ref{sec:mocking}) such as Sinon.JS\footnote{\url{http://sinonjs.org/}}. It seems as if the knowledge of how to smoothly get started, how to avoid making the tests non-stable and time consuming, and what to test, is rare. Setting up the structure needed to write tests is a threshold that most JS programmers do not overcome \cite{TestingStatistics} and thus, they lose the benefits, both short and long term, otherwise provided by testing.
+The first known JS testing framework JsUnit\footnote{\url{https://github.com/pivotal/jsunit}} was created in 2001 by Edward Hieatt \cite{GoingFaster} and since then several other test framework has appeared such as the testing framework for jQuery, which goes under the name QUnit\footnote{\url{http://qunitjs.com/}}, and JsUnits sequel Jasmine\footnote{\url{http://pivotal.github.com/jasmine/}}. There are also tools for mocking (see section~\ref{subsec:mocking}) such as Sinon.JS\footnote{\url{http://sinonjs.org/}}. It seems as if the knowledge of how to smoothly get started, how to avoid making the tests non-stable and time consuming, and what to test, is rare. Setting up the structure needed to write tests is a threshold that most JS programmers do not overcome \cite{TestingStatistics} and thus, they lose the benefits, both short and long term, otherwise provided by testing.
 
 There is only one production quality testing framework available for SML, namely QCheck\footnote{\url{https://github.com/league/qcheck}}. A few others exist but have not gained any traction and are relatively small, here is an exhaustive list: three of them are called
 smlunit\footnote{\url{https://github.com/dellsystem/smlunit}}
@@ -94,21 +94,21 @@ smell-spec\footnote{\url{https://github.com/davidpdrsn/smell-spec}} and
 stupid\footnote{\url{https://github.com/teebrz/stupid}}. The smlsharp version of SMLUnit is tailored for a non-standard SML distribution, smell-spec is the only one with BDD syntax and stupid is unique in offering watch capabilities so that the tests are run when files change. All except QCheck and the dellsystem version of smlunit are less than a year old and none are under active development compared to their JS counterparts.
 \label{mltestingframeworks}
 
-In section \ref{sec:patternsexamples}, it is mentioned that examples are often simple and seldom provide a full picture. In contrast, the problem domain of this thesis is to focus on how to test the behaviour of JS that manipulates DOM elements (see \ref{sec:dom}), fetches data using asynchronous calls, validates forms, communicates through APIs or manipulates the appearance of a web page. We also look at when and why you should test your JS.
+In section \ref{subsec:patternsexamples}, it is mentioned that examples are often simple and seldom provide a full picture. In contrast, the problem domain of this thesis is to focus on how to test the behaviour of JS that manipulates DOM elements (see \ref{subsec:dom}), fetches data using asynchronous calls, validates forms, communicates through APIs or manipulates the appearance of a web page. We also look at when and why you should test your JS.
 
 \section{Description of Work}
 
 Researching today's limited testing of JS may be done from a multiple different points of view. There are soft aspects such as:
 \begin{itemize}[label={--}]
 \item Differences in attitudes towards testing between different communities and professional groupsm and nowledge about testing among JS developers (section~\ref{sec:testingculture})
-\item How JS is typically conceived as a language and how it is used (section~\ref{sec:interviewees})
-\item Economic viability and risk awareness (section~\ref{sec:projectrisks})
+\item How JS is typically conceived as a language and how it is used (section~\ref{ssubsec:interviewees})
+\item Economic viability and risk awareness (section~\ref{subsec:projectrisks})
 \end{itemize}
 
 There are also more technical aspects:
 \begin{itemize}[label={--}]
 \item Testability of JS code written without tests in mind (section~\ref{sec:testability})
-\item Usability of testing tools and frameworks (sections \ref{sec:angularjasminekarma}, \ref{sec:jstestdriverintegration} and \ref{sec:jstestdriver})
+\item Usability of testing tools and frameworks (sections \ref{subsec:angularjasminekarma}, \ref{subsec:jstestdriverintegration} and \ref{subsec:jstestdriver})
 \item Reasons not to include frameworks in a project for the sole purpose of facilitating testing
 \item Limitations in what can be tested
 \item Complexity in setting up the test environment; installing frameworks, configuring build server, exposing functions to testing but not to users in production, etc.
@@ -138,17 +138,17 @@ Commonly, unit tests are more low level and integration tests are more like user
 
 Behaviour-Driven Development (BDD) is about describing expected behaviour of systems and writing tests from the outside in. It replaces and adds terminology traditionally used within TDD and encourages descriptive naming of tests (often referred to as specs, which is short for specifications, in BDD) that helps readability and to make failure messages more helpful. \cite[questions~17-18]{Ahnve}
 
-Another advantage with BDD is the Given, When, Then (GWT) form (which is also mentioned in section \ref{sec:tools}). It provides a context for the specs and can help in avoiding having a single setup for all tests of a specific class, which is otherwise common in classical TDD in languages such as Java. Having a single setup can be problematic because it creates dependencies between tests and can make them harder to understand. A common alternative to the GWT form is nested describe clauses with it-specs as in Jasmine and BDD style mocha. This requires more discipline from the developer because the context has to be covered by the describe text. \cite[question~19]{Ahnve}
+Another advantage with BDD is the Given, When, Then (GWT) form (which is also mentioned in section \ref{subsec:tools}). It provides a context for the specs and can help in avoiding having a single setup for all tests of a specific class, which is otherwise common in classical TDD in languages such as Java. Having a single setup can be problematic because it creates dependencies between tests and can make them harder to understand. A common alternative to the GWT form is nested describe clauses with it-specs as in Jasmine and BDD style mocha. This requires more discipline from the developer because the context has to be covered by the describe text. \cite[question~19]{Ahnve}
 
 Strictly speaking, you do not need a BDD framework to perform BDD. J. B. Rainsberger, the author of JUnit Recipes: Practical Methods for Programmer Testing, explained how to do BDD in jUnit at the XP 2011 conference in Madrid. The key to doing this is to divide the tests based on system behaviour rather than classes. This is the same concept as when writing specs in Cucumber, a Ruby GWT framework, and the same principle applies to BDD in JS. This is desirable because it helps you to not prioritise implementation details in favour of the parts that truly matters from a business value point of view.\cite[question~20]{Ahnve}
 
 \subsection{Lint Tools for JavaScript}
-\label{sec:Lint}
+\label{subsec:Lint}
 
 Linting is a static analysis tool for detecting syntax errors, risky programming styles and failure to comply to coding conventions. There are lint tools available for JS such as JSLint, JSHint, JavaScript Lint, JSure, the Closure compiler and PHP CodeSniffer. JSLint does provide some help to avoid common programming mistakes, but does not perform flow analysis \cite{JSLint} and type checking as a fully featured compiler would do, rendering proper testing routines the appropriate measure against programming mistakes.
 
 \subsection{Mocking and Stubbing}
-\label{sec:mocking}
+\label{subsec:mocking}
 
 Mocking and stubbing involves simulation of behaviour of real objects in order to isolate the system under test from external dependencies. This is typically done in order to improve error localisation and execution time, and to avoid unwanted side-effects and dependencies such as communication with databases, across networks or with a file system \cite[ch.~2]{Legacy}. A mock is different from a stub in that it has pre-programmed expectations and built-in behaviour verification \cite[p.~453]{Tddjs}.
 
@@ -157,7 +157,7 @@ In JS, tools for stubbing can be superfluous because you are able to manually re
 Typical cases for using a stubbing or mocking framework rather than VanillaJS include when your assertion framework has support for it, as is the case for Jasmine, when you feel the need to do a complex call assertion, mock a large API or state expectations up front as is done with mocks. Bear in mind that overly complex stubbing needs can be a symptom for that the code is in need of refactoring \cite[question~34]{Stenmark}, and strive for consistency by using a single method for stubbing -- mixing VanillaJS with Jasmine spies and Sinon.JS stubs will make the tests harder to understand.
 
 \subsection{Browser Automation}
-\label{sec:browserautomation}
+\label{subsec:browserautomation}
 
 Repetitive manual navigation of a web site is generally boring and time consuming. There are situations where manual testing is the right thing to do, such as when there is no need for regression testing or the functionality is too complicated to interact with for automated tests to be possible (but then the design should probably be improved). Most of the time, tasks can be automated. There are several tools available for automating a web browser: the popular open source Selenium WebDriver, the versatile but proprietary and windows specific TestComplete and Ranorex, the Ruby library Watir and its .NET counterpart WatiN, and others such as Sahi and Windmill.
 
@@ -166,14 +166,14 @@ Selenium WebDriver is a collection of language specific bindings to drive a brow
 There is also a Firefox plugin called Selenium IDE, that allows the user to record interactions and generate code for them that can be used to repeat the procedure or as a starting point in tests. In the remaining parts of this thesis, we will mean Selenium WebDriver when we say Selenium, and refer to Selenium IDE by its full name.
 
 \subsection{The DOM}
-\label{sec:dom}
+\label{subsec:dom}
 
 The Document Object Model (DOM) is a model for the content, structure and style of documents \cite{W3CDOM}. It can be seen as the tree structure of elements that html code consists of.
 
 \subsection{Refactoring}
-\label{sec:refactor}
+\label{subsec:refactor}
 
-Refactoring is ``a change made to the internal structure of software to make it easier to understand and cheaper to modify without changing its observable behaviour'', or the act of applying such changes \cite[p.~46]{Refactoring}. As mentioned in the \nameref{sec:motivation} section (section \ref{sec:motivation}), refactoring prevents program decay and helps to maintain productivity. Just like testing, refactoring is no magic bullet that solves all problems and it is important to know when to do it and when it might not be worth the effort. Common rules of thumb are to refactor when doing something similar for the third time (a pragmatic approach to the DRY principle), when it helps to understand a piece of code, when it facilitates addition of a new feature, when searching for a bug and when discussing the code with others, e.g. in code reviews \cite[p.~49-51]{Refactoring}.
+Refactoring is ``a change made to the internal structure of software to make it easier to understand and cheaper to modify without changing its observable behaviour'', or the act of applying such changes \cite[p.~46]{Refactoring}. As mentioned in the \nameref{subsec:motivation} section (section \ref{subsec:motivation}), refactoring prevents program decay and helps to maintain productivity. Just like testing, refactoring is no magic bullet that solves all problems and it is important to know when to do it and when it might not be worth the effort. Common rules of thumb are to refactor when doing something similar for the third time (a pragmatic approach to the DRY principle), when it helps to understand a piece of code, when it facilitates addition of a new feature, when searching for a bug and when discussing the code with others, e.g. in code reviews \cite[p.~49-51]{Refactoring}.
 
 Using refactoring tools can be very helpful to see which parts of the code is in most need of refactoring, and to automate certain refactoring actions by facilitating renaming, method extraction, etc. \cite[ch.~5]{Legacy}. There is some support in IDEs such as Visual Studio (using
 JSLint.VS\footnote{\url{http://jslint.codeplex.com/}},
@@ -187,17 +187,17 @@ jsmeter\footnote{\url{https://code.google.com/p/jsmeter/}} (not to be confused w
 Microsoft Research project\footnote{\url{http://research.microsoft.com/en-us/projects/jsmeter/}}) that helps you to identify which objects have too many methods and which methods do too many things (or have too many arguments). Relying on metrics such as lines of code is of course not always appropriate due to different coding styles, but at least it provides an overall picture \cite{Kratko}.
 
 \subsection{Build tools}
-\label{sec:build}
+\label{subsec:build}
 
 There exists some general build tools that can be used for any programming language, these are often installed on build servers and integrated with version control systems. Examples include Jenkins, which is often configured and controlled through its web interface although it also has a CLI, and GNU Make, which is typically configured using makefiles and controlled through CLI. In addition to these, there are also language specific tools: Ruby has Rake, Java has Maven, Gradle and Ant, C\nolinebreak\hspace{-.05em}\raisebox{.3ex}{\scriptsize\bf \#} has MSBuild and NAnt.
 
-Naturally, there are build tools designed specifically for JS as well, Grunt\footnote{\url{http://gruntjs.com/}} being the most popular, which can be installed as a node.js package, has plugins for common tasks such as lint, testing and minification, and can be invoked through CLI. \cite[question~52]{Edelstam} Jake and Mimosa are other well known and maintained alternatives. It is also possible to use Rake, Ant or similar. Just as JsTestDriver and Mocha have adapters for Karma and Jasmine (see section~\ref{sec:frameworks}), Rake has evergreen\footnote{\url{https://github.com/jnicklas/evergreen}} that allows it to run Jasmine unit tests. \cite{BuildTools}\cite[question~6]{Ahnve}
+Naturally, there are build tools designed specifically for JS as well, Grunt\footnote{\url{http://gruntjs.com/}} being the most popular, which can be installed as a node.js package, has plugins for common tasks such as lint, testing and minification, and can be invoked through CLI. \cite[question~52]{Edelstam} Jake and Mimosa are other well known and maintained alternatives. It is also possible to use Rake, Ant or similar. Just as JsTestDriver and Mocha have adapters for Karma and Jasmine (see section~\ref{subsec:frameworks}), Rake has evergreen\footnote{\url{https://github.com/jnicklas/evergreen}} that allows it to run Jasmine unit tests. \cite{BuildTools}\cite[question~6]{Ahnve}
 
 \subsection{Setting up a test suite}
 
 Many people have never set up a testing framework in a project and thinks that it is a hard thing to do. It is typically not, unless you want to do something very special such as automatic test generation or integration with a service of some sort. However, it is worth giving careful thought on what combination of tools to use, to enable a pleasant workflow and ensuring that the tests can be written in a desirable style.
 
-Build programs (see section~\ref{sec:build}) and version control systems play an important role in automating testing.
+Build programs (see section~\ref{subsec:build}) and version control systems play an important role in automating testing.
 
 
 \section{Methods}
@@ -238,7 +238,7 @@ The interviews were performed in swedish to allow for a more fluent conversation
 The interviewees received questions beforehand via mail which most of them answered before the interview. This allowed the interviews to focus on the vital parts rather than personal background and opinions about JS. The questions that was sent out before the interviews were mainly about previous experience with JS and testing, frameworks, attitudes towards the language, difficulties with testing and opinions and observations on benefits of testing.
 
 \subsubsection{The Interviewees}
-\label{sec:interviewees}
+\label{ssubsec:interviewees}
 
 The first person I interviewed was Johannes Edelstam, an experienced Ruby and JS developer, organiser of the sthlm.js meet-up group, a helping hack, and a former employee of Valtech, now working at Tink. He has a positive attitude towards JS as a programming language and has extensive experience of test driven development.
 
@@ -274,7 +274,7 @@ This idea of generating tests has also been applied to SML and JS. \emph{A Frame
 
 QuickCheck and its SML counterpart QCheck are based on another principle than the framework presented in the paper just mentioned, they are specified in terms of properties that should hold rather than generated from the code itself or based on user interaction data. While avoiding the circularity of generating tests based on the code that should be tested, this approach instead suffers from the difficulty of identifying and expressing properties that should hold, and there is uncertainty in how well the properties are actually tested.
 
-\emph{Automated Acceptance Testing of JavaScript Web Applications} \cite{AutomatedAcceptance} describes a way to specify intended behaviour of a web application and use a web crawler to verify the expectations. It appears as a promising alternative to using Cucumber in conjunction with Selenium (see section~\ref{sec:browserautomation}), but more case studies are needed in order to evaluate its usefulness, applicability and scalability. %TODO describe Cucumber
+\emph{Automated Acceptance Testing of JavaScript Web Applications} \cite{AutomatedAcceptance} describes a way to specify intended behaviour of a web application and use a web crawler to verify the expectations. It appears as a promising alternative to using Cucumber in conjunction with Selenium (see section~\ref{subsec:browserautomation}), but more case studies are needed in order to evaluate its usefulness, applicability and scalability. %TODO describe Cucumber
 
 Sebastien Salva and Patrice Laurencot has described how STS automata can be applied to describe asynchronous JS applications and generate test cases \cite{AutomatedAjax}.
 
@@ -311,7 +311,7 @@ Adding tests for code that was written without testing in mind is challenging \c
 tools and testability
 
 \subsection{Testability issues with main.js in asteroids application}
-\label{sec:asteroids}
+\label{subsec:asteroids}
 
 Despite partitioning the code of the asteroids application in a modular fashion, the problem of the canvas element not being available in the unit testing environment was not mitigated. The main.js file contained around 200 lines of code that could not be executed by tests without further refactoring since they were executed in a jQuery context (i.e. using \verbdef{\jquerycontext}{\$(function ()}\jquerycontext...) that included the selector \verbdef{\selector}{$("#canvas")}\selector. Efforts to load this code using ajax were of no gain, so the solution was instead to expose the contents of the context as a separate class and inject the canvas and other dependencies into that class. This required turning many local variables into attributes of the class to make them accessible from main.js such as the 2d-context.
 
@@ -324,7 +324,7 @@ As a consequence of being unable to extract all code from main.js into testable 
 One has to be careful when adding code to beforeEach, setUp and similar constructs in testing frameworks. If it fails the result is unpredictable. At least when using Jasmine with JsTestDriver, not all tests fail even when the beforeEach causes failure, and subsequent test runs may produce false negatives even though the problem has been fixed. This is likely due to optimisations in the test driver and is especially apparent when the system under test is divided into multiple files and contain globally defined objects (rather than constructors). In this case, game.js contains such a globally defined object and its tests commonly fails after some other test has failed, even after passing the other test. Restarting the test driver and emptying the cache in the captured browser usually solves this problem, but is time demanding.
 
 \subsection{JsTestDriver evaluation}
-\label{sec:jstestdriver}
+\label{subsec:jstestdriver}
 
 When resuming from sleep on a mac the server needs to be stopped and the browsers need to be manually re-captured to the server, or else the driver hangs when trying to run the tests. This is both annoying and time consuming. However, the problem is not present on a windows machine (and it might not be reproducible on all mac machines either). In the interview with Johannes Edelstam, he agreed that this is one example of something that deters people from testing \cite{Edelstam}.
 
@@ -380,7 +380,7 @@ To detect improper stubbing, I ran each test isolated with just the file it was 
 
 Testing is especially important for large applications. It is extra valuable when new functionality is added because it helps to verify that old functionality is not broken and that the new code is structured appropriately. \cite[questions~6-7]{Stenmark}
 
-You should focus on testing behaviour rather than appearance and implementation details. \cite[question~10]{Edelstam} Rather than testing that a certain class inherits from another, test that the methods of that class behaves as one would expect. Whether or not that is dependent on the inheritance patterns is mainly relevant for stubbing considerations - you may want to replace the prototype of an object in tests so that you can check that there are no unexpected dependencies. These are lessons learnt from working with the asteroids application, see section \ref{sec:asteroids}. 
+You should focus on testing behaviour rather than appearance and implementation details. \cite[question~10]{Edelstam} Rather than testing that a certain class inherits from another, test that the methods of that class behaves as one would expect. Whether or not that is dependent on the inheritance patterns is mainly relevant for stubbing considerations - you may want to replace the prototype of an object in tests so that you can check that there are no unexpected dependencies. These are lessons learnt from working with the asteroids application, see section \ref{subsec:asteroids}. 
 
 Another thing that came up during the interview with Edelstam was that when something feels like it is hard to test, it is likely that any test you write will become rather brittle as the code changes in the future. The proposed solution was to avoid testing it unless the code can be refactored so that testing becomes easier. \cite[question~30]{Edelstam} When writing the tests for the asteroids application, I deliberately chose to write tests even when it felt hard or felt like it provided little value, to see whether this made the application harder to test later and if people would remove the bad tests during the workshop.
 
@@ -391,7 +391,7 @@ Naturally, the more important a certain functionality is in relation to business
 In the end, when deciding what tests to write, one of the most important things are to make sure that the tests are meaningful. They should in some way be connected to the problem that the system solves and describe something that matters rather than just testing methods for the sake of it. \cite[questions~17-18]{Ahnve}
 
 \subsection{Meet-up open space discussion}
-\label{sec:openspace}
+\label{subsec:openspace}
 
 During a talk at a meet-up on python APIs (2013-05-22 at Tictail's office, an e-commerce startup based in Stockholm), the speaker mentioned that their application depended heavily on JS. It turned out that they had done some testing efforts but without any lasting results. During the open space after the talks, testing became a discussion subject in a group consisting of one of the developers of the application, among others. The developer explained that they had been unable to unit test their JS because the functionality was so tightly coupled that the only observable output that they could possibly test was the appearance of the web page, via Selenium tests. He sought reassurance that they had done the right thing when deciding not to base their testing on Selenium due to instability (tests failing for the wrong reasons) and time required to run the tests. He also sought answers to how they should have proceeded.
 
@@ -453,19 +453,19 @@ Model based (FSM)
 Different people have different opinions about testing: how it should be done, when it pays off and how exciting it is. Some see testing as a tool that helps to provide structure and improve the design of code, whereas others see it as a way to detect bugs and prevent others from braking the code. Most people agree that testing is hard, but many struggle to do it anyway. Attitudes towards testing are essential to whether or not it is carried out or not, and to how worthwhile it turns out to be in the end.
 
 \subsection{State of events}
-\label{sec:stateofevents}
+\label{subsec:stateofevents}
 
-It's possible that the overall quality of JS code has improved over the last few years, partly as a consequence of testing methodologies entering the JS community. One might argue that the new application frameworks has brought not only new capabilities (as mentioned in section~\ref{sec:frameworks}) but also brought people with background from backend-programming with tests, experienced with for example Ruby on Rails development, to JS. In fact, most of the new frameworks have been developed by people with such background. This has influenced the way JS code is written and given birth to a novel testing culture. \cite[questions~12-15]{Ahnve}
+It's possible that the overall quality of JS code has improved over the last few years, partly as a consequence of testing methodologies entering the JS community. One might argue that the new application frameworks has brought not only new capabilities (as mentioned in section~\ref{subsec:frameworks}) but also brought people with background from backend-programming with tests, experienced with for example Ruby on Rails development, to JS. In fact, most of the new frameworks have been developed by people with such background. This has influenced the way JS code is written and given birth to a novel testing culture. \cite[questions~12-15]{Ahnve}
 
 \subsection{Individual Motivation and Concerns}
-\label{sec:motivationconcerns}
+\label{subsec:motivationconcerns}
 
 What defines successful testing is not which tools are used, the degree of coverage that is achieved or how strictly a certain set of principles or methodologies are followed. Successful testing is defined by how easy it is to make changes, find errors and understand the code. In order to get there, developers must feel that testing is meaningful and that they are allowed to spend time on testing as part of their professional tasks.
 
 Some think that as long as the code works, testing is unnecessary \cite[question~13]{Ahnve}. Perhaps this is true for these people, testing is not for everyone, there are programmers out there that do not test their code but still manage to produce brilliant software. In most cases however, if not always, testing leads to better maintainability. \cite[question~33]{Ahnve}
 
 \subsection{Project risks}
-\label{sec:projectrisks}
+\label{subsec:projectrisks}
 
 Different projects have different fault tolerance. Sometimes a single bug can cause loss of millions of dollars, whereas in other projects the economic impact can be relatively small. The risk with untested JS is especially high when the code supports business critical operations. For instance, there have been several cases of banks and finance systems being fined for not reporting transactions to the government \cite{Bug1} or giving faulty advice to investors \cite{Bug2} due to application failure. A web-shop may lose orders and any website that is perceived as broken can harm trademarks associated with it and change people's attitudes for the worse.
 
@@ -483,7 +483,7 @@ Rather than proposing best practices for JS testing, the reader should be made a
 Considering all the different options in available frameworks, one is easily deceived into believing that the main reason why people don't test their JS is because they are lazy or uninformed. This is not necessarily true, there are respectable obstacles for doing TDD both in the process of fitting the frameworks into your application and in writing the JS code in a testable way.
 
 \subsection{JsTestDriver and Jasmine integration problems}
-\label{sec:jstestdriverintegration}
+\label{subsec:jstestdriverintegration}
 
 When setting up JsTestDriver\footnote{\url{https://code.google.com/p/js-test-driver/}} (JSTD) with the Jasmine adapter there are pitfalls in which version you're using. At the time of writing, the latest version of the Jasmine JSTD adapter (1.1) is not compatible with the latest version of Jasmine (1.3.1), so in order to use it you need to find an older version of Jasmine (such as 1.0.1 or 1.1.0) or figure out how to modify the adapter to make it compatible. Moreover, the latest version of JSTD (1.3.5) does not support relative paths to parent folders when referencing script files in jsTestDriver.conf although a few older versions do (such as 1.3.3d), which is a problem if you want to place the test driver separate from the system under test rather than in a parent folder, or if you want to reference another framework such as Jasmine if it is placed in another directory.
 
@@ -500,7 +500,7 @@ There is a serious risk involved in refactoring untested code\cite[p.~17]{Refact
 If refactoring is required in order to make the code testable, the architecture likely needs to change. Sometimes introducing a new object or changing how some dependency is handled is all that is needed. The important thing is to not continue in a direction that will cause the codebase to deteriorate over time. \cite[question~34]{Stenmark} If a lot of work goes into mocking dependencies then the tests take longer to write, require more maintenance and the need for integration tests increases. The proper remedy is usually not to reduce the isolation of the unit tests but to refactor the architecture so that each unit becomes easier to isolate. \cite[question~42]{Stenmark}
 
 \subsection{AngularJS, Jasmine and Karma}
-\label{sec:angularjasminekarma}
+\label{subsec:angularjasminekarma}
 
 The AngularJS framework uses Jasmine and Karma in the official tutorial.
 
@@ -511,16 +511,16 @@ The AngularJS framework uses Jasmine and Karma in the official tutorial.
 This is likely a large contributing factor for increasing the probability of Angular developers testing their JS.
 
 \subsection{The frameworks}
-\label{sec:frameworks}
+\label{subsec:frameworks}
 
 Programming languages in use today typically have frameworks to help with standard structure and other generic problems. JS is certainly no exception, the number of web application frameworks that focus on JS has increased a lot during the last few years alone.
 
 A full evaluation of the most popular MVC and testing frameworks is not within the scope of this thesis, but others have done it \cite{JackFranklin}\cite{SebastianPorto}. Popular JS testing frameworks include assertion frameworks such as Jasmine, qUnit, expect.js and chai, and drivers/test runners such as Mocha, JsTestDriver, Karma and Chutzpah\footnote{\url{http://chutzpah.codeplex.com/}} which may have their own assertion framework built in but are typically easy to integrate with other assertion frameworks using adapters or via built-in support.
 
 \subsection{High quality tests}
-\label{sec:quality}
+\label{subsec:quality}
 
-As mentioned in section~\ref{sec:motivation}, tests should be maintainable and test the right thing. Otherwise, responding to changes is harder, and the tests will tend to cause frustration among the developers instead of detecting bugs and driving the understanding and development of the software \cite{Clean}.
+As mentioned in section~\ref{subsec:motivation}, tests should be maintainable and test the right thing. Otherwise, responding to changes is harder, and the tests will tend to cause frustration among the developers instead of detecting bugs and driving the understanding and development of the software \cite{Clean}.
 
 The criteria for maintainability in this context are that the tests should have low complexity (typically short test methods without any control flow), consist of readable code, use informative variable names, have reasonably low level of repeated code (this can be accomplished through using Test Utility Methods \cite[599]{TestPatterns}), be independent of implementations and have meaningful comments (if any). Structuring the code according to a testing pattern such as the Arrange-Act-Assert \cite{C2} and writing the code so that it reads like sentences will help in making the code more readable, in essence by honouring the communicate intent principle \cite[p.~41]{TestPatterns}.
 
@@ -580,7 +580,7 @@ Introducing versioning for private APIs is not always feasible, for at least two
 Testing a private API is not the same thing as testing a private method. In JS there is formally no private methods, only functions not exposed to the current scope, nevertheless methods that are not intended to be called from the outside can be considered private. It is a common principle that you do not test a private method, if you feel the need to, then that method is probably too complex to be private and the functionality that it is meant to provide should be moved into a new object or similar. Private methods represent implementation details, tests should be focused on behaviour and functionality, not implementation. \cite[questions~62-63]{Edelstam}
 
 \subsection{Culture, Collaboration and Consensus}
-\label{sec:ccc}
+\label{subsec:ccc}
 
 Testing is not about eliminating the risk of bugs or ensuring that every line of code is executed exactly the way it was originally meant to be executed. In order to better understand the main benefits of testing, it is recommended to read books such as Clean Code, and to work together with experienced programmers and testers. Without this understanding there is a risk of frustration, inability to decide which tools to use and difficulties in motivating choices related to testing. Collaboration problems may occur when members of a team have different opinions about the purpose of testing. \cite[question~38]{Edelstam}
 
@@ -589,9 +589,9 @@ To get as much benefit as possible from testing, every developer should be invol
 The attitude towards and experience with testing varies heavily, so as a developer you can be forced to not test as much as you would otherwise want to, in order to avoid frustration and dips in productivity by testing other people's code. You should advocate methods that you believe in, especially in the beginning of a new project, but in the end adjusting to the culture is also essential since most benefits of testing appear only after a long term commitment by the whole team. \cite[questions~31-32]{Stenmark}
 
 \subsection{Frameworks and tools}
-\label{sec:tools}
+\label{subsec:tools}
 
-There are a number of BDD frameworks available that are meant to bring testing closer to the specification and story work, as proposed in section~\ref{sec:ccc}. They aim to mimic the way stories are written to create a ubiquitous natural language that can be understood by both programmers and non-programmers. The way this is done is by building sentences with a Given, Then, When (GTW) form. Cucumber\footnote{\url{http://cukes.info/}} is a popular framework that was designed for this in the Ruby programming language and there is a JS version called Cucumber.js\footnote{\url{https://github.com/cucumber/cucumber-js}}.
+There are a number of BDD frameworks available that are meant to bring testing closer to the specification and story work, as proposed in section~\ref{subsec:ccc}. They aim to mimic the way stories are written to create a ubiquitous natural language that can be understood by both programmers and non-programmers. The way this is done is by building sentences with a Given, Then, When (GTW) form. Cucumber\footnote{\url{http://cukes.info/}} is a popular framework that was designed for this in the Ruby programming language and there is a JS version called Cucumber.js\footnote{\url{https://github.com/cucumber/cucumber-js}}.
 Yadda,\footnote{\url{https://github.com/acuminous/yadda}}
 Kyuri,\footnote{\url{https://github.com/nodejitsu/kyuri}}
 Cucumis\footnote{\url{https://github.com/noblesamurai/cucumis}} and
@@ -606,12 +606,12 @@ Using a suitable application framework and doing test driven development can be 
 
 \subsection{Testability and Selenium}
 
-As mentioned in section~\ref{sec:browserautomation}, Selenium is currently the most popular tool for browser automation. Sometimes it is the only way to test the JS of an application without rewriting the code\cite[question~43]{Stenmark} (as mentioned in section\ref{sec:openspace}) but then tests tend to be brittle and provide little value. In general, since Selenium tests take such time to run they should only cover the most basic functionality in a smoke test fashion. \cite[questions~16-17]{Stenmark}\cite[question~21]{Ahnve} Testing all possible interaction sequences is rarely feasible and should primarily be considered if it can be done fast, such as in a single page application (SPA) where sequences can be tested without reloading the page. \cite[question~44]{Edelstam}
+As mentioned in section~\ref{subsec:browserautomation}, Selenium is currently the most popular tool for browser automation. Sometimes it is the only way to test the JS of an application without rewriting the code\cite[question~43]{Stenmark} (as mentioned in section\ref{subsec:openspace}) but then tests tend to be brittle and provide little value. In general, since Selenium tests take such time to run they should only cover the most basic functionality in a smoke test fashion. \cite[questions~16-17]{Stenmark}\cite[question~21]{Ahnve} Testing all possible interaction sequences is rarely feasible and should primarily be considered if it can be done fast, such as in a single page application (SPA) where sequences can be tested without reloading the page. \cite[question~44]{Edelstam}
 
-With Selenium IDE (see section~\ref{sec:browserautomation}), there is a possibility of recording a certain interaction and generate code for it. This could potentially be used to reproduce bugs by letting the user that encountered the bug record the actions that led to it, and communicate with a developer so that proper assertions are added at the end of the sequence. This has some interesting implications, but experience shows that it is hard to do it in practice since it requires the users to be trained in how to use the plugin and to invest extra time whenever an error occurs. \cite[questions~42-43]{Edelstam}
+With Selenium IDE (again, see section~\ref{subsec:browserautomation}), there is a possibility of recording a certain interaction and generate code for it. This could potentially be used to reproduce bugs by letting the user that encountered the bug record the actions that led to it, and communicate with a developer so that proper assertions are added at the end of the sequence. This has some interesting implications, but experience shows that it is hard to do it in practice since it requires the users to be trained in how to use the plugin and to invest extra time whenever an error occurs. \cite[questions~42-43]{Edelstam}
 
 \subsection{Patterns, Examples and Documentation}
-\label{sec:patternsexamples}
+\label{subsec:patternsexamples}
 
 In guides on how to use different JS testing frameworks, examples are often decoupled from the typical use of JS -- the Web. They tend to merely illustrate testing of functions without side effects and dependencies. Under these circumstances, the testing is trivial and most JS programmers would certainly be able to put up a test environment for such simple code.
 
@@ -641,7 +641,7 @@ In order to understand the problems with testability that can be seen in JS appl
 
 \subsection{Time required to run tests}
 
-Tests that depend on the DOM (see section \ref{sec:dom}) tend to be relatively slow, so it would be impractical to have hundreds of unit tests with DOM manipulation if you want to be able to run them often \cite[questions~21-22]{Stenmark}. Selenium tests are also known to be slow, the same principle applies there. Only running tests that are connected with changes that have been made is one way to get around this, there is support for this in many testing tools. An alternative is to separate the fast tests from the slow, and configure Autotest\footnote{\url{http://autotest.github.io/}} or some tool based on Guard\footnote{\url{https://github.com/guard/guard/}} such as guard-jasmine\footnote{\url{https://github.com/netzpirat/guard-jasmine/}} to run the fast tests each time a file changes, and only run the slow tests before sending the code to a central source control repository or deploying the application.
+Tests that depend on the DOM (see section \ref{subsec:dom}) tend to be relatively slow, so it would be impractical to have hundreds of unit tests with DOM manipulation if you want to be able to run them often \cite[questions~21-22]{Stenmark}. Selenium tests are also known to be slow, the same principle applies there. Only running tests that are connected with changes that have been made is one way to get around this, there is support for this in many testing tools. An alternative is to separate the fast tests from the slow, and configure Autotest\footnote{\url{http://autotest.github.io/}} or some tool based on Guard\footnote{\url{https://github.com/guard/guard/}} such as guard-jasmine\footnote{\url{https://github.com/netzpirat/guard-jasmine/}} to run the fast tests each time a file changes, and only run the slow tests before sending the code to a central source control repository or deploying the application.
 
 \subsection{High quality tests}
 \label{HighQuality}
