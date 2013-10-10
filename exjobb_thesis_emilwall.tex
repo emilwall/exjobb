@@ -445,6 +445,12 @@ You typically need to test for both type I and type II errors (false positives a
 
 I have a real life example of a false positive in form validation. This year when I was about to buy a domain name, my personal number was interpreted wrongly so that I got an error message saying that I was not old enough. I reported the bug on twitter and it was quickly fixed so that I could finish my registration, but I imagine most people would have chosen another provider instead. Had there been proper testing of the form validation, this would probably have been detected at an earlier stage, without losing potential customers. \cite{TwitterMe}
 
+So how to do this? You can of course use Selenium, to enter form data and submit and then check that the proper validation error was printed out at the right location. The problem with this is that if you have many validations that you need to test, these tests take a lot of time.
+
+Depending on which framework you're using, you might have different options. If you are specifying the validation using regular expressions, hopefully you are able to expose these for isolated testing so that you can avoid testing all the validation in slow integration tests. These are still valuable, for instance to detect if there are any runtime errors or similar for the actual validation, but for complex validation such as testing which strings match a certain regular expression, you are typically better off with fast unit tests.
+
+A common case is that you are using another programming language than JS for the back-end, and you specify the validation rules in that language and let a jquery plugin generate validations for the front-end. Here you can hopefully put regular expressions and the like as publicly available variables and access them directly in tests, whereas the plugin will have to be tested seperately, using perhaps a single test that just checks for existence of validation.
+
 \subsection{(JS,ML0)GUI testing}
 
 A graphical User Interface (GUI) can consist of many components and provide a large number of possible interactions. The GUI is usually the top layer of an application and is therefore a common target for both integration testing and manual testing, but it can also be unit tested.
