@@ -404,19 +404,19 @@ During my work on this thesis, I have explained to numerous people what it is th
 One not so uncommon response is that testing of JS probably is so uncommon because people programming in JS often have a background as web graphic designers, without that much experience of automated testing. Another common conception is that JS in practise is usually not testable because it has too much to do with the front-end parts of an application, so tests are inevitably slow, unmaintainable and/or unreliable because of the environment they have to run in.
 
 
-\section{(,)Problems in testing}
+\section{(JS,ML0)Problems in JavaScript testing}
 
-\subsection{(,)Asynchronous events}
+\subsection{(JS,ML0)Asynchronous events}
 
 JS is often loaded asynchronously in browsers to improve performance in page loads and minimise interference with the display of the page. Asynchronous events are also commonly used, e.g. AJAX calls. Testing asynchronous events can be hard because the order in which things happen is not predetermined, so the number of possible states can be very large, thus demanding many convoluted tests to cover all the relevant cases. It can also be hard to know if the asynchronous code has finished execution or not, leading to assertions being executed at the wrong time.
 
 Two basic approaches to testing asynchronous code are to force the execution into a certain path by faking the asynchrony, and to set up waiting conditions for when assertions should be executed. When forcing the execution path, the code is not executed asynchronously but you can test different scenarios and thereby get a good feel of how the code will behave when run asynchronously. When using waiting conditions, timeouts need to be set for when tests should fail if waiting conditions are not met.
 
-\subsection{(,)DOM manipulation}
+\subsection{(JS,ML0)DOM manipulation}
 
 A key to successful testing of JS with DOM manipulation is to separate the logic from the DOM manipulation as much as possible. One technique that was presented at the XP conference in Trondheim 2010\footnote{Agile Processes in Software Engineering and Extreme Programming 11th International Conference, XP 2010, Trondheim, Norway, June 1-4, 2010, Proceedings} was to define a view layer of jQuery-related and similar code, and update the view as a separate task in the business logic. This allows for test driven development to be carried out much more effortlessly than if the logic is tightly coupled with the DOM manipulation. \cite[question~4]{Ahnve}
 
-\subsection{(,)Form validation}
+\subsection{(JS,ML0)Form validation}
 
 Validation of forms are commonly done both server and client side so that users do not have to wait for requests to be sent to and returned from a server in order to validate input, while maintaining the security that server side validation offers. Preferably, these validations are automatically kept in sync by frameworks and ideally it should be enough to test the server side validation, but that is sometimes just as hard and to be sure you should test both.
 
@@ -424,30 +424,37 @@ You typically need to test for both type I and type II errors (false positives a
 
 I have a real life example of a false positive in form validation. This year when I was about to buy a domain name, my personal number was interpreted wrongly so that I got an error message saying that I was not old enough. I reported the bug on twitter and it was quickly fixed so that I could finish my registration, but I imagine most people would have chosen another provider instead. Had there been proper testing of the form validation, this would probably have been detected at an earlier stage, without losing potential customers. \cite{TwitterMe}
 
-\subsection{(,)GUI testing}
+\subsection{(JS,ML0)GUI testing}
 
 A graphical User Interface (GUI) can consist of many components and provide a large number of possible interactions. The GUI is usually the top layer of an application and is therefore a common target for both integration testing and manual testing, but it can also be unit tested.
 
 It is not all too uncommon to hear that you should never test visual components of an application such as the GUI. Marcus Ahnve questioned this in his interview, it depends on the application and how important the GUI is. In web applications the GUI and sequences in it are commonly more complex than the logic underneath, so testing the GUI makes more sense than in a typical application in the finance sector where backend logic tends to be far more important. \cite[question~21]{Ahnve}
 
-\subsubsection{(,)Web vs desktop}
+\subsubsection{(JS,ML0)Web vs desktop}
 
-\subsubsection{(,)Size and sequencing problems in GUI testing}
+\subsubsection{(JS,ML0)Size and sequencing problems in GUI testing}
 
-\subsubsection{(,)Regression testing of GUI}
+\subsubsection{(JS,ML0)Regression testing of GUI}
 
-\subsubsection{(,)Automation of GUI testing}
+\subsubsection{(JS,ML0)Automation of GUI testing}
 
-Automation vs TDD (???)
+Automatically generated tests vs TDD
 
 Record and replay
 
 Model based (FSM)
 
-\subsection{(,)Private APIs}
+\subsection{(JS,)Private APIs}
 
 
-\section{(,)Testing culture}
+\section{(JS0,ML)Problems in testing of Standard ML}
+
+Frameworks are few and hard to use
+
+DescribeSML
+
+
+\section{(JS,ML)Testing culture}
 \label{sec:testingculture}
 
 Different people have different opinions about testing: how it should be done, when it pays off and how exciting it is. Some see testing as a tool that helps to provide structure and improve the design of code, whereas others see it as a way to detect bugs and prevent others from braking the code. Most people agree that testing is hard, but many struggle to do it anyway. Attitudes towards testing are essential to whether or not it is carried out or not, and to how worthwhile it turns out to be in the end.
