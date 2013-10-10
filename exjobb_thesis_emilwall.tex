@@ -412,6 +412,23 @@ JS is often loaded asynchronously in browsers to improve performance in page loa
 
 Two basic approaches to testing asynchronous code are to force the execution into a certain path by faking the asynchrony, and to set up waiting conditions for when assertions should be executed. When forcing the execution path, the code is not executed asynchronously but you can test different scenarios and thereby get a good feel of how the code will behave when run asynchronously. When using waiting conditions, timeouts need to be set for when tests should fail if waiting conditions are not met.
 
+Both Mocha and Jasmine supports waiting conditions, with some differences in syntax and how it works.
+
+A common concern is that the large number of possible combinations in which asynchronous code can be executed leads to a combinatorial explosion. This is true, but it is also true that if there are few dependencies between the asynchronous code and if they do not share resources, few things can go wrong.
+
+Erlang message passing is also asynchronous, so how do they test their code? It has been used in system with high demands on stability, so there is probably a large culture for testing.
+
+Blog posts (these should be in the bibliography and perhaps mentioned under previous work):
+http://lostechies.com/derickbailey/2012/08/18/jasmine-async-making-asynchronous-testing-with-jasmine-suck-less/
+
+http://lostechies.com/derickbailey/2012/08/17/asynchronous-unit-tests-with-mocha-promises-and-winjs/
+
+http://www.htmlgoodies.com/beyond/javascript/test-asynchronous-methods-using-the-jasmine-runs-and-waitfor-methods.html#fbid=eILq_Eu-N_I
+
+http://www.htmlgoodies.com/beyond/javascript/how-mocha-makes-testing-asynchronous-javascript-processes-fun.html
+
+http://blog.caplin.com/2012/01/17/testing-asynchronous-javascript-with-jasmine/
+
 \subsection{(JS,ML0)DOM manipulation}
 
 A key to successful testing of JS with DOM manipulation is to separate the logic from the DOM manipulation as much as possible. One technique that was presented at the XP conference in Trondheim 2010\footnote{Agile Processes in Software Engineering and Extreme Programming 11th International Conference, XP 2010, Trondheim, Norway, June 1-4, 2010, Proceedings} was to define a view layer of jQuery-related and similar code, and update the view as a separate task in the business logic. This allows for test driven development to be carried out much more effortlessly than if the logic is tightly coupled with the DOM manipulation. \cite[question~4]{Ahnve}
