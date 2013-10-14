@@ -96,7 +96,7 @@ stupid\footnote{\url{https://github.com/teebrz/stupid}}. The smlsharp version of
 
 In section \ref{subsec:patternsexamples}, it is mentioned that examples are often simple and seldom provide a full picture. In contrast, the problem domain of this thesis is to focus on how to test the behaviour of JS that manipulates DOM elements (see \ref{subsec:dom}), fetches data using asynchronous calls, validates forms, communicates through APIs or manipulates the appearance of a web page. We also look at when and why you should test your JS.
 
-\section{(,)Description of Work}
+\section{(,)Scope and Delimitations}
 
 Researching today's limited testing of JS may be done from a multiple different points of view. There are soft aspects such as:
 \begin{itemize}[label={--}]
@@ -113,6 +113,14 @@ There are also more technical aspects:
 \item Limitations in what can be tested
 \item Complexity in setting up the test environment; installing frameworks, configuring build server, exposing functions to testing but not to users in production, etc.
 \end{itemize}
+
+The scope of this thesis was to look mainly at \emph{automated} testing of SML and \emph{client side} JS. This meant that the impact of frameworks specialised for server side code such as vows\footnote{\url{http://vowsjs.org/}} and cucumis\footnote{\url{https://github.com/noblesamurai/cucumis}} was not considered. Testing client side code is by no means more important than server side, but in many aspects it is different and sometimes harder.
+
+JS testing frameworks that are no longer maintained such as JsUnit\footnote{\url{https://github.com/pivotal/jsunit}} and JSpec\footnote{\url{https://github.com/liblime/jspec}} was deliberately left out of consideration. Others were left out because of a smaller user base or lack of unique functionality; among these we find TestSwarm, YUI Yeti and RhinoUnit. These are useful tools but since they are so many it would not have been realistic to include them all.
+
+The choice of looking at SML and JS specifically was based on that they both have problems with testing culture, but for different reasons. During preliminary studies, many people seemed concerned about how to test JS, so looking into it seemed like a good idea. The main reason to also look at testing of SML was that there was previously no BDD framework available for it, and that it is a functional language just like JS, but typically used differently.
+
+Manual testing was not covered to any significant extent, since there were enough issues to deal with in automated testing. Naturally, there are many situations where manual testing is required, but in this thesis \emph{testing} typically refers to automated testing.
 
 \subsection{(,)Consequences of JavaScript testing}
 
@@ -254,11 +262,9 @@ The last interview was with Henrik Ekelöf, a front-end developer that has seven
 
 As can be seen at the end of the Appendix, there were some email conversations with people that was not interviewed as well. Among those are: Fredrik Wendt, who is a senior developer and consultant at Squeed specialising in team coaching with coding dojos, TDD and agile methodologies. David Waller, teacher at Linnéuniversitetet in a course about Rich Internet Applications with JavaScript. Marcus Bendtsen, teacher at Linköpings Universitet in a course about Web Programming and Interactivity.
 
-\section{(,)Scope}
+\section{(,)Previous work}
 
-\subsection{(,)Previous work}
-
-\subsubsection{(,)Books}
+\subsection{(,)Books}
 
 The main source of reference within the field of JS testing today is \emph{Test-Driven JavaScript Development} \cite{Tddjs} by Christian Johansen which deals with JS testing from a TDD perspective. Johansen is the creator of Sinon.JS\footnote{\url{http://sinonjs.org/}} and a contributor to a number of testing frameworks hosted in the open source community.
 
@@ -266,7 +272,7 @@ Lately, a large number of books about JS testing has appeared. \emph{JavaScript 
 
 Except for discussions on how to perform mathematical proofs and equality tests of polymorphic types, there are no books that cover testing of SML. The main sources of reference for SML is \emph{The Definition of Standard ML} \cite{DefinitionStandardML} which cover the language syntax and semantics, \emph{The Standard ML Basis Manual} \cite{BasisManual} which describes the standard library, \emph{Elements of ML Programming} which \cite{ElementsML} which cover the features of SML in a more comprehensible fashion, \emph{ML for the Working Programmer} \cite{WorkingProgrammer} which is somewhat outdated but comprehensive, and various lecture notes \cite{ProgSml97}\cite{ProgSmlHarper}\cite{FunctionalML}\cite{NotesSMLNJ}. None of these describe ways of doing automated testing and there seems to be an attitude against testing based on that it can not prove absence of errors in the way formal verification can \cite[p.~16]{ProgSmlHarper}.
 
-\subsubsection{(,)Articles}
+\subsection{(,)Articles}
 
 There are many academic papers about testing web applications available, and quite a few of them focus on JS specifically (whereas practically none involve SML). Papers on testing of SML are hard to find even outside of the web applications context, most that are of any interest are concerned with formal verification or related to the QuickCheck tool which can be used to generate tests for Haskell code, using SML as an intermediate language.
 
@@ -281,16 +287,6 @@ Sebastien Salva and Patrice Laurencot has described how STS automata can be appl
 Heidegger et al. cover unit testing of JS that manipulates the DOM of a web page using techniques from software transactional memory (STM) to restore test fixtures \cite{DOMJavascript}. Ocariza et al. have investigated frequency of bugs in live web pages and applications \cite{Wild}. These are both aimed at testing client side JS that runs as part of web sites.
 
 Phillip Heidegger and Peter Thiemann has addressed the issue of type related errors in JS by introducing JSConTest, a contract framework that enables guided random testing by specifying types and relations of the arguments and return value of functions \cite{ContractTesting}.
-
-\subsection{(,)Delimitations}
-
-The scope of this thesis was to look mainly at \emph{automated} testing of SML and \emph{client side} JS. This meant that the impact of frameworks specialised for server side code such as vows\footnote{\url{http://vowsjs.org/}} and cucumis\footnote{\url{https://github.com/noblesamurai/cucumis}} was not considered. Testing client side code is by no means more important than server side, but in many aspects it is different and sometimes harder.
-
-JS testing frameworks that are no longer maintained such as JsUnit\footnote{\url{https://github.com/pivotal/jsunit}} and JSpec\footnote{\url{https://github.com/liblime/jspec}} was deliberately left out of consideration. Others were left out because of a smaller user base or lack of unique functionality; among these we find TestSwarm, YUI Yeti and RhinoUnit. These are useful tools but since they are so many it would not have been realistic to include them all.
-
-The choice of looking at SML and JS specifically was based on that they both have problems with testing culture, but for different reasons. During preliminary studies, many people seemed concerned about how to test JS, so looking into it seemed like a good idea. The main reason to also look at testing of SML was that there was previously no BDD framework available for it, and that it is a functional language just like JS, but typically used differently.
-
-Manual testing was not covered to any significant extent, since there were enough issues to deal with in automated testing. Naturally, there are many situations where manual testing is required, but in this thesis \emph{testing} typically refers to automated testing.
 
 
 \section{(,)Testability -- Real world experiences}
