@@ -17,3 +17,8 @@
 *.exe
 *.jar
 *.DS_Store
+*.rtf
+*.ppt
+*.jpg
+*.jpeg
+*.doc
