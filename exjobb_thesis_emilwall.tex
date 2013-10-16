@@ -96,11 +96,11 @@ stupid\footnote{\url{https://github.com/teebrz/stupid}}. The smlsharp version of
 
 In section \ref{subsec:patternsexamples}, it is mentioned that examples are often simple and seldom provide a full picture. In contrast, the problem domain of this thesis is to focus on how to test the behaviour of JS that manipulates DOM elements (see \ref{subsec:dom}), fetches data using asynchronous calls, validates forms, communicates through APIs or manipulates the appearance of a web page. We also look at when and why you should test your JS.
 
-\section{(,)Scope and Delimitations}
+\section{(ML1,JS1)Scope and Delimitations}
 
-Researching today's limited testing of JS may be done from a multiple different points of view. There are soft aspects such as:
+Since SML has a smaller user base than JS, much of the research has been focused on JS. Researching today's limited testing of JS may be done from a multiple different points of view. There are soft aspects such as:
 \begin{itemize}[label={--}]
-\item Differences in attitudes towards testing between different communities and professional groupsm and nowledge about testing among JS developers (section~\ref{sec:testingculture})
+\item Differences in attitudes towards testing between different communities and professional groups and knowledge about testing among JS developers (section~\ref{sec:testingculture})
 \item How JS is typically conceived as a language and how it is used (section~\ref{ssubsec:interviewees})
 \item Economic viability and risk awareness (section~\ref{subsec:projectrisks})
 \end{itemize}
@@ -114,7 +114,7 @@ There are also more technical aspects:
 \item Complexity in setting up the test environment; installing frameworks, configuring build server, exposing functions to testing but not to users in production, etc.
 \end{itemize}
 
-The scope of this thesis was to look mainly at \emph{automated} testing of SML and \emph{client side} JS. This meant that the impact of frameworks specialised for server side code such as vows\footnote{\url{http://vowsjs.org/}} and cucumis\footnote{\url{https://github.com/noblesamurai/cucumis}} was not considered. Testing client side code is by no means more important than server side, but in many aspects it is different and sometimes harder.
+The scope of this thesis was to look mainly at \emph{automated} testing of SML and \emph{client side} JS. This meant that the impact of frameworks specialised for server side JS code such as vows\footnote{\url{http://vowsjs.org/}} and cucumis\footnote{\url{https://github.com/noblesamurai/cucumis}} was not considered. Testing client side code is by no means more important than server side, but in many aspects it is different and sometimes harder.
 
 JS testing frameworks that are no longer maintained such as JsUnit\footnote{\url{https://github.com/pivotal/jsunit}} and JSpec\footnote{\url{https://github.com/liblime/jspec}} was deliberately left out of consideration. Others were left out because of a smaller user base or lack of unique functionality; among these we find TestSwarm, YUI Yeti and RhinoUnit. These are useful tools but since they are so many it would not have been realistic to include them all.
 
