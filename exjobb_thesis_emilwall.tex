@@ -41,7 +41,7 @@
 %\include{frontpages}
 \tableofcontents % Remove when uncommenting line above
 
-\section{(,)Introduction}
+\section{(ML1,JS1)Introduction}
 
 Imagine the following scenario: You have been working for many months on a medium size web application project, with demanding technical challenges, using a framework that was previously unknown to you and with constantly changing requirements. People have come and gone from your team and there are parts of the code that no one in your team dares to modify, because no one understands it and too much of the functionality depends on it. Over time, patches and hacks have spread to all over the code base and it feels as if for every bug you fix, new ones are introduced and the complexity of the application is constantly increasing. Every few weeks you feel unbalanced and nervous about the next release, with frightful memories fresh in mind and a feeling that you should be able to do better.
 
@@ -59,7 +59,7 @@ Standard ML, henceforth referred to as SML, is a functional language that perfor
 
 From this point forth, any mention of testing refers to automated testing, unless otherwise specified.
 
-\subsection{(,)Motivation}
+\subsection{(ML1,JS1)Motivation}
 \label{subsec:motivation}
 
 Why testing, you may ask. Jack Franklin, a young JS blogger from the UK, gives three reasons: it helps you to plan out your APIs, it allows you to refactor with confidence, and it helps you to discover regression bugs (i.e. when old code breaks because new code has been added). Writing tests to use a library before actually writing the library puts focus on intended usage, leading to a cleaner API. Being able to change and add code without fear of breaking something greatly accelerates productivity, especially for large applications. \cite{JackFranklin} Without tests, the ability to refactor (see section \ref{subsec:refactor}) is greatly hampered and without refactoring, making changes becomes harder over time, the code becomes harder to understand, the number of bugs increases and more time will be spent debugging \cite[p.~47-49]{Refactoring}. In order to avoid this, code should be tested, preferably writing tests first in order to guarantee testability and avoid making testing into a cumbersome task, separated from the rest of the development.
@@ -78,7 +78,7 @@ Testing JS paves the way for test-driven development, which brings benefits in t
 
 The goal with this thesis is to investigate why JS testing has been performed to such a small extent, and what potential implications an increased amount of testing could provide for development and business value. Providing possible approaches to testing JS under different circumstances are also part of the goal. % TODO elaborate and update
 
-\subsection{(,)Background to Project}
+\subsection{(ML1,JS1)Background to Project}
 
 The first known JS testing framework JsUnit\footnote{\url{https://github.com/pivotal/jsunit}} was created in 2001 by Edward Hieatt \cite{GoingFaster} and since then several other test framework has appeared such as the testing framework for jQuery, which goes under the name QUnit\footnote{\url{http://qunitjs.com/}}, and JsUnits sequel Jasmine\footnote{\url{http://pivotal.github.com/jasmine/}}. There are also tools for mocking (see section~\ref{subsec:mocking}) such as Sinon.JS\footnote{\url{http://sinonjs.org/}}. It seems as if the knowledge of how to smoothly get started, how to avoid making the tests non-stable and time consuming, and what to test, is rare. Setting up the structure needed to write tests is a threshold that most JS programmers do not overcome \cite{TestingStatistics} and thus, they lose the benefits, both short and long term, otherwise provided by testing.
 
