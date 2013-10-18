@@ -38,6 +38,8 @@
 \author{Emil Wall}
 %\date{} % Uncomment to hide date, or provide a date to display
 
+\newglossaryentry{dom}{name={DOM}, description={The Document Object Model (DOM) is a model for the content, structure and style of documents \cite{W3CDOM}. It can be seen as the tree structure of elements that html code consists of. A common use of JS is DOM manipulation, which means dynamically changing attributes and style of the elements, or adding and removing (groups of) elements}, first={The Document Object Model (DOM)}, long={The Document Object Model}}
+
 \begin{document}
 
 %\include{frontpages}
@@ -92,7 +94,7 @@ The first known JS testing framework JsUnit\footnote{\url{https://github.com/piv
 There is only one production quality testing framework available for SML, namely QCheck\footnote{\url{https://github.com/league/qcheck}}. A few others exist but have not gained any traction and are relatively small, typically less than a year old and not under active development. The recent increase in the number of testing frameworks could be a consequence of developers being more willing to share their work as open source, or an indication that testing has been increasingly popular over the last one or two years, just as in the JS community \cite[question~1]{Edelstam}. An exhaustive list of the other SML testing frameworks and a short discussion about their differences can be found in the Appendix.
 \label{mltestingframeworks}
 
-In section \ref{subsec:patternsexamples}, it is mentioned that examples are often simple and seldom provide a full picture. In contrast, the problem domain of this thesis is to focus on how to test the behaviour of JS that manipulates DOM elements (see \ref{subsec:dom}), fetches data using asynchronous calls, validates forms, communicates through APIs or manipulates the appearance of a web page. We also look at when and why you should test your JS.
+In section \ref{subsec:patternsexamples}, it is mentioned that examples are often simple and seldom provide a full picture. In contrast, the problem domain of this thesis is to focus on how to test the behaviour of JS that manipulates \gls{dom} elements, fetches data using asynchronous calls, validates forms, communicates through APIs or manipulates the appearance of a web page. We also look at when and why you should test your JS.
 
 \section{(ML1,JS1)Scope and Delimitations}
 
@@ -170,11 +172,6 @@ Repetitive manual navigation of a web site is generally boring and time consumin
 Selenium WebDriver is a collection of language specific bindings to drive a browser, which includes an implementation of the W3C WebDriver specification. It is based on Selenium RC, which is a deprecated technology for controlling browsers using a remote control server. A common way of using Selenium WebDriver is for user interface and integration testing, by instantiating a browser specific driver, using it to navigate to a page, interacting with it using element selectors, key events and clicks, and then inspecting the result through assertions. These actions can be performed in common unit testing frameworks in Java, C\nolinebreak\hspace{-.05em}\raisebox{.3ex}{\scriptsize\bf \#}, Ruby and Python through library support that uses the Selenium Webdriver API. \cite{Selenium}
 
 There is also a Firefox plugin called Selenium IDE, that allows the user to record interactions and generate code for them that can be used to repeat the procedure or as a starting point in tests. In the remaining parts of this thesis, we will mean Selenium WebDriver when we say Selenium, and refer to Selenium IDE by its full name.
-
-\subsection{(,)The DOM}
-\label{subsec:dom}
-
-The Document Object Model (DOM) is a model for the content, structure and style of documents \cite{W3CDOM}. It can be seen as the tree structure of elements that html code consists of.
 
 \subsection{(,)Refactoring}
 \label{subsec:refactor}
@@ -282,7 +279,7 @@ QuickCheck and its SML counterpart QCheck are based on another principle than th
 
 Sebastien Salva and Patrice Laurencot has described how STS automata can be applied to describe asynchronous JS applications and generate test cases \cite{AutomatedAjax}.
 
-Heidegger et al. cover unit testing of JS that manipulates the DOM of a web page using techniques from software transactional memory (STM) to restore test fixtures \cite{DOMJavascript}. Ocariza et al. have investigated frequency of bugs in live web pages and applications \cite{Wild}. These are both aimed at testing client side JS that runs as part of web sites.
+Heidegger et al. cover unit testing of JS that manipulates the \gls{dom} of a web page using techniques from software transactional memory (STM) to restore test fixtures \cite{DOMJavascript}. Ocariza et al. have investigated frequency of bugs in live web pages and applications \cite{Wild}. These are both aimed at testing client side JS that runs as part of web sites.
 
 Phillip Heidegger and Peter Thiemann has addressed the issue of type related errors in JS by introducing JSConTest, a contract framework that enables guided random testing by specifying types and relations of the arguments and return value of functions \cite{ContractTesting}.
 
@@ -427,9 +424,9 @@ http://blog.caplin.com/2012/01/17/testing-asynchronous-javascript-with-jasmine/
 
 \subsection{(JS,ML0)DOM manipulation}
 
-A key to successful testing of JS with DOM manipulation is to separate the logic from the DOM manipulation as much as possible. One technique that was presented at the XP conference in Trondheim 2010\footnote{Agile Processes in Software Engineering and Extreme Programming 11th International Conference, XP 2010, Trondheim, Norway, June 1-4, 2010, Proceedings} was to define a view layer of jQuery-related and similar code, and update the view as a separate task in the business logic. This allows for test driven development to be carried out much more effortlessly than if the logic is tightly coupled with the DOM manipulation. \cite[question~4]{Ahnve}
+A key to successful testing of JS with \gls{dom} manipulation is to separate the logic from the \gls{dom} manipulation as much as possible. One technique that was presented at the XP conference in Trondheim 2010\footnote{Agile Processes in Software Engineering and Extreme Programming 11th International Conference, XP 2010, Trondheim, Norway, June 1-4, 2010, Proceedings} was to define a view layer of jQuery-related and similar code, and update the view as a separate task in the business logic. This allows for test driven development to be carried out much more effortlessly than if the logic is tightly coupled with the \gls{dom} manipulation. \cite[question~4]{Ahnve}
 
-You can test your DOM manipulating code if you really need to, but be aware that there are many implementation differences depending on which browser or testing environment the tests are run in (on the other hand, this is one of the reasons why you might WANT to test the DOM manipulations) and that it can be hard to keep test fixtures up to date.
+You can test your \gls{dom} manipulating code if you really need to, but be aware that there are many implementation differences depending on which browser or testing environment the tests are run in (on the other hand, this is one of the reasons why you might WANT to test the \gls{dom} manipulations) and that it can be hard to keep test fixtures up to date.
 
 There are free cloud-based tools such as TestSwarm that are designed to help you with running the tests in many different browsers, or you can do it manually using JsTestDriver, which also has built in support for setting up
 \newglossaryentry{testfixture}{name={Test Fixture}, text={test fixture}, description={A test fixture is an environment or a fixed state that is needed for certain tests to run. It can be set up once and used multiple times, requiring tests to clean up after themselves, or it can be set up and teared down for each test}}\gls{testfixture} DOMs. One way is to use different Selenium drivers, then you can check almost anything, but beware that the tests become even slower so even for a medium sized application you might end up being unable to run the tests more than a couple of times per day.
@@ -676,11 +673,11 @@ Aside from the increased awareness and knowledge of testing that Node.js has bro
 
 \subsection{(,)The JavaScript Community}
 
-In order to understand the problems with testability that can be seen in JS applications, it is important to understand how many were first introduced to the language. When jQuery was released in 2006, a coding style evolved based on handlers with DOM manipulation through selectors and asynchronous callbacks. Since tutorials were written in a quick-and-dirty fashion, even experienced developers failed to apply principles for writing testable and maintainable code. Others lacked the background of software engineering altogether. \cite[question~10]{Stenmark}
+In order to understand the problems with testability that can be seen in JS applications, it is important to understand how many were first introduced to the language. When jQuery was released in 2006, a coding style evolved based on handlers with \gls{dom} manipulation through selectors and asynchronous callbacks. Since tutorials were written in a quick-and-dirty fashion, even experienced developers failed to apply principles for writing testable and maintainable code. Others lacked the background of software engineering altogether. \cite[question~10]{Stenmark}
 
 \subsection{(,)Time required to run tests}
 
-Tests that depend on the DOM (see section \ref{subsec:dom}) tend to be relatively slow, so it would be impractical to have hundreds of unit tests with DOM manipulation if you want to be able to run them often \cite[questions~21-22]{Stenmark}. Selenium tests are also known to be slow, the same principle applies there. Only running tests that are connected with changes that have been made is one way to get around this, there is support for this in many testing tools. An alternative is to separate the fast tests from the slow, and configure Autotest\footnote{\url{http://autotest.github.io/}} or some tool based on Guard\footnote{\url{https://github.com/guard/guard/}} such as guard-jasmine\footnote{\url{https://github.com/netzpirat/guard-jasmine/}} to run the fast tests each time a file changes, and only run the slow tests before sending the code to a central source control repository or deploying the application.
+Tests that depend on the \gls{dom} tend to be relatively slow, so it would be impractical to have hundreds of unit tests with \gls{dom} manipulation if you want to be able to run them often \cite[questions~21-22]{Stenmark}. Selenium tests are also known to be slow, the same principle applies there. Only running tests that are connected with changes that have been made is one way to get around this, there is support for this in many testing tools. An alternative is to separate the fast tests from the slow, and configure Autotest\footnote{\url{http://autotest.github.io/}} or some tool based on Guard\footnote{\url{https://github.com/guard/guard/}} such as guard-jasmine\footnote{\url{https://github.com/netzpirat/guard-jasmine/}} to run the fast tests each time a file changes, and only run the slow tests before sending the code to a central source control repository or deploying the application.
 
 \subsection{(,)High quality tests}
 \label{HighQuality}
