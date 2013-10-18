@@ -10,7 +10,7 @@
 \usepackage[swedish,english]{babel} % Enables swedish typesetting, needs to be at top of document
 \usepackage[utf8]{inputenc} % set input encoding (not needed with XeLaTeX
 \usepackage{textcomp} % Suppress unicode char error
-\usepackage{enumitem} % resume numbering in enumerations
+\usepackage{enumitem} % resume numbering in enumerations and customize list appearence
 \usepackage[bottom = 110pt]{geometry} % to change the page dimensions
 \geometry{a4paper} % paper format, could also be placed in documentclass options
 \usepackage{graphicx} % support the \includegraphics command and options
@@ -89,16 +89,7 @@ The goal with this thesis is to investigate why JS testing has been performed to
 
 The first known JS testing framework JsUnit\footnote{\url{https://github.com/pivotal/jsunit}} was created in 2001 by Edward Hieatt \cite{GoingFaster} and since then several other test framework has appeared such as the testing framework for jQuery, which goes under the name QUnit\footnote{\url{http://qunitjs.com/}}, and JsUnits sequel Jasmine\footnote{\url{http://pivotal.github.com/jasmine/}}. There are also tools for mocking (see section~\ref{subsec:mocking}) such as Sinon.JS\footnote{\url{http://sinonjs.org/}}. It seems as if the knowledge of how to smoothly get started, how to avoid making the tests non-stable and time consuming, and what to test, is rare. Setting up the structure needed to write tests is a threshold that most JS programmers do not overcome \cite{TestingStatistics} and thus, they lose the benefits, both short and long term, otherwise provided by testing.
 
-There is only one production quality testing framework available for SML, namely QCheck\footnote{\url{https://github.com/league/qcheck}}. A few others exist but have not gained any traction and are relatively small, here is an exhaustive list: three of them are called
-smlunit\footnote{\url{https://github.com/dellsystem/smlunit}}
-\footnote{\url{https://github.com/smlsharp/SMLUnit}}
-\footnote{\url{https://github.com/CyberLight/smlunit}} and there is also
-tests.sml\footnote{\url{https://github.com/spacemanaki/tests.sml}},
-sml-testing\footnote{\url{https://github.com/kvalle/sml-testing}},
-SMLTest\footnote{\url{https://github.com/Yankovsky/SMLTest}},
-smell\footnote{\url{https://github.com/Morriphi/smell}},
-smell-spec\footnote{\url{https://github.com/davidpdrsn/smell-spec}} and
-stupid\footnote{\url{https://github.com/teebrz/stupid}}. The smlsharp version of SMLUnit is tailored for a non-standard SML distribution, smell-spec is the only one with BDD syntax and stupid is unique in offering watch capabilities so that the tests are run when files change. All except QCheck and the dellsystem version of smlunit are less than a year old and none are under active development compared to their JS counterparts.
+There is only one production quality testing framework available for SML, namely QCheck\footnote{\url{https://github.com/league/qcheck}}. A few others exist but have not gained any traction and are relatively small, typically less than a year old and not under active development. The recent increase in the number of testing frameworks could be a consequence of developers being more willing to share their work as open source, or an indication that testing has been increasingly popular over the last one or two years, just as in the JS community \cite[question~1]{Edelstam}. An exhaustive list of the other SML testing frameworks and a short discussion about their differences can be found in the Appendix.
 \label{mltestingframeworks}
 
 In section \ref{subsec:patternsexamples}, it is mentioned that examples are often simple and seldom provide a full picture. In contrast, the problem domain of this thesis is to focus on how to test the behaviour of JS that manipulates DOM elements (see \ref{subsec:dom}), fetches data using asynchronous calls, validates forms, communicates through APIs or manipulates the appearance of a web page. We also look at when and why you should test your JS.

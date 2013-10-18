@@ -10,6 +10,7 @@
 \usepackage[swedish,english]{babel} % Enables swedish typesetting, needs to be at top of document
 \usepackage[utf8]{inputenc} % set input encoding (not needed with XeLaTeX
 \usepackage{textcomp} % Suppress unicode char error
+\usepackage{enumitem} % Customize list appearence
 \usepackage[bottom = 110pt]{geometry} % to change the page dimensions
 \geometry{a4paper} % paper format, could also be placed in documentclass options
 \usepackage[parfill]{parskip} % Begin paragraphs with an empty line rather than an indent
@@ -20,11 +21,30 @@
 \renewcommand{\headrulewidth}{0pt} % customise the layout...
 \usepackage{sectsty} % Section title
 \allsectionsfont{\sffamily\mdseries\upshape} % Section font
+\usepackage{url}
 \usepackage{hyperref} % href
 
 \begin{document}
 
 \section*{Appendix}
+
+\subsection{Frameworks and Tools}
+
+Testing frameworks for SML:
+\begin{itemize}[label={--}]
+\item QCheck\footnote{\url{https://github.com/league/qcheck}}
+\item smlunit\footnote{\url{https://github.com/dellsystem/smlunit}}
+\footnote{\url{https://github.com/smlsharp/SMLUnit}}
+\footnote{\url{https://github.com/CyberLight/smlunit}}
+\item tests.sml\footnote{\url{https://github.com/spacemanaki/tests.sml}}
+\item sml-testing\footnote{\url{https://github.com/kvalle/sml-testing}}
+\item SMLTest\footnote{\url{https://github.com/Yankovsky/SMLTest}}
+\item smell\footnote{\url{https://github.com/Morriphi/smell}}
+\item smell-spec\footnote{\url{https://github.com/davidpdrsn/smell-spec}}
+\item stupid\footnote{\url{https://github.com/teebrz/stupid}}
+\end{itemize}
+
+QCheck is the most popular one, and there are three different ones that are all called smlunit. The smlsharp version of SMLUnit is tailored for a non-standard SML distribution, smell-spec is the only one with BDD syntax and stupid is unique in offering watch capabilities so that the tests are run when files change. All except QCheck and the dellsystem version of smlunit are less than a year old and none are under particularly active development.
 
 \subsection*{Transcript of Interview with Johannes Edelstam}
 
