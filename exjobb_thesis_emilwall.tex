@@ -31,6 +31,8 @@
 \usepackage[backend=biber,sorting=none]{biblatex}
 \bibliography{references.bib}
 \usepackage{url}
+\usepackage{nomencl}
+\makenomenclature
 
 \title{Rationales and Approaches for Automated Testing of JavaScript and Standard ML}
 \author{Emil Wall}
@@ -40,6 +42,8 @@
 
 %\include{frontpages}
 \tableofcontents % Remove when uncommenting line above
+
+\printnomenclature
 
 \section{(ML1,JS1)Introduction}
 
@@ -72,7 +76,7 @@ For SML programs, usage scenarios tend to be different from JS in that SML tends
 
 To achieve maximal gain from testing, the tests need to be of high quality, which means that they should be maintainable and test the right thing. How to achieve this is an important part of this thesis, which is discussed in section~\ref{subsec:quality}.
 
-Unit testing is particularly powerful when in combination with integration tests in a Continuous Integration (CI) build. This enables you to harness the power of CI, avoiding errors otherwise easily introduced as changes propagate and affect other parts of the system in an unexpected way. The integration tests will make developers aware if they are breaking previous functionality, when changing parts of the system that the JS depends upon.
+Unit testing is particularly powerful when in combination with integration tests in a Continuous Integration (CI\nomenclature{CI}{Continuous Integration}) build. This enables you to harness the power of CI, avoiding errors otherwise easily introduced as changes propagate and affect other parts of the system in an unexpected way. The integration tests will make developers aware if they are breaking previous functionality, when changing parts of the system that the JS depends upon.
 
 Testing JS paves the way for test-driven development, which brings benefits in terms of the design becoming more refined, and increased maintainability. Tests can serve as documentation for the code and forcing it to be written in a testable manner, which in itself tends to mean adherence to principles such as separation of concerns, and single responsibility.
 
