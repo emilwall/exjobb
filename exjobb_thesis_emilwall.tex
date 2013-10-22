@@ -14,6 +14,8 @@
 \usepackage[bottom = 110pt]{geometry} % to change the page dimensions
 \geometry{a4paper} % paper format, could also be placed in documentclass options
 \usepackage{graphicx} % support the \includegraphics command and options
+\usepackage{pgfplots} % charts and graphs
+\pgfplotsset{compat=1.8} % Avoid running in backwards compatibility mode (unsuitable tick labels; missing features)
 \usepackage[parfill]{parskip} % Begin paragraphs with an empty line rather than an indent
 \usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
 \usepackage{verbdef} % inline verbatim
@@ -62,6 +64,22 @@ The main difference between these scenarios is that the second one requires a pe
 \begin{quote}
 ``Around the beginning of 2012, I gave a presentation for the Boston Ruby Group, in which I asked the crowd of 100 people a few questions. I began, `Who here writes Ruby?' The entire audience raised their hands. Next I asked, `Who tests their Ruby?' Again, everyone raised their hands. `Who writes JavaScript or CoffeeScript?' Once more, 100 hands rose. My final question: `Who tests their JavaScript or CoffeeScript?' A hush fell over the crowd as a mere six hands rose. Of 100 people in that room, 94\% wrote in those languages, but didn't test their code. That number saddened me, but it didn't surprise me.''
 \end{quote}
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+title={Percentage of crowd testing their code \cite{TestingStatistics} (Boston Ruby Group presentation, 2012):},
+xbar,
+width=12cm, height=3.5cm, enlarge y limits=0.5,
+xlabel={\#participants},
+symbolic y coords={JS,Ruby},
+ytick=data,
+nodes near coords, nodes near coords align={horizontal},
+]
+\addplot coordinates {(6,JS) (100,Ruby)};
+\end{axis}
+\end{tikzpicture}
+\end{center}
 
 Implementations of \gls{js} differ, especially for host objects such as document and XMLHttpRequest whose semantics are not fully defined in the specification but also for native objects that may be missing or behave differently in some implementations because they were not defined in previous specifications. Automated testing can help you discover bugs that appear due to such deviant behaviour in present and future versions. \gls{js} is also particularly important to test due to its dynamic properties \cite{AutomatedTesting} that complicate static analysis (however, there are lint tools, see sections~\ref{subsec:Lint} and \ref{subsec:refactor}), unwieldy syntax and aberrant object orientation support. \gls{js} is a complex language that requires many work-arounds because of its scoping rules and other unexpected behaviour \cite[appendix A]{GoodParts}. Despite the wide variety of testing frameworks that exists for \gls{js}, it is generally considered that few developers use them and instead rely on manual testing \cite{AutomatedTesting}.
 
