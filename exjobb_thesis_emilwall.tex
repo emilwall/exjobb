@@ -46,6 +46,8 @@
 
 \newglossaryentry{sml}{name={SML}, description={Standard ML (SML) is a functional language that performs type inference at compile time and has few mutable state features, used primarily in computer science and mathematical research. SML is formally specified in The Definition of Standard ML \cite{DefinitionStandardML}}, first={Standard ML (SML)}, long={Standard ML}}
 
+\newglossaryentry{testing}{name={Testing}, text={testing}, description={Defined here as automated software testing, unless otherwise specified. Can refer to specification, validation and verification through unit testing, integration testing and/or system/acceptance testing}}
+
 \begin{document}
 
 %\include{frontpages}
@@ -59,7 +61,7 @@ Imagine the following scenario: You have been working for many months on a mediu
 
 Now envision this: Despite the challenging requirements and conditions, you are relatively sure that the application works as it should. You feel safe in telling the customer when a feature has been implemented because the automated tests indicate that it works and that nothing else has broken. The application has a modular design and you have a good feeling of what every part is supposed to do and how the system works as a whole. This makes it easier to implement change requests and you spend relatively little time debugging, because the tests generally give you precise indications about which parts of the code are affected by your changes. Whenever there is a bug, you capture it with tests so that you will easily notice if it is re-introduced. Releasing a new version is simple and you feel proud of being part of the team.
 
-The main difference between these scenarios is that the second one requires a pervading testing effort from the team. In this thesis, we will look at how to achieve this for \gls{js} and \gls{sml}. Many of the topics discussed are applicable to other programming languages as well, these were chosen because the automated testing community around \gls{js} still has some ground to cover \cite[p.~xix]{Tddjs} and for \gls{sml}, a less known functional language, the situation is even more severe. This is evident when compared to other programming communities such as Ruby and Java. As illustrated by Mark Bates \cite{TestingStatistics}:
+The main difference between these scenarios is that the second one requires a pervading \gls{testing} effort from the team. In this thesis, we will look at how to achieve this for \gls{js} and \gls{sml}. Many of the topics discussed are applicable to other programming languages as well, these were chosen because the automated testing community around \gls{js} still has some ground to cover \cite[p.~xix]{Tddjs} and for \gls{sml}, a less known functional language, the situation is even more severe. This is evident when compared to other programming communities such as Ruby and Java. As illustrated by Mark Bates \cite{TestingStatistics}:
 
 \begin{quote}
 ``Around the beginning of 2012, I gave a presentation for the Boston Ruby Group, in which I asked the crowd of 100 people a few questions. I began, `Who here writes Ruby?' The entire audience raised their hands. Next I asked, `Who tests their Ruby?' Again, everyone raised their hands. `Who writes JavaScript or CoffeeScript?' Once more, 100 hands rose. My final question: `Who tests their JavaScript or CoffeeScript?' A hush fell over the crowd as a mere six hands rose. Of 100 people in that room, 94\% wrote in those languages, but didn't test their code. That number saddened me, but it didn't surprise me.''
@@ -84,8 +86,6 @@ nodes near coords, nodes near coords align={horizontal},
 Implementations of \gls{js} differ, especially for host objects such as document and XMLHttpRequest whose semantics are not fully defined in the specification but also for native objects that may be missing or behave differently in some implementations because they were not defined in previous specifications. Automated testing can help you discover bugs that appear due to such deviant behaviour in present and future versions. \gls{js} is also particularly important to test due to its dynamic properties \cite{AutomatedTesting} that complicate static analysis (however, there are lint tools, see sections~\ref{subsec:Lint} and \ref{subsec:refactor}), unwieldy syntax and aberrant object orientation support. \gls{js} is a complex language that requires many work-arounds because of its scoping rules and other unexpected behaviour \cite[appendix A]{GoodParts}. Despite the wide variety of testing frameworks that exists for \gls{js}, it is generally considered that few developers use them and instead rely on manual testing \cite{AutomatedTesting}.
 
 Several implementations of \gls{sml} exist and just as with \gls{js}, there are some differences between them. \gls{sml} has extensive static analysis capabilities and since side effects are relatively rare, the output of functions tends to be predictable, leading to lower complexity in many cases, at the cost of flexibility. \gls{sml} has no built in support for automated testing and there are few testing frameworks available (see section \ref{mltestingframeworks}).
-
-From this point forth, any mention of testing refers to automated testing, unless otherwise specified.
 
 \subsection{(ML1,JS1)Motivation}
 \label{subsec:motivation}
