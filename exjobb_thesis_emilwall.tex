@@ -85,18 +85,16 @@ nodes near coords, nodes near coords align={horizontal},
 \end{tikzpicture}
 \end{center}
 
-Implementations of \gls{js} differ, especially for host objects such as document and XMLHttpRequest whose semantics are not fully defined in the specification but also for native objects that may be missing or behave differently in some implementations because they were not defined in previous specifications. Automated testing can help you discover bugs that appear due to such deviant behaviour in present and future versions. \gls{js} is also particularly important to test due to its dynamic properties \cite{AutomatedTesting} that complicate static analysis (however, there are lint tools, see sections~\ref{subsec:Lint} and \ref{subsec:refactor}), unwieldy syntax and aberrant object orientation support. \gls{js} is a complex language that requires many work-arounds because of its scoping rules and other unexpected behaviour \cite[appendix A]{GoodParts}. Despite the wide variety of testing frameworks that exists for \gls{js}, it is generally considered that few developers use them and instead rely on manual testing \cite{AutomatedTesting}.
-
-Several implementations of \gls{sml} exist and just as with \gls{js}, there are some differences between them. \gls{sml} has extensive static analysis capabilities and since side effects are relatively rare, the output of functions tends to be predictable, leading to lower complexity in many cases, at the cost of flexibility. \gls{sml} has no built in support for automated testing and there are few testing frameworks available (see section \ref{mltestingframeworks}).
-
 \subsection{(ML1,JS1)Motivation}
 \label{subsec:motivation}
 
 Why testing, you may ask. Jack Franklin, a young \gls{js} blogger from the UK, gives three reasons: it helps you to plan out your APIs, it allows you to refactor with confidence, and it helps you to discover regression bugs (i.e. when old code breaks because new code has been added). Writing tests to use a library before actually writing the library puts focus on intended usage, leading to a cleaner API. Being able to change and add code without fear of breaking something greatly accelerates productivity, especially for large applications. \cite{JackFranklin} Without tests, the ability to refactor (see section \ref{subsec:refactor}) is greatly hampered and without refactoring, making changes becomes harder over time, the code becomes harder to understand, the number of bugs increases and more time will be spent debugging \cite[p.~47-49]{Refactoring}. In order to avoid this, code should be tested, preferably writing tests first in order to guarantee testability and avoid making testing into a cumbersome task, separated from the rest of the development.
 
-More than 90 \% of today's websites use \gls{js} \cite{BusinessJavascript} and its applications have become increasingly complex \cite[question~23]{Ekelof}. \gls{sml} on the other hand, although not nearly as widespread, is used in critical applications. The potential risk of economic loss associated with untested code being put into production, due to undetected bugs, shortened product lifetime and increased costs in conjunction with further development and maintenance, constitutes the main motivation for this thesis.
+Implementations of \gls{js} differ, especially for host objects such as document and XMLHttpRequest whose semantics are not fully defined in the specification but also for native objects that may be missing or behave differently in some implementations because they were not defined in previous specifications. Automated testing can help you discover bugs that appear due to such deviant behaviour in present and future versions. \gls{js} is also particularly important to test due to its dynamic properties \cite{AutomatedTesting} that complicate static analysis (however, there are lint tools, see sections~\ref{subsec:Lint} and \ref{subsec:refactor}), unwieldy syntax and aberrant object orientation support. \gls{js} is a complex language that requires many work-arounds because of its scoping rules and other unexpected behaviour \cite[appendix A]{GoodParts}. Despite the wide variety of testing frameworks that exists for \gls{js}, it is generally considered that few developers use them and instead rely on manual testing \cite{AutomatedTesting}.
 
-When automatic regression tests are missing, making changes to the code is error prone. Issues related to browser compatibility or subtle dependencies between functions and events are easier to overlook in the absence of tests. Manually testing a web page with all the targeted combination of browsers, versions and system platforms is usually not a viable option \cite{TestSwarm} so multi-platform automated testing is required. % Move to conclusions
+Several implementations of \gls{sml} exist and just as with \gls{js}, there are some differences between them. \gls{sml} has extensive static analysis capabilities and since side effects are relatively rare, the output of functions tends to be predictable, leading to lower complexity in many cases, at the cost of flexibility. \gls{sml} has no built in support for automated testing and there are few testing frameworks available (see section \ref{mltestingframeworks}).
+
+More than 90 \% of today's websites use \gls{js} \cite{BusinessJavascript} and its applications have become increasingly complex \cite[question~23]{Ekelof}. \gls{sml} on the other hand, although not nearly as widespread, is used in critical applications. The potential risk of economic loss associated with untested code being put into production, due to undetected bugs, shortened product lifetime and increased costs in conjunction with further development and maintenance, constitutes the main motivation for this thesis.
 
 For \gls{sml} programs, usage scenarios tend to be different from \gls{js} in that \gls{sml} tends to be used more for back-end logic and algorithm design than web application front-ends. \gls{sml} is well suited for formal verification, so it is sometimes used to eliminate risk of software failure. In theory this is of course excellent, but how about practical aspects such as how difficult it is to do, how much benefits there are for maintainability, modularity and code design, and how much time is consumed to perform the verification? In which scenarios is it feasible and how does it affect productivity and the ability to make large changes to the code and get quick and frequent feedback whether the program is still correct? Even though testing can seldom provide the same guarantees as formal verification, there are many scenarios in which it is more cost effective and makes life easier for the developer. The two can of course also be used in parallel.
 
@@ -471,31 +469,31 @@ A common case is that you are using another programming language than \gls{js} f
 
 \subsection{(JS,ML0)GUI testing}
 
-A Graphical User Interface (GUI) can consist of many components and provide a large number of possible interactions. The GUI is usually the top layer of an application and is therefore a common target for both integration testing and manual testing, but it can also be unit tested.
+A Graphical User Interface (GUI) is usually the top layer of an application and is therefore a common target for system testing. It can consist of many components and typically provides a large number of possible interactions, which is why GUI testing is important, but also part of why it can be a time consuming activity both in terms of preparing and executing tests.
 
-It is not all too uncommon to hear that you should never test visual components such as the GUI, of an application. Marcus Ahnve questioned this in his interview, saying that it depends on the application and how important the GUI is. In web applications the GUI and sequences in it are commonly more complex than the logic underneath, so testing the GUI makes more sense than in a typical application in the finance sector where backend logic tends to be far more important. \cite[question~21]{Ahnve}
+\subsubsection{(JS,ML0)Application differences}
 
-One problem with GUI testing is that people tend to confuse it with integration testing. If you add testing of graphical elements on top of an integration test, it becomes hard to know which part of the test failed. Instead of both testing a sequence and perform complicated assertions about graphical components of the expected result, it is better to do simple assertions after the sequence in an integration test, and perform the GUI testing as a separate activity. You can then create a \gls{testfixture} for the GUI tests that mimic the state of the application the way it looks after this feature has finished.
+A rather common opinion is that you should avoid automatic testing of an application's visual components. However, the value provided by GUI tests depends on how important the GUI is for the application. In web applications, the GUI and sequences in it are commonly more complex than the logic underneath, so testing the GUI makes more sense for such applications than for typical desktop or financial applications where backend logic tend to be more important. \cite[question~21]{Ahnve}
 
-It can be hard to know if the \gls{testfixture} used by the GUI tests actually corresponds to the application state after the sequence that you would otherwise begin every GUI test with. You could mitigate this by comparing the application state with the \gls{testfixture} in the integration test, this is one of the few cases in which dependencies between tests can be a good thing. It might also be hard to construct such a \gls{testfixture} to begin with, or you may feel that it introduces too much maintainability burden to have a \gls{testfixture} that needs to be updated every time a relevant change occurs, in which case you have little choice but to either write bad GUI tests or skip writing them altogether.
-
-Given that the front-end layer of the application has been designed so that unit testing without unwanted side-effects is possible, you still have to deal with writing the actual tests. In order to test that, for example, a certain image is overlaid on top of a page when a certain function is called, you need to be able to verify that the correct image is displayed. This is non-trivial in most situations, so unless you are content with checking that the css and img tags contain the expected values, your remaining options are mainly to either use Selenium with isVisible and similar assertions or comparing snapshots in some smart fashion. This is definitely an area where more work is needed by image analysis people, which should be integrated in tools for testing.
-
-A completely different way of performing GUI testing is to do it in a semi-automated fashion. There are ways of producing snapshots of how websites look in different browsers and you should be able to have a program compare such snapshots to spot differences with previous versions, that can be reviewed by a human. This would reduce the need for manual testing of the GUI, since you get a good indication of which parts have changed.
-
-\subsubsection{(JS,ML0)Web vs desktop}
-
-\subsubsection{(JS,ML0)Size and sequencing problems in GUI testing}
+Before deciding on whether you want to do automated GUI testing or not, think carefully about how important the GUI and its cross browser compatibility is to you. If you feel that the exact appearance is irrelevant, then there is little sense in doing it. If you on the other hand feel that it would be valuable but have concerns about the technical aspects of it, you should not dismiss it too easily.
 
 \subsubsection{(JS,ML0)Regression testing of GUI}
 
+GUI testing is often confused with integration testing. The problem with this is that if you add testing of graphical elements on top of an integration test, it becomes harder to maintain and it can fail for more reasons. Instead of both executing a sequence and perform complicated assertions about graphical components of the expected result, you may benefit from keeping assertions simple in an integration test. The GUI testing can then be performed in a unit testing fashion as a separate activity, by creating a \gls{testfixture} that mimics the state of the application the way it looks after a certain sequence has finished.
+
+This approach has a fairly obvious risk. What if a \gls{testfixture} fails to simulate an application state properly? You could detect this by comparing the application state with the corresponding \gls{testfixture} in an integration test, deliberately introducing dependencies between tests. It might also be hard to construct such a \gls{testfixture} to begin with, or you may feel that it introduces too much maintainability burden to have a \gls{testfixture} that needs to be updated every time a relevant change occurs, in which case you have little choice but to either write bad GUI tests or skip writing them altogether.
+
 \subsubsection{(JS,ML0)Automation of GUI testing}
 
-Automatically generated tests vs TDD
+Manually testing a web page with all the targeted combination of browsers, versions and system platforms is usually not a viable option \cite{TestSwarm} so multi-platform automated testing is required. This is true in general for web application testing, but also holds for GUI testing in particular, regardless of whether the SUT is a web application or not. Since the appearance of a GUI can depend on factors such as configuration of hardware, operating system, version of third party software, etc., and because of the many possible sequences of interactions to test, it is rarely feasible to test all combinations and unless the testing is automated on multiple platforms, you will be unable to test even a small fraction of them.
 
-Record and replay
+GUI testing can be done in a semi-automated fashion. There are ways of producing snapshots of how websites look in different browsers and you should be able to have a program compare such snapshots to spot differences with previous versions, that can be reviewed by a human. This would reduce the need for manual testing of the GUI, since you get a good indication of which parts have changed. % http://piwik.org/blog/2013/10/our-latest-improvement-to-qa-screenshot-testing/
 
-Model based (FSM)
+Apart from writing tests in code using for instance TDD, there are techniques for automatically generating tests using crawlers or artificial intelligence. These techniques will by nature have more focus on coverage and detecting runtime errors than to simulate the behaviour and expectations of users. There have been quite a lot of research on this area. % Reference
+
+Another technique is capture-replay, which is based on the concept that a user interacts with the SUT and records the actions. Selenium IDE provides this possibility, and there are other tools as well that can do this both for web and desktop applications.
+
+A more modern approach is model based (FSM) GUI testing, where graphs are used to represent how the SUT can be interacted with and which states should be possible to reach. From such a graph, test cases can be generated.
 
 \subsection{(JS,)Private APIs}
 
@@ -529,7 +527,7 @@ Some think that as long as the code works, testing is unnecessary \cite[question
 
 Different projects have different fault tolerance. Sometimes a single bug can cause loss of millions of dollars, whereas in other projects the economic impact can be relatively small. The risk with untested \gls{js} is especially high when the code supports business critical operations. For instance, there have been several cases of banks and finance systems being fined for not reporting transactions to the government \cite{Bug1} or giving faulty advice to investors \cite{Bug2} due to application failure. A web-shop may lose orders and any website that is perceived as broken can harm trademarks associated with it and change people's attitudes for the worse.
 
-The connection between how much testing is carried out and how much risk is involved with a project is not as strong as one might think. The company culture and the competence of the developers have great impact too. If the stakeholders are not used to testing and the developers are inexperienced with the tools of the trade, chances are that they will not do it. \cite[question~14]{Ahnve}
+The connection between how much testing is carried out and how much risk is involved with a project is not as strong as one might think. The company culture and the background of the developers have great impact too. If the stakeholders are not used to testing and the developers are inexperienced with the tools of the trade, chances are that they will not do it. \cite[question~14]{Ahnve}
 
 
 \section{(,)Draft without title}
@@ -540,7 +538,7 @@ Rather than proposing best practices for \gls{js} testing, the reader should be 
 
 \subsection{(,)Why don't people test their JavaScript?}
 
-Considering all the different options in available frameworks, one is easily deceived into believing that the main reason why people don't test their \gls{js} is because they are lazy or uninformed. This is not necessarily true, there are respectable obstacles for doing TDD both in the process of fitting the frameworks into your application and in writing the \gls{js} code in a testable way.
+Considering all the different options in available frameworks, one is easily deceived into believing that the main reason why people don't test their \gls{js} is because they are lazy or uninformed. This is not necessarily true, there are respectable obstacles for doing TDD both in the process of fitting the frameworks into your application and in writing the \gls{js} code in a testable way. % Stryk eller konkretisera (men då måste man gå in på ramverk, så att det blir för stort)
 
 \subsection{(,)JsTestDriver and Jasmine integration problems}
 \label{subsec:jstestdriverintegration}
@@ -549,11 +547,11 @@ When setting up JsTestDriver\footnote{\url{https://code.google.com/p/js-test-dri
 
 \subsection{(,)Testability, TDD, exposing code to tests, counter-intuitiveness of writing tests first}
 
-Regardless whether or not the frameworks are effortlessly installed and configured or not, there is still the issue of testability. It is common to argue that TDD forces developers to write testable code which tends to be maintainable. This is true in some respects, but one has to bear in mind that \gls{js} is commonly used with many side-effects that may not be easily tested. More importantly, it is common to place all the \gls{js} code in a single file and hide the implementation using some variant of the module pattern\cite[p.~40]{GoodParts}, which means that only a small subset of the code is exposed as globally accessible functions, commonly functions that are called to initialise some global state such as event listeners. In order to test the functions, they need to be divided into parts, which will typically have to be more general in order to make sense as stand-alone modules. This conflicts with the eagerness of most developers to just get something that works without making it more complicated than necessary.
+Regardless whether or not the frameworks are effortlessly installed and configured or not, there is still the issue of testability. It is common to argue that TDD forces developers to write testable code which tends to be maintainable. This is true in some respects, but one has to bear in mind that \gls{js} is commonly used with many side-effects that may not be easily tested. More importantly, it is common to place all the \gls{js} code in a single file and hide the implementation using some variant of the module pattern\cite[p.~40]{GoodParts}, which means that only a small subset of the code is exposed as globally accessible functions, commonly functions that are called to initialise some global state such as event listeners. In order to test the functions, they need to be divided into parts, which will typically have to be more general in order to make sense as stand-alone modules. This conflicts with the eagerness of most developers to just get something that works without making it more complicated than necessary. % Connected to State of Events, maybe merge?
 
 \subsection{(,)Refactoring and manual testing}
 
-Many \gls{js} developers are used to manually test their \gls{js} in a browser. For someone not experiences with testing, this gives a relatively early feedback loop and although it does not come with the benefits of design, quality and automated testing that TDD does, it tends to give a feeling of not doing any extra work and getting the job done as fast as possible. Developers do not want to spend time on mocking dependencies when they are unsure if the solution they have in mind will even work. Once an implementation idea pops up, it can be tempting to just try it out rather than writing tests. If this approach is taken, it may feel like a superfluous task to add tests afterwards since that will typically require some refactoring in order to make the code testable. If the code seems to work good enough, the developer may not be willing to introduce this extra overhead, for good reasons \cite[question~43]{Stenmark}.
+Many \gls{js} developers are used to manually test their \gls{js} in a browser. For someone not experiences with testing, this gives a relatively early feedback loop and although it does not come with the benefits of design, quality and automated testing that TDD does, it tends to give a feeling of not doing any extra work and getting the job done as fast as possible. Developers do not want to spend time on mocking dependencies when they are unsure if the solution they have in mind will even work. Once an implementation idea pops up, it can be tempting to just try it out rather than writing tests. If this approach is taken, it may feel like a superfluous task to add tests afterwards since that will typically require some refactoring in order to make the code testable. If the code seems to work good enough, the developer may not be willing to introduce this extra overhead, for good reasons \cite[question~43]{Stenmark}. % Inget om refaktorering, kanske kan utgöra eget stycke under testing culture
 
 There is a serious risk involved in refactoring untested code\cite[p.~17]{Refactoring}, since manually checking that the refactoring does not introduce bugs is time consuming and difficult to do well. However, leaving the code untested means even greater risk of bugs and the refactoring may be necessary in the future anyway, in which case it will be even harder and more error-prone. This problem can be avoided by writing tests first.
 
@@ -575,16 +573,16 @@ This is likely a large contributing factor for increasing the probability of Ang
 
 Programming languages in use today typically have frameworks to help with standard structure and other generic problems. \gls{js} is certainly no exception, the number of web application frameworks that focus on \gls{js} has increased a lot during the last few years alone.
 
-A full evaluation of the most popular MVC and testing frameworks is not within the scope of this thesis, but others have done it \cite{JackFranklin}\cite{SebastianPorto}. Popular \gls{js} testing frameworks include assertion frameworks such as Jasmine, qUnit, expect.js and chai, and drivers/test runners such as Mocha, JsTestDriver, Karma and Chutzpah\footnote{\url{http://chutzpah.codeplex.com/}} which may have their own assertion framework built in but are typically easy to integrate with other assertion frameworks using adapters or via built-in support.
+A full evaluation of the most popular MVC and testing frameworks is not within the scope of this thesis, but others have done it \cite{JackFranklin}\cite{SebastianPorto}. Popular \gls{js} testing frameworks include assertion frameworks such as Jasmine, qUnit, expect.js and chai, and drivers/test runners such as Mocha, JsTestDriver, Karma and Chutzpah\footnote{\url{http://chutzpah.codeplex.com/}} which may have their own assertion framework built in but are typically easy to integrate with other assertion frameworks using adapters or via built-in support. % Scope and delimitations
 
-\subsection{(,)High quality tests}
+\subsection{(,)High quality tests} % In i testing culture eller testability
 \label{subsec:quality}
 
 As mentioned in section~\ref{subsec:motivation}, tests should be maintainable and test the right thing. Otherwise, responding to changes is harder, and the tests will tend to cause frustration among the developers instead of detecting bugs and driving the understanding and development of the software \cite{Clean}.
 
 The criteria for maintainability in this context are that the tests should have low complexity (typically short test methods without any control flow), consist of readable code, use informative variable names, have reasonably low level of repeated code (this can be accomplished through using Test Utility Methods \cite[599]{TestPatterns}), be independent of implementations and have meaningful comments (if any). Structuring the code according to a testing pattern such as the Arrange-Act-Assert \cite{C2} and writing the code so that it reads like sentences will help in making the code more readable, in essence by honouring the communicate intent principle \cite[p.~41]{TestPatterns}.
 
-Testing the right thing means focusing on the specifications and behaviour that provides true business value rather than e.g. coverage criteria, and to avoid writing tests for things that does not really matter. Typically some parts of the system will be more complex and require more rigorous testing but there should also be consistency in the level of ambition regarding testing across the entire application. If some part of the code is hard to test it is likely to be beneficial in the long run to refactor the design to provide better testability than to leave the code untested.
+Testing the right thing means focusing on the specifications and behaviour that provides true business value rather than e.g. coverage criteria, and to avoid writing tests for things that does not really matter. Typically some parts of the system will be more complex and require more rigorous testing but there should also be consistency in the level of ambition regarding testing across the entire application. If some part of the code is hard to test it is likely to be beneficial in the long run to refactor the design to provide better testability than to leave the code untested. % Vad är ett dåligt test?
 
 
 \section{(,)Interview summary}
@@ -754,17 +752,27 @@ The current content of this section could be rewritten and placed in the method 
 \end{itemize}
 
 
-\section{(,)Future}
+\section{(JS,ML)Conclusions}
+
+This section contains a summary of the main points of this thesis, a discussion about what could have been done differently, and suggestions for the future.
+
+\subsection{(JS,ML)Lessons learned}
+
+JS is used differently, it is not just another programming language. Because it is implemented in practically every browser, it is used by almost all web developers, regardless of their experience with programming. Frameworks such as jQuery also influence how people write their JavaScript code, often in a way that is negative to testing. On the other hand, other frameworks have the opposite effect and there is nothing inherently bad with using a powerful tool such as jQuery, you just need to be careful to separate code that does different things. If you don't know how the code works, as can be the case when copying code from an external source, then you can not do this. You also need to be aware of good practices.
+
+The web is a difficult environment for testing because of many dependencies and events. This makes it harder to test, but also more important.
+
+Striving for full coverage is not compatible with BDD and not being implementation specific. As a novice tester, it can be hard to find a good balance between writing many tests and writing good tests.
+
+In a project without any testing routines, you may save time initially but there is no way of confirming that everything works as it should. Without automated tests or testing protocols, bugs will be harder to reproduce. Testing routines in the form of test plans can be hard to keep up to date and execute regularly since the testing activity depends on someone actually taking the time to do it. If something goes wrong you may have to repeat the procedure to ensure that it was not just an error in the testing. An absence of unit tests can lead to exorbitant amount of debugging in order to find the source of an error.
+
+When automatic regression tests are missing, making changes to the code is error prone. Issues related to browser compatibility or subtle dependencies between functions and events are easier to overlook in the absence of tests, and a proper toolset is required to test multiple platforms.
+
+\subsection{(JS,ML)Future}
+
+It would be useful to have a fully automated solution for comparing snapshots in a smart fashion. This is possibly an area for image analysis, which could be integrated in testing tools to handle scenarios that are hard today.
 
 (new books, new attitudes, old problems, tool convergence and revenue/open source)
-
-\section{(,)Lessons learned}
-
-Used differently, not just another programming language
-
-Difficult environment for testing because of many dependencies and events
-
-Full coverage not compatible with BDD and not being implementation specific
 
 \printbibliography
 
