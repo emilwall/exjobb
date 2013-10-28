@@ -508,7 +508,7 @@ Looking at the source code of SML implementations such as SML/NJ and Moscow ML, 
 
 As a programmer, you should strive to do the simplest thing possible within the confines of given constraints, and to reuse as much as possible provided that any reuse candidates meets demands on quality and adaptability. The XP (Extreme Programming) principle YAGNI (You Ain't Gonna Need It) advocates this and is incorporated in many programmers' ways of thinking. When starting to write tests in a project, the pragmatic approach is to adhere to existing codebase conventions, or, in the absence of such, search the web for a suitable testing framework and use it in the project. Why is it that so many end up writing tests without using an existing testing framework? It seems that SML developers prefer writing their own testing framework rather than using an existing one.
 
-Frameworks are few and hard to use
+It could be that QCheck, which has a relatively large user base, is often considered overkill. Some may decide against using it because they want something that is simpler, more suitable for TDD, has BDD inspired syntax or a different style of failure and success reports. Without any production quality framework out there that satisfy these basic needs, it may feel like an easier task to do without a testing framework or write a new one than to familiarise with and adapt to an existing one that might turn out as disappointing anyway. The fear of disappointment is probably empowered by that other frameworks are typically unmaintained or has few users.
 
 DescribeSML
 
