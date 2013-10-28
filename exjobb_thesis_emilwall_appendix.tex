@@ -1626,7 +1626,7 @@ The DescribeSML testing framework that was developed as part of this thesis is d
   basicstyle=\footnotesize,        % the size of the fonts that are used for the code
   breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
   breaklines=true,                 % sets automatic line breaking
-  captionpos=b,                    % sets the caption-position to bottom
+  captionpos=t,                    % sets the caption-position to top
   commentstyle=\color{mygreen},    % comment style
   deletekeywords={...},            % if you want to delete keywords from the given language
   escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
@@ -1649,16 +1649,10 @@ The DescribeSML testing framework that was developed as part of this thesis is d
   title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
 }
 
-\begin{lstlisting}[language=ML]
-structure SpecReporter = struct
-fun isFailure result =
-    String.substring(result, 0, 4) = "FAIL"
+\lstinputlisting[language=ML]{expect.sml}
 
-fun report "verbose" (description, result) =
-    concat ["should ", description, ": ", result, "\n"]
-  | report _ (_, result) =
-    if isFailure result then "!" else "."
-end
-\end{lstlisting}
+\lstinputlisting[language=ML]{describe.sml}
+
+\lstinputlisting[language=ML]{spec-reporter.sml}
 
 \end{document}
