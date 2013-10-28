@@ -15,6 +15,7 @@
 \geometry{a4paper} % paper format, could also be placed in documentclass options
 \usepackage[parfill]{parskip} % Begin paragraphs with an empty line rather than an indent
 \usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
+\usepackage{listings} % Display code
 \usepackage{verbdef} % inline verbatim
 \usepackage{fancyhdr} % This should be set AFTER setting up the page geometry
 \pagestyle{fancy} % options: empty , plain , fancy
@@ -1614,7 +1615,7 @@ följdfrågor.
 
 The DescribeSML testing framework that was developed as part of this thesis is designed to work with Standard ML of New Jersey (SML/NJ). It is divided into three structures that provide matchers (Expect), a running utility (Describe) and a reporter (SpecReporter). They can be used separately if desired. The running utility allows for nested describe blocks as in the JS frameworks Jasmine and Mocha (or RSpec in Ruby). They can be loaded using the CM package manager of SML/NJ.
 
-\begin{verbatim}
+\begin{lstlisting}[language=ML]
 structure SpecReporter = struct
 fun isFailure result =
     String.substring(result, 0, 4) = "FAIL"
@@ -1624,6 +1625,6 @@ fun report "verbose" (description, result) =
   | report _ (_, result) =
     if isFailure result then "!" else "."
 end
-\end{verbatim}
+\end{lstlisting}
 
 \end{document}
