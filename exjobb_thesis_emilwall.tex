@@ -504,6 +504,57 @@ Frameworks are few and hard to use
 
 DescribeSML
 
+hård typning -> begränsande ramverk -> koncisa tester
+
+Enkelt att skriva matchers pga funktionellt språk, svårt pga hårt typat (tvungen att skapa toEqual, toEqualStr, toEqualInt, etc.) Ännu värre om man dessutom vill inkludera matchers för listor, tupler (!), arrayer och dylikt av olika typer. Praktiskt taget omöjligt om man vill kunna använda egna typer och ändå få bra felmeddelanden? Behov av interfaces.
+
+Jämför med hur QuickCheck (Haskell) hanterar typer http://www.cse.chalmers.se/~rjmh/QuickCheck/manual.html
+
+Diskutera möjligheten att matematiker lockas av automatiska tester, som försöker falsifiera påstådda properties, eftersom det är så man är van att arbeta
+
+Diskutera möjligheten att folk inte tycker att det är värt att lägga ner tid på testramverk för att få bra rapporter från sina tester, utan att de nöjer sig med att deklarera testerna som variabler som evalueras till antingen true eller false. Vidare om konsekvenser av detta, dvs. vad de går miste om i termer av ökad debugging och om att det kan bero på att ett funktionellt språk som ML är så enkelt att skriva sådana "pseudo-tester" i jämfört med t.ex. Java där man behöver definiera klasser och ha sig, och då är steget till att lägga in ett testramverk inte ligga stort i jämförelse.
+
+Kan formell verifiering ha liknande effekter på modularitet och utformning av gränssnitt som testdriven utveckling? Hur mycket tid tar en utförlig formell verifiering jämfört med testning? Vilken kompetens krävs?
+
+Gör plugin för/till/integrera med qCheck:
+- Måste skicka med generatorer till checkGen
+- Måste redirecta stdout och parsa utskrift från qCheck, eller använda qChecks egna reporter
+
+Namngivning är viktigt. Lätt att råka skriva toBeString istället för toBeStr. Frågan är om det är värt att definiera båda funktionerna och låta de göra exakt samma sak, eller om det skapar osäkerhet. Samma fråga uppstår för toEqual vs toBe - i andra språk skiljer de sig ju åt genom att den ena kollar på referensen medan den andra jämför värdena. I ML känns det överflödigt att definiera en matcher för ref-celler eftersom de ändå används (bör användas) så sällan och att man i de fallen kan dereferera själv i testet. Eller finns det fall då man inte kan/vill göra det?
+
+Formuleringen av felmeddelanden är viktig. I den första versionen av reportern så löd vissa felmeddelanden enligt "expected "abc" to equal "def"". Då är det inte lika tydligt vilket som var det förväntade värdet och vilket som var det faktiska värdet. Ännu otydligare blir det om man rapporterar enligt ""abc" does not equal "def"". Bättre vore "expected "abc", but got "def"" eller "was "def" but expected it to equal "abc"". Är ordningen viktig? Kan vara bra att ha samma ordning som i testet. Är det viktigt om man skriver to equal eller to be? Om båda finns som matchers så kan det vara viktigt, men då tillkommer å andra sidan ytterligare komplexitet i testramverket.
+
+Att skriva sitt eget testramverk är kul och inspirerar till att skriva mer tester. Om det redan finns bra testramverk, vilket oftast är fallet, så är det kanske i många fall dumt eftersom det kan vara svårt att motivera det extra arbetet inför kund, men jag vill ändå rekommendera det som hobbyprojekt, som en del av att lära sig TDD.
+
+Första implementationen av toThrow visade sig strunta i vilket exception som kastades, däremot så rapporterade det vilket exception man förväntat sig skulle kastas om inget kastades öht. Detta är ett typexempel på något som man lätt upptäcker med testning, shame on me för att jag inte skrev tester för det. Det uppstår även hela tiden avvägningar om hur stringent man ska vara, om man till exempel ska nöja sig med att jämföra exnMessage eller om man även ska jämföra exnName.
+
+Att skriva describe-funktionen var mer komplicerat än att skriva expect-funktionen. The matchers var av varierande svårighetsgrad, vilket var bra för det gjorde att jag kunde testa de mer avancerade med hjälp av de simpla.
+
+Behovet av nästlade describes uppkom fort, så att man kan samla specar till flera funktioner som hör ihop utan att behöva slänga in alla i samma describe, och så att resultatet av samtliga describes visas längst ner, så att man inte missar att någon spec failar. Detta går in under "practical considerations" och är särskilt viktigt om man inte har tillräckligt stor skärm för att få plats med all output, men är egentligen alltid bra ur användbarhetsperspektiv.
+
+Det finns ett behov av att fånga exceptions och representera dem som failures med passande felmeddelande. Detta kan göras av should-funktionen.
+
+"The source code of the SML testing framework is supplied here, in the unlikely event that noone else has developed a better framework by the time you read this. It can also be found at github: \url{}"
+
+When solving the first assignment, the instructions were often to use the "answer to the previous question". In this case, you would probably want to do a call assertion, which should be possible to do similar to how it is done in JavaScript, temporarily overwrite a definition of the function to stub, use side-effects to store information about calls to it, and then restore it (either automatically after the test has ended if the stubbing framework can be integrated with the testing framework, manually by calling a method, or super-manually by performing the stubbing using "vanilla-ML").
+
+Mycket tid gick åt att läsa på om olika package manager-system, som CM och Smackage. Svårt att veta vad folk föredrar.
+
+Mockning och stubbning inte lika viktigt i funktionellt språk, men kan finnas behov i vissa fall
+
+TDD skiftar fokus från implementation till tester, och därmed indirekt hur krav kan översättas till tester. När man använder TDD så beror de flesta buggarna på att man har nöjt sig för tidigt dvs. inte skrivit tillräckligt många tester för att hitta något som failar, eller inte fullt ut förstått vad det var man skulle göra från början. I vilket fall så hade buggen troligtvis infunnit sig oavsett, men inte helt säkert, eftersom man inte lägger samma energi på att skriva felfri produktionskod när man kör TDD.
+
+Möjlighet att specificera flera expectations per should känns som något många antagligen tar för givet, och som något jag själv känt behov av när jag använt det, men samtidigt så medför det vissa fördelar att alla ens tester är one-liners. Till exempel så blir det tydligare vilken/vilka expectation(s) som inte höll (men detta kanske skulle gå att få till ändå). En intressant aspekt är om expect-statements borde slänga exceptions, eller om should borde göra det, eller om det är bäst som det är nu, att ingen gör det. Det har även att göra med om själva anropen gör det (vilket i dagsläget hanteras av describes och toThrow).
+
+setup/teardown/beforeEach/beforeAll/afterEach/afterAll-metoder heller inte lika viktiga (just pga att stubbning är en vanlig del av setup), men har fortfarande flera användningsområden
+
+Varför finns det inga testramverk för ML sen innan? (jmf med testning av gränssnitt)
+
+Testning användbart inom utbildning, både för lärare och elever
+
+Watch som bara kör relevanta tester, så att det går fort/blir praktiskt möjligt.
+
+Olika drivkrafter/motivation till att skriva tester i JavaScript jämfört med ML - olika användningsområden
 
 \section{(JS,ML)Testing culture}
 \label{sec:testingculture}
