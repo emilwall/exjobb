@@ -1614,4 +1614,16 @@ följdfrågor.
 
 The DescribeSML testing framework that was developed as part of this thesis is designed to work with Standard ML of New Jersey (SML/NJ). It is divided into three structures that provide matchers (Expect), a running utility (Describe) and a reporter (SpecReporter). They can be used separately if desired. The running utility allows for nested describe blocks as in the JS frameworks Jasmine and Mocha (or RSpec in Ruby). They can be loaded using the CM package manager of SML/NJ.
 
+\begin{verbatim}
+structure SpecReporter = struct
+fun isFailure result =
+    String.substring(result, 0, 4) = "FAIL"
+
+fun report "verbose" (description, result) =
+    concat ["should ", description, ": ", result, "\n"]
+  | report _ (_, result) =
+    if isFailure result then "!" else "."
+end
+\end{verbatim}
+
 \end{document}
