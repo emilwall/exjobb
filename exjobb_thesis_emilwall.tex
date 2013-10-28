@@ -502,7 +502,9 @@ A more modern approach is model based (FSM) GUI testing, where graphs are used t
 
 SML and JS have at least two things in common: they are both functional languages (although JS is perhaps more rarely used as such) and they both have poor testing cultures. This section covers different aspects of SML testing and introduces a new testing framework that was developed for SML as a part of this thesis, inspired by insights gained from looking at popular JS testing frameworks.
 
-\subsection{Underrubrik}
+\subsection{Reinventing the wheel}
+
+Looking at the source code of SML implementations such as SML/NJ and Moscow ML, you quickly realise that there are tests for large portions of the code, but there is no standard way of writing the tests. Each module typically has its own scripts for testing, that is invoked differently and produces different output. If you search the web for ``Standard ML testing framework'' on the other hand, you get zero results. Dig deeper, and you'll find that there is one large testing framework out there, which goes under the name QCheck/SML, and quite a few small testing framework projects hosted on GitHub (see Appendix). It seems that SML developers prefer writing their own testing framework rather than using an existing one.
 
 Frameworks are few and hard to use
 
