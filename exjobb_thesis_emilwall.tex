@@ -307,24 +307,24 @@ Heidegger et al. cover unit testing of \gls{js} that manipulates the \gls{dom} o
 Phillip Heidegger and Peter Thiemann has addressed the issue of type related errors in \gls{js} by introducing JSConTest, a contract framework that enables guided random testing by specifying types and relations of the arguments and return value of functions \cite{ContractTesting}.
 
 
-\section{(,)Testability -- Real world experiences}
+\section{(ML,JS)Testability -- Real world experiences}
 \label{sec:testability}
 
-Adding tests for code that was written without testing in mind is challenging \cite[p.~18]{Tddjs}. In this section an effort to do so is described, in order to highlight the problems and solutions to some of them.
+Adding tests for code that was written without testing in mind is challenging \cite[p.~18]{Tddjs}. In this section an effort to do so in \gls{js} is described, in order to highlight the problems and solutions to some of them. Writing tests first can also be challenging, but for completely different reasons. For this reason, a TDD approach to solving programming exercises in \gls{sml} in a massive open online course (MOOC) is also described.
 
-\subsection{(,)Description of the asteroids example}
+\subsection{(ML0,JS)Description of the asteroids example}
 
 (setup, förutsättningarna, motivering av valet)
 
-\subsection{(,)Attempts, observations}
+\subsection{(ML0,JS)Attempts, observations}
 
 (upplåst implementation, icke-determinism)
 
-\subsection{(,)Conclusions}
+\subsection{(ML,JS)Conclusions}
 
 tools and testability
 
-\subsection{(,)Testability issues with main.js in asteroids application}
+\subsection{(ML0,JS)Testability issues with main.js in asteroids application}
 \label{subsec:asteroids}
 
 Despite partitioning the code of the asteroids application in a modular fashion, the problem of the canvas element not being available in the unit testing environment was not mitigated. The main.js file contained around 200 lines of code that could not be executed by tests without further refactoring since they were executed in a jQuery context (i.e. using \verbdef{\jquerycontext}{\$(function ()}\jquerycontext...) that included the selector \verbdef{\selector}{$("#canvas")}\selector. Efforts to load this code using ajax were of no gain, so the solution was instead to expose the contents of the context as a separate class and inject the canvas and other dependencies into that class. This required turning many local variables into attributes of the class to make them accessible from main.js such as the 2d-context.
