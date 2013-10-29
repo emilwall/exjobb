@@ -337,7 +337,7 @@ As a consequence of being unable to extract all code from main.js into testable 
 
 One has to be careful when adding code to beforeEach, setUp and similar constructs in testing frameworks. If it fails the result is unpredictable. At least when using Jasmine with JsTestDriver, not all tests fail even when the beforeEach causes failure, and subsequent test runs may produce false negatives even though the problem has been fixed. This is likely due to optimisations in the test driver and is especially apparent when the system under test is divided into multiple files and contain globally defined objects (rather than constructors). In this case, game.js contains such a globally defined object and its tests commonly fails after some other test has failed, even after passing the other test. Restarting the test driver and emptying the cache in the captured browser usually solves this problem, but is time demanding.
 
-\subsection{(,)JsTestDriver evaluation}
+\subsection{(ML0,JS1)JsTestDriver evaluation}
 \label{subsec:jstestdriver}
 
 When resuming from sleep on a mac the server needs to be stopped and the browsers need to be manually re-captured to the server, or else the driver hangs when trying to run the tests. This is both annoying and time consuming. However, the problem is not present on a windows machine (and it might not be reproducible on all mac machines either). In the interview with Johannes Edelstam, he agreed that this is one example of something that deters people from testing \cite{Edelstam}.
@@ -370,7 +370,7 @@ JsTestDriver is not perfect. When refreshing and clearing the cache of a capture
 
 Having spent many hours debugging, I finally decided to do a thorough check that no test depended on another test or part of the application that is not supposed to be tested by a specific test. In short, I wanted to ensure that the tests I'd written were truly unit tests. In order to do this, I created a copy of the application repository, deleted every file in the copy except for one test and the corresponding part of the application. Then I configured a JSTD server with a browser to run only that test, and repeated the process for every test. This method does not guarantee absence of side effects or detecting tests that do not clean up after themselves, but being able to run a test multiple times without failing, in complete isolation with the part of the application that it is supposed to test, at least gives some degree of reassurance that all external dependencies have been stubbed. If any external dependency has been left unstubbed the only way for the test to pass is if the code exercising that dependency is not executed by the test, and if a test does not clean up after itself it is likely to fail the second time it runs although this too depends on how the tests are written.
 
-\subsection{(,)Testability and other issues with adding tests to an existing application}
+\subsection{(ML0,JS1)Testability and other issues with adding tests to an existing application}
 
 Sometimes it can be hard to know whether or not to stub library functions such as \$.isFunction or if you should trust that they behave as expected and steer the control flow via their input and the global state instead. The same applies to simple functions you have written yourself that you think are free of bugs. Not stubbing external dependencies leads to fewer lines of test setup and teardown code and usually better test coverage but can also impose a danger of the unit tests becoming more brittle and similar to integration tests.
 
@@ -384,13 +384,13 @@ Traditionally, coverage criteria has been a central concept in software testing 
 
 To illustrate why achieving a certain coverage criteria should not be a goal in itself, I decided to write tests for the finite state machine (FSM) in the asteroids.Game object of the asteroids application. Achieving Clause Coverage\cite[p.~106]{AmmannOffutt} for 18 lines of production code (asteroids.Game.FSM.start) took almost 100 lines of test code, see commit 61713c of \url{https://github.com/emilwall/HTML5-Asteroids}. This is not that much, but it didn't provide much value either as no bug was found.
 
-\subsection{(,)Stubbing vs refactoring}
+\subsection{(ML,JS)Stubbing vs refactoring}
 
 When an application is tightly coupled, stubbing becomes a daunting task. What you end up with is deciding whether you should compromise the unit tests by not stubbing everything, refactor the code to reduce the amount of calls that needs to be stubbed, or stub all dependencies. The first alternative bodes for unstable tests that might fail or cause other tests to fail for the wrong reasons. Refactoring might introduce new bugs and should probably only be done if it simplifies the design and makes the code more readable. Stubbing all dependencies might result in too much code or force you to complicate the testing configuration so that some code is run between each test. One case where this tradeoff had to be made was when writing tests for classes that depended on the Sprite class, such as the Ship class. It uses the Sprite class both for its ``exhaust'' attribute and for its prototype. Luckily, the Sprite constructor does not modify any global state, so in this case not stubbing the Sprite class before parsing the Ship class is acceptable. In the unit tests however, any calls to methods defined in Sprite are preferably stubbed, since they should be tested separately.
 
 To detect improper stubbing, I ran each test isolated with just the file it was supposed to test. A problem with this was that trying to stub a function which is not defined produces an exception in order to prevent you from doing typos. This could be solved by saving the implementation in a local variable, defining the function to be an empty function, stub it with sinon.JS and then restore and re-set it to the original implementation, but this is inconvenient so instead I opted towards being careful not to miss any calls that should be stubbed. There is a point with interpreting the system under test before running any test code, since that allows for detection of typing mistakes and other integration issues.
 
-\subsection{(,)Deciding when and what to test}
+\subsection{(ML,JS)Deciding when and what to test}
 
 Testing is especially important for large applications. It is extra valuable when new functionality is added because it helps to verify that old functionality is not broken and that the new code is structured appropriately. \cite[questions~6-7]{Stenmark}
 
@@ -404,14 +404,14 @@ Naturally, the more important a certain functionality is in relation to business
 
 In the end, when deciding what tests to write, one of the most important things are to make sure that the tests are meaningful. They should in some way be connected to the problem that the system solves and describe something that matters rather than just testing methods for the sake of it. \cite[questions~17-18]{Ahnve}
 
-\subsection{(,)Meet-up open space discussion}
+\subsection{(ML0,JS1)Meet-up open space discussion}
 \label{subsec:openspace}
 
 During a talk at a meet-up on python APIs (2013-05-22 at Tictail's office, an e-commerce startup based in Stockholm), the speaker mentioned that their application depended heavily on \gls{js}. It turned out that they had done some testing efforts but without any lasting results. During the open space after the talks, testing became a discussion subject in a group consisting of one of the developers of the application, among others. The developer explained that they had been unable to unit test their \gls{js} because the functionality was so tightly coupled that the only observable output that they could possibly test was the appearance of the web page, via Selenium tests. He sought reassurance that they had done the right thing when deciding not to base their testing on Selenium due to instability (tests failing for the wrong reasons) and time required to run the tests. He also sought answers to how they should have proceeded.
 
 The participants in the discussion were in agreement that testing appearance is the wrong way to go and that tests need to be fast and reliable. The experience with testing frameworks seemed to vary, some had used Jasmine and appreciated its behaviour driven approach and at least one had used Karma but under its former name Testacular. The idea that general \gls{js} frameworks such as AngularJS could help in making code testable and incorporating tests as a natural part of the development was not frowned upon. The consensus seemed to be that in general, testing \gls{js} is good if done right, but also difficult.
 
-\subsection{(,)Ideas spawned when talking about this thesis}
+\subsection{(ML,JS1)Ideas spawned when talking about this thesis}
 
 During my work on this thesis, I have explained to numerous people what it is that I'm doing. Typically, I've started out with saying something like ``I'm looking at testing of JavaScript''. Depending on if the person asking knows a lot about \gls{js} or not, the conversation then might proceed in different directions, but the most common follow up is that I explain further that I'm looking at why people don't do it, when and how they should do it and what the problems and benefits are. Especially I'm looking at the problems.
 
