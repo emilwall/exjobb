@@ -175,6 +175,61 @@ Heidegger et al. cover unit testing of \gls{js} that manipulates the \gls{dom} o
 Phillip Heidegger and Peter Thiemann has addressed the issue of type related errors in \gls{js} by introducing JSConTest, a contract framework that enables guided random testing by specifying types and relations of the arguments and return value of functions \cite{ContractTesting}.
 
 
+\section{(ML,JS)Methods}
+
+The methods used were first and foremost qualitative in nature, in order to prioritise insight into the problem domain above quantitatively verifying hypotheses. The chance of finding the true difficulties of \gls{js} testing was expected to increase with open questions.
+
+The work of this thesis began with an extensive literature study and an overview of technologies and frameworks. Interviews of \gls{js} developers of different background were performed and analysed. There was also some hands on evaluation of tools and frameworks, assessment of testability and impact of adding tests to existing projects.
+
+In order to describe ways of writing tests for \gls{js}, the practical work involved testing an existing application, performing TDD exercises from Test-driven JavaScript Development \cite{Tddjs} and doing some small TDD projects during the framework evaluation. There were plans to have a workshop field study, where programmers would work in pairs to solve pre-defined problems using TDD, but in the end it was decided that it would be too difficult to extract useful data from such an activity.
+
+\subsection{(ML,JS)Literature Study}
+
+Relevant books, articles and Internet sources were identified and skimmed, some were read through thoroughly. As was mentioned in \nameref{sec:previouswork} (section \ref{sec:previouswork}), several new titles were published during the work of this thesis. Additionally, some older literature was also included as the need became apparent.
+
+\subsection{(ML,JS)Framework Overview and Evaluation}
+
+The following testing frameworks have been evaluated: % Move to appendix?
+Jasmine\footnote{\url{http://pivotal.github.com/jasmine/}} (+ Jasmine-species\footnote{\url{http://rudylattae.github.com/jasmine-species/}}),
+qUnit\footnote{\url{http://qunitjs.com/}},
+Karma\footnote{\url{http://karma-runner.github.io/}},
+Mocha\footnote{\url{http://visionmedia.github.com/mocha/}},
+JsTestDriver\footnote{\url{https://code.google.com/p/js-test-driver/}},
+Buster.JS\footnote{\url{http://docs.busterjs.org/}} and
+Sinon.JS\footnote{\url{http://sinonjs.org/}}. The code written while evaluating the frameworks is publicly available as git repositories under my Github account \emph{emilwall}, together with the \LaTeX~code for this report.
+
+\subsection{(ML0,JS)Interviews}
+
+Semi-structured case study interviews were used rather than surveys to gather individual views on the subject. This approach allowed for harnessing unique as well as common experiences which would not be picked up in a standardised survey. The interviews were between 20 and 60 minutes long and were conducted both in person and via Internet video calls.
+
+\subsubsection{(ML0,JS1)Interview Considerations}
+
+The preparations before the interviews included specifying purpose and which subjects to include, select interviewees, preparing questions and adjust the material to fit each interviewee. The interviews took place rather late so that preliminary results and insights from the literature study could be used as basis for the discussions.
+
+The purpose of the interviews was to investigate attitudes and to get a reality check on ideas that had emerged during previous work. Selecting the interviewees was to a large extent done based on availability, but care was also taken to include people outside of Valtech and to get opinions from people with different background (front-end, back-end, senior, junior, etc.). Enquires were made in Valtech's intranet, my supervisor asked his contacts via his Twitter account and I contacted some people via mail. This led to five interviews and one email conversation, which can all be found in the Appendix.
+
+The interviews were performed in swedish to allow for a more fluent conversation and minimise risk of misunderstandings. They were transcribed (see Appendix), each question was given a number, and the most relevant parts were translated and included in this report with reference to the question numbers. The interviewees were asked prior to the interviews if it was ok to record the conversation and if they wanted to be anonymous, everyone was ok with being recorded and mentioned by name.
+
+The interviewees received questions beforehand via mail which most of them answered before the interview. This allowed the interviews to focus on the vital parts rather than personal background and opinions about \gls{js}. The questions that was sent out before the interviews were mainly about previous experience with \gls{js} and testing, frameworks, attitudes towards the language, difficulties with testing and opinions and observations on benefits of testing.
+
+\subsubsection{(ML0,JS1)The Interviewees}
+\label{ssubsec:interviewees}
+
+The first person I interviewed was Johannes Edelstam, an experienced Ruby and \gls{js} developer, organiser of the sthlm.js meet-up group, a helping hack, and a former employee of Valtech, now working at Tink. He has a positive attitude towards \gls{js} as a programming language and has extensive experience of test driven development.
+
+Next up was Patrik Stenmark, a Ruby and \gls{js} developer since 2007. He is also an organiser of a helping hack and a current employee at Valtech. He considers \gls{js} to be inconsistent and weird in some aspects but appreciates the fact that it is available in browsers and has developed large single page applications (SPA) in it.
+
+The third person that was interviewed was Marcus Ahnve, a senior developer and agile coach that has been in business since 1996 working for IBM, Sun Microsystems and ThoughtWorks, and as CTO for Lecando and WeMind. He is currently working at Valtech. He is an experienced speaker and a founder of Agile Sweden, an annual conference since 2008. He is also experienced with test driven development in Java, Ruby and \gls{js}.
+
+The next interview was with Per Rovegård, a developer with a Ph.D. in Software Engineering from Blekinge Institute of Technology. He has worked for Ericsson and is currently a consultant at factor10 where he has spent the last year developing an AngularJS application, with over 3000 tests. He is the author of the programatically speaking blog and have done several talks at conferences and meet-ups, most recently about Angular and TDD at sthlm.js on the 2nd of Oct 2013 but the interviews took place in Aug over Skype.
+
+The last interview was with Henrik Ekelöf, a front-end developer that has seven years of professional experience with \gls{js}. He has previously worked as webmaster and web developer at Statistics Sweden and SIX and is now technical consultant at Valtech. I met him in person during my introduction programme in Valtech where he had a session with us about idiomatic \gls{js}, linting and optimisations, but this interview was done over Skype since he works out of town.
+
+\subsubsection{(ML,JS)Other People Involved}
+
+As can be seen at the end of the Appendix, there were some email conversations with people that was not interviewed as well. Among those are: Fredrik Wendt, who is a senior developer and consultant at Squeed specialising in team coaching with coding dojos, TDD and agile methodologies. David Waller, teacher at Linnéuniversitetet in a course about Rich Internet Applications with JavaScript. Marcus Bendtsen, teacher at Linköpings Universitet in a course about Web Programming and Interactivity.
+
+
 \section{(ML,JS)Technical Background}
 
 This section gives an overview of concepts and tools relevant to understanding this thesis. Readers with significant prior knowledge about web development and \gls{js} testing may skip this section.
@@ -249,60 +304,6 @@ Many people have never set up a testing framework in a project and thinks that i
 
 Build programs (see section~\ref{subsec:build}) and version control systems play an important role in automating testing.
 
-
-\section{(ML,JS)Methods}
-
-The methods used were first and foremost qualitative in nature, in order to prioritise insight into the problem domain above quantitatively verifying hypotheses. The chance of finding the true difficulties of \gls{js} testing was expected to increase with open questions.
-
-The work of this thesis began with an extensive literature study and an overview of technologies and frameworks. Interviews of \gls{js} developers of different background were performed and analysed. There was also some hands on evaluation of tools and frameworks, assessment of testability and impact of adding tests to existing projects.
-
-In order to describe ways of writing tests for \gls{js}, the practical work involved testing an existing application, performing TDD exercises from Test-driven JavaScript Development \cite{Tddjs} and doing some small TDD projects during the framework evaluation. There were plans to have a workshop field study, where programmers would work in pairs to solve pre-defined problems using TDD, but in the end it was decided that it would be too difficult to extract useful data from such an activity.
-
-\subsection{(ML,JS)Literature Study}
-
-Relevant books, articles and Internet sources were identified and skimmed, some were read through thoroughly. Over time, several new titles were published and some older literature was also included as the need became apparent. See \nameref{sec:previouswork} (section \ref{sec:previouswork}).
-
-\subsection{(ML,JS)Framework Overview and Evaluation}
-
-The following testing frameworks have been evaluated: % Move to appendix?
-Jasmine\footnote{\url{http://pivotal.github.com/jasmine/}} (+ Jasmine-species\footnote{\url{http://rudylattae.github.com/jasmine-species/}}),
-qUnit\footnote{\url{http://qunitjs.com/}},
-Karma\footnote{\url{http://karma-runner.github.io/}},
-Mocha\footnote{\url{http://visionmedia.github.com/mocha/}},
-JsTestDriver\footnote{\url{https://code.google.com/p/js-test-driver/}},
-Buster.JS\footnote{\url{http://docs.busterjs.org/}} and
-Sinon.JS\footnote{\url{http://sinonjs.org/}}. The code written while evaluating the frameworks is publicly available as git repositories under my Github account \emph{emilwall}, together with the \LaTeX~code for this report.
-
-\subsection{(ML0,JS)Interviews}
-
-Semi-structured case study interviews were used rather than surveys to gather individual views on the subject. This approach allowed for harnessing unique as well as common experiences which would not be picked up in a standardised survey. The interviews were between 20 and 60 minutes long and were conducted both in person and via Internet video calls.
-
-\subsubsection{(ML0,JS1)Interview Considerations}
-
-The preparations before the interviews included specifying purpose and which subjects to include, select interviewees, preparing questions and adjust the material to fit each interviewee. The interviews took place rather late so that preliminary results and insights from the literature study could be used as basis for the discussions.
-
-The purpose of the interviews was to investigate attitudes and to get a reality check on ideas that had emerged during previous work. Selecting the interviewees was to a large extent done based on availability, but care was also taken to include people outside of Valtech and to get opinions from people with different background (front-end, back-end, senior, junior, etc.). Enquires were made in Valtech's intranet, my supervisor asked his contacts via his Twitter account and I contacted some people via mail. This led to five interviews and one email conversation, which can all be found in the Appendix.
-
-The interviews were performed in swedish to allow for a more fluent conversation and minimise risk of misunderstandings. They were transcribed (see Appendix), each question was given a number, and the most relevant parts were translated and included in this report with reference to the question numbers. The interviewees were asked prior to the interviews if it was ok to record the conversation and if they wanted to be anonymous, everyone was ok with being recorded and mentioned by name.
-
-The interviewees received questions beforehand via mail which most of them answered before the interview. This allowed the interviews to focus on the vital parts rather than personal background and opinions about \gls{js}. The questions that was sent out before the interviews were mainly about previous experience with \gls{js} and testing, frameworks, attitudes towards the language, difficulties with testing and opinions and observations on benefits of testing.
-
-\subsubsection{(ML0,JS1)The Interviewees}
-\label{ssubsec:interviewees}
-
-The first person I interviewed was Johannes Edelstam, an experienced Ruby and \gls{js} developer, organiser of the sthlm.js meet-up group, a helping hack, and a former employee of Valtech, now working at Tink. He has a positive attitude towards \gls{js} as a programming language and has extensive experience of test driven development.
-
-Next up was Patrik Stenmark, a Ruby and \gls{js} developer since 2007. He is also an organiser of a helping hack and a current employee at Valtech. He considers \gls{js} to be inconsistent and weird in some aspects but appreciates the fact that it is available in browsers and has developed large single page applications (SPA) in it.
-
-The third person that was interviewed was Marcus Ahnve, a senior developer and agile coach that has been in business since 1996 working for IBM, Sun Microsystems and ThoughtWorks, and as CTO for Lecando and WeMind. He is currently working at Valtech. He is an experienced speaker and a founder of Agile Sweden, an annual conference since 2008. He is also experienced with test driven development in Java, Ruby and \gls{js}.
-
-The next interview was with Per Rovegård, a developer with a Ph.D. in Software Engineering from Blekinge Institute of Technology. He has worked for Ericsson and is currently a consultant at factor10 where he has spent the last year developing an AngularJS application, with over 3000 tests. He is the author of the programatically speaking blog and have done several talks at conferences and meet-ups, most recently about Angular and TDD at sthlm.js on the 2nd of Oct 2013 but the interviews took place in Aug over Skype.
-
-The last interview was with Henrik Ekelöf, a front-end developer that has seven years of professional experience with \gls{js}. He has previously worked as webmaster and web developer at Statistics Sweden and SIX and is now technical consultant at Valtech. I met him in person during my introduction programme in Valtech where he had a session with us about idiomatic \gls{js}, linting and optimisations, but this interview was done over Skype since he works out of town.
-
-\subsubsection{(ML,JS)Other People Involved}
-
-As can be seen at the end of the Appendix, there were some email conversations with people that was not interviewed as well. Among those are: Fredrik Wendt, who is a senior developer and consultant at Squeed specialising in team coaching with coding dojos, TDD and agile methodologies. David Waller, teacher at Linnéuniversitetet in a course about Rich Internet Applications with JavaScript. Marcus Bendtsen, teacher at Linköpings Universitet in a course about Web Programming and Interactivity.
 
 \section{(ML,JS)Testability -- Real world experiences}
 \label{sec:testability}
