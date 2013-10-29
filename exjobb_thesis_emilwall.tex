@@ -120,7 +120,7 @@ There is only one production quality testing framework available for \gls{sml}, 
 
 In section \ref{subsec:patternsexamples}, it is mentioned that examples are often simple and seldom provide a full picture. In contrast, the problem domain of this thesis is to focus on how to test the behaviour of \gls{js} that manipulates \gls{dom} elements, fetches data using asynchronous calls, validates forms, communicates through APIs or manipulates the appearance of a web page. We also look at when and why you should test your \gls{js}.
 
-\section{(ML1,JS1)Scope and Delimitations}
+\subsection{(ML1,JS1)Scope and Delimitations}
 
 The scope of this thesis is mainly limited to \emph{automated} testing of \gls{sml} and \emph{client side} \gls{js}. This means that the impact of frameworks specialised for server side \gls{js} code such as vows\footnote{\url{http://vowsjs.org/}} and cucumis\footnote{\url{https://github.com/noblesamurai/cucumis}} has not been considered. Testing client side code is by no means more important than server side, but in many aspects it is different and sometimes harder.
 
@@ -146,9 +146,7 @@ There are also more technical aspects:
 \item Complexity in setting up the test environment; installing frameworks, configuring build server, exposing functions to testing but not to users in production, etc.
 \end{itemize}
 
-\subsection{(ML,JS1)Covering Common and Advanced Cases}
-
-Accounting for how to conveniently proceed with \gls{js} testing should cover not only the simplest cases but also the most common and the hardest ones, preferably while also providing evaluation and introduction to available tools and frameworks. Many introductions and tutorials found for the testing frameworks today tends to focus on the simple cases of testing, possibly because making an impression that the framework is simple to use has been more highly prioritised than covering different edge cases of how it can be used that might not be relevant to that many anyway. To provide valuable guidance in how to set up a testing environment and how to write the tests, attention must be paid to the varying needs of different kinds of applications. It is also important to keep in mind that the tests should be as maintainable as the system under test, to minimise maintenance costs and maximise gain.
+An important part of the scope has been to account for how to conveniently proceed with \gls{js} and \gls{sml} testing. The ambition was to cover not only the simplest cases but also the most common and the hardest ones, and introduce available tools and frameworks. Many tutorials for testing frameworks today tends to focus on the simple cases of testing, possibly because making an impression that the framework is simple to use has been more highly prioritised than covering different edge cases of how it can be used that might not be relevant to that many anyway. To provide valuable guidance in how to set up a testing environment and how to write the tests, attention had to be paid to the varying needs of different kinds of applications. It was also important to describe how to write tests that are as maintainable as the system under test, to minimise maintenance costs and maximise gain.
 
 \section{(ML,JS)Technical Background}
 
