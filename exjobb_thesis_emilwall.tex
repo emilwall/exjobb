@@ -144,19 +144,19 @@ The choice of looking at \gls{sml} and \gls{js} specifically was based on that t
 
 Manual testing was not covered to any significant extent, since there were enough issues to deal with in automated testing. Naturally, there are many situations where manual testing is required, but in this thesis \emph{testing} typically refers to automated testing.
 
-\subsection{(,)Consequences of JavaScript testing}
+\subsection{(ML0,JS1)Consequences of JavaScript testing}
 
 There are consequences (good and bad) of testing \gls{js} both from a short and from a longer perspective. The development process is affected; through time spent thinking about and writing tests, shorter feedback loops, executable documentation and new ways of communicating requirements with customers. The the quality and maintainability of the end result is also likely to be positively affected. Making changes becomes easier when the application is supported by a rigorous set of tests, so ideally, the pace of development does not stagnate. The extra time required to set up the test environment and write the actual tests may or may not turn out to pay off, depending on how the application will be used and maintained.
 
-\subsection{(,)Covering Common and Advanced Cases}
+\subsection{(ML,JS1)Covering Common and Advanced Cases}
 
 Accounting for how to conveniently proceed with \gls{js} testing should cover not only the simplest cases but also the most common and the hardest ones, preferably while also providing evaluation and introduction to available tools and frameworks. Many introductions and tutorials found for the testing frameworks today tends to focus on the simple cases of testing, possibly because making an impression that the framework is simple to use has been more highly prioritised than covering different edge cases of how it can be used that might not be relevant to that many anyway. To provide valuable guidance in how to set up a testing environment and how to write the tests, attention must be paid to the varying needs of different kinds of applications. It is also important to keep in mind that the tests should be as maintainable as the system under test, to minimise maintenance costs and maximise gain.
 
-\section{(,)Technical Background}
+\section{(ML,JS)Technical Background}
 
 This section gives an overview of concepts and tools relevant to understanding this thesis. Readers with significant prior knowledge about web development and \gls{js} testing may skip this section.
 
-\subsection{(,)Basics of Testing}
+\subsection{(ML0,JS0)Basics of Testing}
 
 Every developer performs testing in one way or another. Running an application, interacting with it and observing the results is one form of testing. The more time spent on developing the application, the more evident the need for automated tests tends to become, to reduce the amount of manual work and time spent repeating the same procedures.
 
@@ -164,7 +164,7 @@ Automated testing is commonly divided into different categories of tests, that e
 
 Commonly, unit tests are more low level and integration tests are more like user interactions. This does not have to be the case however, unit tests can be written in a business value focused fashion too and integration tests can usually be written before there is a GUI to interact with. \cite[question~20]{Ahnve}
 
-\subsection{(,)Behaviour-Driven Development}
+\subsection{(ML0,JS0)Behaviour-Driven Development}
 
 Behaviour-Driven Development (BDD) is about describing expected behaviour of systems and writing tests from the outside in. It replaces and adds terminology traditionally used within TDD and encourages descriptive naming of tests (often referred to as specs, which is short for specifications, in BDD) that helps readability and to make failure messages more helpful. \cite[questions~17-18]{Ahnve}
 
@@ -172,12 +172,12 @@ Another advantage with BDD is the Given, When, Then (GWT) form (which is also me
 
 Strictly speaking, you do not need a BDD framework to perform BDD. J. B. Rainsberger, the author of JUnit Recipes: Practical Methods for Programmer Testing, explained how to do BDD in jUnit at the XP 2011 conference in Madrid. The key to doing this is to divide the tests based on system behaviour rather than classes. This is the same concept as when writing specs in Cucumber, a Ruby GWT framework, and the same principle applies to BDD in \gls{js}. This is desirable because it helps you to not prioritise implementation details in favour of the parts that truly matters from a business value point of view.\cite[question~20]{Ahnve}
 
-\subsection{(,)Lint Tools for JavaScript}
+\subsection{(ML0,JS1)Lint Tools for JavaScript}
 \label{subsec:Lint}
 
 Linting is a static analysis tool for detecting syntax errors, risky programming styles and failure to comply to coding conventions. There are lint tools available for \gls{js} such as JSLint, JSHint, JavaScript Lint, JSure, the Closure compiler and PHP CodeSniffer. JSLint does provide some help to avoid common programming mistakes, but does not perform flow analysis \cite{JSLint} and type checking as a fully featured compiler would do, rendering proper testing routines the appropriate measure against programming mistakes.
 
-\subsection{(,)Mocking and Stubbing}
+\subsection{(ML,JS1)Mocking and Stubbing}
 \label{subsec:mocking}
 
 Mocking and stubbing involves simulation of behaviour of real objects in order to isolate the system under test from external dependencies. This is typically done in order to improve error localisation and execution time, and to avoid unwanted side-effects and dependencies such as communication with databases, across networks or with a file system \cite[ch.~2]{Legacy}. A mock is different from a stub in that it has pre-programmed expectations and built-in behaviour verification \cite[p.~453]{Tddjs}.
@@ -186,7 +186,7 @@ In \gls{js}, tools for stubbing can be superfluous because you are able to manua
 
 Typical cases for using a stubbing or mocking framework rather than VanillaJS include when your assertion framework has support for it, as is the case for Jasmine, when you feel the need to do a complex call assertion, mock a large API or state expectations up front as is done with mocks. Bear in mind that overly complex stubbing needs can be a symptom for that the code is in need of refactoring \cite[question~34]{Stenmark}, and strive for consistency by using a single method for stubbing -- mixing VanillaJS with Jasmine spies and Sinon.JS stubs will make the tests harder to understand.
 
-\subsection{(,)Browser Automation}
+\subsection{(ML0,JS)Browser Automation}
 \label{subsec:browserautomation}
 
 Repetitive manual navigation of a web site is generally boring and time consuming. There are situations where manual testing is the right thing to do, such as when there is no need for regression testing or the functionality is too complicated to interact with for automated tests to be possible (but then the design should probably be improved). Most of the time, tasks can be automated. There are several tools available for automating a web browser: the popular open source Selenium WebDriver, the versatile but proprietary and windows specific TestComplete and Ranorex, the Ruby library Watir and its .NET counterpart WatiN, and others such as Sahi and Windmill.
@@ -195,7 +195,7 @@ Selenium WebDriver is a collection of language specific bindings to drive a brow
 
 There is also a Firefox plugin called Selenium IDE, that allows the user to record interactions and generate code for them that can be used to repeat the procedure or as a starting point in tests. In the remaining parts of this thesis, we will mean Selenium WebDriver when we say Selenium, and refer to Selenium IDE by its full name.
 
-\subsection{(,)Refactoring}
+\subsection{(ML0,JS0)Refactoring}
 \label{subsec:refactor}
 
 Refactoring is ``a change made to the internal structure of software to make it easier to understand and cheaper to modify without changing its observable behaviour'', or the act of applying such changes \cite[p.~46]{Refactoring}. As mentioned in the \nameref{subsec:motivation} section (section \ref{subsec:motivation}), refactoring prevents program decay and helps to maintain productivity. Just like testing, refactoring is no magic bullet that solves all problems and it is important to know when to do it and when it might not be worth the effort. Common rules of thumb are to refactor when doing something similar for the third time (a pragmatic approach to the DRY principle), when it helps to understand a piece of code, when it facilitates addition of a new feature, when searching for a bug and when discussing the code with others, e.g. in code reviews \cite[p.~49-51]{Refactoring}.
@@ -211,21 +211,21 @@ kratko.js\footnote{\url{https://github.com/kangax/kratko.js}} and
 jsmeter\footnote{\url{https://code.google.com/p/jsmeter/}} (not to be confused with the
 Microsoft Research project\footnote{\url{http://research.microsoft.com/en-us/projects/jsmeter/}}) that helps you to identify which objects have too many methods and which methods do too many things (or have too many arguments). Relying on metrics such as lines of code is of course not always appropriate due to different coding styles, but at least it provides an overall picture \cite{Kratko}.
 
-\subsection{(,)Build tools}
+\subsection{(ML,JS1)Build tools}
 \label{subsec:build}
 
 There exists some general build tools that can be used for any programming language, these are often installed on build servers and integrated with version control systems. Examples include Jenkins, which is often configured and controlled through its web interface although it also has a CLI, and GNU Make, which is typically configured using makefiles and controlled through CLI. In addition to these, there are also language specific tools: Ruby has Rake, Java has Maven, Gradle and Ant, C\nolinebreak\hspace{-.05em}\raisebox{.3ex}{\scriptsize\bf \#} has MSBuild and NAnt.
 
 Naturally, there are build tools designed specifically for \gls{js} as well, Grunt\footnote{\url{http://gruntjs.com/}} being the most popular, which can be installed as a node.js package, has plugins for common tasks such as lint, testing and minification, and can be invoked through CLI. \cite[question~52]{Edelstam} Jake and Mimosa are other well known and maintained alternatives. It is also possible to use Rake, Ant or similar. Just as JsTestDriver and Mocha have adapters for Karma and Jasmine (see section~\ref{subsec:frameworks}), Rake has evergreen\footnote{\url{https://github.com/jnicklas/evergreen}} that allows it to run Jasmine unit tests. \cite{BuildTools}\cite[question~6]{Ahnve}
 
-\subsection{(,)Setting up a test suite}
+\subsection{(ML,JS)Setting up a test suite}
 
 Many people have never set up a testing framework in a project and thinks that it is a hard thing to do. It is typically not, unless you want to do something very special such as automatic test generation or integration with a service of some sort. However, it is worth giving careful thought on what combination of tools to use, to enable a pleasant workflow and ensuring that the tests can be written in a desirable style.
 
 Build programs (see section~\ref{subsec:build}) and version control systems play an important role in automating testing.
 
 
-\section{(,)Methods}
+\section{(ML,JS)Methods}
 
 The methods used were first and foremost qualitative in nature, in order to prioritise insight into the problem domain above quantitatively verifying hypotheses. The chance of finding the true difficulties of \gls{js} testing was expected to increase with open questions.
 
@@ -233,13 +233,13 @@ The work of this thesis began with an extensive literature study and an overview
 
 In order to describe ways of writing tests for \gls{js}, the practical work involved testing an existing application, performing TDD exercises from Test-driven JavaScript Development \cite{Tddjs} and doing some small TDD projects during the framework evaluation. There were plans to have a workshop field study, where programmers would work in pairs to solve pre-defined problems using TDD, but in the end it was decided that it would be too difficult to extract useful data from such an activity.
 
-\subsection{(,)Literature Study}
+\subsection{(ML,JS)Literature Study}
 
-Relevant books, articles and Internet sources were identified and skimmed, some were read through thoroughly. Over time, several new titles were published and some older literature was also included as the need became apparent.
+Relevant books, articles and Internet sources were identified and skimmed, some were read through thoroughly. Over time, several new titles were published and some older literature was also included as the need became apparent. See \nameref{sec:previouswork} (section \ref{sec:previouswork}).
 
-\subsection{(,)Framework Overview and Evaluation}
+\subsection{(ML,JS)Framework Overview and Evaluation}
 
-The following testing frameworks have been evaluated:
+The following testing frameworks have been evaluated: % Move to appendix?
 Jasmine\footnote{\url{http://pivotal.github.com/jasmine/}} (+ Jasmine-species\footnote{\url{http://rudylattae.github.com/jasmine-species/}}),
 qUnit\footnote{\url{http://qunitjs.com/}},
 Karma\footnote{\url{http://karma-runner.github.io/}},
@@ -248,11 +248,11 @@ JsTestDriver\footnote{\url{https://code.google.com/p/js-test-driver/}},
 Buster.JS\footnote{\url{http://docs.busterjs.org/}} and
 Sinon.JS\footnote{\url{http://sinonjs.org/}}. The code written while evaluating the frameworks is publicly available as git repositories under my Github account \emph{emilwall}, together with the \LaTeX~code for this report.
 
-\subsection{(,)Interviews}
+\subsection{(ML0,JS)Interviews}
 
 Semi-structured case study interviews were used rather than surveys to gather individual views on the subject. This approach allowed for harnessing unique as well as common experiences which would not be picked up in a standardised survey. The interviews were between 20 and 60 minutes long and were conducted both in person and via Internet video calls.
 
-\subsubsection{(,)Interview Considerations}
+\subsubsection{(ML0,JS1)Interview Considerations}
 
 The preparations before the interviews included specifying purpose and which subjects to include, select interviewees, preparing questions and adjust the material to fit each interviewee. The interviews took place rather late so that preliminary results and insights from the literature study could be used as basis for the discussions.
 
@@ -262,7 +262,7 @@ The interviews were performed in swedish to allow for a more fluent conversation
 
 The interviewees received questions beforehand via mail which most of them answered before the interview. This allowed the interviews to focus on the vital parts rather than personal background and opinions about \gls{js}. The questions that was sent out before the interviews were mainly about previous experience with \gls{js} and testing, frameworks, attitudes towards the language, difficulties with testing and opinions and observations on benefits of testing.
 
-\subsubsection{(,)The Interviewees}
+\subsubsection{(ML0,JS1)The Interviewees}
 \label{ssubsec:interviewees}
 
 The first person I interviewed was Johannes Edelstam, an experienced Ruby and \gls{js} developer, organiser of the sthlm.js meet-up group, a helping hack, and a former employee of Valtech, now working at Tink. He has a positive attitude towards \gls{js} as a programming language and has extensive experience of test driven development.
@@ -275,13 +275,14 @@ The next interview was with Per Rovegård, a developer with a Ph.D. in Software 
 
 The last interview was with Henrik Ekelöf, a front-end developer that has seven years of professional experience with \gls{js}. He has previously worked as webmaster and web developer at Statistics Sweden and SIX and is now technical consultant at Valtech. I met him in person during my introduction programme in Valtech where he had a session with us about idiomatic \gls{js}, linting and optimisations, but this interview was done over Skype since he works out of town.
 
-\subsubsection{(,)Other People Involved}
+\subsubsection{(ML,JS)Other People Involved}
 
 As can be seen at the end of the Appendix, there were some email conversations with people that was not interviewed as well. Among those are: Fredrik Wendt, who is a senior developer and consultant at Squeed specialising in team coaching with coding dojos, TDD and agile methodologies. David Waller, teacher at Linnéuniversitetet in a course about Rich Internet Applications with JavaScript. Marcus Bendtsen, teacher at Linköpings Universitet in a course about Web Programming and Interactivity.
 
-\section{(,)Previous work}
+\section{(ML,JS)Previous work}
+\label{sec:previouswork}
 
-\subsection{(,)Books}
+\subsection{(ML1,JS1)Books}
 
 The main source of reference within the field of \gls{js} testing today is \emph{Test-Driven JavaScript Development} \cite{Tddjs} by Christian Johansen which deals with \gls{js} testing from a TDD perspective. Johansen is the creator of Sinon.JS\footnote{\url{http://sinonjs.org/}} and a contributor to a number of testing frameworks hosted in the open source community.
 
@@ -289,7 +290,7 @@ Lately, a large number of books about \gls{js} testing has appeared. \emph{JavaS
 
 Except for discussions on how to perform mathematical proofs and equality tests of polymorphic types, there are no books that cover testing of \gls{sml}. The main sources of reference for \gls{sml} is \emph{The Definition of Standard ML} \cite{DefinitionStandardML} which cover the language syntax and semantics, \emph{The Standard ML Basis Manual} \cite{BasisManual} which describes the standard library, \emph{Elements of ML Programming} which \cite{ElementsML} which cover the features of \gls{sml} in a more comprehensible fashion, \emph{ML for the Working Programmer} \cite{WorkingProgrammer} which is somewhat outdated but comprehensive, and various lecture notes \cite{ProgSml97}\cite{ProgSmlHarper}\cite{FunctionalML}\cite{NotesSMLNJ}. None of these describe ways of doing automated testing and there seems to be an attitude against testing based on that it can not prove absence of errors in the way formal verification can \cite[p.~16]{ProgSmlHarper}.
 
-\subsection{(,)Articles}
+\subsection{(ML1,JS1)Articles}
 
 There are many academic papers about testing web applications available, and quite a few of them focus on \gls{js} specifically (whereas practically none involve \gls{sml}). Papers on testing of \gls{sml} are hard to find even outside of the web applications context, most that are of any interest are concerned with formal verification or related to the QuickCheck tool which can be used to generate tests for Haskell code, using \gls{sml} as an intermediate language.
 
