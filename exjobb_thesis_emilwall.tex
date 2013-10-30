@@ -48,6 +48,8 @@
 
 \newglossaryentry{testing}{name={Testing}, text={testing}, description={Defined here as automated software testing, unless otherwise specified. Manual testing and most forms of acceptance testing is outside the scope of this thesis}}
 
+\newglossaryentry{mooc}{name={MOOC}, first={MOOC (Massive Open Online Course)}, description={``A MOOC [Massive Open Online Course] is an online course with the option of free and open registration, a publicly-shared curriculum, and open-ended outcomes. MOOCs integrate social networking, accessible online resources, and are facilitated by leading practitioners in the field of study. [...] The term came into being in 2008, though versions of very large open online courses were in existence before that time.'' \cite[p.~10]{MOOC}}}
+
 \begin{document}
 
 %\include{frontpages}
@@ -189,7 +191,7 @@ Relevant books, articles and Internet sources were identified and skimmed, some 
 
 \subsection{(ML,JS)Programming}
 
-While writing this thesis, much time was spent programming: working through the projects in part III of \cite{Tddjs}, adding tests to an existing gls{js} application (see section \ref{subsec:asteriods}), developing an gls{sml} testing framework (see section \ref{subsec:describesml}) and using that framework in practise to solve programming assignments in a MOOC course.
+While writing this thesis, much time was spent programming: working through the projects in part III of \cite{Tddjs}, adding tests to an existing gls{js} application (see section \ref{subsec:asteriods}), developing an gls{sml} testing framework (see section \ref{subsec:describesml}) and using that framework in practise to solve programming assignments in a \gls{mooc} course.
 
 A thorough evaluation of frameworks for \gls{js} and \gls{sml} was not part of the scope, but since they pose a significant part of how to solve problems with testing many were involved anyway. The following \gls{js} testing frameworks have been part of the practical work:
 Jasmine\footnote{\url{http://pivotal.github.com/jasmine/}},
@@ -198,7 +200,7 @@ Karma\footnote{\url{http://karma-runner.github.io/}},
 Mocha\footnote{\url{http://visionmedia.github.com/mocha/}},
 JsTestDriver\footnote{\url{https://code.google.com/p/js-test-driver/}},
 Buster.JS\footnote{\url{http://docs.busterjs.org/}} and
-Sinon.JS\footnote{\url{http://sinonjs.org/}}. Apart from the MOOC programming assignments, all code is publicly available on my Github account \emph{emilwall}, together with the \LaTeX~code for this report.
+Sinon.JS\footnote{\url{http://sinonjs.org/}}. Apart from the \gls{mooc} programming assignments, all code is publicly available on my Github account \emph{emilwall}, together with the \LaTeX~code for this report.
 
 \subsection{(ML0,JS)Interviews}
 
@@ -310,7 +312,7 @@ Build programs (see section~\ref{subsec:build}) and version control systems play
 \section{(ML,JS)Testability -- Real world experiences}
 \label{sec:testability}
 
-Adding tests for code that was written without testing in mind is challenging \cite[p.~18]{Tddjs}. In this section an effort to do so in \gls{js} is described, in order to highlight the problems and solutions to some of them. Writing tests first can also be challenging, but for completely different reasons. For this reason, a TDD approach to solving programming exercises in \gls{sml} in a massive open online course (MOOC) is also described.
+Adding tests for code that was written without testing in mind is challenging \cite[p.~18]{Tddjs}. In this section an effort to do so in \gls{js} is described, in order to highlight the problems and solutions to some of them. Writing tests first can also be challenging, but for completely different reasons. For this reason, a TDD approach to solving programming exercises in \gls{sml} in a \gls{mooc} is also described.
 
 \subsection{(ML0,JS)Description of the asteroids example}
 \label{subsec:asteriods}
@@ -515,7 +517,7 @@ It could be that QCheck, which has a relatively large user base, is often consid
 \subsection{(JS0,ML)DescribeSML}
 \label{subsec:describesml}
 
-By the time I found out about existing SML testing frameworks (apart from QCheck) I had already started to write my own. I wanted to use my insights from using JS testing frameworks such as Jasmine and Mocha to write a BDD framework which I would use in the Coursera MOOC course Programming Languages. % Add references to the course, MOOC explanation (perhaps in glossary?)
+By the time I found out about existing SML testing frameworks (apart from QCheck) I had already started to write my own. I wanted to use my insights from using JS testing frameworks such as Jasmine and Mocha to write a BDD framework which I would use in the Coursera \gls{mooc} course Programming Languages. % Add reference to the course
 
 hård typning leder till begränsande ramverk, vilket dock kan vara bra (koncisa tester!)
 
