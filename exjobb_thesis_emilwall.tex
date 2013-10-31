@@ -545,6 +545,13 @@ Although the strict type system, functional style and static analysis of \gls{sm
 
 One way to compensate for this inflexibility could be to allow shared data between specs. Then it would not be such a problem that all specs have single expectations, since any value that you want to perform multiple assertions on can be computed once and then used in several specs. In an imperative language like \gls{js} this could encourage bad practises and lead to unwanted dependencies but since ML is (almost) purely functional, that is not an issue. Data could actually be shared between specs with a simple let-in-end expression already, but a future version of DescribeSML might implement a \texttt{given} construct to clearly demonstrate the possibility, and to better handle situations where an expression is raised by the expression producing the data.
 
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=0.9\textwidth]{pics/data.png}
+\caption{Sharing data between tests does not introduce dependencies between them in a functional language such as \gls{sml}}
+\label{fig:data}
+\end{figure}
+
 Enkelt att skriva matchers pga funktionellt språk, svårt pga hårt typat (tvungen att skapa toEqual, toEqualStr, toEqualInt, etc.) Ännu värre om man dessutom vill inkludera matchers för listor, tupler (!), arrayer och dylikt av olika typer. Praktiskt taget omöjligt om man vill kunna använda egna typer och ändå få bra felmeddelanden? Behov av interfaces.
 
 Om matchers för listor och dylikt används så behöver det vara tydligt om ordningen spelar roll eller inte. Default bör vara att ordningen inte spelar roll, annars blir testen lätt onödigt implementations-specifika.
