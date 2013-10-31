@@ -541,7 +541,11 @@ An intriguing aspect of writing a testing framework is that you can use the fram
 \label{fig:describesml}
 \end{figure}
 
+Although the strict type system, functional style and static analysis of \gls{sml} slightly reduces the need for testing compared to dynamic and imperative languages such as \gls{js}, it inevitably also results in more limiting testing frameworks. It is somewhat impractical in \gls{sml} to state several expectations in a single spec or stub functions used by the SUT. However, this can also be a good thing, since it leads to more concise tests.
+
 hård typning leder till begränsande ramverk, vilket dock kan vara bra (koncisa tester!)
+
+Allowing shared data between specs might be good to compensate for that all specs have single expectations.
 
 Enkelt att skriva matchers pga funktionellt språk, svårt pga hårt typat (tvungen att skapa toEqual, toEqualStr, toEqualInt, etc.) Ännu värre om man dessutom vill inkludera matchers för listor, tupler (!), arrayer och dylikt av olika typer. Praktiskt taget omöjligt om man vill kunna använda egna typer och ändå få bra felmeddelanden? Behov av interfaces.
 
