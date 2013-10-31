@@ -520,6 +520,8 @@ It could be that QCheck, which has a relatively large user base, is often consid
 
 By the time I found out about existing SML testing frameworks (apart from QCheck) I had already started to write my own. I wanted to use my insights from using JS testing frameworks such as Jasmine and Mocha to write a BDD framework which I would use in the Coursera \gls{mooc} course Programming Languages\footnote{\url{https://www.coursera.org/course/proglang}}, as mentioned in section~\ref{subsec:programming}.
 
+Writing a testing framework in \gls{sml} turned out to be an easier task than anticipated, it took only a few hours of development to get functionality such as matchers for checking equality, membership, regex matching and that certain exceptions are thrown. Nested describe-clauses were also implemented, to allow for neat organisation of tests (or specs, as they are called in BDD terminology), and the syntax and failure/success reports quickly became reasonably appealing.
+
 hård typning leder till begränsande ramverk, vilket dock kan vara bra (koncisa tester!)
 
 Enkelt att skriva matchers pga funktionellt språk, svårt pga hårt typat (tvungen att skapa toEqual, toEqualStr, toEqualInt, etc.) Ännu värre om man dessutom vill inkludera matchers för listor, tupler (!), arrayer och dylikt av olika typer. Praktiskt taget omöjligt om man vill kunna använda egna typer och ändå få bra felmeddelanden? Behov av interfaces.
