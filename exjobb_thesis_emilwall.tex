@@ -13,6 +13,7 @@
 \usepackage{enumitem} % resume numbering in enumerations and customize list appearence
 \usepackage[bottom = 110pt]{geometry} % to change the page dimensions
 \geometry{a4paper} % paper format, could also be placed in documentclass options
+\usepackage{float} % Enable placing images in middle of text
 \usepackage{graphicx} % support the \includegraphics command and options
 \usepackage{pgfplots} % charts and graphs
 \pgfplotsset{compat=1.8} % Avoid running in backwards compatibility mode (unsuitable tick labels; missing features)
@@ -91,6 +92,15 @@ nodes near coords, nodes near coords align={horizontal},
 \label{subsec:motivation}
 
 Why testing, you may ask. Jack Franklin, a young \gls{js} blogger from the UK, gives three reasons: it helps you to plan out your APIs, it allows you to refactor with confidence, and it helps you to discover regression bugs (i.e. when old code breaks because new code has been added). Writing tests to use a library before actually writing the library puts focus on intended usage, leading to a cleaner API. Being able to change and add code without fear of breaking something greatly accelerates productivity, especially for large applications. \cite{JackFranklin} Without tests, the ability to refactor (see section \ref{subsec:refactor}) is greatly hampered and without refactoring, making changes becomes harder over time, the code becomes harder to understand, the number of bugs increases and more time will be spent debugging \cite[p.~47-49]{Refactoring}. In order to avoid this, code should be tested, preferably writing tests first in order to guarantee testability and avoid making testing into a cumbersome task, separated from the rest of the development.
+
+Figure~\ref{fig:distance} (page~\pageref{fig:distance}) can work as an analogy for how testing influences development pace. Developers writing code without tests are like pure sprinter swimmers, they will be fast in the beginning of a project but over time the increasing complexity of the code will force them to go much slower. Developers that writes tests as part of the development process are more like pure distance swimmers, they maintain a sustainable pace. It is arguably slower in the beginning, but productivity does not decrease as drastically over time. The analogy is not perfect -- development pace is typically more dependent on system complexity than swimming speed is on distance, but this on the other hand only serves to further emphasise the point. Testing is a long term investment.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.9\textwidth]{pics/distance.png}
+\caption{Long distance swimmers are initially slower but have better endurance than sprinters. Image courtesy of Paul Newsome at \small \url{www.swimsmooth.com}}
+\label{fig:distance}
+\end{figure}
 
 Implementations of \gls{js} differ, especially for host objects such as document and XMLHttpRequest whose semantics are not fully defined in the specification but also for native objects that may be missing or behave differently in some implementations because they were not defined in previous specifications. Automated testing can help you discover bugs that appear due to such deviant behaviour in present and future versions. \gls{js} is also particularly important to test due to its dynamic properties \cite{AutomatedTesting} that complicate static analysis (however, there are lint tools, see sections~\ref{subsec:Lint} and \ref{subsec:refactor}), unwieldy syntax and aberrant object orientation support. \gls{js} is a complex language that requires many work-arounds because of its scoping rules and other unexpected behaviour \cite[appendix A]{GoodParts}. Despite the wide variety of testing frameworks that exists for \gls{js}, it is generally considered that few developers use them and instead rely on manual testing \cite{AutomatedTesting}.
 
