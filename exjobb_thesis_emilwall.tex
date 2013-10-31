@@ -524,6 +524,13 @@ Writing a testing framework in \gls{sml} turned out to be an easier task than an
 
 An intriguing aspect of writing a testing framework is that you can use the framework to test itself. This may sound like circular reasoning, but actually worked quite well to detect defects immediately after they had been introduced and through TDD:ing ensuring a well thought through design and providing feedback about which parts are important and easy to use, and which parts are missing or deficient in some aspect.
 
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=0.9\textwidth]{pics/DescribeSML.png}
+\caption{DescribeSML file structure and module architecture. Specs are written using Expect matchers, described and organised with Describe and should clauses, and the result of running them is reported by the SpecReporter.}
+\label{fig:describesml}
+\end{figure}
+
 hård typning leder till begränsande ramverk, vilket dock kan vara bra (koncisa tester!)
 
 Enkelt att skriva matchers pga funktionellt språk, svårt pga hårt typat (tvungen att skapa toEqual, toEqualStr, toEqualInt, etc.) Ännu värre om man dessutom vill inkludera matchers för listor, tupler (!), arrayer och dylikt av olika typer. Praktiskt taget omöjligt om man vill kunna använda egna typer och ändå få bra felmeddelanden? Behov av interfaces.
