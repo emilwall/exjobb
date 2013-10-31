@@ -14,12 +14,15 @@
 \usepackage[bottom = 110pt]{geometry} % to change the page dimensions
 \geometry{a4paper} % paper format, could also be placed in documentclass options
 \usepackage{float} % Enable placing images in middle of text
+\usepackage{caption} % Adjust caption widths
 \usepackage{graphicx} % support the \includegraphics command and options
 \usepackage{pgfplots} % charts and graphs
 \pgfplotsset{compat=1.8} % Avoid running in backwards compatibility mode (unsuitable tick labels; missing features)
 \usepackage[parfill]{parskip} % Begin paragraphs with an empty line rather than an indent
 \usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
 \usepackage{verbdef} % inline verbatim
+\usepackage{listings} % Display code
+\usepackage{color} % Used for color in code listings
 %\usepackage{titling} % required for setlength droptitle (below)
 %\setlength{\droptitle}{-70pt} % Adjust title height
 \usepackage{fancyhdr} % This should be set AFTER setting up the page geometry
@@ -36,6 +39,40 @@
 \usepackage{nameref} % Enable referring to the actual name of the chapter
 \usepackage{glossaries}
 \makeglossaries
+
+\captionsetup{width=0.8\textwidth}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\lstset{ %
+  backgroundcolor=\color{white},   % choose the background color; requires \usepackage{color} or \usepackage{xcolor}
+  basicstyle=\footnotesize,        % the size of the fonts that are used for the code
+  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                 % sets automatic line breaking
+  captionpos=t,                    % sets the caption-position to top
+  commentstyle=\color{mygreen},    % comment style
+  deletekeywords={...},            % if you want to delete keywords from the given language
+  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  frame=single,                    % adds a frame around the code
+  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  keywordstyle=\color{blue},       % keyword style
+  language=ML,                 % the language of the code
+  morekeywords={*,...},            % if you want to add more keywords to the set
+  numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+  numbersep=5pt,                   % how far the line-numbers are from the code
+  numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  showstringspaces=false,          % underline spaces within strings only
+  showtabs=false,                  % show tabs within strings adding particular underscores
+  stepnumber=1,                    % the step between two line-numbers. If it's 1, each line will be numbered
+  stringstyle=\color{mymauve},     % string literal style
+  tabsize=4,                       % sets default tabsize to 4 spaces
+  title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+}
 
 \title{Rationales and Approaches for Automated Testing of JavaScript and Standard ML}
 \author{Emil Wall}
@@ -551,6 +588,10 @@ One way to compensate for this inflexibility could be to allow shared data betwe
 \caption{Sharing data between tests does not introduce dependencies between them in a functional language such as \gls{sml}}
 \label{fig:data}
 \end{figure}
+
+Because of its modularity, DescribeSML could be used in many different ways. The \texttt{Expect} structure in expect.sml could be used on its own as an assertion framework, possibly wrapped or modified to signal success and failure differently than the \texttt{Describe} and \texttt{SpecReporter} structures do. However, the preliminary intention of usage is to define a test suite with the \texttt{suite} function, containing nested \texttt{describe} clauses, each containing specs defined with the \texttt{Describe.should}. Here is an example of how it could look:
+
+\lstinputlisting[language=ML]{describe-sml-example.sml}
 
 Enkelt att skriva matchers pga funktionellt språk, svårt pga hårt typat (tvungen att skapa toEqual, toEqualStr, toEqualInt, etc.) Ännu värre om man dessutom vill inkludera matchers för listor, tupler (!), arrayer och dylikt av olika typer. Praktiskt taget omöjligt om man vill kunna använda egna typer och ändå få bra felmeddelanden? Behov av interfaces.
 
