@@ -601,7 +601,22 @@ One way to compensate for this inflexibility could be to allow shared data betwe
 \label{fig:data}
 \end{figure}
 
-The static typing of \gls{sml} means that in order to get good error reports from equality \glspl{matcher}, you either have to pass a toString function for the given type, define functions for each type: toEqualStr, toEqualInt, etc. or let the REPL (Read-Eval-Print-Loop) display the results. You could also define the \glspl{matcher} in separate namespaces (structures), as is done in smell-spec\footnote{\url{https://github.com/davidpdrsn/smell-spec/assertions.sml}}. Passing a toString function or letting the REPL display the results are probably the only ways to handle user defined datatypes. The downsides are that if a toString function must be passed, it makes the tests more repetitive and harder to read, and if the REPL is used the output can not as easily be written to a file or output as XML, JSON or any other specific format. It might be a good idea to use local definitions of \glspl{matcher} defined for a set of specs.
+The static typing of \gls{sml} means that in order to get good error reports from equality \glspl{matcher}, you either have to pass a toString function for the given type, define functions for each type: toEqualStr, toEqualInt, etc. or let the REPL (Read-Eval-Print-Loop) display the results. You could also define the \glspl{matcher} in separate namespaces (structures), as is done in smell-spec\footnote{\url{https://github.com/davidpdrsn/smell-spec/assertions.sml}}.
+
+Passing a toString function or letting the REPL display the results of an equality \gls{matcher} are probably the only ways to print informative failure reports for user defined datatypes. The downsides are that if a toString function must be passed to each \gls{matcher}, it imposes verbosity and make the tests harder to read, and if the REPL is used the output can not as easily be written to a file or output as XML or other formats. It could be a good idea to use local definitions of \glspl{matcher} defined for a set of specs, for example:
+
+\begin{verbatim}
+describe "the function foo"
+    let
+        val toEqual = toBeInt
+        val longInput = "string"
+    in
+        [should("return string three times as long as argument", fn _ =>
+            expect (size(foo longInput)) toEqual (3 * size longInput))]
+    end
+\end{verbatim}
+
+However, this leads to increased indentation level and verbosity, and limits any local (possibly shadowing as in the example) \gls{matcher} definition to be used only for the specified type, which is not always very convenient.
 
 Enkelt att skriva matchers pga funktionellt språk, svårt pga hårt typat (tvungen att skapa toEqual, toEqualStr, toEqualInt, etc.) Ännu värre om man dessutom vill inkludera matchers för listor, tupler (!), arrayer och dylikt av olika typer. Praktiskt taget omöjligt om man vill kunna använda egna typer och ändå få bra felmeddelanden? Behov av interfaces.
 
