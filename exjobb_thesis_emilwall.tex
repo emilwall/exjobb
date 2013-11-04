@@ -618,7 +618,7 @@ describe "the function foo"
 
 However, this leads to increased indentation level and verbosity, and limits any local (possibly shadowing as in the example) \gls{matcher} definition to be used only for the specified type, which is not always very convenient. The matchers that are otherwise hard coded in the framework due to the static typing are toEqual, toEqualStr, toEqualInt, etc. The worst part however is defining matchers for lists and tuples because you might end up needing things such as toContainStr, toEqualIntList or toEqualIntTuple5 (for instance, defined for int 5-tuples only). The real issue is getting informative and practical failure messages for all the types, user defined datatypes included, and to ensure that failure messages are output in a way so that you do not miss them by mistake.
 
-Om matchers för listor och dylikt används så behöver det vara tydligt om ordningen spelar roll eller inte. Default bör vara att ordningen inte spelar roll, annars blir testen lätt onödigt implementations-specifika.
+Another consideration is that order may or may not matter for matchers of non-atomic data structures. This should be clear so that users of the testing framework are not surprised by the matchers' behaviour, and if one has to be picked over the other it should probably be that order does \emph{not} matter, since the order of the elements can usually be checked anyway, in a way that makes it more explicit that it is supposed to matter. Not checking for a specific order unless necessary might increase the complexity of a matcher but will tend to make tests less implementation specific.
 
 Jämför med hur QuickCheck (Haskell) hanterar typer \url{http://www.cse.chalmers.se/~rjmh/QuickCheck/manual.html}
 
