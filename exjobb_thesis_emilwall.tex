@@ -566,6 +566,44 @@ As a programmer, you should strive to do the simplest thing possible within the 
 
 It could be that QCheck, which has a relatively large user base, is often considered overkill. Some may decide against using it because they want something that is simpler, more suitable for TDD, has BDD inspired syntax or a different style of failure and success reports. Without any production quality framework out there that satisfy these basic needs, it may feel like an easier task to do without a testing framework or write a new one than to familiarise with and adapt to an existing one that might turn out as disappointing anyway. The fear of disappointment is probably empowered by that other frameworks are typically unmaintained or has few users.
 
+Mycket tid gick åt att läsa på om olika package manager-system, som CM och Smackage. Svårt att veta vad folk föredrar.
+
+Mockning och stubbning inte lika viktigt i funktionellt språk, men kan finnas behov i vissa fall
+
+TDD skiftar fokus från implementation till tester, och därmed indirekt hur krav kan översättas till tester. När man använder TDD så beror de flesta buggarna på att man har nöjt sig för tidigt dvs. inte skrivit tillräckligt många tester för att hitta något som failar, eller inte fullt ut förstått vad det var man skulle göra från början. I vilket fall så hade buggen troligtvis infunnit sig oavsett, men inte helt säkert, eftersom man inte lägger samma energi på att skriva felfri produktionskod när man kör TDD.
+
+Möjlighet att specificera flera expectations per should känns som något många antagligen tar för givet, och som något jag själv känt behov av när jag använt det, men samtidigt så medför det vissa fördelar att alla ens tester är one-liners. Till exempel så blir det tydligare vilken/vilka expectation(s) som inte höll (men detta kanske skulle gå att få till ändå). En intressant aspekt är om expect-statements borde slänga exceptions, eller om should borde göra det, eller om det är bäst som det är nu, att ingen gör det. Det har även att göra med om själva anropen gör det (vilket i dagsläget hanteras av describes och toThrow).
+
+setup/teardown/beforeEach/beforeAll/afterEach/afterAll-metoder heller inte lika viktiga (just pga att stubbning är en vanlig del av setup), men har fortfarande flera användningsområden
+
+Varför finns det inga testramverk för ML sen innan? (jmf med testning av gränssnitt)
+
+Testning användbart inom utbildning, både för lärare och elever
+
+Watch som bara kör relevanta tester, så att det går fort/blir praktiskt möjligt.
+
+Olika drivkrafter/motivation till att skriva tester i JavaScript jämfört med ML - olika användningsområden
+
+
+\subsection{(JS0,ML1)QCheck/SML and Formal Verification}
+
+QuickCheck, the Haskell predecessor of QCheck/SML is faced with a similar challenge since Haskell is also statically typed. It is resolved by using the \texttt{where} keyword to specify the types of properties\footnote{\url{http://www.cse.chalmers.se/~rjmh/QuickCheck/manual\_body.html\#4}}, which is pretty elegant. % TODO gör om till riktig referens, helst annan källa
+
+Why is it that the only truly popular testing framework for \gls{sml} is based on generating test cases for properties rather than expectations/assertion based testing? Possibly it is because it was developed by academic people, or because mathematicians are drawn to the language and are inclined to think in terms of properties and how they can be falsified rather than state or expected output. Another possible reason is that testing for expected output is so easy even without the use of a testing framework, whereas QCheck/SML solves problems that are not as easily solved ad hoc.
+
+There is a possibility that people simply do not find it worth their time to learn simple testing frameworks just to get readable tests and good failure reports, but instead are content with simply declaring tests as variables that evaluate to true or false, or similar. The consequences of doing this, however, are likely to be increased amount of debugging and risk of missing a failed test or spending a lot of time scrolling through the result. Sine \gls{sml} has scripting capabilities, it is pretty easy to write and run tests without a testing framework compared languages that are more verbose and less often used in an interpreted setting, such as Java. Adding a testing framework becomes a bigger deal in \gls{sml} for this reason.
+
+Kan formell verifiering ha liknande effekter på modularitet och utformning av gränssnitt som testdriven utveckling?
+
+Hur mycket tid tar en utförlig formell verifiering jämfört med testning?
+
+Vilken kompetens krävs for formell verifiering?
+
+Gör plugin för/till/integrera med qCheck:
+- Måste skicka med generatorer till checkGen
+- Måste redirecta stdout och parsa utskrift från qCheck, eller använda qChecks egna reporter
+
+
 \subsection{(JS0,ML)DescribeSML}
 \label{subsec:describesml}
 
@@ -620,18 +658,6 @@ However, this leads to increased indentation level and verbosity, and limits any
 
 Another consideration is that order may or may not matter for matchers of non-atomic data structures. This should be clear so that users of the testing framework are not surprised by the matchers' behaviour, and if one has to be picked over the other it should probably be that order does \emph{not} matter, since the order of the elements can usually be checked anyway, in a way that makes it more explicit that it is supposed to matter. Not checking for a specific order unless necessary might increase the complexity of a matcher but will tend to make tests less implementation specific.
 
-QuickCheck, the Haskell predecessor of QCheck/SML is faced with a similar challenge since Haskell is also statically typed. It is resolved by using the \texttt{where} keyword to specify the types of properties\footnote{\url{http://www.cse.chalmers.se/~rjmh/QuickCheck/manual\_body.html\#4}}, which is pretty elegant. % TODO gör om till riktig referens, helst annan källa
-
-Why is it that the only truly popular testing framework for \gls{sml} is based on generating test cases for properties rather than expectations/assertion based testing? Possibly it is because it was developed by academic people, or because mathematicians are drawn to the language and are inclined to think in terms of properties and how they can be falsified rather than state or expected output. Another possible reason is that testing for expected output is so easy even without the use of a testing framework, whereas QCheck/SML solves problems that are not as easily solved ad hoc.
-
-There is a possibility that people simply do not find it worth their time to learn simple testing frameworks just to get readable tests and good failure reports, but instead are content with simply declaring tests as variables that evaluate to true or false, or similar. The consequences of doing this, however, are likely to be increased amount of debugging and risk of missing a failed test or spending a lot of time scrolling through the result. Sine \gls{sml} has scripting capabilities, it is pretty easy to write and run tests without a testing framework compared languages that are more verbose and less often used in an interpreted setting, such as Java. Adding a testing framework becomes a bigger deal in \gls{sml} for this reason.
-
-Kan formell verifiering ha liknande effekter på modularitet och utformning av gränssnitt som testdriven utveckling? Hur mycket tid tar en utförlig formell verifiering jämfört med testning? Vilken kompetens krävs?
-
-Gör plugin för/till/integrera med qCheck:
-- Måste skicka med generatorer till checkGen
-- Måste redirecta stdout och parsa utskrift från qCheck, eller använda qChecks egna reporter
-
 Namngivning är viktigt. Lätt att råka skriva toBeString istället för toBeStr. Frågan är om det är värt att definiera båda funktionerna och låta de göra exakt samma sak, eller om det skapar osäkerhet. Samma fråga uppstår för toEqual vs toBe - i andra språk skiljer de sig ju åt genom att den ena kollar på referensen medan den andra jämför värdena. I ML känns det överflödigt att definiera en matcher för ref-celler eftersom de ändå används (bör användas) så sällan och att man i de fallen kan dereferera själv i testet. Eller finns det fall då man inte kan/vill göra det?
 
 Formuleringen av felmeddelanden är viktig. I den första versionen av reportern så löd vissa felmeddelanden enligt "expected "abc" to equal "def"". Då är det inte lika tydligt vilket som var det förväntade värdet och vilket som var det faktiska värdet. Ännu otydligare blir det om man rapporterar enligt ""abc" does not equal "def"". Bättre vore "expected "abc", but got "def"" eller "was "def" but expected it to equal "abc"". Är ordningen viktig? Kan vara bra att ha samma ordning som i testet. Är det viktigt om man skriver to equal eller to be? Om båda finns som matchers så kan det vara viktigt, men då tillkommer å andra sidan ytterligare komplexitet i testramverket.
@@ -649,24 +675,6 @@ Det finns ett behov av att fånga exceptions och representera dem som failures m
 "The source code of the SML testing framework is supplied here, in the unlikely event that noone else has developed a better framework by the time you read this. It can also be found at github: \url{}"
 
 When solving the first assignment, the instructions were often to use the "answer to the previous question". In this case, you would probably want to do a call assertion, which should be possible to do similar to how it is done in JavaScript, temporarily overwrite a definition of the function to stub, use side-effects to store information about calls to it, and then restore it (either automatically after the test has ended if the stubbing framework can be integrated with the testing framework, manually by calling a method, or super-manually by performing the stubbing using "vanilla-ML").
-
-Mycket tid gick åt att läsa på om olika package manager-system, som CM och Smackage. Svårt att veta vad folk föredrar.
-
-Mockning och stubbning inte lika viktigt i funktionellt språk, men kan finnas behov i vissa fall
-
-TDD skiftar fokus från implementation till tester, och därmed indirekt hur krav kan översättas till tester. När man använder TDD så beror de flesta buggarna på att man har nöjt sig för tidigt dvs. inte skrivit tillräckligt många tester för att hitta något som failar, eller inte fullt ut förstått vad det var man skulle göra från början. I vilket fall så hade buggen troligtvis infunnit sig oavsett, men inte helt säkert, eftersom man inte lägger samma energi på att skriva felfri produktionskod när man kör TDD.
-
-Möjlighet att specificera flera expectations per should känns som något många antagligen tar för givet, och som något jag själv känt behov av när jag använt det, men samtidigt så medför det vissa fördelar att alla ens tester är one-liners. Till exempel så blir det tydligare vilken/vilka expectation(s) som inte höll (men detta kanske skulle gå att få till ändå). En intressant aspekt är om expect-statements borde slänga exceptions, eller om should borde göra det, eller om det är bäst som det är nu, att ingen gör det. Det har även att göra med om själva anropen gör det (vilket i dagsläget hanteras av describes och toThrow).
-
-setup/teardown/beforeEach/beforeAll/afterEach/afterAll-metoder heller inte lika viktiga (just pga att stubbning är en vanlig del av setup), men har fortfarande flera användningsområden
-
-Varför finns det inga testramverk för ML sen innan? (jmf med testning av gränssnitt)
-
-Testning användbart inom utbildning, både för lärare och elever
-
-Watch som bara kör relevanta tester, så att det går fort/blir praktiskt möjligt.
-
-Olika drivkrafter/motivation till att skriva tester i JavaScript jämfört med ML - olika användningsområden
 
 \section{(JS,ML)Testing culture}
 \label{sec:testingculture}
