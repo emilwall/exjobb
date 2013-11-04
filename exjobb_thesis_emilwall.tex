@@ -620,7 +620,7 @@ However, this leads to increased indentation level and verbosity, and limits any
 
 Another consideration is that order may or may not matter for matchers of non-atomic data structures. This should be clear so that users of the testing framework are not surprised by the matchers' behaviour, and if one has to be picked over the other it should probably be that order does \emph{not} matter, since the order of the elements can usually be checked anyway, in a way that makes it more explicit that it is supposed to matter. Not checking for a specific order unless necessary might increase the complexity of a matcher but will tend to make tests less implementation specific.
 
-Jämför med hur QuickCheck (Haskell) hanterar typer \url{http://www.cse.chalmers.se/~rjmh/QuickCheck/manual.html}
+QuickCheck, the Haskell predecessor of QCheck/SML is faced with a similar challenge since Haskell is also statically typed. It is resolved by using the \texttt{where} keyword to specify the types of properties\footnote{\url{http://www.cse.chalmers.se/~rjmh/QuickCheck/manual\_body.html\#4}}, which is pretty elegant. % TODO gör om till riktig referens, helst annan källa
 
 Diskutera möjligheten att matematiker lockas av automatiska tester, som försöker falsifiera påstådda properties, eftersom det är så man är van att arbeta
 
