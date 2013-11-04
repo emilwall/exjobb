@@ -616,9 +616,7 @@ describe "the function foo"
     end
 \end{verbatim}
 
-However, this leads to increased indentation level and verbosity, and limits any local (possibly shadowing as in the example) \gls{matcher} definition to be used only for the specified type, which is not always very convenient.
-
-Enkelt att skriva matchers pga funktionellt språk, svårt pga hårt typat (tvungen att skapa toEqual, toEqualStr, toEqualInt, etc.) Ännu värre om man dessutom vill inkludera matchers för listor, tupler (!), arrayer och dylikt av olika typer. Praktiskt taget omöjligt om man vill kunna använda egna typer och ändå få bra felmeddelanden? Behov av interfaces.
+However, this leads to increased indentation level and verbosity, and limits any local (possibly shadowing as in the example) \gls{matcher} definition to be used only for the specified type, which is not always very convenient. The matchers that are otherwise hard coded in the framework due to the static typing are toEqual, toEqualStr, toEqualInt, etc. The worst part however is defining matchers for lists and tuples because you might end up needing things such as toContainStr, toEqualIntList or toEqualIntTuple5 (for instance, defined for int 5-tuples only). The real issue is getting informative and practical failure messages for all the types, user defined datatypes included, and to ensure that failure messages are output in a way so that you do not miss them by mistake.
 
 Om matchers för listor och dylikt används så behöver det vara tydligt om ordningen spelar roll eller inte. Default bör vara att ordningen inte spelar roll, annars blir testen lätt onödigt implementations-specifika.
 
