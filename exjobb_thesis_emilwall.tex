@@ -572,10 +572,6 @@ Mocking and stubbing may not be as important in a functional language like \gls{
 
 TDD shifts focus from implementations to testing, thereby enforcing a thought process of how to translate requirements into tests. When using TDD, the most common reason for a bug is because the TDDer has moved on prematurely, i.e. not writing enough tests to find a scenario in which the code does not behave as it should or not fully understood the requirements. These kinds of bug would probably persist regardless of if TDD is used or not, but the thing to be careful about here is that there is a risk of not putting as much energy into writing flawless production code when TDDing, instead you rely on iterative improvement and refactoring. % Move to technical background about TDD or conclusions?
 
-Möjlighet att specificera flera expectations per should känns som något många antagligen tar för givet, och som något jag själv känt behov av när jag använt det, men samtidigt så medför det vissa fördelar att alla ens tester är one-liners. Till exempel så blir det tydligare vilken/vilka expectation(s) som inte höll (men detta kanske skulle gå att få till ändå). En intressant aspekt är om expect-statements borde slänga exceptions, eller om should borde göra det, eller om det är bäst som det är nu, att ingen gör det. Det har även att göra med om själva anropen gör det (vilket i dagsläget hanteras av describes och toThrow).
-
-setup/teardown/beforeEach/beforeAll/afterEach/afterAll-metoder heller inte lika viktiga (just pga att stubbning är en vanlig del av setup), men har fortfarande flera användningsområden
-
 Varför finns det inga testramverk för ML sen innan? (jmf med testning av gränssnitt)
 
 Testning användbart inom utbildning, både för lärare och elever
@@ -675,6 +671,10 @@ Det finns ett behov av att fånga exceptions och representera dem som failures m
 "The source code of the SML testing framework is supplied here, in the unlikely event that noone else has developed a better framework by the time you read this. It can also be found at github: \url{}"
 
 When solving the first assignment, the instructions were often to use the "answer to the previous question". In this case, you would probably want to do a call assertion, which should be possible to do similar to how it is done in JavaScript, temporarily overwrite a definition of the function to stub, use side-effects to store information about calls to it, and then restore it (either automatically after the test has ended if the stubbing framework can be integrated with the testing framework, manually by calling a method, or super-manually by performing the stubbing using "vanilla-ML").
+
+Möjlighet att specificera flera expectations per should känns som något många antagligen tar för givet, och som något jag själv känt behov av när jag använt det, men samtidigt så medför det vissa fördelar att alla ens tester är one-liners. Till exempel så blir det tydligare vilken/vilka expectation(s) som inte höll (men detta kanske skulle gå att få till ändå). En intressant aspekt är om expect-statements borde slänga exceptions, eller om should borde göra det, eller om det är bäst som det är nu, att ingen gör det. Det har även att göra med om själva anropen gör det (vilket i dagsläget hanteras av describes och toThrow).
+
+setup/teardown/beforeEach/beforeAll/afterEach/afterAll-metoder heller inte lika viktiga (just pga att stubbning är en vanlig del av setup), men har fortfarande flera användningsområden
 
 \section{(JS,ML)Testing culture}
 \label{sec:testingculture}
