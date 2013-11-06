@@ -587,9 +587,30 @@ There is a possibility that people simply do not find it worth their time to lea
 
 Formal verification is related to property based testing, but more rigorous. Formal verification is performed by manually constructing mathematical proof of correctness, theorem proving, or deciding whether a model satisfies a given property (known as model or property checking). Model checking is most easily automated, either by specialised software such as CADP\footnote{\url{http://cadp.inria.fr}}, UPPAAL\footnote{\url{http://www.uppaal.org}} and many more\footnote{\url{http://en.wikipedia.org/wiki/List_of_model_checking_tools}} (a couple of them written in \gls{sml}) or by using a constraint solver (see \url{http://www.cs.utah.edu/formal\_verification/pdf/ligd\_thesis.pdf}. Kan formell verifiering ha liknande effekter på modularitet och utformning av gränssnitt som testdriven utveckling? % Add Formal verification to glossary. Make a real reference of thesis.
 
-Hur mycket tid tar en utförlig formell verifiering jämfört med testning?
+A problem with formal verification is its cost, because it can be so time consuming and requires special knowledge. This implies that unless bugs are potentially very severe, formal verification may not be worthwhile. On the other hand, if bugs have potential disastrous consequences, formal verification is the standard way of guaranteeing that certain properties hold, or prove the absence of certain defects. Testing on the other hand is mainly useful to detect bugs that are likely to occur. Tables \ref{tab:fvt} and \ref{tab:fvt2} (pages \pageref{tab:fvt} and \pageref{tab:fvt2}) illustrate these differences between formal verification and testing. The tables are taken from lecture slides by Dr. Radek Pelánek\footnote{\url{http://www.fi.muni.cz/~xpelanek/IA158/slides/verification.pdf}}, used with permission.
 
-Vilken kompetens krävs for formell verifiering?
+\begin{table}
+  \centering
+    \begin{tabular}{ l | l l}
+    & Formal verification & Testing \\ \hline
+    Finding bugs & medium & good \\
+    Proving correctness & good & useless \\
+    Cost & high & low \\
+    \end{tabular}
+  \caption{Comparison between formal verification and testing}
+  \label{tab:fvt}
+\end{table}
+
+\begin{table}
+  \centering
+    \begin{tabular}{ l | l l}
+    & Likely & Rare \\ \hline
+    Harmless & Testing & Unimportant \\
+    Catastrophic & Testing and FV & \textcolor{red}{FV} \\
+    \end{tabular}
+  \caption{Verification strategies: Testing and FV (Formal Verification)}
+  \label{tab:fvt2}
+\end{table}
 
 Gör plugin för/till/integrera med qCheck:
 - Måste skicka med generatorer till checkGen
