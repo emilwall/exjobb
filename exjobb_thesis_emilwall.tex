@@ -375,7 +375,42 @@ Adding tests for code that was written without testing in mind is challenging \c
 \subsection{(ML0,JS)Description of the asteroids example}
 \label{subsec:asteriods}
 
-(setup, förutsättningarna, motivering av valet)
+The first step in the case study of adding tests in retrospect was selecting a suitable application. The choice became an HTML5 canvas game, namely asteroids, based on that it combined graphical elements with relatively complex logic and a bit of jQuery, making it a reasonable representative for the typical JavaScript application. Most of the code was reasonably well modularised already from the start and it was easy to get started by simply cloning the repository and opening the supplied HTML file with the canvas element and script locations already defined.
+
+The first action was to strip away any redundant files such as iPad specific code and sound files that were not used anyway. This led to a project structure of only game.js, index.html, the licence file, jquery 1.4.1 and a \gls{js} file containing the fonts used to display score and messages in the game. The next step was to split game.js into separate files in order to test each ``class'' in isolation. If using a TDD approach, this would probably have been done the other way around -- writing tests that force the game to be structured in a certain way, but it turned out as reasonably easy to change the code even without tests as long as care was taken to preserve the order in which the code was executed when moving things to separate files.
+
+Since the exercises in Test-Driven JavaScript Development\cite{Tddjs} had introduced JsTestDriver, using that with a Jasmine plugin felt like a natural choice at the time, although it turned out to involve some issues with syncing the tests in the browser and find the correct versions for the Jasmine adapter to work. The project structure was then:
+
+\begin{verbatim}
+-- LICENSE
+-- README.md
+-- bin
+    -- JsTestDriver-1.3.5.jar
+-- core
+    -- config.js
+    -- game.js
+    -- gridnode.js
+    -- main.js
+    -- matrix.js
+-- index.html
+-- jsTestDriver.conf
+-- lib
+    -- Jasmine_adapter.js
+    -- jasmine.js
+    -- jquery-1.4.1.min.js
+    -- text.js
+    -- vector_battle_regular.typeface.js
+-- sprites
+    -- alienbullet.js
+    -- asteroid.js
+    -- bigalien.js
+    -- bullet.js
+    -- explosion.js
+    -- ship.js
+    -- sprite.js
+\end{verbatim}
+
+Later on, tests were added in new directories \texttt{sprites-spec} and \texttt{sprites-spec}, Sinon.js was added to the \texttt{lib} directory for better stubbing, rendering.js was extracted from main.js to enable more selective execution and a reset.js file was added to the \texttt{core} directory that ensured that any old definitions in the asteroids namespace was overwritten before reading the files anew. This last change, reset.js, should not really be necessary, but was done in order to not having to empty the cache in between each test run with JsTestDriver.
 
 \subsection{(ML0,JS)Attempts, observations}
 
