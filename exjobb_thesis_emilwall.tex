@@ -214,6 +214,8 @@ A full evaluation of the most popular MVC and testing frameworks is not within t
 
 Today blog posts and books about patterns in \gls{js} are in abundance and you can often find examples in the documentation of frameworks. When it comes to examples of testing in general there are several classics to refer to \cite{KentBeck}\cite{TestPatterns}. For examples of \gls{js} testing specifically the alternatives have been scarce until recently \cite{Tddjs}\cite{BDDJS}\cite{TestableJS}\cite{JasmineBook}.
 
+There is a lot of previous work on testing patterns and how to write concise, useful and maintainable tests \cite[part~III]{TestPatterns}\cite[ch.~3-5]{BDDJS}\cite[p.~461-474]{Tddjs}\cite[p.~86-87]{TestableJS}\cite[p.~13-14]{JasmineBook}. In todays BDD frameworks there is often a possibility to separate the basic functionality from the special cases by organising the \glspl{spec} in nested describes. This can provide an overview of what an application does just by looking at the \gls{spec} output and is commonly seen in open source projects \cite[question~42]{Stenmark}.
+
 \subsection{(ML1,JS1)Books}
 
 The main source of reference within the field of \gls{js} testing today is \emph{Test-Driven JavaScript Development} \cite{Tddjs} by Christian Johansen which deals with \gls{js} testing from a TDD perspective. Johansen is the creator of Sinon.JS\footnote{\url{http://sinonjs.org/}} and a contributor to a number of testing frameworks hosted in the open source community. The book takes a rather practical approach to \gls{js} testing by explaining many aspects of how \gls{js} works and by including practise exercises. It is not very scientific but makes up for this with its pragmatism and roots in the software industry.
@@ -909,11 +911,6 @@ Writing implementation specific tests is a common phenomena that can stem from p
 A large number of tests is not necessarily a good thing, it is harder to overview and maintain a large collection of tests. Unless the system inevitably is so complicated that extensive testing is justified, it rarely pays off to strive for 100 \% coverage, since it takes too much time and the scenarios that might cause problems are at risk of being overlooked anyway. \cite[question~28]{Edelstam}
 
 Tests can serve to prevent people from breaking code and as examples that help new people understand how an application works and how to continue development \cite[questions~31-32]{Edelstam}. Tests also help to give a clear image of how components fit together and can be a way to concretise a feature or bug.
-
-\subsection{(JS1,ML)High quality tests}
-\label{HighQuality}
-
-There is a lot of previous work on testing patterns and how to write concise, useful and maintainable tests \cite[part~III]{TestPatterns}\cite[ch.~3-5]{BDDJS}\cite[p.~461-474]{Tddjs}\cite[p.~86-87]{TestableJS}\cite[p.~13-14]{JasmineBook}. In todays BDD frameworks there is often a possibility to separate the basic functionality from the special cases by organising the \glspl{spec} in nested describes. This can provide an overview of what an application does just by looking at the \gls{spec} output and is commonly seen in open source projects \cite[question~42]{Stenmark}.
 
 \subsection{(JS1,ML)Learning TDD}
 
