@@ -872,7 +872,23 @@ Using a suitable application framework and doing test driven development can be 
 Aside from the increased awareness and knowledge of testing that Node.js has brought to the \gls{js} community from other communities such as Ruby on Rails, the runtime itself facilitates testing since it enables different testing tools to be distributed through npm (Node Package Manager) and run in the terminal. Previously, you had to load a html page in a browser in order to run your tests. \cite[question~9]{Stenmark}
 
 
-\section{(ML0,JS1)Interview summary}
+\section{(JS,ML)Conclusions}
+
+This section contains a summary of the main points of this thesis, a discussion about what could have been done differently, and suggestions for the future.
+
+\subsection{(JS,ML)Lessons learned}
+
+JS is used differently, it is not just another programming language. Because it is implemented in practically every browser, it is used by almost all web developers, regardless of their experience with programming. Frameworks such as jQuery also influence how people write their JavaScript code, often in a way that is negative to testing. On the other hand, other frameworks have the opposite effect and there is nothing inherently bad with using a powerful tool such as jQuery, you just need to be careful to separate code that does different things. If you don't know how the code works, as can be the case when copying code from an external source, then you can not do this. You also need to be aware of good practices.
+
+The web is a difficult environment for testing because of many dependencies and events. This makes it harder to test, but also more important.
+
+Striving for full coverage is not compatible with BDD and not being implementation specific. As a novice tester, it can be hard to find a good balance between writing many tests and writing good tests.
+
+In a project without any testing routines, you may save time initially but there is no way of confirming that everything works as it should. Without automated tests or testing protocols, bugs will be harder to reproduce. Testing routines in the form of test plans can be hard to keep up to date and execute regularly since the testing activity depends on someone actually taking the time to do it. If something goes wrong you may have to repeat the procedure to ensure that it was not just an error in the testing. An absence of unit tests can lead to exorbitant amount of debugging in order to find the source of an error.
+
+When automatic regression tests are missing, making changes to the code is error prone. Issues related to browser compatibility or subtle dependencies between functions and events are easier to overlook in the absence of tests, and a proper toolset is required to test multiple platforms.
+
+\section{(ML0,JS1)Insights from interviews}
 
 It seems that in the last couple of years, the number of people testing their \gls{js} has increased significantly\cite[question~1]{Edelstam}. This has been observed through asking people that do it to raise their hands during tech talks, two years ago only a few raised their hands when asked such a question whereas now almost every single one does it.
 
@@ -913,23 +929,6 @@ Writing implementation specific tests is a common phenomena that can stem from p
 A large number of tests is not necessarily a good thing, it is harder to overview and maintain a large collection of tests. Unless the system inevitably is so complicated that extensive testing is justified, it rarely pays off to strive for 100 \% coverage, since it takes too much time and the scenarios that might cause problems are at risk of being overlooked anyway. \cite[question~28]{Edelstam}
 
 Tests can serve to prevent people from breaking code and as examples that help new people understand how an application works and how to continue development \cite[questions~31-32]{Edelstam}. Tests also help to give a clear image of how components fit together and can be a way to concretise a feature or bug.
-
-
-\section{(JS,ML)Conclusions}
-
-This section contains a summary of the main points of this thesis, a discussion about what could have been done differently, and suggestions for the future.
-
-\subsection{(JS,ML)Lessons learned}
-
-JS is used differently, it is not just another programming language. Because it is implemented in practically every browser, it is used by almost all web developers, regardless of their experience with programming. Frameworks such as jQuery also influence how people write their JavaScript code, often in a way that is negative to testing. On the other hand, other frameworks have the opposite effect and there is nothing inherently bad with using a powerful tool such as jQuery, you just need to be careful to separate code that does different things. If you don't know how the code works, as can be the case when copying code from an external source, then you can not do this. You also need to be aware of good practices.
-
-The web is a difficult environment for testing because of many dependencies and events. This makes it harder to test, but also more important.
-
-Striving for full coverage is not compatible with BDD and not being implementation specific. As a novice tester, it can be hard to find a good balance between writing many tests and writing good tests.
-
-In a project without any testing routines, you may save time initially but there is no way of confirming that everything works as it should. Without automated tests or testing protocols, bugs will be harder to reproduce. Testing routines in the form of test plans can be hard to keep up to date and execute regularly since the testing activity depends on someone actually taking the time to do it. If something goes wrong you may have to repeat the procedure to ensure that it was not just an error in the testing. An absence of unit tests can lead to exorbitant amount of debugging in order to find the source of an error.
-
-When automatic regression tests are missing, making changes to the code is error prone. Issues related to browser compatibility or subtle dependencies between functions and events are easier to overlook in the absence of tests, and a proper toolset is required to test multiple platforms.
 
 \subsection{(JS,ML)Future}
 
