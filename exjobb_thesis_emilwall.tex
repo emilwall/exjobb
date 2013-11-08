@@ -420,7 +420,7 @@ The event handling for key-presses could not be extracted since they relied on b
 
 The mayor problems however were not of this technical sort, directly related to \gls{js}, but rather had to do with basic testing principles and how the tests were written. The original purpose of the testing was to provide a safety net for further improvement of the game, but it ended up as over-specification because many tests became implementation specific rather than based on what the code should achieve. Other tests, that were more behaviour and feature oriented, instead had issues with insufficient stubbing and cleanup, causing dependencies between tests so that they would fail or pass for the wrong reasons. The insufficient stubbing and cleanup was largely rectified by executing each set of specs in isolation with just the unit under test, without loading any dependencies before stubbing them, and ensuring that any side effects from running the specs affected only a certain namespace, which could then be reset between each test execution. The problem with the test locking the implementation through over-specification remained however.
 
-(upplåst implementation, icke-determinism)
+A notable testability problem was automated end-to-end testing, since the js-imagediff tool\footnote{\url{https://github.com/HumbleSoftware/js-imagediff}} was not discovered until later and the game involved so many nondeterministic aspects in how the asteroids moved.
 
 \subsection{(ML,JS)Conclusions}
 
