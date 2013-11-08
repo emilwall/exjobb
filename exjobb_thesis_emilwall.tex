@@ -817,6 +817,7 @@ The connection between how much testing is carried out and how much risk is invo
 \subsection{(ML,JS)Frameworks}
 \label{subsec:angularjasminekarma}
 \label{subsec:frameworks}
+\label{subsec:tools}
 
 Programming languages in use today typically have frameworks to help with standard structure and other generic problems. \gls{js} is certainly no exception, the number of web application frameworks that focus on \gls{js} has increased a lot during the last few years alone. For instance, the AngularJS framework uses Jasmine and Karma in the official tutorial.
 
@@ -825,6 +826,19 @@ Programming languages in use today typically have frameworks to help with standa
 \end{quote}
 
 This is likely a large contributing factor for increasing the probability of Angular developers testing their \gls{js}. There is also a tendency of testing frameworks being more and more tied to application frameworks -- Karma and protractor are for instance rather Angular specific.
+
+There are a number of BDD frameworks available that are meant to bring testing closer to the specification and story work, as proposed in section~\ref{subsec:ccc}. They aim to mimic the way stories are written to create a ubiquitous natural language that can be understood by both programmers and non-programmers. The way this is done is by building sentences with a Given, Then, When (GTW) form. Cucumber\footnote{\url{http://cukes.info/}} is a popular framework that was designed for this in the Ruby programming language and there is a \gls{js} version called Cucumber.js\footnote{\url{https://github.com/cucumber/cucumber-js}}.
+Yadda,\footnote{\url{https://github.com/acuminous/yadda}}
+Kyuri,\footnote{\url{https://github.com/nodejitsu/kyuri}}
+Cucumis\footnote{\url{https://github.com/noblesamurai/cucumis}} and
+Jasmine-given\footnote{\url{https://github.com/searls/jasmine-given}}
+are other examples of \gls{js} GTW-frameworks. \cite[section 8.4]{BDDJS}
+
+Since different assertion frameworks have different syntax, they influence the readability of tests. This is presumably one of the main reasons why BDD frameworks such as Jasmine and Buster have become popular. \cite[question~7]{Ahnve}
+
+Apart from testing frameworks, your ability to write tests is also influenced by what application framework you are using \cite[question~8]{Ahnve}. According to Edelstam, if you are able to choose, it is often preferable to have small rather than ``magic bullet'' frameworks for large projects because they tend to be less obtrusive. Exceptions may include when the framework is very well known to the developers or when there is a perfect fit between what you want to achieve and what the framework is designed for, but one should bear in mind that requirements tend to evolve. \cite[questions~48-50]{Edelstam} Stenmark had another view on things and instead recommended small frameworks only for small projects, since the value of bindings and other features tend to outweigh adjustment problems. \cite[questions~12-14]{Stenmark}
+
+Using a suitable application framework and doing test driven development can be mutually beneficial. The framework helps to create structure that simplifies testing and the testing process further improves the quality of the code, allowing you to make better use of the framework and providing incentive for even better structure. \cite[question~15]{Stenmark}
 
 
 \section{(ML0,JS1)Interview summary}
@@ -868,22 +882,6 @@ Writing implementation specific tests is a common phenomena that can stem from p
 A large number of tests is not necessarily a good thing, it is harder to overview and maintain a large collection of tests. Unless the system inevitably is so complicated that extensive testing is justified, it rarely pays off to strive for 100 \% coverage, since it takes too much time and the scenarios that might cause problems are at risk of being overlooked anyway. \cite[question~28]{Edelstam}
 
 Tests can serve to prevent people from breaking code and as examples that help new people understand how an application works and how to continue development \cite[questions~31-32]{Edelstam}. Tests also help to give a clear image of how components fit together and can be a way to concretise a feature or bug.
-
-\subsection{(JS1,ML)Frameworks and tools}
-\label{subsec:tools}
-
-There are a number of BDD frameworks available that are meant to bring testing closer to the specification and story work, as proposed in section~\ref{subsec:ccc}. They aim to mimic the way stories are written to create a ubiquitous natural language that can be understood by both programmers and non-programmers. The way this is done is by building sentences with a Given, Then, When (GTW) form. Cucumber\footnote{\url{http://cukes.info/}} is a popular framework that was designed for this in the Ruby programming language and there is a \gls{js} version called Cucumber.js\footnote{\url{https://github.com/cucumber/cucumber-js}}.
-Yadda,\footnote{\url{https://github.com/acuminous/yadda}}
-Kyuri,\footnote{\url{https://github.com/nodejitsu/kyuri}}
-Cucumis\footnote{\url{https://github.com/noblesamurai/cucumis}} and
-Jasmine-given\footnote{\url{https://github.com/searls/jasmine-given}}
-are other examples of \gls{js} GTW-frameworks. \cite[section 8.4]{BDDJS}
-
-Since different assertion frameworks have different syntax, they influence the readability of tests. This is presumably one of the main reasons why BDD frameworks such as Jasmine and Buster have become popular. \cite[question~7]{Ahnve}
-
-Apart from testing frameworks, your ability to write tests is also influenced by what application framework you are using \cite[question~8]{Ahnve}. According to Edelstam, if you are able to choose, it is often preferable to have small rather than ``magic bullet'' frameworks for large projects because they tend to be less obtrusive. Exceptions may include when the framework is very well known to the developers or when there is a perfect fit between what you want to achieve and what the framework is designed for, but one should bear in mind that requirements tend to evolve. \cite[questions~48-50]{Edelstam} Stenmark had another view on things and instead recommended small frameworks only for small projects, since the value of bindings and other features tend to outweigh adjustment problems. \cite[questions~12-14]{Stenmark}
-
-Using a suitable application framework and doing test driven development can be mutually beneficial. The framework helps to create structure that simplifies testing and the testing process further improves the quality of the code, allowing you to make better use of the framework and providing incentive for even better structure. \cite[question~15]{Stenmark}
 
 \subsection{(JS1,ML0)Testability and Selenium}
 
