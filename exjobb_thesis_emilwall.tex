@@ -153,7 +153,7 @@ More than 90 \% of today's websites use \gls{js} \cite{BusinessJavascript} and i
 
 For \gls{sml} programs, usage scenarios tend to be different from \gls{js} in that \gls{sml} tends to be used more for back-end logic and algorithm design than web application front-ends. \gls{sml} is well suited for formal verification, so it is sometimes used to eliminate risk of software failure. In theory this is of course excellent, but how about practical aspects such as how difficult it is to do, how much benefits there are for maintainability, modularity and code design, and how much time is consumed to perform the verification? In which scenarios is it feasible and how does it affect productivity and the ability to make large changes to the code and get quick and frequent feedback whether the program is still correct? Even though testing can seldom provide the same guarantees as formal verification, there are many scenarios in which it is more cost effective and makes life easier for the developer. The two can of course also be used in parallel.
 
-To achieve maximal gain from testing, the tests need to be of high quality, which means that they should be maintainable and test the right thing. How to achieve this is an important part of this thesis, which is discussed in section~\ref{subsec:quality}.
+To achieve maximal gain from testing, the tests need to be of high quality, which means that they should be maintainable, fast and test the right thing. How to achieve this is an important part of this thesis, which is discussed in section~\ref{subsec:quality}.
 
 Unit testing is particularly powerful when in combination with integration tests in a
 \newglossaryentry{ci}{name={CI}, description={Continuous Integration (CI) is a practise based on frequently merging new code with a main code repository, commonly using principles such as automated build, testing and deployment}, first={Continuous Integration (CI)}, long={Continuous Integration}}
@@ -811,6 +811,8 @@ The criteria for maintainability in this context are that the tests should have 
 
 Testing the right thing means focusing on the specifications and behaviour that provides true business value rather than e.g. coverage criteria, and to avoid writing tests for things that does not really matter. Typically some parts of the system will be more complex and require more rigorous testing but there should also be consistency in the level of ambition regarding testing across the entire application. If some part of the code is hard to test it is likely to be beneficial in the long run to refactor the design to provide better testability than to leave the code untested. % Vad är ett dåligt test?
 
+Tests that depend on the \gls{dom} tend to be relatively slow, so it would be impractical to have hundreds of unit tests with \gls{dom} manipulation if you want to be able to run them often \cite[questions~21-22]{Stenmark}. Selenium tests are also known to be slow, the same principle applies there. Only running tests that are connected with changes that have been made is one way to get around this, there is support for this in many testing tools. An alternative is to separate the fast tests from the slow, and configure Autotest\footnote{\url{http://autotest.github.io/}} or some tool based on Guard\footnote{\url{https://github.com/guard/guard/}} such as guard-jasmine\footnote{\url{https://github.com/netzpirat/guard-jasmine/}} to run the fast tests each time a file changes, and only run the slow tests before sending the code to a central source control repository or deploying the application.
+
 \subsection{(JS,ML)Culture, Collaboration and Consensus}
 \label{subsec:ccc}
 
@@ -907,10 +909,6 @@ Writing implementation specific tests is a common phenomena that can stem from p
 A large number of tests is not necessarily a good thing, it is harder to overview and maintain a large collection of tests. Unless the system inevitably is so complicated that extensive testing is justified, it rarely pays off to strive for 100 \% coverage, since it takes too much time and the scenarios that might cause problems are at risk of being overlooked anyway. \cite[question~28]{Edelstam}
 
 Tests can serve to prevent people from breaking code and as examples that help new people understand how an application works and how to continue development \cite[questions~31-32]{Edelstam}. Tests also help to give a clear image of how components fit together and can be a way to concretise a feature or bug.
-
-\subsection{(JS1,ML)Time required to run tests}
-
-Tests that depend on the \gls{dom} tend to be relatively slow, so it would be impractical to have hundreds of unit tests with \gls{dom} manipulation if you want to be able to run them often \cite[questions~21-22]{Stenmark}. Selenium tests are also known to be slow, the same principle applies there. Only running tests that are connected with changes that have been made is one way to get around this, there is support for this in many testing tools. An alternative is to separate the fast tests from the slow, and configure Autotest\footnote{\url{http://autotest.github.io/}} or some tool based on Guard\footnote{\url{https://github.com/guard/guard/}} such as guard-jasmine\footnote{\url{https://github.com/netzpirat/guard-jasmine/}} to run the fast tests each time a file changes, and only run the slow tests before sending the code to a central source control repository or deploying the application.
 
 \subsection{(JS1,ML)High quality tests}
 \label{HighQuality}
