@@ -201,6 +201,8 @@ An important part of the scope has been to account for how to conveniently proce
 
 Rather than proposing best practices for \gls{js} testing, the reader should be made aware that different approaches are useful under different circumstances. This applies both to choice of tools and how to organise the tests.
 
+A full evaluation of the most popular MVC and testing frameworks is not within the scope of this thesis, but others have done it \cite{JackFranklin}\cite{SebastianPorto}. Popular \gls{js} testing frameworks include assertion frameworks such as Jasmine, qUnit, expect.js and chai, and drivers/test runners such as Mocha, JsTestDriver, Karma and Chutzpah\footnote{\url{http://chutzpah.codeplex.com/}} which may have their own assertion framework built in but are typically easy to integrate with other assertion frameworks using adapters or via built-in support.
+
 \section{(ML1,JS1)Previous work}
 \label{sec:previouswork}
 
@@ -788,26 +790,20 @@ Different projects have different fault tolerance. Sometimes a single bug can ca
 
 The connection between how much testing is carried out and how much risk is involved with a project is not as strong as one might think. The company culture and the background of the developers have great impact too. If the stakeholders are not used to testing and the developers are inexperienced with the tools of the trade, chances are that they will not do it. \cite[question~14]{Ahnve}
 
-
-\section{Draft without title}
-
-\subsection{(ML0,JS1)AngularJS, Jasmine and Karma}
+\subsection{(ML,JS)Frameworks}
 \label{subsec:angularjasminekarma}
+\label{subsec:frameworks}
 
-The AngularJS framework uses Jasmine and Karma in the official tutorial.
+Programming languages in use today typically have frameworks to help with standard structure and other generic problems. \gls{js} is certainly no exception, the number of web application frameworks that focus on \gls{js} has increased a lot during the last few years alone. For instance, the AngularJS framework uses Jasmine and Karma in the official tutorial.
 
 \begin{quote}
 ``Since testing is such a critical part of software development, we make it easy to create tests in Angular so that developers are encouraged to write them'' \cite{AngularTemplates}
 \end{quote}
 
-This is likely a large contributing factor for increasing the probability of Angular developers testing their \gls{js}.
+This is likely a large contributing factor for increasing the probability of Angular developers testing their \gls{js}. There is also a tendency of testing frameworks being more and more tied to application frameworks -- Karma and protractor are for instance rather Angular specific.
 
-\subsection{(ML,JS)The frameworks}
-\label{subsec:frameworks}
 
-Programming languages in use today typically have frameworks to help with standard structure and other generic problems. \gls{js} is certainly no exception, the number of web application frameworks that focus on \gls{js} has increased a lot during the last few years alone.
-
-A full evaluation of the most popular MVC and testing frameworks is not within the scope of this thesis, but others have done it \cite{JackFranklin}\cite{SebastianPorto}. Popular \gls{js} testing frameworks include assertion frameworks such as Jasmine, qUnit, expect.js and chai, and drivers/test runners such as Mocha, JsTestDriver, Karma and Chutzpah\footnote{\url{http://chutzpah.codeplex.com/}} which may have their own assertion framework built in but are typically easy to integrate with other assertion frameworks using adapters or via built-in support. % Scope and delimitations
+\section{Draft without title}
 
 \subsection{(JS0,ML0)High quality tests} % In i testing culture eller testability
 \label{subsec:quality}
