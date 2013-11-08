@@ -375,46 +375,57 @@ Adding tests for code that was written without testing in mind is challenging \c
 \subsection{(ML0,JS)Description of the asteroids example}
 \label{subsec:asteriods}
 
-The first step in the case study of adding tests in retrospect was selecting a suitable application. The choice became an HTML5 canvas game, namely asteroids, based on that it combined graphical elements with relatively complex logic and a bit of jQuery, making it a reasonable representative for the typical JavaScript application. Most of the code was reasonably well modularised already from the start and it was easy to get started by simply cloning the repository and opening the supplied HTML file with the canvas element and script locations already defined.
+The first step in the case study of adding tests in retrospect was selecting a suitable application. The choice became an HTML5 canvas game, namely asteroids (see figure~\ref{fig:game3}), based on that it combined graphical elements with relatively complex logic and a bit of jQuery, making it a reasonable representative for the typical JavaScript application. Most of the code was reasonably well modularised already from the start and it was easy to get started by simply cloning the repository and opening the supplied HTML file with the canvas element and script locations already defined.
 
-The first action was to strip away any redundant files such as iPad specific code and sound files that were not used anyway. This led to a project structure of only game.js, index.html, the licence file, jquery 1.4.1 and a \gls{js} file containing the fonts used to display score and messages in the game. The next step was to split game.js into separate files in order to test each ``class'' in isolation. If using a TDD approach, this would probably have been done the other way around -- writing tests that force the game to be structured in a certain way, but it turned out as reasonably easy to change the code even without tests as long as care was taken to preserve the order in which the code was executed when moving things to separate files.
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=1.0\textwidth]{pics/game3.png}
+\caption{The asteroids HTML5 canvas game: here the player ship (left) is about to collide with an enemy ship (right) which will destroy them both (unlike what happens when asteroids collide, an example of desireable behaviour to test for)}
+\label{fig:game3}
+\end{figure}
 
-Since the exercises in Test-Driven JavaScript Development\cite{Tddjs} had introduced JsTestDriver, using that with a Jasmine plugin felt like a natural choice at the time, although it turned out to involve some issues with syncing the tests in the browser and find the correct versions for the Jasmine adapter to work. The project structure was then:
+The first action was to strip away any redundant files such as iPad specific code and sound files that were not used anyway. This led to a project structure of only game.js, index.html, the licence file, jquery 1.4.1 and a \gls{js} file containing the fonts (used to display score and messages in the game, see figures~\ref{fig:game6},~\ref{fig:game7} and~\ref{fig:game10}). The next step was to split game.js into separate files in order to test each ``class'' in isolation. This could have been done the other way around, guiding the structure by writing tests first, but it felt natural to work with the source in order to understand it. Refactoring without tests is typically not a good idea\cite[p.~17]{}, but it turned out as reasonably easy to change the code even without tests as long as care was taken to preserve the order in which the code was executed when moving things to separate files. Since the exercises in Test-Driven JavaScript Development\cite{Tddjs} had introduced JsTestDriver, using that with a Jasmine plugin felt like a natural choice at the time, although it involved some issues with syncing the tests in the browser and find the correct versions for the Jasmine adapter to work. The project structure is displayed in figure~\ref{fig:tree}.
 
-\begin{verbatim}
--- LICENSE
--- README.md
--- bin
-    -- JsTestDriver-1.3.5.jar
--- core
-    -- config.js
-    -- game.js
-    -- gridnode.js
-    -- main.js
-    -- matrix.js
--- index.html
--- jsTestDriver.conf
--- lib
-    -- Jasmine_adapter.js
-    -- jasmine.js
-    -- jquery-1.4.1.min.js
-    -- text.js
-    -- vector_battle_regular.typeface.js
--- sprites
-    -- alienbullet.js
-    -- asteroid.js
-    -- bigalien.js
-    -- bullet.js
-    -- explosion.js
-    -- ship.js
-    -- sprite.js
-\end{verbatim}
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=1.0\textwidth]{pics/tree.png}
+\caption{Project structure after splitting \texttt{game.js} into several files and adding JSTD and Jasmine, but before adding any specs}
+\label{fig:tree}
+\end{figure}
 
-Later on, tests were added in new directories \texttt{sprites-spec} and \texttt{sprites-spec}, Sinon.js was added to the \texttt{lib} directory for better stubbing, rendering.js was extracted from main.js to enable more selective execution and a reset.js file was added to the \texttt{core} directory that ensured that any old definitions in the asteroids namespace was overwritten before reading the files anew. This last change, reset.js, should not really be necessary, but was done in order to not having to empty the cache in between each test run with JsTestDriver. For a more comprehensive picture of what all of this means, please see \footnote{\url{https://github.com/emilwall/HTML5-Asteroids}}.
+\begin{figure}[h!]
+\centering
+\includegraphics[width=1.0\textwidth]{pics/game7.png}
+\caption{The game over screen, displayed for one second when all lives are lost}
+\label{fig:game7}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=1.0\textwidth]{pics/game6.png}
+\caption{Text displayed after game over, enabling the user to see the score and start a new game}
+\label{fig:game6}
+\end{figure}
+
+Later on, tests were added in new directories \texttt{sprites-spec} and \texttt{sprites-spec}, Sinon.js was added to the \texttt{lib} directory for better stubbing, rendering.js was extracted from main.js to enable more selective execution and a reset.js file was added to the \texttt{core} directory that ensured that any old definitions in the asteroids namespace was overwritten before reading the files anew. This last change, reset.js, should not really be necessary, but was done in order to not having to empty the cache in between each test run with JsTestDriver. For a more comprehensive picture of what all of this means, please see~\footnote{\url{https://github.com/emilwall/HTML5-Asteroids}}.
 
 \subsection{(ML0,JS)Attempts, observations}
 
-Once starting to write tests, the first problems were that some of the code was contained in a jQuery context and that the canvas element was not available in the unit testing environment, i.e. the code was executed in the inaccessible body of \texttt{\$(function ()...}, with the selector \texttt{\$("\#canvas")}. Efforts to load the contained code using ajax were of no gain, so the solution instead came to involve exposing the contents of the context as a separate class (rendering.js), and manually inject the canvas and other dependencies into that class. This required turning local variables such as the 2d-context into attributes of the class, to make them accessible from the original location of the code (the jQuery context). This change introduced a bug that manifested itself only when a feature to draw grid boundaries was activated. The feature was not important and could have been removed, but solutions were considered anyway for investigation purposes. The bug could be fixed by making a couple of variables in the rendering class globally accessible as attributes, but that would break certain abstractions, possibly making the code harder to maintain. A better solution, which was also eventually chosen, was to move the code for drawing grid boundaries into the rendering class, where it really belonged.
+Once starting to write tests, the first problems were that some of the code was contained in a jQuery context and that the canvas element was not available in the unit testing environment, i.e. the code was executed in the inaccessible body of \texttt{\$(function ()...}, with the selector \texttt{\$("\#canvas")}. Efforts to load the contained code using ajax were of no gain, so the solution instead came to involve exposing the contents of the context as a separate class (rendering.js), and manually inject the canvas and other dependencies into that class. This required turning local variables such as the 2d-context into attributes of the class, to make them accessible from the original location of the code (the jQuery context). This change introduced a bug that manifested itself only when a feature to draw grid boundaries (see figure~\ref{fig:game8}) was activated. The feature was not important and could have been removed, but solutions were considered anyway for investigation purposes. The bug could be fixed by making a couple of variables in the rendering class globally accessible as attributes, but that would break certain abstractions, possibly making the code harder to maintain. A better solution, which was also eventually chosen, was to move the code for drawing grid boundaries into the rendering class, where it really belonged.
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=1.0\textwidth]{pics/game8.png}
+\caption{Draw grid function in action, highlighting cells with sprites}
+\label{fig:game8}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=1.0\textwidth]{pics/game10.png}
+\caption{Game paused while accelerating and shooting towards an enemy ship}
+\label{fig:game10}
+\end{figure}
 
 The event handling for key-presses could not be extracted since they relied on being executed in the jQuery context for the events to be registered correctly. The event handles had dependencies on local variables in main.js so in order to extract the code into a separate class these local variables would have had to be made global, which would undermine the design by introducing even more global state. Based on this, the event handling code was left without unit tests, leaving it to integration and system testing to detect possible defects such as improper changes to global variables that were used in the event handler.
 
