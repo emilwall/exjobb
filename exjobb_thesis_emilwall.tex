@@ -462,6 +462,8 @@ A notable testability problem was to automate end-to-end testing. The game invol
 
 If the code has to be modified in a way that severely breaks the original design and exposes variables that should not be used from any other part of the application in order to make it testable, it can basically mean one of two things: either you should not test the code in the way you are trying to do, or you should rethink the responsibilities of that code. Perhaps it is doing more than one thing, and it is the secondary thing that you feel that you want to test. No wonder then that it feels wrong to expose it, it is not the primary purpose of that code segment, just an implementation detail. The key-press event handlers mentioned earlier is one example of this -- the mechanism of event handling should probably have been kept separate from the settings and controls of the application.
 
+The object orientation of the asteroids application provided useful structure and was a rather good fit since it really did contain natural abstractions in the form of objects. An interesting thought is whether the code would have been more testable if it had been written in a functional style. Certainly, there would have been less outer dependencies to locate and isolate in the tests, or less work to instantiate the objects. \cite[question~26]{Ahnve}
+
 tools and testability
 
 \subsection{(ML0,JS)Testability issues with main.js in asteroids application}
