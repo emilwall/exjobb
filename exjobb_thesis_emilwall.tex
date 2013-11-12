@@ -156,7 +156,7 @@ More than 90 \% of today's websites use \gls{js} \cite{BusinessJavascript} and i
 
 For \gls{sml} programs, usage scenarios tend to be different from \gls{js} in that \gls{sml} tends to be used more for back-end logic and algorithm design than web application front-ends. \gls{sml} is well suited for formal verification, so it is sometimes used to eliminate risk of software failure. In theory this is of course excellent, but how about practical aspects such as how difficult it is to do, how much benefits there are for maintainability, modularity and code design, and how much time is consumed to perform the verification? In which scenarios is it feasible and how does it affect productivity and the ability to make large changes to the code and get quick and frequent feedback whether the program is still correct? Even though testing can seldom provide the same guarantees as formal verification, there are many scenarios in which it is more cost effective and makes life easier for the developer. The two can of course also be used in parallel.
 
-To achieve maximal gain from testing, the tests need to be of high quality, which means that they should be maintainable, fast and test the right thing. How to achieve this is an important part of this thesis, which is discussed in section~\ref{subsec:quality}.
+To achieve maximal gain from testing, the tests need to be of high quality, which means that they should be maintainable, fast and test the right thing. How to achieve this is an important part of this thesis, which is discussed in section~\ref{subsec:stateofevents}.
 
 Unit testing is particularly powerful when in combination with integration tests in a
 \newglossaryentry{ci}{name={CI}, description={Continuous Integration (CI) is a practise based on frequently merging new code with a main code repository, commonly using principles such as automated build, testing and deployment}, first={Continuous Integration (CI)}, long={Continuous Integration}}
@@ -168,11 +168,11 @@ Testing \gls{js} paves the way for test-driven development, which brings benefit
 The goal with this thesis is to investigate why \gls{js} testing has been performed to such a small extent, and what potential implications an increased amount of testing could provide for development and business value. Providing possible approaches to testing \gls{js} under different circumstances are also part of the goal. % TODO elaborate and update
 
 \subsection{(ML1,JS1)Background to Project}
+\label{mltestingframeworks}
 
 The first known \gls{js} testing framework JsUnit\footnote{\url{https://github.com/pivotal/jsunit}} was created in 2001 by Edward Hieatt \cite{GoingFaster} and since then several other test framework has appeared such as the testing framework for jQuery: QUnit\footnote{\url{http://qunitjs.com/}}, and JsUnits sequel Jasmine\footnote{\url{http://pivotal.github.com/jasmine/}}. There are also tools for mocking (see section~\ref{subsec:mocking}) such as Sinon.JS\footnote{\url{http://sinonjs.org/}}. It seems as if the knowledge of how to smoothly get started, how to avoid making the tests non-stable and time consuming, and what to test, is rare. Setting up the structure needed to write tests is a threshold that most \gls{js} programmers do not overcome \cite{TestingStatistics} and thus, they lose the benefits, both short and long term, otherwise provided by testing.
 
 There is only one production quality testing framework available for \gls{sml}, namely QCheck\footnote{\url{https://github.com/league/qcheck}}. A few others exist but have not gained any traction and are relatively small, typically less than a year old and not under active development. The recent increase in the number of testing frameworks could be a consequence of developers being more willing to share their work as open source, or an indication that testing has been increasingly popular over the last one or two years, just as in the \gls{js} community \cite[question~1]{Edelstam}. An exhaustive list of the other \gls{sml} testing frameworks and a short discussion about their differences can be found in the Appendix.
-\label{mltestingframeworks}
 
 Material on how to properly test \gls{sml} is hard to come by. Similarly, in guides on how to use different \gls{js} testing frameworks, examples are often decoupled from the typical use of \gls{js} -- the Web -- which is a problem \cite[question~3]{Ekelof} although it has become better compared to a couple of years ago \cite[question~27]{Ahnve}. Examples tend to merely illustrate testing of functions without side effects and dependencies. Under these circumstances, the testing is trivial and most \gls{js} programmers would certainly be able to put up a test environment for such simple code.
 
@@ -200,7 +200,7 @@ Since \gls{sml} has a smaller user base than \gls{js}, the majority of the resea
 There are also more technical aspects:
 \begin{itemize}[label={--}]
 \item Testability of \gls{js} code written without tests in mind (section~\ref{sec:testability})
-\item Usability of testing tools and frameworks (sections \ref{subsec:angularjasminekarma}, \ref{subsec:jstestdriverintegration} and \ref{subsec:jstestdriver})
+\item Usability of testing tools and frameworks (sections \ref{subsec:frameworks}, \ref{subsec:jstestdriver} and \ref{subsec:jstestdriver})
 \item Reasons not to include frameworks in a project for the sole purpose of facilitating testing
 \item Limitations in what can be tested
 \item Complexity in setting up the test environment; installing frameworks, configuring build server, exposing functions to testing but not to users in production, etc.
@@ -328,7 +328,7 @@ TDD shifts focus from implementations to testing, thereby enforcing a thought pr
 
 Behaviour-Driven Development (BDD) is about describing expected behaviour of systems and writing tests from the outside in. It replaces and adds terminology traditionally used within TDD and encourages descriptive naming of tests (or \glspl{spec}) that helps readability and to make failure messages more helpful. \cite[questions~17-18]{Ahnve}
 
-An advantage with BDD is how it encapsulates ideas about how tests can be organised, for intance through the Given, When, Then (GWT) form (covered in greater detail in section \ref{subsec:tools}). Providing a context for \glspl{spec} can help to avoid having a single hard-to-read setup for all tests of a class, which is otherwise common in classical TDD and testing in general. Having a single setup can be problematic not only for readability reasons that can make them harder to understand, but also because it creates dependencies between tests. A common alternative to the GWT form is nested describe clauses with it-specs as in Jasmine and BDD style Mocha. This requires more discipline from the developer because the context has to be covered by the describe text. The classical BDD framework RSpec has a \texttt{when} directive that serves as a compromise between the two styles.\cite[question~19]{Ahnve}
+An advantage with BDD is how it encapsulates ideas about how tests can be organised, for intance through the Given, When, Then (GWT) form (covered in greater detail in section \ref{subsec:frameworks}). Providing a context for \glspl{spec} can help to avoid having a single hard-to-read setup for all tests of a class, which is otherwise common in classical TDD and testing in general. Having a single setup can be problematic not only for readability reasons that can make them harder to understand, but also because it creates dependencies between tests. A common alternative to the GWT form is nested describe clauses with it-specs as in Jasmine and BDD style Mocha. This requires more discipline from the developer because the context has to be covered by the describe text. The classical BDD framework RSpec has a \texttt{when} directive that serves as a compromise between the two styles.\cite[question~19]{Ahnve}
 
 Strictly speaking, you do not need a BDD framework to perform BDD. J. B. Rainsberger, the author of JUnit Recipes: Practical Methods for Programmer Testing, explained how to do BDD in jUnit at the XP 2011 conference in Madrid. The key to doing this is to divide the tests based on system behaviour rather than classes. This is the same concept as when writing \glspl{spec} in Cucumber, another Ruby GWT framework, and the same principle applies to BDD in \gls{js} (note that Cucumber can also be used to generate acceptance tests for \gls{js}). This is desirable because it helps you to not prioritise implementation details in favour of the parts that truly matters from a business value point of view.\cite[question~20]{Ahnve}
 
@@ -487,7 +487,6 @@ One has to be careful when adding code to beforeEach, setUp and similar construc
 
 \subsection{(ML0,JS1)JsTestDriver evaluation}
 \label{subsec:jstestdriver}
-\label{subsec:jstestdriverintegration}
 
 When setting up JsTestDriver\footnote{\url{https://code.google.com/p/js-test-driver/}} (JSTD) with the Jasmine adapter there are pitfalls in which version you're using. At the time of writing, the latest version of the Jasmine JSTD adapter (1.1) is not compatible with the latest version of Jasmine (1.3.1), so in order to use it you need to find an older version of Jasmine (such as 1.0.1 or 1.1.0) or figure out how to modify the adapter to make it compatible. Moreover, the latest version of JSTD (1.3.5) does not support relative paths to parent folders when referencing script files in jsTestDriver.conf although a few older versions do (such as 1.3.3d), which is a problem if you want to place the test driver separate from the system under test rather than in a parent folder, or if you want to reference another framework such as Jasmine if it is placed in another directory.
 
@@ -817,7 +816,6 @@ It's possible that the overall quality of \gls{js} code has improved over the la
 One may argue that TDD forces developers to write testable code which tends to be maintainable, and it may be true in some scenarios, but one has to bear in mind that \gls{js} is commonly used with many side-effects that are not so easily tested. More importantly, it is common to place all the \gls{js} code in a single file and hide the implementation using some variant of the module pattern\cite[p.~40]{GoodParts}, which means that only a small subset of the code is exposed as globally accessible functions. In order to test the functions in any sensible way, the design typically will have to be improved so that no function has too many responsibilities. This conflicts with the eagerness of most developers to just get something that works without making it more complicated than necessary.
 
 Many \gls{js} developers are used to manually test their \gls{js} in a browser. For someone not experiences with testing, this gives a relatively early feedback loop and although it does not come with the benefits of design, quality and automated testing that TDD does, it tends to give a feeling of not doing any extra work and getting the job done as fast as possible. Developers do not want to spend time on mocking dependencies when they are unsure if the solution they have in mind will even work. Once an implementation idea pops up, it can be tempting to just try it out rather than writing tests. If this approach is taken, it may feel like a superfluous task to add tests afterwards since that will typically require some refactoring in order to make the code testable. If the code seems to work good enough, the developer may not be willing to introduce this extra overhead, for good reasons \cite[question~43]{Stenmark}.
-\label{subsec:quality}
 
 As mentioned in section~\ref{subsec:motivation}, tests should be maintainable and test the right thing. Otherwise, responding to changes is harder, and the tests will tend to cause frustration among the developers instead of detecting bugs and driving the understanding and development of the software \cite{Clean}.
 
@@ -857,9 +855,7 @@ Different projects have different fault tolerance. Sometimes a single bug can ca
 The connection between how much testing is carried out and how much risk is involved with a project is not as strong as one might think. The company culture and the background of the developers have great impact too. If the stakeholders are not used to testing and the developers are inexperienced with the tools of the trade, chances are that they will not do it. \cite[question~14]{Ahnve}
 
 \subsection{(ML,JS)Frameworks}
-\label{subsec:angularjasminekarma}
 \label{subsec:frameworks}
-\label{subsec:tools}
 
 Programming languages in use today typically have frameworks to help with standard structure and other generic problems. \gls{js} is certainly no exception, the number of web application frameworks that focus on \gls{js} has increased a lot during the last few years alone. When application frameworks such as Backbone first appeared, they revolutionised \gls{js} the scalability and structure of applications \cite[question~23]{Ahnve}\cite[question~11]{Rovegard}. The advent of application frameworks also gave new support for testing, for instance, the AngularJS framework uses Jasmine and Karma in the official tutorial.
 
