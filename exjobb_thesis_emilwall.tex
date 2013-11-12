@@ -863,7 +863,9 @@ Programming languages in use today typically have frameworks to help with standa
 ``Since testing is such a critical part of software development, we make it easy to create tests in Angular so that developers are encouraged to write them'' \cite{AngularTemplates}
 \end{quote}
 
-This is likely a large contributing factor for increasing the probability of Angular developers testing their \gls{js}. There is also a tendency of testing frameworks being more and more tied to application frameworks -- Karma and protractor are for instance rather Angular specific.
+This likely contributes to increasing the testing of \gls{js} code by developers using such frameworks. This effect is accomplished both through tutorials and the way application frameworks are designed. For instance, the moustache templates of CanJS can be used to extract code from views, where it is easier to test and reduces view logic complexity \cite[question~32]{Ahnve}.
+
+There is a tendency of testing frameworks being tied to application frameworks -- Karma and protractor are for instance rather AngularJS specific. Several of the interviewees had experienced that some application frameworks are uncompromising when it comes to using only a subset of the framework or using another testing framework than what the application framework was designed for, although there are certainly exceptions to this rule as well, such as CanJS \cite[question~22]{Ahnve}\cite[question~41]{Rovegard}.
 
 There are a number of BDD frameworks available that are meant to bring testing closer to the specification and story work, as proposed in section~\ref{subsec:ccc}. They aim to mimic the way stories are written to create a ubiquitous natural language that can be understood by both programmers and non-programmers. The way this is done is by building sentences with a Given, Then, When (GTW) form. Cucumber\footnote{\url{http://cukes.info/}} is a popular framework that was designed for this in the Ruby programming language and there is a \gls{js} version called Cucumber.js\footnote{\url{https://github.com/cucumber/cucumber-js}}.
 Yadda,\footnote{\url{https://github.com/acuminous/yadda}}
@@ -879,8 +881,6 @@ Apart from testing frameworks, your ability to write tests is also influenced by
 Using a suitable application framework and doing test driven development can be mutually beneficial. The framework helps to create structure that simplifies testing and the testing process further improves the quality of the code, allowing you to make better use of the framework and providing incentive for even better structure. \cite[question~15]{Stenmark}
 
 Aside from the increased awareness and knowledge of testing that Node.js has brought to the \gls{js} community from other communities such as Ruby on Rails, the runtime itself facilitates testing since it enables different testing tools to be distributed through npm (Node Package Manager) and run in the terminal. Previously, you had to load a html page in a browser in order to run your tests. \cite[question~9]{Stenmark}
-
-Several of the interviewees had experienced that application frameworks such as AngularJS are often uncompromising when it comes to using only a subset of the framework or using another testing framework than what the application framework was designed for, although CanJS might be an exception to this rule. \cite[question~22]{Ahnve}\cite[question~41]{Rovegard}
 
 
 \section{(JS,ML)Conclusions}
