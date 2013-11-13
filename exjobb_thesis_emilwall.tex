@@ -889,6 +889,8 @@ This section contains a summary of the main points of this thesis, a discussion 
 
 \subsection{(JS,ML)Lessons learned}
 
+Both the interviews, the literature studies and the practical work indicated that one of the most crucial things for successful testing is finding suitable abstraction levels. If tests contain too much details they will be harder to read, and the same applies to functions in the production code, except that will also impact testability. It is therefore useful to introduce domain-specific language in tests \cite[p.~127]{Clean} and thereby encourage proper modularisation in the production code.
+
 JS is used differently, it is not just another programming language. Because it is implemented in practically every browser, it is used by almost all web developers, regardless of their experience with programming. Frameworks such as jQuery also influence how people write their JavaScript code, often in a way that is negative to testing. On the other hand, other frameworks have the opposite effect and there is nothing inherently bad with using a powerful tool such as jQuery, you just need to be careful to separate code that does different things. If you don't know how the code works, as can be the case when copying code from an external source, then you can not do this. You also need to be aware of good practices.
 
 The web is a difficult environment for testing because of many dependencies and events. This makes it harder to test, but also more important.
