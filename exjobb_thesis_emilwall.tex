@@ -312,6 +312,7 @@ As can be seen at the end of the Appendix, there were some email conversations w
 This section gives an overview of concepts and tools relevant to understanding this thesis. Readers with significant prior knowledge about web development and \gls{js} testing may skip this section.
 
 \subsection{(ML0,JS0)Basics of Testing}
+\label{subsec:testingbasics}
 
 Every developer performs testing in one way or another. Running an application, interacting with it and observing the results is one form of testing. The more time spent on developing the application, the more evident the need for automated tests tends to become, to reduce the amount of manual work and time spent repeating the same procedures.
 
@@ -326,6 +327,8 @@ There are potentially both good and bad consequences of testing, both from a sho
 Test-Driven Development (TDD) is ...
 
 TDD shifts focus from implementations to testing, thereby enforcing a thought process of how to translate requirements into tests. When using TDD, the most common reason for a bug is because the TDDer has moved on prematurely, i.e. not writing enough tests to find a scenario in which the code does not behave as it should or not fully understood the requirements. These kinds of bug would probably persist regardless of if TDD is used or not, but the thing to be careful about here is that there is a risk of not putting as much energy into writing flawless production code when TDDing, instead you rely on iterative improvement and refactoring. % Move to technical background about TDD or conclusions?
+
+A common principle of TDD, especially when carried out in a \gls{ci} build, is that the application should frequently be brought to a state where all tests pass \cite[question~2]{Rovegard}. An exception from this rule is pending tests, but as mentioned in section~\ref{subsec:testingbasics}, these should be kept to a minimum.
 
 \subsection{(ML0,JS0)Behaviour-Driven Development}
 
