@@ -86,7 +86,9 @@
 
 \newglossaryentry{testing}{name={Testing}, text={testing}, description={Defined here as automated software testing, unless otherwise specified. Manual testing and most forms of acceptance testing is outside the scope of this thesis}}
 
-\newglossaryentry{bdd}{name={BDD}, description={Behaviour Driven Development (BDD), see section \ref{subsec:bdd} for a definition}, first={Behaviour Driven Development (BDD)}, long={Behaviour Driven Development}}
+\newglossaryentry{tdd}{name={TDD}, description={Test-Driven Development (TDD), see section \ref{subsec:tdd} for a definition}, first={Test-Driven Development (TDD)}, long={Test-Driven Development}}
+
+\newglossaryentry{bdd}{name={BDD}, description={Behaviour-Driven Development (BDD), see section \ref{subsec:bdd} for a definition}, first={Behaviour-Driven Development (BDD)}, long={Behaviour-Driven Development}}
 
 \newglossaryentry{mooc}{name={MOOC}, first={MOOC (Massive Open Online Course)}, description={``A MOOC [Massive Open Online Course] is an online course with the option of free and open registration, a publicly-shared curriculum, and open-ended outcomes. MOOCs integrate social networking, accessible online resources, and are facilitated by leading practitioners in the field of study. [...] The term came into being in 2008, though versions of very large open online courses were in existence before that time.'' \cite[p.~10]{MOOC}}}
 
@@ -228,7 +230,7 @@ In 2010, a student at the Swedish royal institute of technology called Jens Neub
 
 \subsection{(ML1,JS1)Books}
 
-The main source of reference within the field of \gls{js} testing today is \emph{Test-Driven JavaScript Development} \cite{Tddjs} by Christian Johansen which deals with \gls{js} testing from a TDD perspective. Johansen is the creator of Sinon.JS\footnote{\url{http://sinonjs.org/}} and a contributor to a number of testing frameworks hosted in the open source community. The book takes a rather practical approach to \gls{js} testing by explaining many aspects of how \gls{js} works and by including practise exercises. It is not very scientific but makes up for this with its pragmatism and roots in the software industry.
+The main source of reference within the field of \gls{js} testing today is \emph{Test-Driven JavaScript Development} \cite{Tddjs} by Christian Johansen which deals with \gls{js} testing from a \gls{tdd} perspective. Johansen is the creator of Sinon.JS\footnote{\url{http://sinonjs.org/}} and a contributor to a number of testing frameworks hosted in the open source community. The book takes a rather practical approach to \gls{js} testing by explaining many aspects of how \gls{js} works and by including practise exercises. It is not very scientific but makes up for this with its pragmatism and roots in the software industry.
 
 Lately, a large number of books about \gls{js} testing has appeared. \emph{JavaScript Testing with Jasmine} \cite{JasmineBook} covers the Jasmine testing framework in detail, \emph{Behaviour Driven Development with JavaScript} \cite{BDDJS} presents a BDD perspective of \gls{js} testing and \emph{Testable JavaScript} \cite{TestableJS} looks at testability aspects of \gls{js}. All three of these were published this year (2013), and Johansen's book was published only a few years ago in 2010.
 
@@ -325,6 +327,7 @@ Commonly, unit tests are more low level and integration tests are more like user
 There are potentially both good and bad consequences of testing, both from a short and from a long term perspective. A disadvantage is that setting up the test environment and writing the tests take time. If the testing process is not carried out properly, maintaining the tests can cause frustration. The advantages are that if time is spent thinking about and writing tests, the development of production code will require less effort. Testing provides shorter feedback loops, executable documentation and new ways of communicating requirements with customers. The quality and maintainability of the end result is likely to be positively affected and making changes becomes easier, so ideally, the pace of development does not stagnate. The extra time required to set up the test environment and write the actual tests may or may not turn out to pay off, depending on how the application will be used and maintained.
 
 \subsection{(ML0,JS0)Test-Driven Development}
+\label{subsec:tdd}
 
 Test-Driven Development (TDD) is ...
 
