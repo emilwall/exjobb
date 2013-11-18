@@ -117,7 +117,7 @@ Imagine the following scenario: You have been working for many months on a mediu
 
 Now envision this: Despite the challenging requirements and conditions, you are relatively sure that the application works as it should. You feel safe in telling the customer when a feature has been implemented because the automated tests indicate that it works and that nothing else has broken. The application has a modular design and you have a good feeling of what every part is supposed to do and how the system works as a whole. This makes it easier to implement change requests and you spend relatively little time debugging, because the tests generally give you precise indications about which parts of the code are affected by your changes. Whenever there is a bug, you capture it with tests so that you will easily notice if it is re-introduced. Releasing a new version is simple and you feel proud of being part of the team.
 
-The main difference between these scenarios is that the second one requires a pervading \gls{testing} effort from the team. In this thesis, we will look at some obstacles that make \gls{testing} difficult. Many of the topics discussed are applicable to any programming language, but it was decided to look at \gls{js} and \gls{sml} specifically because the automated testing community around \gls{js} still has some ground to cover \cite[p.~xix]{Tddjs} and for \gls{sml}, a less known functional language, the situation is even more severe. This is evident when compared to other programming communities such as Ruby and Java. As illustrated by Mark Bates \cite{TestingStatistics}:
+The main difference between these scenarios is that the second one requires a pervading \gls{testing} effort from the team. In this thesis, obstacles that make \gls{testing} difficult have been investigated. Many of the topics discussed are applicable to any programming language, but it was decided to look at \gls{js} and \gls{sml} specifically because the automated testing community around \gls{js} still has some ground to cover \cite[p.~xix]{Tddjs} and for \gls{sml}, a less known functional language, the situation is even more severe. This is evident when compared to other programming communities such as Ruby and Java. As illustrated by Mark Bates \cite{TestingStatistics}:
 
 \begin{quote}
 ``Around the beginning of 2012, I gave a presentation for the Boston Ruby Group, in which I asked the crowd of 100 people a few questions. I began, `Who here writes Ruby?' The entire audience raised their hands. Next I asked, `Who tests their Ruby?' Again, everyone raised their hands. `Who writes JavaScript or CoffeeScript?' Once more, 100 hands rose. My final question: `Who tests their JavaScript or CoffeeScript?' A hush fell over the crowd as a mere six hands rose. Of 100 people in that room, 94\% wrote in those languages, but didn't test their code. That number saddened me, but it didn't surprise me.''
@@ -138,6 +138,8 @@ nodes near coords, nodes near coords align={horizontal},
 \end{axis}
 \end{tikzpicture}
 \end{center}
+
+The main goal with this thesis has been to investigate why \gls{js} and \gls{sml} testing has been performed to such a small extent, its effects on development and business value and problems that are yet to be solved. Providing possible approaches to testing \gls{js} and \gls{sml} under different circumstances are also part of the goal.
 
 \subsection{(ML1,JS1)Motivation}
 \label{subsec:motivation}
@@ -167,8 +169,6 @@ Unit testing is particularly powerful when in combination with integration tests
 This enables you to harness the power of \gls{ci}, avoiding errors otherwise easily introduced as changes propagate and affect other parts of the system in an unexpected way. The integration tests will make developers aware if they are breaking previous functionality, when changing parts of the system that the \gls{js} depends upon.
 
 This paves the way for test-driven development, which brings benefits in terms of the design becoming more refined, and increased maintainability. To achieve these gains from testing, the tests themselves need to be of high quality: they should be maintainable, fast and test the right thing. How to achieve this is an important part of this thesis, which is discussed in section~\ref{subsec:stateofevents}.
-
-The goal with this thesis is to investigate why \gls{js} testing has been performed to such a small extent, and what potential implications an increased amount of testing could provide for development and business value. Providing possible approaches to testing \gls{js} under different circumstances are also part of the goal. % TODO elaborate and update
 
 \subsection{(ML1,JS1)Background to Project}
 \label{mltestingframeworks}
