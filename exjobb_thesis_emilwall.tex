@@ -207,10 +207,9 @@ Since \gls{sml} has a smaller user base than \gls{js}, the majority of the resea
 There are also more technical aspects:
 \begin{itemize}[label={--}]
 \item Testability of \gls{js} code written without tests in mind (section~\ref{sec:testability})
-\item Usability of testing tools and frameworks (sections \ref{subsec:frameworks}, \ref{subsec:jstestdriver} and \ref{subsec:jstestdriver})
-\item Reasons not to include frameworks in a project for the sole purpose of facilitating testing
-\item Limitations in what can be tested
-\item Complexity in setting up the test environment; installing frameworks, configuring build server, exposing functions to testing but not to users in production, etc.
+\item Usability of testing tools and frameworks (sections \ref{subsec:jstestdriver} and \ref{subsec:frameworks})
+\item Limitations in what can be tested (section \ref{sec:testability})
+\item Complexity in setting up a test environment; installing frameworks, configuring build server, exposing functions to testing but not to users in production, etc. (section \ref{sec:testability})
 \end{itemize}
 
 An important part of the scope has been to account for how to conveniently proceed with \gls{js} and \gls{sml} testing. The ambition was to cover not only the simplest cases but also the most common and the hardest ones, and introduce available tools and frameworks. Many tutorials for testing frameworks today tends to focus on the simple cases of testing, possibly because making an impression that the framework is simple to use has been more highly prioritised than covering different edge cases of how it can be used that might not be relevant to that many anyway. To provide valuable guidance in how to set up a testing environment and how to write the tests, attention had to be paid to the varying needs of different kinds of applications. It was also important to describe how to write tests that are as maintainable as the system under test, to minimise maintenance costs and maximise gain.
