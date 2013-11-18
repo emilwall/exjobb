@@ -86,6 +86,8 @@
 
 \newglossaryentry{testing}{name={Testing}, text={testing}, description={Defined here as automated software testing, unless otherwise specified. Manual testing and most forms of acceptance testing is outside the scope of this thesis}}
 
+\newglossaryentry{bdd}{name={BDD}, description={Behaviour Driven Development (BDD), see section \ref{subsec:bdd} for a definition}, first={Behaviour Driven Development (BDD)}, long={Behaviour Driven Development}}
+
 \newglossaryentry{mooc}{name={MOOC}, first={MOOC (Massive Open Online Course)}, description={``A MOOC [Massive Open Online Course] is an online course with the option of free and open registration, a publicly-shared curriculum, and open-ended outcomes. MOOCs integrate social networking, accessible online resources, and are facilitated by leading practitioners in the field of study. [...] The term came into being in 2008, though versions of very large open online courses were in existence before that time.'' \cite[p.~10]{MOOC}}}
 
 \newglossaryentry{matcher}{name={Matcher}, text={matcher}, description={BDD terminology for an assertion. Also commonly called expectation}}
@@ -118,7 +120,7 @@ Imagine the following scenario: You have been working for many months on a mediu
 Now envision this: Despite the challenging requirements and conditions, you are relatively sure that the application works as it should. You feel safe in telling the customer when a feature has been implemented because the automated tests indicate that it works and that nothing else has broken. The application has a modular design and you have a good feeling of what every part is supposed to do and how the system works as a whole. This makes it easier to implement change requests and you spend relatively little time debugging, because the tests generally give you precise indications about which parts of the code are affected by your changes. Whenever there is a bug, you capture it with tests so that you will easily notice if it is re-introduced. Releasing a new version is simple and you feel proud of being part of the team.
 
 The main difference between these scenarios is that the second one requires a pervading \gls{testing} effort from the team. In this thesis, obstacles that make \gls{testing} difficult have been investigated. Many of the topics discussed are applicable to any programming language, but it was decided to look at \gls{js} and \gls{sml} specifically because the automated testing community around \gls{js} still has some ground to cover \cite[p.~xix]{Tddjs} and for \gls{sml}, a less known functional language, the situation is even more severe.
-\Gls{sml} and \gls{js} both have problems with testing culture, but for different reasons. Client-side \gls{js} testing in particular is a concern shared by many, and until recently there was no BDD framework available for \gls{sml}.
+\Gls{sml} and \gls{js} both have problems with testing culture, but for different reasons. Client-side \gls{js} testing in particular is a concern shared by many, and until recently there was no \gls{bdd} framework available for \gls{sml}.
 The difference in testing efforts between programming languages is evident when comparing \gls{js} to other programming communities such as Ruby and Java. As illustrated by Mark Bates \cite{TestingStatistics}:
 
 \begin{quote}
@@ -331,6 +333,7 @@ TDD shifts focus from implementations to testing, thereby enforcing a thought pr
 A common principle of TDD, especially when carried out in a \gls{ci} build, is that the application should frequently be brought to a state where all tests pass \cite[question~2]{Rovegard}. An exception from this rule is pending tests, but as mentioned in section~\ref{subsec:testingbasics}, these should be kept to a minimum.
 
 \subsection{(ML0,JS0)Behaviour-Driven Development}
+\label{subsec:bdd}
 
 Behaviour-Driven Development (BDD) is about describing expected behaviour of systems and writing tests from the outside in. It replaces and adds terminology traditionally used within TDD and encourages descriptive naming of tests (or \glspl{spec}) that helps readability and to make failure messages more helpful. \cite[questions~17-18]{Ahnve}
 
