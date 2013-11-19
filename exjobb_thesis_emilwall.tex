@@ -90,6 +90,8 @@
 
 \newglossaryentry{bdd}{name={BDD}, description={Behaviour-Driven Development (BDD), see section \ref{subsec:bdd} for a definition}, first={Behaviour-Driven Development (BDD)}, long={Behaviour-Driven Development}}
 
+\newglossaryentry{cli}{name={CLI}, description={A program with a command-line interface (CLI) is controlled by clients through successive lines of text (commands) input in a console}, first={command-line interface (CLI)}}
+
 \newglossaryentry{mooc}{name={MOOC}, first={MOOC (Massive Open Online Course)}, description={``A MOOC [Massive Open Online Course] is an online course with the option of free and open registration, a publicly-shared curriculum, and open-ended outcomes. MOOCs integrate social networking, accessible online resources, and are facilitated by leading practitioners in the field of study. [...] The term came into being in 2008, though versions of very large open online courses were in existence before that time.'' \cite[p.~10]{MOOC}}}
 
 \newglossaryentry{matcher}{name={Matcher}, text={matcher}, description={BDD terminology for an assertion. Also commonly called expectation}}
@@ -404,9 +406,9 @@ If refactoring is required in order to make the code testable, the architecture 
 \subsection{(ML,JS1)Build tools}
 \label{subsec:build}
 
-There exists some general build tools that can be used for any programming language, these are often installed on build servers and integrated with version control systems. Examples include Jenkins, which is often configured and controlled through its web interface although it also has a CLI, and GNU Make, which is typically configured using makefiles and controlled through CLI. In addition to these, there are also language specific tools: Ruby has Rake, Java has Maven, Gradle and Ant, C\nolinebreak\hspace{-.05em}\raisebox{.3ex}{\scriptsize\bf \#} has MSBuild and NAnt.
+There exists some general build tools that can be used for any programming language, these are often installed on build servers and integrated with version control systems. Examples include Jenkins, which is often configured and controlled through its web interface although it also has a \gls{cli}, and GNU Make, which is typically configured using makefiles and controlled through \gls{cli}. In addition to these, there are also language specific tools: Ruby has Rake, Java has Maven, Gradle and Ant, C\nolinebreak\hspace{-.05em}\raisebox{.3ex}{\scriptsize\bf \#} has MSBuild and NAnt.
 
-Naturally, there are build tools designed specifically for \gls{js} as well, Grunt\footnote{\url{http://gruntjs.com/}} being the most popular, which can be installed as a node.js package, has plugins for common tasks such as lint, testing and minification, and can be invoked through CLI. \cite[question~52]{Edelstam} Jake and Mimosa are other well known and maintained alternatives. It is also possible to use Rake, Ant or similar. Just as JsTestDriver and Mocha have adapters for Karma and Jasmine (see section~\ref{subsec:frameworks}), Rake has evergreen\footnote{\url{https://github.com/jnicklas/evergreen}} that allows it to run Jasmine unit tests. \cite{BuildTools}\cite[question~6]{Ahnve}
+Naturally, there are build tools designed specifically for \gls{js} as well, Grunt\footnote{\url{http://gruntjs.com/}} being the most popular, which can be installed as a node.js package, has plugins for common tasks such as lint, testing and minification, and can be invoked through \gls{cli}. \cite[question~52]{Edelstam} Jake and Mimosa are other well known and maintained alternatives. It is also possible to use Rake, Ant or similar. Just as JsTestDriver and Mocha have adapters for Karma and Jasmine (see section~\ref{subsec:frameworks}), Rake has evergreen\footnote{\url{https://github.com/jnicklas/evergreen}} that allows it to run Jasmine unit tests. \cite{BuildTools}\cite[question~6]{Ahnve}
 
 \subsection{(ML,JS)Setting up a test suite}
 
