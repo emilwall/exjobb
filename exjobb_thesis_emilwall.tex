@@ -358,10 +358,10 @@ Counterintuitive it may seem, throwing away a prototype and starting from scratc
 A similar concept to Spike and Stabilise is to write markup without tests until a feature is needed that could use an API call. Then you write one or several acceptance tests for it, and can start to work with that feature in a TDD fashion. \cite[question~30]{Ahnve} %Likheten är inte perfekt, kanske bör tillägga att det inte finns något stabilise-steg i den approachen.
 This way of thinking can lead to a useful rationale regarding when to test -- add tests whenever you introduce an external dependency to make sure that dependency is called correctly under certain circumstances, then if that dependency is something that already exists you can just add it, otherwise you can develop it in a test-driven fashion.
 
-\subsection{(ML0,JS1)Lint Tools for JavaScript}
+\subsection{(ML1,JS1)Lint Tools}
 \label{subsec:Lint}
 
-A lint tool uses static analysis to detect syntax errors, risky programming styles and failure to comply to coding conventions. There are lint tools available for \gls{js} such as JSLint, JSHint, JavaScript Lint, JSure, the Closure compiler and PHP CodeSniffer. JSLint does provide some help to avoid common programming mistakes, but does not perform flow analysis \cite{JSLint} and type checking as a fully featured compiler would do, rendering proper testing routines the appropriate measure against programming mistakes.
+A lint tool uses static analysis to detect syntax errors, risky programming styles and failure to comply to coding conventions. There are lint tools available for \gls{js} such as JSLint, JSHint, JavaScript Lint, JSure, the Closure compiler and PHP CodeSniffer. JSLint does provide some help to avoid common programming mistakes, but does not perform flow analysis \cite{JSLint} and type checking as a fully featured compiler would do, rendering proper testing routines the appropriate measure against programming mistakes. There is at least one lint tool available for \gls{sml}, namely SML-Lint\footnote{\url{https://github.com/nrnrnr/SML-Lint}}, but since \gls{sml} is statically typed the need for such a tool is not as great.
 
 \subsection{(ML,JS1)Mocking and Stubbing}
 \label{subsec:mocking}
