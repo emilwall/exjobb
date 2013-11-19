@@ -420,7 +420,7 @@ Build programs (see section~\ref{subsec:build}) and version control systems play
 \section{(ML,JS)Testability -- Real world experiences}
 \label{sec:testability}
 
-Adding tests for code that was written without testing in mind is challenging \cite[p.~18]{Tddjs}. In this section an effort to do so in \gls{js} is described, in order to highlight the problems and solutions to some of them. Writing tests first can also be challenging, but for completely different reasons. For this reason, a TDD approach to solving programming exercises in \gls{sml} in a \gls{mooc} is also described.
+Adding tests for code that was written without testing in mind is challenging \cite[p.~18]{Tddjs}. In this section an effort to do so in \gls{js} is described, in order to highlight the problems and solutions to some of them. Writing tests first can also be challenging, but for completely different reasons. For this reason, a TDD approach to solving programming exercises in \gls{sml} in a \gls{mooc} is also described, but in section~\ref{subsec:tddmooc}.
 
 \subsection{(ML0,JS)Description of the asteroids example}
 \label{subsec:asteriods}
@@ -825,6 +825,28 @@ Gör plugin för/till/integrera med qCheck:
 - Måste redirecta stdout och parsa utskrift från qCheck, eller använda qChecks egna reporter
 
 setup/teardown/beforeEach/beforeAll/afterEach/afterAll-metoder heller inte lika viktiga (just pga att stubbning är en vanlig del av setup), men har fortfarande flera användningsområden
+
+\subsection{(ML,JS0)Test-Driven Development of Programming Assignments}
+\label{subsec:tddmooc}
+
+Introducera Programming Languages-kursen
+
+Nämn att testning är ett krav, även om det inte följs upp mer än att man behöver lämna in en fil med testerna (som troligtvis inte inspekteras av någon)
+
+Fördelar med att använda testning för att lösa programmeringsuppgifter
+
+Diskussion om komplexitet i lösningarna och hur det påverkar hur mycket man testar
+
+Tydliga instruktioner minskar behovet av testning men gör det samtidigt mycket enklare
+
+Ökade möjligheter att refaktorera
+
+Kan ha bidragit till ökad mängd testningsramverk för SML, ``I wrote sml-testing for two reasons, first because I was taking the Coursera course on Programming Languages and didn't find anything else in which to test my code. Secondly because I wanted to explore testing concepts with the use of currying and polymorphic types.''
+
+Vid byte till Racket fanns det ett inbyggt testningsramverk, men det var inte lika bra som till exempel Jasmine och Mocha
+
+Vid introduktionen av första Ruby-uppgiften så lyder en del av instruktionen: ``Because the primary challenge in this assignment is reading, understanding, and extending a program in a new-to-you programming language, we are not provided any example tests. We also acknowledge that testing this sort of graphical program is difficult.''
+
 
 \section{(JS,ML)Testing culture}
 \label{sec:testingculture}
