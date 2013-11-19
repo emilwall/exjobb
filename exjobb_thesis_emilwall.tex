@@ -547,7 +547,7 @@ Having spent many hours debugging, I finally decided to do a thorough check that
 
 In this subsection, problems that are common to not just the asteroids application and the selected set of tools and frameworks are highlighted. There are typically ways to work around some of these problems.
 
-\subsubsection{(ML0,JS1)Testability and other issues with adding tests to an existing application}
+\subsubsection{(ML0,JS1)General issues with adding tests to an existing application}
 
 Sometimes it can be hard to know whether or not to stub library functions such as \$.isFunction or if you should trust that they behave as expected and steer the control flow via their input and the global state instead. The same applies to simple functions you have written yourself that you think are free of bugs. Not stubbing external dependencies leads to fewer lines of test setup and teardown code and usually better test coverage but can also impose a danger of the unit tests becoming more brittle and similar to integration tests.
 
