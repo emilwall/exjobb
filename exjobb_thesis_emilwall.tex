@@ -826,7 +826,7 @@ A simple but important consideration of a testing framework is the phrasing of f
 
 Failure messages should be displayed in the order that the \glspl{spec} are executed, and the \glspl{spec} should be executed in the order that they are defined, because even though \glspl{spec} should be written so that the order in which they are executed does not matter it can be confusing for the user if the execution order is not clear.
 
-Att skriva sitt eget testramverk är kul och inspirerar till att skriva mer tester. Om det redan finns bra testramverk, vilket oftast är fallet, så är det kanske i många fall dumt eftersom det kan vara svårt att motivera det extra arbetet inför kund, men jag vill ändå rekommendera det som hobbyprojekt, som en del av att lära sig \gls{tdd}.
+Writing your own testing framework is fun inspires to writing more tests, and is a good way to learn \gls{tdd}. However, it is probably best done as a hobby project, since existing frameworks are usually so good that writing a completely new one can not be justified towards a customer.
 
 Första implementationen av toThrow visade sig strunta i vilket exception som kastades, däremot så rapporterade det vilket exception man förväntat sig skulle kastas om inget kastades öht. Detta är ett typexempel på något som man lätt upptäcker med testning, shame on me för att jag inte skrev tester för det. Det uppstår även hela tiden avvägningar om hur stringent man ska vara, om man till exempel ska nöja sig med att jämföra exnMessage eller om man även ska jämföra exnName.
 
