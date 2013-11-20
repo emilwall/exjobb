@@ -607,7 +607,7 @@ Two basic approaches to testing asynchronous code are to force the execution int
 
 Both Mocha and Jasmine supports waiting conditions, with some differences in syntax and how it works.
 
-A common concern is that the large number of possible combinations in which asynchronous code can be executed leads to a combinatorial explosion. This is true, but it is also true that if there are few dependencies between the asynchronous code and if they do not share resources, few things can go wrong.
+A common concern is that the large number of possible combinations in which asynchronous code can be executed leads to a combinatorial explosion. This is true, but it is also true that if there are few dependencies between the asynchronous code and if they do not share resources, the risk for data races and similar issues is smaller. Therefore, an important part in achieving testability of asynchronous code is to strive for such designs.
 
 Erlang message passing is also asynchronous, so how do they test their code? It has been used in system with high demands on stability, so there is probably a large culture for testing.
 
