@@ -600,6 +600,7 @@ Considering all the different options in available frameworks, one may be deciev
 In order to get started with testing \gls{js}, you need to understand why you should do it \cite[question~38]{Edelstam} and then practise with katas and begin to use testing in your projects. Coding katas focused on front-end \gls{js} development are not very common, but not impossible to do \cite[question~47]{Ahnve}.
 
 \subsection{(JS,ML0)Asynchronous events}
+\label{subsec:asynchronous}
 
 \gls{js} is often loaded asynchronously in browsers to improve performance in page loads and minimise interference with the display of the page. Another asynchronous aspect of \gls{js} are events such as AJAX calls and timer dependent functions. Testing asynchronous events can be hard because execution order is not predetermined, so the number of possible states can be very large, thus demanding many convoluted tests to cover all the relevant cases. It can also be hard to know if the asynchronous code has finished execution or not, leading to assertions being executed at the wrong time.
 
@@ -1014,7 +1015,9 @@ First off, people do test their \gls{sml} code, but not always, and it seems the
 
 \subsection{(JS,ML)Future}
 
-It would be useful to have a fully automated solution for comparing snapshots in a smart fashion. This is possibly an area for image analysis, which could be integrated in testing tools to handle scenarios that are hard today.
+It would be useful to have a fully automated solution for comparing snapshots in a smart fashion. This is possibly an area for image analysis, which could be integrated in testing tools to handle scenarios that are hard today. This has already been done to some extent, see \url{http://www.imagemagick.org/} and \url{http://huddle.github.io/Resemble.js/}, but has not quite reached the industry yet.
+
+As mentioned in section~\ref{subsec:asynchronous}, the issue of testing asynchronous code is not unique to \gls{js}. Researching testing of asynchronous code in other programming languages and applying the same methods to \gls{js} could be an interesting study.
 
 (new books, new attitudes, old problems, tool convergence and revenue/open source)
 
