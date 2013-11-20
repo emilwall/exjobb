@@ -351,7 +351,7 @@ An advantage with \gls{bdd} is how it encapsulates ideas about how tests can be 
 
 Strictly speaking, you do not need a \gls{bdd} framework to perform \gls{bdd}. J. B. Rainsberger, the author of JUnit Recipes: Practical Methods for Programmer Testing, explained how to do \gls{bdd} in jUnit at the XP 2011 conference in Madrid. The key to doing this is to divide the tests based on system behaviour rather than classes. This is the same concept as when writing \glspl{spec} in Cucumber, another Ruby GWT framework, and the same principle applies to \gls{bdd} in \gls{js} (note that Cucumber can also be used to generate acceptance tests for \gls{js}). This is desirable because it helps you to prioritise the parts that truly matters from a business value point of view over implementation details. \cite[question~20]{Ahnve}
 
-\subsection{(JS0,ML0)Spikes in \acrshort{tdd}}
+\subsection{(JS0,ML0)Spikes in TDD}
 
 Although writing tests first is a recommended approach in most situations, there is a technique for when you need to try something out before you write tests for it, without compromising testability. Dan North, the originator of \gls{bdd}, came up with a name for this technique: spiking \cite{TwitterDanNorth}. The idea is that you create a new branch in your version control repository, and hack away. Add anything you think might solve your problem, don't care about maintainability, testability or anything of the sort. If you find yourself not knowing how to proceed, discard all changes in the branch and start over. As soon as you get an idea about how a solution could look like you switch back to the previous branch and start coding in a test first fashion. \cite[question~59]{Edelstam}
 
@@ -656,7 +656,7 @@ Depending on which framework you're using, you might have different options for 
 
 A common case is that you are using another programming language than \gls{js} for the back-end, and you specify the validation rules in that language and let for instance a jQuery plugin generate validations for the front-end. Here you can hopefully put regular expressions and the like as publicly available variables and access them directly in tests, whereas the plugin will have to be tested separately, using perhaps a single test that just checks for existence of validation.
 
-\subsection{(JS,ML0)\acrshort{gui} testing}
+\subsection{(JS,ML0)GUI testing}
 
 A \acrfull{gui} is usually the top layer of an application and is therefore a common target for system testing. It can consist of many components and typically provides a large number of possible interactions, which is why \gls{gui} testing is important, but also part of why it can be a time consuming activity both in terms of preparing and executing tests.
 
@@ -666,7 +666,7 @@ A rather common opinion is that you should avoid automatic testing of an applica
 
 Before deciding on whether you want to do automated \gls{gui} testing or not, think carefully about how important the \gls{gui} and its cross browser compatibility is to you. If you feel that the exact appearance is irrelevant, then there is little sense in doing it. If you on the other hand feel that it would be valuable but have concerns about the technical aspects of it, you should not dismiss it too easily.
 
-\subsubsection{(JS,ML0)Regression testing of \acrshort{gui}}
+\subsubsection{(JS,ML0)Regression testing of GUI}
 
 \gls{gui} testing should not be confused with integration testing. Testing graphical elements in tests that depend on system integration are hard to maintain and can fail for too many reasons. Instead of executing a sequence before making assertions about graphical components, you may benefit from keeping assertions simple in an integration test. The \gls{gui} testing can then be performed in a unit testing fashion as a separate activity, by creating a \gls{testfixture} that mimics the state of the application the way it looks after a certain sequence has finished.
 
@@ -674,7 +674,7 @@ This approach has a fairly obvious risk. What if a \gls{testfixture} fails to si
 
 Just as you might decide for or against implementing rounded corners that work in old browsers, based on the number of clients actually using such browsers and the maintenance cost of implementing it for every picture of a site, there is always a tradeoff regarding whether or not to test such graphical elements with automated regression tests or not. In the end, all that matters is cost versus gain, no matter what personal beliefs and preferences might be involved from the product owner or developers' personal point of view. \cite[questions~40-44]{Ahnve}
 
-\subsubsection{(JS,ML0)Automation of \acrshort{gui} testing}
+\subsubsection{(JS,ML0)Automation of GUI testing}
 
 Manually testing a web page with all the targeted combination of browsers, versions and system platforms is usually not a viable option \cite{TestSwarm} so multi-platform automated testing is required. This is true in general for web application testing, but also holds for \gls{gui} testing in particular, regardless of whether the SUT is a web application or not. Since the appearance of a \gls{gui} can depend on factors such as configuration of hardware, operating system, version of third party software, etc., and because of the many possible sequences of interactions to test, it is rarely feasible to test all combinations and unless the testing is automated on multiple platforms, you will be unable to test even a small fraction of them.
 
