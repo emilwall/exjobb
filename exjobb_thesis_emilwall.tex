@@ -786,6 +786,8 @@ Because of its modularity, DescribeSML could be used in many different ways. The
 
 An intriguing aspect of writing a testing framework is that you can use the framework to test itself. This may sound like circular reasoning, but actually worked quite well to detect defects immediately after they had been introduced and through \gls{tdd} ensuring a well thought through design and providing feedback about which parts are important and easy to use, and which parts are missing or deficient in some aspect.
 
+The source code of the SML testing framework is supplied in the appendix. It can also be found at \url{https://github.com/emilwall/DescribeSML}.
+
 \subsubsection{(JS0,ML)Alternatives considered and discarded}
 
 Although the strict type system, functional style and static analysis of \gls{sml} slightly reduces the need for testing compared to dynamic and imperative languages such as \gls{js}, it inevitably also results in more limiting testing frameworks. It is somewhat impractical in \gls{sml} to state several expectations in a single \gls{spec} or stub functions used by the \gls{sut}. However, this can also be a good thing, since it leads to more concise tests.
@@ -833,8 +835,6 @@ Att skriva describe-funktionen var mer komplicerat än att skriva expect-funktio
 Behovet av nästlade describes uppkom fort, så att man kan samla specar till flera funktioner som hör ihop utan att behöva slänga in alla i samma describe, och så att resultatet av samtliga describes visas längst ner, så att man inte missar att någon spec failar. Detta går in under "practical considerations" och är särskilt viktigt om man inte har tillräckligt stor skärm för att få plats med all output, men är egentligen alltid bra ur användbarhetsperspektiv.
 
 Det finns ett behov av att fånga exceptions och representera dem som failures med passande felmeddelande. Detta kan göras av should-funktionen.
-
-"The source code of the SML testing framework is supplied here, in the unlikely event that noone else has developed a better framework by the time you read this. It can also be found at github: \url{}"
 
 \subsubsection{(JS0,ML)Using the framework}
 
