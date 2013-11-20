@@ -682,7 +682,7 @@ Manually testing a web page with all the targeted combination of browsers, versi
 
 \gls{gui} testing can be done in a semi-automated fashion. There are ways of producing snapshots of how websites look in different browsers and you should be able to have a program compare such snapshots to spot differences with previous versions, that can be reviewed by a human. This would reduce the need for manual testing of the \gls{gui}, since you get a good indication of which parts have changed. % http://piwik.org/blog/2013/10/our-latest-improvement-to-qa-screenshot-testing/
 
-Apart from writing tests in code using for instance \gls{tdd}, there are techniques for automatically generating tests using crawlers or artificial intelligence. These techniques will by nature have more focus on coverage and detecting runtime errors than to simulate the behaviour and expectations of users. There have been quite a lot of research on this area. % Reference
+Apart from writing tests in code using for instance \gls{tdd}, there are techniques for automatically generating tests using crawlers or artificial intelligence. These techniques will by nature have more focus on coverage and detecting runtime errors than to simulate the behaviour and expectations of users. There has been quite a lot of research in this area \cite{AutomatedTesting}\cite{AutomatedAcceptance}\cite{AutomatedAjax}.
 
 Another technique is capture-replay, which is based on the concept that a user interacts with the \gls{sut} and records the actions. Selenium IDE provides this possibility, and there are other tools as well that can do this both for web and desktop applications.
 
