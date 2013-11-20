@@ -609,7 +609,7 @@ Both Mocha and Jasmine supports waiting conditions, with some differences in syn
 
 A common concern is that the large number of possible combinations in which asynchronous code can be executed leads to a combinatorial explosion. This is true, but it is also true that if there are few dependencies between the asynchronous code and if they do not share resources, the risk for data races and similar issues is smaller. Therefore, an important part in achieving testability of asynchronous code is to strive for such designs.
 
-Erlang message passing is also asynchronous, so how do they test their code? It has been used in system with high demands on stability, so there is probably a large culture for testing.
+The issue of testing asynchronous code is not unique to \gls{js}, e.g. Erlang message passing is also asynchronous, and has been used in systems with high demands on stability. One may ask how Erlang programmers test their code, answering that question and relating the answers to testing of \gls{js} could be an interesting study of its own. Many other languages with support for multiple threads or processes arguably have this issue as well.
 
 JavaScript Unit Testing \cite{JSUT} goes into some detail of asynchronous testing.
 
