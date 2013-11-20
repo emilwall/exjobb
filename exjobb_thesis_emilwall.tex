@@ -824,7 +824,9 @@ Names generate assumptions regarding the semantics of a function. For example, i
 
 A simple but important consideration of a testing framework is the phrasing of failure messages. In the first version of the DescribeSML reporter, some messages were formulated as ``expected ``abc'' to equal ``def''''. This made it somewhat unclear what was the expected and what was the actual value. Another bad example would be ````abc'' does not equal ``def''''. Better alternatives include ``expected ``abc", but got ``def"" or ``was ``def" but expected it to equal ``abc"".
 
-Är ordningen viktig? Kan vara bra att ha samma ordning som i testet. Är det viktigt om man skriver to equal eller to be? Om båda finns som matchers så kan det vara viktigt, men då tillkommer å andra sidan ytterligare komplexitet i testramverket.
+Another consideration about failure messages is the order in which they are displayed. Preferably, they should be printed in the same order as the tests are executed, and the tests should be executed in the order that they are defined, because even though tests should be written so that the order in which they are executed does not matter it can be confusing for the user if the execution order is not clear.
+
+Är det viktigt om man skriver to equal eller to be? Om båda finns som matchers så kan det vara viktigt, men då tillkommer å andra sidan ytterligare komplexitet i testramverket.
 
 Att skriva sitt eget testramverk är kul och inspirerar till att skriva mer tester. Om det redan finns bra testramverk, vilket oftast är fallet, så är det kanske i många fall dumt eftersom det kan vara svårt att motivera det extra arbetet inför kund, men jag vill ändå rekommendera det som hobbyprojekt, som en del av att lära sig \gls{tdd}.
 
