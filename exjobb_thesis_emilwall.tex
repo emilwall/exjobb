@@ -764,6 +764,8 @@ Kan formell verifiering ha liknande effekter på modularitet och utformning av g
 
 By the time I found out about existing SML testing frameworks (apart from QCheck) I had already started to write my own. I wanted to use my insights from using JS testing frameworks such as Jasmine and Mocha to write a \gls{bdd} framework which I would use in the Coursera \gls{mooc} course Programming Languages\footnote{\url{https://www.coursera.org/course/proglang}}, as mentioned in section~\ref{subsec:programming}. The working title of it became DescribeSML.
 
+\subsubsection{(JS0,ML)The framework}
+
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=0.9\textwidth]{pics/DescribeSML.png}
@@ -782,6 +784,8 @@ Because of its modularity, DescribeSML could be used in many different ways. The
 \end{figure}
 
 An intriguing aspect of writing a testing framework is that you can use the framework to test itself. This may sound like circular reasoning, but actually worked quite well to detect defects immediately after they had been introduced and through \gls{tdd} ensuring a well thought through design and providing feedback about which parts are important and easy to use, and which parts are missing or deficient in some aspect.
+
+\subsubsection{(JS0,ML)Alternatives considered and discarded}
 
 Although the strict type system, functional style and static analysis of \gls{sml} slightly reduces the need for testing compared to dynamic and imperative languages such as \gls{js}, it inevitably also results in more limiting testing frameworks. It is somewhat impractical in \gls{sml} to state several expectations in a single \gls{spec} or stub functions used by the \gls{sut}. However, this can also be a good thing, since it leads to more concise tests.
 
@@ -830,6 +834,8 @@ Behovet av nästlade describes uppkom fort, så att man kan samla specar till fl
 Det finns ett behov av att fånga exceptions och representera dem som failures med passande felmeddelande. Detta kan göras av should-funktionen.
 
 "The source code of the SML testing framework is supplied here, in the unlikely event that noone else has developed a better framework by the time you read this. It can also be found at github: \url{}"
+
+\subsubsection{(JS0,ML)Using the framework}
 
 When solving the first assignment, the instructions were often to use the "answer to the previous question". In this case, you would probably want to do a call assertion, which should be possible to do similar to how it is done in JavaScript, temporarily overwrite a definition of the function to stub, use side-effects to store information about calls to it, and then restore it (either automatically after the test has ended if the stubbing framework can be integrated with the testing framework, manually by calling a method, or super-manually by performing the stubbing using "vanilla-ML").
 
