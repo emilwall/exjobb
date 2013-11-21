@@ -784,8 +784,6 @@ Because of its modularity, DescribeSML could be used in many different ways. The
 \label{lst:describesmlexample}
 \end{figure}
 
-An intriguing aspect of writing a testing framework is that you can use the framework to test itself. This may sound like circular reasoning, but actually worked quite well to detect defects immediately after they had been introduced and through \gls{tdd} ensuring a well thought through design and providing feedback about which parts are important and easy to use, and which parts are missing or deficient in some aspect.
-
 The source code of the SML testing framework is supplied in the appendix. It can also be found at \url{https://github.com/emilwall/DescribeSML}.
 
 \subsubsection{(JS0,ML)Alternatives considered and discarded}
@@ -828,9 +826,11 @@ Failure messages should be displayed in the order that the \glspl{spec} are exec
 
 Writing your own testing framework can be entertaining, inspires to write more tests, and is a good way to hone \gls{tdd} skills. However, if existing frameworks are good enough, writing a completely new one may not be justifiable towards a customer. Since open source is increasingly common, a better approach may be to improve an existing framework.
 
-Första implementationen av toThrow visade sig strunta i vilket exception som kastades, däremot så rapporterade det vilket exception man förväntat sig skulle kastas om inget kastades öht. Detta är ett typexempel på något som man lätt upptäcker med testning, shame on me för att jag inte skrev tester för det. Det uppstår även hela tiden avvägningar om hur stringent man ska vara, om man till exempel ska nöja sig med att jämföra exnMessage eller om man även ska jämföra exnName.
+An intriguing aspect of writing a testing framework is that you can use the framework to test itself. This may sound like circular reasoning, but actually worked quite well to detect defects immediately after they had been introduced and through \gls{tdd} ensuring a well thought out design and providing feedback about which parts are important and easy to use, and which parts are missing or deficient in some aspect. An early version of DescribeSML had a toThrow matcher that reported which exception was expected to be thrown when no exception was thrown, but did not check that a thrown exception was the correct one. It was implemented in an early stage, before the framework could be used for \gls{tdd} of itself, so it serves as a good representative of bugs that are easily introduced in the absence of tests. It took quite some time before it was discovered through normal use of the framework.
 
-Att skriva describe-funktionen var mer komplicerat än att skriva expect-funktionen. The matchers var av varierande svårighetsgrad, vilket var bra för det gjorde att jag kunde testa de mer avancerade med hjälp av de simpla.
+Det uppstår även hela tiden avvägningar om hur stringent man ska vara, om man till exempel ska nöja sig med att jämföra exnMessage eller om man även ska jämföra exnName.
+
+Att skriva describe-funktionen var mer komplicerat än att skriva expect-funktionen. Implementing the matchers var av varierande svårighetsgrad, vilket var bra för det gjorde att jag kunde testa de mer avancerade med hjälp av de simpla.
 
 Behovet av nästlade describes uppkom fort, så att man kan samla specar till flera funktioner som hör ihop utan att behöva slänga in alla i samma describe, och så att resultatet av samtliga describes visas längst ner, så att man inte missar att någon spec failar. Detta går in under "practical considerations" och är särskilt viktigt om man inte har tillräckligt stor skärm för att få plats med all output, men är egentligen alltid bra ur användbarhetsperspektiv.
 
