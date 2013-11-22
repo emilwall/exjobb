@@ -1,8 +1,9 @@
 Rationales and Approaches for Automated Testing of JavaScript and Standard ML
 ===========================
 
-Previous title: How to test your JavaScript
-Before that: Benefits and Practices for Javascript Testing
+Previous titles:
+- How to test your JavaScript
+- Benefits and Practices for Javascript Testing
 
 This repository contains specification, report and other
 material related to my thesis on JS and SML testing.
