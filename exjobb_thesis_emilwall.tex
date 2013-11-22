@@ -832,9 +832,9 @@ Implementing the nested describes was perhaps the hardest part of writing Descri
 
 Aside from these considerations, there were not that many issues with writing most of the matchers. A benefit of this was that the simple ones were so simple that they required virtually no testing, and could safely be used to test the more complex ones.
 
-Behovet av nästlade describes uppkom fort, så att man kan samla specar till flera funktioner som hör ihop utan att behöva slänga in alla i samma describe, och så att resultatet av samtliga describes visas längst ner, så att man inte missar att någon spec failar. Detta går in under "practical considerations" och är särskilt viktigt om man inte har tillräckligt stor skärm för att få plats med all output, men är egentligen alltid bra ur användbarhetsperspektiv.
+The first versions of DescribeSML did not have nested describes, in favour of the \gls{yagni} principle, but the need quickly became apparent when using the framework in practise. Collecting specs in different describes would have made it harder to run them all at once and inspect the results, since the failure/success reports would get scattered instead of collected at the end of the output. Having all specs in a single describe was not desirable either, because that reduced the ability to specify their contexts. Nested describes and other ways of improving the usability are especially important when the tester has a small screen so only a small section of failure/success reports can be viewed at a time.
 
-Det finns ett behov av att fånga exceptions och representera dem som failures med passande felmeddelande. Detta kan göras av should-funktionen.
+When a test throws an exception, the \texttt{should} function handles it and displays it as a failure (unless the expect toThrow matcher is used), so that the other specs can still be executed. This feature could be misused by writing tests that throws an exception instead of returning a failure message, but this would be bad practise since it might throw another exception than anticipated. The matcher toNotThrow is better to use in most situations, to make the test more precise, i.e. ensure that it fails for the right reason.
 
 \subsubsection{(JS0,ML)Using the framework}
 
