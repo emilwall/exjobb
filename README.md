@@ -11,11 +11,11 @@ To view the specification or the report, right-click and
 select "Save target as" (or similar, depending on which
 browser you're using)
 
-Other Git repositories
-======================
+Related work, by me
+-------------------
 
-- https://github.com/emilwall/DescribeSML -- The Standard ML BDD framework developed as part of this thesis
-- https://github.com/emilwall/HTML5-Asteroids -- A HTML5 canvas game with tests added in retrospect
-- https://github.com/emilwall/tddjs-ajax -- Step by step implementation of application described in chapter 12 of tddjs
-- https://github.com/emilwall/tddjs-streaming -- Dito, chapter 13
-- https://github.com/emilwall/quiz -- A project meant to serve as basis for a workshop in TDD with JavaScript
+- [The Standard ML BDD framework developed as part of this thesis](https://github.com/emilwall/DescribeSML)
+- [A HTML5 canvas game with tests added in retrospect](https://github.com/emilwall/HTML5-Asteroids)
+- [A small project meant to serve as basis for a workshop in TDD with JavaScript](https://github.com/emilwall/quiz)
+- [Step by step implementation of application described in chapter 12 of tddjs](https://github.com/emilwall/tddjs-ajax)
+- [Dito, chapter 13](https://github.com/emilwall/tddjs-streaming)
