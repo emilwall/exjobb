@@ -868,11 +868,27 @@ They are also useful for the peer reviews, because they provide instant feedback
 For testing to be truly valuable for a student, he or she should be careful not to consider an assignment as complete based solely on a passing test, especially if the test is provided by the teacher.
 A complex problem might be harder to test, but also more important.
 
-Kan ha bidragit till ökad mängd testningsramverk för SML, sml-testing: ``I wrote sml-testing for two reasons, first because I was taking the Coursera course on Programming Languages and didn't find anything else in which to test my code. Secondly because I wanted to explore testing concepts with the use of currying and polymorphic types.''
+As previously mentioned, there has been a recent increase in the number of testing frameworks available for \gls{sml}. This might be explained by the need for such frameworks for \gls{mooc} students.
 
-Vid byte till Racket fanns det ett inbyggt testningsramverk, men det var inte lika bra som till exempel Jasmine och Mocha
+\begin{quote}
+``I wrote sml-testing for two reasons, first because I was taking the Coursera course on Programming Languages and didn't find anything else in which to test my code. Secondly because I wanted to explore testing concepts with the use of currying and polymorphic types.''
+\end{quote}
 
-Vid introduktionen av första Ruby-uppgiften så lyder en del av instruktionen: ``Because the primary challenge in this assignment is reading, understanding, and extending a program in a new-to-you programming language, we are not provided any example tests. We also acknowledge that testing this sort of graphical program is difficult.'' Indeed it turned out to be difficult to test certain things, for instance that a key binding invokes the correct function in the Tk \gls{gui}, since no way of triggering the events was found.
+-- Kjetil Valle, author of sml-testing
+
+Tests were required not only for \gls{sml}, but also for the two other programming languages in the course, namely Racket and Ruby.
+Racket has rackunit as its built in testing framework, which aims to support both novice and advanced programmers but lacks \gls{bdd} support.
+Although feature-rich, compared to \gls{js} testing frameworks such as Jasmine and Mocha, rackunit is hard to write readable tests in.
+Alternative Racket testing frameworks such as test-engine does not hade \gls{bdd} support either, but there has been efforts to implement it: \url{https://github.com/damienklinnert/lisp/tree/master/bdd}
+
+Ruby has a great testing culture so finding suitable testing tools was no problem for that part, however in the introduction of the first assignment it said:
+
+\begin{quote}
+``Because the primary challenge in this assignment is reading, understanding, and extending a program in a new-to-you programming language, we [have] not provided any example tests. We also acknowledge that testing this sort of graphical program is difficult.''
+\end{quote}
+
+Indeed it turned out to be difficult to test certain things, for instance that key bindings in the Tk \gls{gui} invoked the correct functions, since no way of triggering the events was found.
+In general, however, \gls{tdd} had great benefits in all of the assignments, regardless of programming language.
 
 
 \section{(JS,ML)Testing culture}
