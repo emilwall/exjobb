@@ -717,8 +717,6 @@ Another possible reason is that testing for expected output is easy even without
 
 Yet another issue is the methods for distribution. In Node.js installing a package is very easy with the NPM and there is a central place to find popular node modules (\url{https://npmjs.org}). For \gls{sml} there is the SML/NJ Compilation Manager (CM) and Smackage to choose between, and no central repository for modules except for github. Authors of testing frameworks might find it hard to decide which package manager (CM or Smackage) to use, figure out how to use it, or reaching out to users -- which may also find learning how to use a package manager too cumbersome. Reputation, availability, ease of installation and use, and nice presentation may be essential for getting people to use a framework. % Node.js och NPM => glossary eller technical background?
 
-One area where testing is arguably very useful is for educational purposes, both for students when doing coding assignments and for teachers when grading. In order to encourage testing, the teacher may supply the students with small testing suites to build upon, although that requires emphasis on that the students should not consider an assignment to be done just because a test passes. A factor that makes testing especially fitting for programming assignments is that requirements are often relatively clear, and when they are not, testing can help in detecting those cases where additional information might have to be supplied or assumptions have to be made. Personal experience from using \gls{tdd} as a student in the Programming Languages \gls{mooc} was that it greatly facilitated the coding process and was also useful for the peer reviews, both for being confident in refactoring code before handing it in and for checking the solutions of others and get direct feedback on which behaviour they might have missed to implement properly. Testing can also be of great value to teachers, to achieve objective evaluation of how well code students' satisfy the requirements, although style aspects and non-functional requirements are typically not possible to evaluate without manual evaluation. Introducing testing early is an important step to encourage the understanding of testing principles for students and to improve efficiency for everyone in the long run. It is better that a student avoids faults through testing than being informed of them retrospectively in evaluation feedback.
-
 Certain testing frameworks provide a watch capability, that runs tests whenever a change to the \gls{sut} is saved to the file system. In order for this to scale, only relevant tests should be run, or else the benefit of instant feedback is lost. Relevant tests are typically the ones that could be affected by changes in the specific files that have changed, but may also be selected based on speed or past failure rate. The idea is similar to having a build screen for a \gls{ci} build, making not only the tests automated but also the task of running them frequently, and helps ensuring short cycles of writing a failing test, making it pass and refactor.
 
 Mocking and stubbing may not be as important in a functional language like \gls{sml} compared to more imperative languages, since dependencies can often be passed as arguments and functions tend to behave the same way between calls given a certain input. Doing call assertions is as much about architecture as it is about state, and state is mainly kept in which data flows in and out of functions in a functional program, rather than in values of mutable variables as is often the case in imperative programs. However, there are certainly places where it would be appropriate to stub or mock a dependency in a function without having to redesign the function so that the dependency is passed as an argument, and in those cases the lexical scope rules and immutability of \gls{sml} makes it hard to do so. It might be possible to implement a mocking framework that parses the code of a \gls{sut} and produce new bindings that have the desired dependencies and assertion capabilities, but such a framework would have to be quite sophisticated in order to not break the code and is therefore outside of the scope for this thesis. A simpler approach would be to ensure that any dependencies are bound to stub functions before the \gls{sut} is loaded, so that the stub definitions are used instead. % Write about this in the Future section.
@@ -851,21 +849,30 @@ setup/teardown/beforeEach/beforeAll/afterEach/afterAll-metoder heller inte lika 
 \subsection{(ML,JS0)Test-Driven Development of Programming Assignments}
 \label{subsec:tddmooc}
 
-A real world example of \gls{sml} \gls{testing} is the Coursera \gls{mooc} Programming Languages\footnote{\url{https://www.coursera.org/course/proglang}}. In that course (and others, such as the Principles of Reactive Programming course), students are encouraged to test their code and required to hand in their tests together with their solutions. The handed in tests are not graded, and hardly read by the course administration to any large extent, but the requirement still has an effect on the amount of testing done by the students.
+Testing is arguably very useful for educational purposes, both for students when solving coding assignments and for teachers when grading.
+A teacher may supply students with small testing suites to build upon, or encourage testing in other ways.
+The value for teachers lies in that the students can work more independently and that tests can be written specifically to evaluate solutions.
+This can provide a fast and objective evaluation of requirements satisfaction, although style aspects and non-functional requirements are typically not possible to evaluate without manual evaluation.
+Introducing testing early is an important step to encourage the understanding of testing principles for students and to improve efficiency for everyone in the long run.
 
-Fördelar med att använda testning för att lösa programmeringsuppgifter
+A factor that makes testing especially fitting for programming assignments is that it can help students to understand requirements better.
+When requirements are clear and unambiguous, testing will guide the student in implementing them in a structured fashion whereas when they are not, testing can help in detecting where additional information is needed or assumptions have to be made.
+It is better that a student finds errors through testing than being informed of them retrospectively in evaluation feedback.
 
-Diskussion om komplexitet i lösningarna och hur det påverkar hur mycket man testar
+A real world example of \gls{sml} \gls{testing} in an educational context is the Coursera \gls{mooc} Programming Languages\footnote{\url{https://www.coursera.org/course/proglang}}.
+In that course (and others, not listed here), students are encouraged to test their code and required to hand in their tests together with their solutions.
+The handed in tests are not graded, and not likely to be read by the course administration to any large extent, but the requirement still has an effect on the amount of testing done by the students.
 
-Tydliga instruktioner minskar behovet av testning men gör det samtidigt mycket enklare
+The tests that students write facilitates the coding process and gives confidence to refactor.
+They are also useful for the peer reviews, because they provide instant feedback on what behaviour other students might have missed.
+For testing to be truly valuable for a student, he or she should be careful not to consider an assignment as complete based solely on a passing test, especially if the test is provided by the teacher.
+A complex problem might be harder to test, but also more important.
 
-Ökade möjligheter att refaktorera
-
-Kan ha bidragit till ökad mängd testningsramverk för SML, ``I wrote sml-testing for two reasons, first because I was taking the Coursera course on Programming Languages and didn't find anything else in which to test my code. Secondly because I wanted to explore testing concepts with the use of currying and polymorphic types.''
+Kan ha bidragit till ökad mängd testningsramverk för SML, sml-testing: ``I wrote sml-testing for two reasons, first because I was taking the Coursera course on Programming Languages and didn't find anything else in which to test my code. Secondly because I wanted to explore testing concepts with the use of currying and polymorphic types.''
 
 Vid byte till Racket fanns det ett inbyggt testningsramverk, men det var inte lika bra som till exempel Jasmine och Mocha
 
-Vid introduktionen av första Ruby-uppgiften så lyder en del av instruktionen: ``Because the primary challenge in this assignment is reading, understanding, and extending a program in a new-to-you programming language, we are not provided any example tests. We also acknowledge that testing this sort of graphical program is difficult.''
+Vid introduktionen av första Ruby-uppgiften så lyder en del av instruktionen: ``Because the primary challenge in this assignment is reading, understanding, and extending a program in a new-to-you programming language, we are not provided any example tests. We also acknowledge that testing this sort of graphical program is difficult.'' Indeed it turned out to be difficult to test certain things, for instance that a key binding invokes the correct function in the Tk \gls{gui}, since no way of triggering the events was found.
 
 
 \section{(JS,ML)Testing culture}
