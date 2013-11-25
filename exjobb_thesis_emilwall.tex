@@ -275,7 +275,7 @@ Since there was an abundance of material on \gls{js} testing, a full review was 
 \subsection{(ML,JS)Programming}
 \label{subsec:programming}
 
-Much time was spent programming, including working through the projects of \cite[part~III]{Tddjs}, adding tests to an existing \gls{js} application (see section \ref{subsec:asteriods}), developing an \gls{sml} testing framework (see section \ref{subsec:describesml}) and using the developed framework in practise to solve programming assignments in a \gls{mooc}, namely the Coursera Programming Languages course\footnote{\url{https://www.coursera.org/course/proglang}}.
+Much time was spent programming, including working through the projects of \cite[part~III]{Tddjs}, adding tests to an existing \gls{js} application (see section \ref{subsec:asteriods}), developing an \gls{sml} testing framework (see section \ref{subsec:describesml}) and using the developed framework in practise to solve programming assignments in a \gls{mooc}, namely the Coursera Programming Languages course (see section~\ref{subsec:tddmooc}).
 
 A thorough evaluation of frameworks for \gls{js} and \gls{sml} was not part of the scope, but since they pose a significant part of how to solve problems with testing many were involved anyway. The following \gls{js} testing frameworks have been part of the practical work:
 Jasmine\footnote{\url{http://pivotal.github.com/jasmine/}},
@@ -844,12 +844,14 @@ As DescribeSML is currently written, there is no standard way of defining severa
 
 An interesting discussion regarding \gls{sml} testing is whether current frameworks could be merged and unified into new, improved ones with collaborators joining efforts of maintaining them. Possibly, small testing frameworks such as DescribeSML could be made into plugins for others such as qCheck, in order to make them easier to use and provide additional functionality. Getting people aware that the plugin exists and finding ways of integrating might be difficult though. Since qCheck writes its output to stdout, changing the way results are reported in non-trivial. Therefore, modifying both frameworks might be necessary and then it could make more sense to merge small testing frameworks such as sml-testing and smell-spec, and keep them simple.
 
+
+
 setup/teardown/beforeEach/beforeAll/afterEach/afterAll-metoder heller inte lika viktiga (just pga att stubbning är en vanlig del av setup), men har fortfarande flera användningsområden
 
 \subsection{(ML,JS0)Test-Driven Development of Programming Assignments}
 \label{subsec:tddmooc}
 
-Introducera Programming Languages-kursen
+A real world example of \gls{testing} \gls{sml} is the Coursera \gls{mooc} Programming Languages\footnote{\url{https://www.coursera.org/course/proglang}}.
 
 Nämn att testning är ett krav, även om det inte följs upp mer än att man behöver lämna in en fil med testerna (som troligtvis inte inspekteras av någon)
 
