@@ -419,14 +419,14 @@ Selenium WebDriver is a collection of language specific bindings to drive a brow
 
 There is also a Firefox plugin called Selenium IDE, that allows the user to record interactions and generate code for them that can be used to repeat the procedure or as a starting point in tests. In the remaining parts of this thesis, we will mean Selenium WebDriver when we say Selenium, and refer to Selenium IDE by its full name.
 
-\subsection{(ML,JS1)Build tools}
+\subsection{Build tools}
 \label{subsec:build}
 
-There exists some general build tools that can be used for any programming language, these are often installed on build servers and integrated with version control systems. Examples include Jenkins, which is often configured and controlled through its web interface although it also has a \gls{cli}, and GNU Make, which is typically configured using makefiles and controlled through \gls{cli}. In addition to these, there are also language specific tools: Ruby has Rake, Java has Maven, Gradle and Ant, C\nolinebreak\hspace{-.05em}\raisebox{.3ex}{\scriptsize\bf \#} has MSBuild and NAnt.
+Build programs play an important role in automating testing, and they are often integrated with version control systems. There exists some general build tools that can be used for any programming language, these are often installed on build servers and integrated with version control systems. Examples include Jenkins, which is often configured and controlled through its web interface although it also has a \gls{cli}, and GNU Make, which is typically configured using makefiles and controlled through \gls{cli}. In addition to these, there are also language specific tools: Ruby has Rake, Java has Maven, Gradle and Ant, C\nolinebreak\hspace{-.05em}\raisebox{.3ex}{\scriptsize\bf \#} has MSBuild and NAnt.
 
 Naturally, there are build tools designed specifically for \gls{js} as well, Grunt\footnote{\url{http://gruntjs.com/}} being the most popular, which can be installed as a node.js package, has plugins for common tasks such as lint, testing and minification, and can be invoked through \gls{cli}. \cite[question~52]{Edelstam} Jake and Mimosa are other well known and maintained alternatives. It is also possible to use Rake, Ant or similar. Just as JsTestDriver and Mocha have adapters for Karma and Jasmine (see section~\ref{subsec:frameworks}), Rake has evergreen\footnote{\url{https://github.com/jnicklas/evergreen}} that allows it to run Jasmine unit tests. \cite{BuildTools}\cite[question~6]{Ahnve}
 
-Build programs and version control systems play an important role in automating testing.
+\Gls{sml} has several compilers such as mosmlc and the MLton whole-program optimizer and a large number of interpreters, but they typically have to be manually integrated with other build tools such as GNU Make.
 
 
 \section{(ML,JS)Testability -- Real world experiences}
