@@ -226,12 +226,21 @@ Rather than proposing best practices for \gls{js} testing, the reader should be 
 
 A full evaluation of the most popular testing and application frameworks is not within the scope of this thesis, but others have done it \cite{JackFranklin}\cite{SebastianPorto}. Popular \gls{js} testing frameworks include assertion frameworks such as Jasmine, qUnit, expect.js and chai, and drivers/test runners such as Mocha, JsTestDriver, Karma and Chutzpah\footnote{\url{http://chutzpah.codeplex.com/}} which may have their own assertion framework built in but are typically easy to integrate with other assertion frameworks using adapters or via built-in support.
 
+\subsection{(ML,JS)Reading instructions}
+
+This thesis is about difficulties and experiences with \gls{js} and \gls{sml} testing, and has been organised in favour of readers mainly interested in one of these programming languages. It contains a case study on testability aspects of adding tests to an existing \gls{js} application (section~\ref{sec:testability}), problems specific to \gls{js} and \gls{sml} testing (sections~\ref{sec:jsproblems} and~\ref{sec:smlproblems}), considerations from writing and using a \gls{bdd} framework in \gls{sml} (section~\ref{subsec:describesml}) and implications of testing culture that has been researched through interviews (section~\ref{sec:testingculture}). These sections are preceded by an overview of what others have done in the fields of \gls{js} and \gls{sml} testing (section~\ref{sec:previouswork}), the methods that were used for writing this thesis (section~\ref{sec:methods}) and a technical background that explains some of the concepts that appear in the rest of the thesis (section~\ref{sec:technicalbackground}). The final section is conclusions (section~\ref{sec:conclusions}), including summaries and proposals of future work.
+
+Readers experienced with or uninterested in testing concepts and web application development may skip the technical background (section~\ref{sec:technicalbackground}). Readers interested mainly in \gls{js} testing may skip sections~\ref{subsec:previousworksml}, \ref{sec:smlproblems} and~\ref{subsubsec:whynotsml}. Readers interested mainly in \gls{sml} testing may skip sections~\ref{subsec:previousworkjs}, \ref{subsec:browserautomation}, \ref{sec:testability}, \ref{sec:jsproblems} and~\ref{subsubsec:whynotjs}.
+
+The glossary, which is located before this introduction, contains definitions of abbreviations and technical terms used throughout the text.
+
 \section{(ML1,JS1)Previous work}
 \label{sec:previouswork}
 
 This section contains an overview of what others have done within the fields of \gls{js} and \gls{sml} testing.
 
 \subsection{(ML0,JS1)JavaScript testing}
+\label{subsec:previousworkjs}
 
 In 2010, a student at the Swedish royal institute of technology called Jens Neubeck wrote a master thesis about test-driven \gls{js} application development \cite{Neubeck}. In his thesis, he evaluated Crosscheck, HtmlUnit och Selenium, with the conclusion that none of them were mature enough to be used for the considered applications. Today, HtmlUnit and Selenium have evolved and there are new tools available such as PhantomJS, Buster.JS and Karma, so the conclusion might not hold anymore. Tools such as JsTestDriver and Jasmine were not considered and the results were based purely on original work, with no \gls{js} specific academic sources, so it has not been possible to build upon his findings here.
 
@@ -252,6 +261,7 @@ Heidegger et al. cover unit testing of \gls{js} that manipulates the \gls{dom} o
 Phillip Heidegger and Peter Thiemann has addressed the issue of type related errors in \gls{js} by introducing JSConTest, a contract framework that enables guided random testing by specifying types and relations of the arguments and return value of functions \cite{ContractTesting}.
 
 \subsection{(ML0,JS1)Standard ML testing}
+\label{subsec:previousworksml}
 
 Except for discussions on how to perform mathematical proofs and equality tests of polymorphic types, there are no books that cover testing of \gls{sml}. The main sources of reference for \gls{sml} are \emph{The Definition of Standard ML} \cite{DefinitionStandardML} which covers the language syntax and semantics, \emph{The Standard ML Basis Manual} \cite{BasisManual} which describes the standard library, \emph{Elements of ML Programming} \cite{ElementsML} which cover the features of \gls{sml} in a more comprehensible fashion, \emph{ML for the Working Programmer} \cite{WorkingProgrammer} which is somewhat outdated but comprehensive, and various lecture notes \cite{ProgSml97}\cite{ProgSmlHarper}\cite{FunctionalML}\cite{NotesSMLNJ}. None of these describe ways of doing automated testing and there seems to be an attitude against testing based on that it can not prove absence of errors in the way formal verification can \cite[p.~16]{ProgSmlHarper}.
 
@@ -259,6 +269,7 @@ Articles on testing of \gls{sml} are hard to find, none cover \gls{sml} testing 
 
 
 \section{(ML,JS)Methods}
+\label{sec:methods}
 
 The methods used were first and foremost qualitative in nature, in order to prioritise insight into the problem domain above quantitatively verifying hypotheses. The chance of finding the true difficulties of \gls{js} testing was expected to increase with open questions.
 
@@ -321,6 +332,7 @@ As can be seen at the end of the Appendix, there were some additional email conv
 
 
 \section{(ML,JS)Technical Background}
+\label{sec:technicalbackground}
 
 This section gives an overview of concepts and tools relevant to understanding this thesis. Readers with significant prior knowledge about web development and \gls{js} testing may skip this section.
 
@@ -701,6 +713,7 @@ Introducing versioning for private APIs is not always feasible, for at least two
 Testing a private API is not the same thing as testing a private method. In \gls{js} there is formally no private methods, only functions not exposed to the current scope, nevertheless methods that are not intended to be called from the outside can be considered private. It is a common principle that you do not test a private method, if you feel the need to, then that method is probably too complex to be private and the functionality that it is meant to provide should be moved into a new object or similar. Private methods represent implementation details, tests should be focused on behaviour and functionality, not implementation. \cite[questions~62-63]{Edelstam}
 
 \section{(JS0,ML)Problems in testing of Standard ML}
+\label{sec:smlproblems}
 
 \Gls{sml} and \gls{js} have at least two things in common: they are both functional languages (although JS is perhaps more rarely used as such) and they both have poor testing cultures. This section relates how \gls{sml} testing is carried out today to existing frameworks and formal verification, and introduces a new testing framework that was developed for \gls{sml} as a part of this thesis, inspired by insights gained from looking at popular \gls{js} testing frameworks. In section~\ref{sec:testability}, we discussed how adding tests to an application written without testing in mind can introduce testability issues. Later in this section (~\ref{subsec:tddmooc}) the challenges of writing tests first is described based on a \gls{tdd} approach to solving \gls{sml} programming exercises in a \gls{mooc}.
 
@@ -977,6 +990,7 @@ Aside from the increased awareness and knowledge of testing that Node.js has bro
 
 
 \section{(JS,ML)Conclusions}
+\label{sec:conclusions}
 
 This section contains a summary of the main points of this thesis, a discussion about what could have been done differently, and suggestions for the future.
 
@@ -994,7 +1008,7 @@ In a project without any testing routines, you may save time initially but there
 
 When automatic regression tests are missing, making changes to the code is error prone. Issues related to browser compatibility or subtle dependencies between functions and events are easier to overlook in the absence of tests, and a proper toolset is required to test multiple platforms.
 
-\section{(ML0,JS1)Insights from interviews}
+\subsection{(ML0,JS1)Insights from interviews}
 
 It seems that in the last couple of years, the number of people testing their \gls{js} has increased significantly\cite[question~1]{Edelstam}. This has been observed through asking people that do it to raise their hands during tech talks, two years ago only a few raised their hands when asked such a question whereas now almost every single one does it.
 
@@ -1036,13 +1050,15 @@ A large number of tests is not necessarily a good thing, it is harder to overvie
 
 Tests can serve to prevent people from breaking code and as examples that help new people understand how an application works and how to continue development \cite[questions~31-32]{Edelstam}. Tests also help to give a clear image of how components fit together and can be a way to concretise a feature or bug.
 
-\subsection{(JS,ML0)Why people do not test their JavaScript}
+\subsubsection{(JS,ML0)Why people do not test their JavaScript}
+\label{subsubsec:whynotjs}
 
 \Gls{js} has no notion of interfaces. This makes stubbing and mocking harder, reduces the ability to write tests for an interface before there is an implementation and impedes the ability to write modular (testable) code. This is both a reason why testing \gls{js} is hard, and a reason \emph{for} doing it, since testing can compensate for the lack of interfaces by enforcing modularity.
 
 \Gls{js} is often used in the front end layer of applications, an environment with many dependencies and very specific behaviour that can be difficult to handle in terms of code. Traditionally, browser automation tools have been used to cope with these challenges, and the tests often serve multiple purposes such as combining smoke testing with integration testing and system testing, with little or no mocking of dependencies. The main problems are that such tests take long to run, even with the introduction of headless browsers such as PhantomJS, and are typically brittle. Alternatives such as comparing screen shots automatically with diff tools and then manually inspect the ones that differ should probably be considered in many situations, despite the difficulty in making them self-checking. Under certain circumstances it is also possible to break out logic from the front-end code and test it with unit tests.
 
-\subsection{(JS0,ML)Why people do not test Standard ML}
+\subsubsection{(JS0,ML)Why people do not test Standard ML}
+\label{subsubsec:whynotsml}
 
 First off, people do test their \gls{sml} code, but not always, and it seems there are no standard ways of doing it. There is a need for a simple but good testing framework, QCheck has great benefits but is too hard to use for the average programmer or in scenarios where the process of writing tests need to be quick. Other frameworks, including DescribeSML, are too immature. The way forward could be to make QCheck easier to use, with new \gls{bdd} syntax options, customisable failure reports and autotest capabilities, or to merge and collaboratively develop emerging testing frameworks further.
 
@@ -1054,7 +1070,7 @@ As mentioned in section~\ref{subsec:asynchronous}, the issue of testing asynchro
 
 (new books, new attitudes, old problems, tool convergence and revenue/open source)
 
-\section{(JS,ML)TODO/ideas}
+\subsection{(JS,ML)TODO/ideas}
 
 Översätta själv? Skriva tester på eget språk, domän/kommunicera med produktägare
 
