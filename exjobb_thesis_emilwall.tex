@@ -169,7 +169,7 @@ Figure~\ref{fig:distance} (page~\pageref{fig:distance}) can work as an analogy f
 \label{fig:distance}
 \end{figure}
 
-Implementations of \gls{js} differ, especially for host objects such as document and XMLHttpRequest whose semantics are not fully defined in the specification but also for native objects that may be missing or behave differently in some implementations because they were not defined in previous specifications. Automated testing can help you discover bugs that appear due to such deviant behaviour in present and future versions. \gls{js} is also particularly important to test due to its dynamic properties \cite{AutomatedTesting} that complicate static analysis (however, there are lint tools, see sections~\ref{subsec:Lint} and \ref{subsec:refactor}), unwieldy syntax and aberrant object orientation support. \gls{js} is a complex language that requires many work-arounds because of its scoping rules and other unexpected behaviour \cite[appendix A]{GoodParts}. Despite the wide variety of testing frameworks that exists for \gls{js}, it is generally considered that few developers use them and instead rely on manual testing \cite{AutomatedTesting}.
+Implementations of \gls{js} differ, especially for host objects such as document and XMLHttpRequest whose semantics are not fully defined in the specification but also for native objects that may be missing or behave differently in some implementations because they were not defined in previous specifications. Automated testing can help you discover bugs that appear due to such deviant behaviour in present and future versions. \gls{js} is also particularly important to test due to its dynamic properties \cite{AutomatedTesting} that complicate static analysis (however, there are lint tools, see section~\ref{subsec:refactor}), unwieldy syntax and aberrant object orientation support. \gls{js} is a complex language that requires many work-arounds because of its scoping rules and other unexpected behaviour \cite[appendix A]{GoodParts}. Despite the wide variety of testing frameworks that exists for \gls{js}, it is generally considered that few developers use them and instead rely on manual testing \cite{AutomatedTesting}.
 
 Several implementations of \gls{sml} exist and just as with \gls{js}, there are some differences between them. \gls{sml} has extensive static analysis capabilities and since side effects are relatively rare, the output of functions tends to be predictable, leading to lower complexity in many cases, at the cost of flexibility. \gls{sml} has no built in support for automated testing and there are few testing frameworks available (see section \ref{mltestingframeworks}).
 
@@ -365,10 +365,29 @@ Counterintuitive it may seem, throwing away a prototype and starting from scratc
 A similar concept to Spike and Stabilise is to write markup without tests until a feature is needed that could use an API call. Then you write one or several acceptance tests for it, and can start to work with that feature in a \gls{tdd} fashion. \cite[question~30]{Ahnve} %Likheten är inte perfekt, kanske bör tillägga att det inte finns något stabilise-steg i den approachen.
 This way of thinking can lead to a useful rationale regarding when to test -- add tests whenever you introduce an external dependency to make sure that dependency is called correctly under certain circumstances, then if that dependency is something that already exists you can just add it, otherwise you can develop it in a test-driven fashion.
 
-\subsection{(ML1,JS1)Lint Tools}
-\label{subsec:Lint}
+\subsection{(ML0,JS0)Refactoring and Lint-like tools}
+\label{subsec:refactor}
 
-A lint tool uses static analysis to detect syntax errors, risky programming styles and failure to comply to coding conventions. There are lint tools available for \gls{js} such as JSLint, JSHint, JavaScript Lint, JSure, the Closure compiler and PHP CodeSniffer. JSLint does provide some help to avoid common programming mistakes, but does not perform flow analysis \cite{JSLint} and type checking as a fully featured compiler would do, rendering proper testing routines the appropriate measure against programming mistakes. There is at least one lint tool available for \gls{sml}, namely SML-Lint\footnote{\url{https://github.com/nrnrnr/SML-Lint}}, but since \gls{sml} is statically typed the need for such a tool is not as great.
+Refactoring is ``a change made to the internal structure of software to make it easier to understand and cheaper to modify without changing its observable behaviour'', or the act of applying such changes \cite[p.~46]{Refactoring}. As previously mentioned (section~\ref{subsec:motivation}, \nameref{subsec:motivation}), refactoring prevents program decay and helps to maintain productivity. Just like testing, refactoring is no magic bullet that solves all problems and it is important to know when to do it and when it might not be worth the effort. Suitable situations to refactor are when doing something similar for the third time (a pragmatic approach to the \gls{dry} principle), when it helps to understand a piece of code, when it facilitates addition of a new feature, when searching for a bug and when discussing the code with others, e.g. in code reviews \cite[p.~49-51]{Refactoring}.
+
+There is a serious risk involved in refactoring untested code\cite[p.~17]{Refactoring}, since manually checking that the refactoring does not introduce bugs is time consuming and difficult to do well. However, leaving the code untested means even greater risk of bugs and the refactoring may be necessary in the future anyway, in which case it will be even harder and more error-prone. This problem can be avoided by writing tests first.
+
+A lint-like tool uses static analysis to detect syntax errors, risky programming styles and failure to comply to coding conventions. The use of lint-like tools can be beneficial when refactoring to avoid introducing errors, although it can not fully compensate for lack of tests. There are lint tools available for \gls{js} such as JSLint, JSHint, JavaScript Lint, JSure, the Closure compiler and PHP CodeSniffer. JSLint does provide some help to avoid common programming mistakes, but does not perform flow analysis \cite{JSLint} and type checking as a fully featured compiler would do, rendering proper testing routines the appropriate measure against programming mistakes. There is at least one lint tool available for \gls{sml}, namely SML-Lint\footnote{\url{https://github.com/nrnrnr/SML-Lint}}, but since \gls{sml} is statically typed the need for such a tool is not as great.
+
+Apart from lint-like tools, there are also tools that can be very helpful to see which parts of the code are in most need of refactoring, and to automate certain refactoring actions by facilitating renaming, method extraction, etc. \cite[ch.~5]{Legacy}. Refactoring tools help you identify sections of the code with high cyclomatic complexity, too many methods or with methods doing too many things (or having too many arguments). Relying on metrics such as lines of code is of course not always appropriate due to different coding styles, but at least it provides an overall picture \cite{Kratko}. There is some support for refactoring \gls{js} in IDEs such as Visual Studio (using
+JSLint.VS\footnote{\url{http://jslint.codeplex.com/}},
+ReSharper\footnote{\url{http://www.jetbrains.com/resharper/}} and/or
+CodeRush\footnote{\url{http://www.devexpress.com/Products/CodeRush/}}),
+WebStorm IDE\footnote{\url{http://www.jetbrains.com/webstorm/features}} (or
+IntelliJ Idea\footnote{\url{http://www.jetbrains.com/editors/javascript_editor.jsp?ide=idea}} using a plugin) and
+NetBeans\footnote{\url{https://netbeans.org/kb/docs/ide/javascript-editor.html}}. There are also standalone statistical tools for \gls{js} such as
+kratko.js\footnote{\url{https://github.com/kangax/kratko.js}} and
+jsmeter\footnote{\url{https://code.google.com/p/jsmeter/}} (not to be confused with the
+Microsoft Research project\footnote{\url{http://research.microsoft.com/en-us/projects/jsmeter/}}), and general source code analysis software that support \gls{js} such as
+Understand\footnote{\url{http://www.scitools.com}},
+SonarQube\footnote{\url{http://docs.codehaus.org/display/SONAR/Plugin+Library}} and
+Yasca\footnote{\url{http://www.scovetta.com/yasca.html}}.
+There seems to be no refactoring tool for \gls{sml} widely available.
 
 \subsection{(ML,JS1)Mocking and Stubbing}
 \label{subsec:mocking}
@@ -387,26 +406,6 @@ Repetitive manual navigation of a web site is generally boring and time consumin
 Selenium WebDriver is a collection of language specific bindings to drive a browser, which includes an implementation of the W3C WebDriver specification. It is based on Selenium RC, which is a deprecated technology for controlling browsers using a remote control server. A common way of using Selenium WebDriver is for user interface and integration testing, by instantiating a browser specific driver, using it to navigate to a page, interacting with it using element selectors, key events and clicks, and then inspecting the result through assertions. These actions can be performed in common unit testing frameworks in Java, C\nolinebreak\hspace{-.05em}\raisebox{.3ex}{\scriptsize\bf \#}, Ruby and Python through library support that uses the Selenium Webdriver API. \cite{Selenium}\cite{Selenium2}
 
 There is also a Firefox plugin called Selenium IDE, that allows the user to record interactions and generate code for them that can be used to repeat the procedure or as a starting point in tests. In the remaining parts of this thesis, we will mean Selenium WebDriver when we say Selenium, and refer to Selenium IDE by its full name.
-
-\subsection{(ML0,JS0)Refactoring}
-\label{subsec:refactor}
-
-Refactoring is ``a change made to the internal structure of software to make it easier to understand and cheaper to modify without changing its observable behaviour'', or the act of applying such changes \cite[p.~46]{Refactoring}. As mentioned in the \nameref{subsec:motivation} section (section \ref{subsec:motivation}), refactoring prevents program decay and helps to maintain productivity. Just like testing, refactoring is no magic bullet that solves all problems and it is important to know when to do it and when it might not be worth the effort. Common rules of thumb are to refactor when doing something similar for the third time (a pragmatic approach to the \gls{dry} principle), when it helps to understand a piece of code, when it facilitates addition of a new feature, when searching for a bug and when discussing the code with others, e.g. in code reviews \cite[p.~49-51]{Refactoring}.
-
-Using refactoring tools can be very helpful to see which parts of the code are in most need of refactoring, and to automate certain refactoring actions by facilitating renaming, method extraction, etc. \cite[ch.~5]{Legacy}. There is some support in IDEs such as Visual Studio (using
-JSLint.VS\footnote{\url{http://jslint.codeplex.com/}},
-ReSharper\footnote{\url{http://www.jetbrains.com/resharper/}} and/or
-CodeRush\footnote{\url{http://www.devexpress.com/Products/CodeRush/}}),
-WebStorm IDE\footnote{\url{http://www.jetbrains.com/webstorm/features}} (or
-IntelliJ Idea\footnote{\url{http://www.jetbrains.com/editors/javascript_editor.jsp?ide=idea}} using a plugin) and
-NetBeans\footnote{\url{https://netbeans.org/kb/docs/ide/javascript-editor.html}}. There are also standalone statistical tools such as
-kratko.js\footnote{\url{https://github.com/kangax/kratko.js}} and
-jsmeter\footnote{\url{https://code.google.com/p/jsmeter/}} (not to be confused with the
-Microsoft Research project\footnote{\url{http://research.microsoft.com/en-us/projects/jsmeter/}}) that helps you to identify which objects have too many methods and which methods do too many things (or have too many arguments). Relying on metrics such as lines of code is of course not always appropriate due to different coding styles, but at least it provides an overall picture \cite{Kratko}.
-
-There is a serious risk involved in refactoring untested code\cite[p.~17]{Refactoring}, since manually checking that the refactoring does not introduce bugs is time consuming and difficult to do well. However, leaving the code untested means even greater risk of bugs and the refactoring may be necessary in the future anyway, in which case it will be even harder and more error-prone. This problem can be avoided by writing tests first.
-
-If refactoring is required in order to make the code testable, the architecture likely needs to change. Sometimes introducing a new object or changing how some dependency is handled is all that is needed. The important thing is to not continue in a direction that will cause the codebase to deteriorate over time. \cite[question~34]{Stenmark} If a lot of work goes into mocking dependencies then the tests take longer to write, require more maintenance and the need for integration tests increases. The proper remedy is usually not to reduce the isolation of the unit tests but to refactor the architecture so that each unit becomes easier to isolate. \cite[question~42]{Stenmark}
 
 \subsection{(ML,JS1)Build tools}
 \label{subsec:build}
@@ -568,6 +567,8 @@ Traditionally, coverage criteria has been a central concept in software testing 
 To illustrate why achieving a certain coverage criteria should not be a goal in itself, I decided to write tests for the finite state machine (FSM) in the asteroids.Game object of the asteroids application. Achieving Clause Coverage\cite[p.~106]{AmmannOffutt} for 18 lines of production code (asteroids.Game.FSM.start) took almost 100 lines of test code, see commit 61713c of \url{https://github.com/emilwall/HTML5-Asteroids}. This is not that much, but it didn't provide much value either as it did not lead to any refactoring.
 
 \subsubsection{(ML,JS)Stubbing vs refactoring}
+
+If refactoring is required in order to make the code testable, the architecture likely needs to change. Sometimes introducing a new object or changing how some dependency is handled is all that is needed. The important thing is to not continue in a direction that will cause the codebase to deteriorate over time. \cite[question~34]{Stenmark} If a lot of work goes into mocking dependencies (see section~\ref{subsec:mocking}) then the tests take longer to write, require more maintenance and the need for integration tests increases. The proper remedy is usually not to reduce the isolation of the unit tests but to refactor the architecture so that each unit becomes easier to isolate. \cite[question~42]{Stenmark}
 
 Sometimes it can be hard to know whether or not to stub library functions such as \$.isFunction or if you should trust that they behave as expected and steer the control flow via their input and the global state instead. The same applies to simple functions you have written yourself that you think are free of bugs. Not stubbing external dependencies leads to fewer lines of test setup and teardown code and usually better test coverage but can also impose a danger of the unit tests becoming more brittle and similar to integration tests.
 
