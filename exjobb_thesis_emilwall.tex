@@ -756,7 +756,7 @@ A problem with formal verification is its cost, because it can be so time consum
   \label{tab:fvt2}
 \end{table}
 
-Kan formell verifiering ha liknande effekter på modularitet och utformning av gränssnitt som testdriven utveckling? Modularitet ja, eftersom det är enklare att konstruera bevis för korrekthet av isolerade enheter. FV är däremot oftast olämpligt när det kommer till att testa gränssnitt.
+An interesting discussion is whether formal verification can have similar effects on modularity and interface design as \gls{tdd}. Isolated units, for example short methods with few dependencies and side effects, are easier to construct proofs for, so modularity can certainly be positively affected by formal verification. It also favours simplicity, for good or ill. Whether it has benefits for interface design depends on what we mean by interface. Formal verification is unsuitable for \glspl{gui} but can help to keep APIs terse.
 
 
 \subsection{(JS0,ML)DescribeSML}
