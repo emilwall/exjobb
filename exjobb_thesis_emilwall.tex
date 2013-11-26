@@ -121,7 +121,7 @@
 
 \newpage
 
-\section{(ML1,JS1)Introduction}
+\section{Introduction}
 
 Imagine the following scenario: You have been working for many months on a medium size web application project, with demanding technical challenges, using a framework that was previously unknown to you and with constantly changing requirements. People have come and gone from your team and there are parts of the code that no one in your team dares to modify, because no one understands it and too much of the functionality depends on it. Over time, patches and hacks have spread to all over the code base and it feels as if for every bug you fix, new ones are introduced and the complexity of the application is constantly increasing. Every few weeks you feel unbalanced and nervous about the next release, with frightful memories fresh in mind and a feeling that you should be able to do better.
 
@@ -153,7 +153,7 @@ nodes near coords, nodes near coords align={horizontal},
 
 The main goal with this thesis was to investigate why \gls{js} and \gls{sml} testing has been performed to such a small extent historically, describe some benefits and practises of doing it, and identifying problems that are yet to be solved.
 
-\subsection{(ML1,JS1)Motivation}
+\subsection{Motivation}
 \label{subsec:motivation}
 
 Why testing, you may ask. Jack Franklin, a young \gls{js} blogger from the UK, gives three reasons: it helps you to plan out your APIs, it allows you to refactor with confidence, and it helps you to discover regression bugs (i.e. when old code breaks because new code has been added). Writing tests to use a library before actually writing the library puts focus on intended usage, leading to a cleaner API. Being able to change and add code without fear of breaking something greatly accelerates productivity, especially for large applications. \cite{JackFranklin} Without tests, the ability to refactor (see section \ref{subsec:refactor}) is greatly hampered and without refactoring, making changes becomes harder over time, the code becomes harder to understand, the number of bugs increases and more time will be spent debugging \cite[p.~47-49]{Refactoring}. In order to avoid this, code should be tested, preferably as an activity integrated with the rest of the development rather than seen as a separate task. Writing tests first ensures testability, which may also imply adherence to principles such as separation of concerns and single responsibility \cite[p.~35-37]{Clean}.
@@ -182,7 +182,7 @@ This enables you to harness the power of \gls{ci}, avoiding errors otherwise eas
 
 This paves the way for test-driven development, which brings benefits in terms of the design becoming more refined, and increased maintainability. To achieve these gains from testing, the tests themselves need to be of high quality: they should be maintainable, fast and test the right thing. How to achieve this is an important part of this thesis, which is discussed in section~\ref{subsec:stateofevents}.
 
-\subsection{(ML1,JS1)Background to Project}
+\subsection{Background to Project}
 \label{mltestingframeworks}
 
 This thesis was written at Valtech AB, an IT consulting company based in Stockholm, with 185 employees (2013) specialised in digital strategy and full stack web and mobile development. The company has an interest in techniques for testing \gls{js}, but prioritises individual motivation and passion over deciding what employees should write about, which is why \gls{sml} testing is also covered here.
@@ -197,7 +197,7 @@ Examples are useful when learning idiomatic ways of solving problems. Code tends
 
 In contrast to examples often being simple and seldom providing a full picture, the problem domain of this thesis is to focus on how to test the behaviour of \gls{js} that manipulates \gls{dom} elements, fetches data using asynchronous calls, validates forms, communicates through APIs or manipulates the appearance of a web page (see section \ref{sec:jsproblems}). The domain also includes testing of \gls{sml} in general.
 
-\subsection{(ML1,JS1)Scope and Delimitations}
+\subsection{Scope and Delimitations}
 
 The scope of this thesis is mainly limited to \emph{automated} testing of \gls{sml} and \emph{client side} \gls{js}. This means that the impact of frameworks specialised for server side \gls{js} code such as vows\footnote{\url{http://vowsjs.org/}} and cucumis\footnote{\url{https://github.com/noblesamurai/cucumis}} has not been considered. Testing client side code is by no means more important than server side, but in many aspects it is different and sometimes harder. Reasons for choosing \gls{js} and \gls{sml} over other programming languages have already been covered in the introduction.
 
@@ -226,7 +226,7 @@ Rather than proposing best practices for \gls{js} testing, the reader should be 
 
 A full evaluation of the most popular testing and application frameworks is not within the scope of this thesis, but others have done it \cite{JackFranklin}\cite{SebastianPorto}. Popular \gls{js} testing frameworks include assertion frameworks such as Jasmine, qUnit, expect.js and chai, and drivers/test runners such as Mocha, JsTestDriver, Karma and Chutzpah\footnote{\url{http://chutzpah.codeplex.com/}} which may have their own assertion framework built in but are typically easy to integrate with other assertion frameworks using adapters or via built-in support.
 
-\subsection{(ML,JS)Reading instructions}
+\subsection{Reading instructions}
 
 This thesis is about difficulties and experiences with \gls{js} and \gls{sml} testing, and has been organised in favour of readers mainly interested in one of these programming languages. It contains a case study on testability aspects of adding tests to an existing \gls{js} application (section~\ref{sec:testability}), problems specific to \gls{js} and \gls{sml} testing (sections~\ref{sec:jsproblems} and~\ref{sec:smlproblems}), considerations from writing and using a \gls{bdd} framework in \gls{sml} (section~\ref{subsec:describesml}) and implications of testing culture that has been researched through interviews (section~\ref{sec:testingculture}). These sections are preceded by an overview of what others have done in the fields of \gls{js} and \gls{sml} testing (section~\ref{sec:previouswork}), the methods that were used for writing this thesis (section~\ref{sec:methods}) and a technical background that explains some of the concepts that appear in the rest of the thesis (section~\ref{sec:technicalbackground}). The final section is conclusions (section~\ref{sec:conclusions}), including summaries and proposals of future work.
 
@@ -234,12 +234,12 @@ Readers experienced with or uninterested in testing concepts and web application
 
 The glossary, which is located before this introduction, contains definitions of abbreviations and technical terms used throughout the text.
 
-\section{(ML1,JS1)Previous work}
+\section{Previous work}
 \label{sec:previouswork}
 
 This section contains an overview of what others have done within the fields of \gls{js} and \gls{sml} testing.
 
-\subsection{(ML0,JS1)JavaScript testing}
+\subsection{JavaScript testing}
 \label{subsec:previousworkjs}
 
 In 2010, a student at the Swedish royal institute of technology called Jens Neubeck wrote a master thesis about test-driven \gls{js} application development \cite{Neubeck}. In his thesis, he evaluated Crosscheck, HtmlUnit och Selenium, with the conclusion that none of them were mature enough to be used for the considered applications. Today, HtmlUnit and Selenium have evolved and there are new tools available such as PhantomJS, Buster.JS and Karma, so the conclusion might not hold anymore. Tools such as JsTestDriver and Jasmine were not considered and the results were based purely on original work, with no \gls{js} specific academic sources, so it has not been possible to build upon his findings here.
@@ -260,7 +260,7 @@ Heidegger et al. cover unit testing of \gls{js} that manipulates the \gls{dom} o
 
 Phillip Heidegger and Peter Thiemann has addressed the issue of type related errors in \gls{js} by introducing JSConTest, a contract framework that enables guided random testing by specifying types and relations of the arguments and return value of functions \cite{ContractTesting}.
 
-\subsection{(ML0,JS1)Standard ML testing}
+\subsection{Standard ML testing}
 \label{subsec:previousworksml}
 
 Except for discussions on how to perform mathematical proofs and equality tests of polymorphic types, there are no books that cover testing of \gls{sml}. The main sources of reference for \gls{sml} are \emph{The Definition of Standard ML} \cite{DefinitionStandardML} which covers the language syntax and semantics, \emph{The Standard ML Basis Manual} \cite{BasisManual} which describes the standard library, \emph{Elements of ML Programming} \cite{ElementsML} which cover the features of \gls{sml} in a more comprehensible fashion, \emph{ML for the Working Programmer} \cite{WorkingProgrammer} which is somewhat outdated but comprehensive, and various lecture notes \cite{ProgSml97}\cite{ProgSmlHarper}\cite{FunctionalML}\cite{NotesSMLNJ}. None of these describe ways of doing automated testing and there seems to be an attitude against testing based on that it can not prove absence of errors in the way formal verification can \cite[p.~16]{ProgSmlHarper}.
@@ -268,25 +268,23 @@ Except for discussions on how to perform mathematical proofs and equality tests 
 Articles on testing of \gls{sml} are hard to find, none cover \gls{sml} testing within a web applications context and most are concerned with formal verification or related to the QuickCheck tool which can be used to generate tests for Haskell code, using \gls{sml} as an intermediate language. However, the ideas of QuickCheck has been directly applied to \gls{sml} in the QCheck testing framework, which is covered in \emph{Random Testing of ML Programs} \cite{RandomML}, a master thesis from 2010. In QCheck, tests are specified in terms of properties rather than generated from the code itself or based on user interaction data. While avoiding the circularity of generating tests based on the code that should be tested, this approach instead suffers from the difficulty of identifying and expressing properties that should hold, and there may be uncertainty in how well the properties are actually tested.
 
 
-\section{(ML,JS)Methods}
+\section{Methods}
 \label{sec:methods}
 
-The methods used were first and foremost qualitative in nature, in order to prioritise insight into the problem domain above quantitatively verifying hypotheses. The chance of finding the true difficulties of \gls{js} testing was expected to increase with open questions.
+The methods used in this thesis comprised situational analysis, interviews and programming activities in \gls{js} and \gls{sml}. The work of this thesis began with an extensive literature study and an overview of technologies and frameworks. Interviews of \gls{js} developers of different background were performed and analysed. There was also some hands on evaluation of tools and frameworks, assessment of testability and impact of adding tests to existing projects, and a small testing framework was developed in \gls{sml} and used in a \gls{mooc}.
 
-The work of this thesis began with an extensive literature study and an overview of technologies and frameworks. Interviews of \gls{js} developers of different background were performed and analysed. There was also some hands on evaluation of tools and frameworks, assessment of testability and impact of adding tests to existing projects.
+\subsection{Literature Study}
 
-In order to describe ways of writing tests for \gls{js}, the practical work involved testing an existing application, performing \gls{tdd} exercises from Test-driven JavaScript Development \cite{Tddjs} and doing some small \gls{tdd} projects during the framework evaluation. There were plans to have a workshop field study, where programmers would work in pairs to solve pre-defined problems using \gls{tdd}, but in the end it was decided that it would be too difficult to extract useful data from such an activity.
-
-\subsection{(ML,JS)Literature Study}
-
-As mentioned in \nameref{sec:previouswork} (section \ref{sec:previouswork}), several new titles were published during the writing of this thesis, so the literature study continued to the very end. The books, articles and internet sources served both as reference to complement the interview material and as starting point for many of the experimental testing activities that were carried out (see next subsection).
+As mentioned in \nameref{sec:previouswork} (section \ref{sec:previouswork}), several new titles were published while writing this thesis, so the literature study continued to the very end. The books, articles and internet sources served both as reference to complement the interview material and as starting point for many of the experimental testing activities that were carried out (see next subsection).
 
 Since there was an abundance of material on \gls{js} testing, a full review was not viable. For \gls{sml} testing on the other hand, there were virtually no material on \gls{sml} testing available, so any claims had to be based on practical observations and comparisons with formal verification instead. Since many relevant facts and principles hold for more programming languages than just these two, some classical works within the field of testing were included in the study as well.
 
-\subsection{(ML,JS)Programming}
+\subsection{Programming}
 \label{subsec:programming}
 
-Much time was spent programming, including working through the projects of \cite[part~III]{Tddjs}, adding tests to an existing \gls{js} application (see section \ref{subsec:asteriods}), developing an \gls{sml} testing framework (see section \ref{subsec:describesml}) and using the developed framework in practise to solve programming assignments in a \gls{mooc}, namely the Coursera Programming Languages course (see section~\ref{subsec:tddmooc}).
+In order to describe ways of writing tests for \gls{js}, the practical work involved adding tests to an existing \gls{js} application (see section \ref{subsec:asteriods}), performing \gls{tdd} exercises from Test-driven JavaScript Development \cite[part~III]{Tddjs} and doing some small \gls{tdd} projects during the framework evaluation. There were plans to have a workshop field study, where programmers would work in pairs to solve pre-defined problems using \gls{tdd}, but in the end it was decided that it would be too difficult to extract useful data from such an activity.
+
+The development of an \gls{sml} testing framework (see section \ref{subsec:describesml}) and using the developed framework in practise to solve programming assignments in a \gls{mooc}, namely the Coursera Programming Languages course (see section~\ref{subsec:tddmooc}), was also a substantial part of the work effort in this thesis.
 
 A thorough evaluation of frameworks for \gls{js} and \gls{sml} was not part of the scope, but since they pose a significant part of how to solve problems with testing many were involved anyway. The following \gls{js} testing frameworks have been part of the practical work:
 Jasmine\footnote{\url{http://pivotal.github.com/jasmine/}},
@@ -297,13 +295,13 @@ JsTestDriver\footnote{\url{https://code.google.com/p/js-test-driver/}},
 Buster.JS\footnote{\url{http://docs.busterjs.org/}} and
 Sinon.JS\footnote{\url{http://sinonjs.org/}}. Apart from the \gls{mooc} programming assignments, all code is publicly available on my Github account \emph{emilwall}, together with the \LaTeX~code for this report.
 
-\subsection{(ML0,JS)Interviews}
+\subsection{Interviews}
 
-Semi-structured case study interviews were used rather than surveys to gather individual views on the subject. This approach allowed for harnessing unique as well as common experiences which would not be picked up in a standardised survey. The interviews were between 20 and 60 minutes long and were conducted both in person and via Internet video calls.
+The \gls{js} community is undergoing more rapid changes than the \gls{sml} community, so interviews were focused on \gls{js} to obtain up-to-date information about how it is currently used. They were first and foremost qualitative in nature, carried out as semi-structured case studies in order to prioritise insight into the problem domain and gather unique views and common experiences, which might not be picked up in a standardised survey or other efforts to quantitative research methods. The interviews were between 20 and 60 minutes long and were conducted both in person and via Internet video calls.
 
-\subsubsection{(ML0,JS1)Interview Considerations}
+\subsubsection{Interview Considerations}
 
-The preparations before the interviews included specifying purpose and which subjects to include, select interviewees, preparing questions and adjust the material to fit each interviewee. The interviews took place rather late so that preliminary results and insights from the literature study could be used as basis for the discussions.
+The preparations before the interviews included specifying purpose and which subjects to include, select interviewees, preparing questions and adjust the material to fit each interviewee. The chance of finding the true difficulties of \gls{js} testing was expected to increase with open questions. The interviews took place once preliminary results and insights from the literature study could be used as basis for the discussions.
 
 The purpose of the interviews was to investigate attitudes and to get a reality check on ideas that had emerged during previous work. Selecting the interviewees was to a large extent done based on availability, but care was also taken to include people outside of Valtech and to get opinions from people with different background (front-end, back-end, senior, junior, etc.). There were five interviews and some email conversation, which can all be found in the Appendix.
 
@@ -311,7 +309,7 @@ The interviews were performed in Swedish to allow for a more fluent conversation
 
 The interviewees received questions beforehand via mail which most of them answered before the interview. This allowed the interviews to focus on the vital parts rather than personal background and opinions about \gls{js}. The questions that were sent out before the interviews were mainly about previous experience with \gls{js} and testing, frameworks, attitudes towards the language, difficulties with testing and opinions and observations on benefits of testing.
 
-\subsubsection{(ML0,JS1)The Interviewees}
+\subsubsection{The Interviewees}
 \label{ssubsec:interviewees}
 
 \begin{enumerate}
@@ -326,17 +324,17 @@ The interviewees received questions beforehand via mail which most of them answe
 \item Henrik Ekelöf, a front-end developer who has seven years of professional experience with \gls{js}. He has previously worked as webmaster and web developer at Statistics Sweden and SIX and is now technical consultant at Valtech. I met him in person during my introduction programme in Valtech where he had a session with us about idiomatic \gls{js}, linting and optimisations, but this interview was done over Skype since he works out of town.
 \end{enumerate}
 
-\subsubsection{(ML,JS)Further contacts}
+\subsubsection{Further contacts}
 
 As can be seen at the end of the Appendix, there were some additional email conversations. Among those were: Fredrik Wendt, a senior developer and consultant at Squeed specialising in team coaching with coding dojos, \gls{tdd} and agile methodologies. David Waller, teacher at Linnéuniversitetet in a course about Rich Internet Applications with JavaScript. Marcus Bendtsen, teacher at Linköpings Universitet in a course about Web Programming and Interactivity.
 
 
-\section{(ML,JS)Technical Background}
+\section{Technical Background}
 \label{sec:technicalbackground}
 
 This section gives an overview of concepts and tools relevant to understanding this thesis. Readers with significant prior knowledge about web development and \gls{js} testing may skip this section.
 
-\subsection{(ML0,JS0)Basics of Testing}
+\subsection{Basics of Testing}
 \label{subsec:testingbasics}
 
 Every developer performs testing in one way or another. Running an application, interacting with it and observing the results is one form of testing. The more time spent on developing the application, the more evident the need for automated tests tends to become, to reduce the amount of manual work and time spent repeating the same procedures.
@@ -347,7 +345,7 @@ Commonly, unit tests are more low level and integration tests are more like user
 
 There are potentially both good and bad consequences of testing, both from a short and from a long term perspective. A disadvantage is that setting up the test environment and writing the tests take time. If the testing process is not carried out properly, maintaining the tests can cause frustration. The advantages are that if time is spent thinking about and writing tests, the development of production code will require less effort. Testing provides shorter feedback loops, executable documentation and new ways of communicating requirements with customers. The quality and maintainability of the end result is likely to be positively affected and making changes becomes easier, so ideally, the pace of development does not stagnate. The extra time required to set up the test environment and write the actual tests may or may not turn out to pay off, depending on how the application will be used and maintained.
 
-\subsection{(ML0,JS0)Test-Driven Development}
+\subsection{Test-Driven Development}
 \label{subsec:tdd}
 
 \acrfull{tdd} is ``an iterative development process in which each iteration starts by writing a test that forms a part of the specification we are implementing'' \cite[p.~21]{Tddjs}.
@@ -356,7 +354,7 @@ There are potentially both good and bad consequences of testing, both from a sho
 
 A common principle of \gls{tdd}, especially when carried out in a \gls{ci} build, is that the application should frequently be brought to a state where all tests pass \cite[question~2]{Rovegard}. An exception from this rule is pending tests, but as mentioned in section~\ref{subsec:testingbasics}, these should be kept to a minimum.
 
-\subsection{(ML0,JS0)Behaviour-Driven Development}
+\subsection{Behaviour-Driven Development}
 \label{subsec:bdd}
 
 \acrfull{bdd} is about describing expected behaviour of systems and writing tests from the outside in. It replaces and adds terminology traditionally used within \gls{tdd} and encourages descriptive naming of tests (or \glspl{spec}) that helps readability and to make failure messages more helpful. \cite[questions~17-18]{Ahnve}
@@ -365,7 +363,7 @@ An advantage with \gls{bdd} is how it encapsulates ideas about how tests can be 
 
 Strictly speaking, you do not need a \gls{bdd} framework to perform \gls{bdd}. J. B. Rainsberger, the author of JUnit Recipes: Practical Methods for Programmer Testing, explained how to do \gls{bdd} in jUnit at the XP 2011 conference in Madrid. The key to doing this is to divide the tests based on system behaviour rather than classes. This is the same concept as when writing \glspl{spec} in Cucumber, another Ruby GWT framework, and the same principle applies to \gls{bdd} in \gls{js} (note that Cucumber can also be used to generate acceptance tests for \gls{js}). This is desirable because it helps you to prioritise the parts that truly matters from a business value point of view over implementation details. \cite[question~20]{Ahnve}
 
-\subsection{(JS0,ML0)Spikes in TDD}
+\subsection{Spikes in TDD}
 \label{subsec:spikes}
 
 Although writing tests first is a recommended approach in most situations, there is a technique for when you need to try something out before you write tests for it, without compromising testability. Dan North, the originator of \gls{bdd}, came up with a name for this technique: spiking \cite{TwitterDanNorth}. The idea is that you create a new branch in your version control repository, and hack away. Add anything you think might solve your problem, don't care about maintainability, testability or anything of the sort. If you find yourself not knowing how to proceed, discard all changes in the branch and start over. As soon as you get an idea about how a solution could look like you switch back to the previous branch and start coding in a test first fashion. \cite[question~59]{Edelstam}
@@ -377,7 +375,7 @@ Counterintuitive it may seem, throwing away a prototype and starting from scratc
 A similar concept to Spike and Stabilise is to write markup without tests until a feature is needed that could use an API call. Then you write one or several acceptance tests for it, and can start to work with that feature in a \gls{tdd} fashion. \cite[question~30]{Ahnve} %Likheten är inte perfekt, kanske bör tillägga att det inte finns något stabilise-steg i den approachen.
 This way of thinking can lead to a useful rationale regarding when to test -- add tests whenever you introduce an external dependency to make sure that dependency is called correctly under certain circumstances, then if that dependency is something that already exists you can just add it, otherwise you can develop it in a test-driven fashion.
 
-\subsection{(ML0,JS0)Refactoring and Lint-like tools}
+\subsection{Refactoring and Lint-like tools}
 \label{subsec:refactor}
 
 Refactoring is ``a change made to the internal structure of software to make it easier to understand and cheaper to modify without changing its observable behaviour'', or the act of applying such changes \cite[p.~46]{Refactoring}. As previously mentioned (section~\ref{subsec:motivation}, \nameref{subsec:motivation}), refactoring prevents program decay and helps to maintain productivity. Just like testing, refactoring is no magic bullet that solves all problems and it is important to know when to do it and when it might not be worth the effort. Suitable situations to refactor are when doing something similar for the third time (a pragmatic approach to the \gls{dry} principle), when it helps to understand a piece of code, when it facilitates addition of a new feature, when searching for a bug and when discussing the code with others, e.g. in code reviews \cite[p.~49-51]{Refactoring}.
@@ -401,16 +399,18 @@ SonarQube\footnote{\url{http://docs.codehaus.org/display/SONAR/Plugin+Library}} 
 Yasca\footnote{\url{http://www.scovetta.com/yasca.html}}.
 There seems to be no refactoring tool for \gls{sml} widely available.
 
-\subsection{(ML,JS1)Mocking and Stubbing}
+\subsection{Mocking and Stubbing}
 \label{subsec:mocking}
 
 Mocking and stubbing involves simulation of behaviour of real objects in order to isolate the system under test from external dependencies. This is typically done in order to improve error localisation and execution time, and to avoid unwanted side-effects and dependencies such as communication with databases, across networks or with a file system \cite[ch.~2]{Legacy}. A mock is different from a stub in that it has pre-programmed expectations and built-in behaviour verification \cite[p.~453]{Tddjs}.
 
-In \gls{js}, tools for stubbing can be superfluous because you are able to manually replace functions with custom anonymous functions, that can have attributes for call assertion purposes. The stubbed functions can be stored in local variables in the tests and restored during teardown. This is what some refer to as VanillaJS \cite[question~53]{Edelstam}. It might come across as manual work that you can avoid by using a stubbing tool, but the benefits include fewer dependencies and sometimes more readable code, as mentioned in section \ref{LiteralFakes} \cite[questions~54-55]{Edelstam}. However, bear in mind that since \gls{js} has no notion of interfaces, it is easy to use the wrong method name or argument order when stubbing a function \cite[p.~471]{Tddjs}.
+In \gls{js}, tools for stubbing can be superfluous because you are able to manually replace functions with custom anonymous functions, that can have attributes for call assertion purposes. The stubbed functions can be stored in local variables in the tests and restored during teardown. This is what some refer to as VanillaJS \cite[question~53]{Edelstam}. It might come across as manual work that you can avoid by using a stubbing tool, but the benefits include fewer dependencies and sometimes more readable code, as mentioned in section~\ref{LiteralFakes} \cite[questions~54-55]{Edelstam}. However, bear in mind that since \gls{js} has no notion of interfaces, it is easy to make the mistake of using the wrong method name or argument order when stubbing a function manually \cite[p.~471]{Tddjs}.
 
 Typical cases for using a stubbing or mocking framework rather than VanillaJS include when your assertion framework has support for it, as is the case for Jasmine, when you feel the need to do a complex call assertion, mock a large API or state expectations up front as is done with mocks. Bear in mind that overly complex stubbing needs can be a symptom for that the code is in need of refactoring \cite[question~34]{Stenmark}, and strive for consistency by using a single method for stubbing -- mixing VanillaJS with Jasmine spies and Sinon.JS stubs will make the tests harder to understand.
 
-\subsection{(ML0,JS)Browser Automation}
+In \gls{sml}, stubbing and mocking can be problematic because of its immutability and lexical scoping. There are situations where replacing a definition with another is technically possible, such as if a dependency is located in another file (then you could import a fake version of the definitions in that file instead) or in the rare case where a mutable reference is used, but in most practical applications there is currently no way of stubbing or mocking in \gls{sml}. Perhaps it would be possible to modify an \gls{sml} implementation to allow it, or do something rash such as allowing tests to temporarily modify the source code containing the \gls{sut}, but that is somewhat far-fetched and error prone.
+
+\subsection{Browser Automation}
 \label{subsec:browserautomation}
 
 Repetitive manual navigation of a web site is generally boring and time consuming. There are situations where manual testing is the right thing to do, such as when there is no need for regression testing or the functionality is too complicated to interact with for automated tests to be possible (but then the design should probably be improved). Most of the time, tasks can be automated. There are several tools available for automating a web browser: the popular open source Selenium WebDriver, the versatile but proprietary and windows specific TestComplete and Ranorex, the Ruby library Watir and its .NET counterpart WatiN, and others such as Sahi and Windmill.
@@ -426,11 +426,7 @@ There exists some general build tools that can be used for any programming langu
 
 Naturally, there are build tools designed specifically for \gls{js} as well, Grunt\footnote{\url{http://gruntjs.com/}} being the most popular, which can be installed as a node.js package, has plugins for common tasks such as lint, testing and minification, and can be invoked through \gls{cli}. \cite[question~52]{Edelstam} Jake and Mimosa are other well known and maintained alternatives. It is also possible to use Rake, Ant or similar. Just as JsTestDriver and Mocha have adapters for Karma and Jasmine (see section~\ref{subsec:frameworks}), Rake has evergreen\footnote{\url{https://github.com/jnicklas/evergreen}} that allows it to run Jasmine unit tests. \cite{BuildTools}\cite[question~6]{Ahnve}
 
-\subsection{(ML,JS)Setting up a test suite}
-
-Many people have never set up a testing framework in a project and overestimate how hard it is. Automatic test generation or integration with monitoring services can be hard, but installing a test framework and write the first test is typically not. However, it is worth giving careful thought on what combination of tools to use, to enable a pleasant workflow and ensuring that the tests can be written in a desirable style.
-
-Build programs (see section~\ref{subsec:build}) and version control systems play an important role in automating testing.
+Build programs and version control systems play an important role in automating testing.
 
 
 \section{(ML,JS)Testability -- Real world experiences}
@@ -518,11 +514,11 @@ With Selenium IDE (again, see section~\ref{subsec:browserautomation}), there is 
 
 As a consequence of being unable to extract all code from main.js into testable classes, selenium tests were indeed considered. This could actually be argued to be a sound usage of selenium because main.js is basically the most top level part of the application and as such can be more or less directly tested with decent coverage, provided the issues with non-determinism would somehow be dealt with. Selenium just recently included the most basic support for testing canvas elements \cite[p.~165-166]{Selenium2}. However, by the time this was considered there was no time for more experimental work with the application.
 
-\subsection{(ML0,JS1)Tool Issues}
+\subsection{Tool Issues}
 
 Selecting which tools and frameworks to use usually has to be done fast and then you have to live with the decision. In this subsection, we will look at some issues that you might want to be aware of.
 
-\subsubsection{(ML0,JS1)JsTestDriver evaluation}
+\subsubsection{JsTestDriver evaluation}
 \label{subsec:jstestdriver}
 
 When setting up JsTestDriver\footnote{\url{https://code.google.com/p/js-test-driver/}} (JSTD) with the Jasmine adapter there are pitfalls in which version you're using. At the time of writing, the latest version of the Jasmine JSTD adapter (1.1) is not compatible with the latest version of Jasmine (1.3.1), so in order to use it you need to find an older version of Jasmine (such as 1.0.1 or 1.1.0) or figure out how to modify the adapter to make it compatible. Moreover, the latest version of JSTD (1.3.5) does not support relative paths to parent folders when referencing script files in jsTestDriver.conf although a few older versions do (such as 1.3.3d), which is a problem if you want to place the test driver separate from the system under test rather than in a parent folder, or if you want to reference another framework such as Jasmine if it is placed in another directory.
@@ -559,11 +555,11 @@ JsTestDriver is not perfect. When refreshing and clearing the cache of a capture
 
 Having spent many hours debugging, I finally decided to do a thorough check that no test depended on another test or part of the application that is not supposed to be tested by a specific test. In short, I wanted to ensure that the tests I'd written were truly unit tests. In order to do this, I created a copy of the application repository, deleted every file in the copy except for one test and the corresponding part of the application. Then I configured a JSTD server with a browser to run only that test, and repeated the process for every test. This method does not guarantee absence of side effects or detecting tests that do not clean up after themselves, but being able to run a test multiple times without failing, in complete isolation with the part of the application that it is supposed to test, at least gives some degree of reassurance that all external dependencies have been stubbed. If any external dependency has been left unstubbed the only way for the test to pass is if the code exercising that dependency is not executed by the test, and if a test does not clean up after itself it is likely to fail the second time it runs although this too depends on how the tests are written.
 
-\subsection{(ML0,JS1)Lessons learned}
+\subsection{Lessons learned}
 
 In this subsection, problems that are common to not just the asteroids application and the selected set of tools and frameworks are highlighted. There are typically ways to work around some of these problems.
 
-\subsubsection{(ML0,JS1)General issues with adding tests to an existing application}
+\subsubsection{General issues with adding tests to an existing application}
 
 When adding tests to an existing application, it is easy to lose track of what has and what has not been tested. Having access to a functional specification of the application can be of help but it might be unavailable, incomplete or outdated. Then you have to make a specification of your own, in order to be systematic about what tests you write. This can be done top-down by looking at user stories (if there are any), talking with the product owner and the users (if any) or identify features to test through manual testing. It can also be done bottom-up by looking at the source code that is to be tested and come up with ideas regarding what it appears like all the functions should be doing. The latter is what was done before adding tests to the asteroids application because there was no documentation available and the application was so small that a bottom-up approach seemed feasible and likely to generate better coverage than doing a top-down specification. The way this was done was by writing test plans in the form of source code comments in the \gls{spec} files for each class.
 
@@ -602,7 +598,7 @@ Naturally, the more important a certain functionality is in relation to business
 
 In the end, when deciding what tests to write, one of the most important things are to make sure that the tests are meaningful. They should in some way be connected to the problem that the system solves and describe something that matters rather than just testing methods for the sake of it. \cite[questions~17-18]{Ahnve}
 
-\subsubsection{(ML0,JS1)A Related Experience}
+\subsubsection{A Related Experience}
 \label{subsec:openspace}
 
 During a talk at a meet-up on python APIs (2013-05-22 at Tictail's office, an e-commerce startup based in Stockholm), the speaker mentioned that their application depended heavily on \gls{js}. It turned out that they had done some testing efforts but without any lasting results. During the open space after the talks, testing became a discussion subject in a group consisting of one of the developers of the application, among others. The developer explained that they had been unable to unit test their \gls{js} because the functionality was so tightly coupled that the only observable output that they could possibly test was the appearance of the web page, via Selenium tests. He sought reassurance that they had done the right thing when deciding not to base their testing on Selenium due to instability (tests failing for the wrong reasons) and time required to run the tests. He also sought answers to how they should have proceeded.
@@ -717,7 +713,7 @@ Testing a private API is not the same thing as testing a private method. In \gls
 
 \Gls{sml} and \gls{js} have at least two things in common: they are both functional languages (although JS is perhaps more rarely used as such) and they both have poor testing cultures. This section relates how \gls{sml} testing is carried out today to existing frameworks and formal verification, and introduces a new testing framework that was developed for \gls{sml} as a part of this thesis, inspired by insights gained from looking at popular \gls{js} testing frameworks. In section~\ref{sec:testability}, we discussed how adding tests to an application written without testing in mind can introduce testability issues. Later in this section (~\ref{subsec:tddmooc}) the challenges of writing tests first is described based on a \gls{tdd} approach to solving \gls{sml} programming exercises in a \gls{mooc}.
 
-\subsection{(JS0,ML1)Current Situation}
+\subsection{Current Situation}
 
 The SML/NJ and Moscow ML language implementations\footnote{\url{http://www.smlnj.org/svn.html}}\footnote{\url{https://github.com/kfl/mosml}}, and other \gls{sml} projects, have tests for large portions of the code, but there is no standard way of writing the tests. Each module typically ``reinvents the wheel'' by having its own scripts for testing, that is invoked differently and produces different output. If you search the web for ``Standard ML testing framework'' (with quotes, Nov 2013), you get zero results. Dig deeper, and you'll find QCheck/SML (henceforth referred to as QCheck) and a few small testing framework projects without any large user bases (see Appendix). It seems \gls{sml} testing suffers from lack of motivation or knowledge among developers, or availability of good tools. % footnotes after "other projects"
 
@@ -944,7 +940,7 @@ An individual concern regarding testing is that it depends on being able to stru
 On the other hand, as a beginner it might be better to rely on proven methods until you obtain proper contextual knowledge, rather than trying to get things exactly right from the start. Preferably, beginners should work with experienced developers to avoid risk of reinventing the wheel. \cite[questions~23-24]{Ahnve}
 
 
-\subsection{(ML0,JS0)Individual Motivation and Concerns}
+\subsection{Individual Motivation and Concerns}
 \label{subsec:motivationconcerns}
 
 What defines successful testing is not which tools are used, the degree of coverage that is achieved or how strictly a certain set of principles or methodologies are followed. Successful testing is defined by how easy it is to make changes, find errors and understand the code. In order to get there, developers must feel that testing is meaningful and that they are allowed to spend time on testing as part of their professional tasks.
@@ -1008,7 +1004,9 @@ In a project without any testing routines, you may save time initially but there
 
 When automatic regression tests are missing, making changes to the code is error prone. Issues related to browser compatibility or subtle dependencies between functions and events are easier to overlook in the absence of tests, and a proper toolset is required to test multiple platforms.
 
-\subsection{(ML0,JS1)Insights from interviews}
+Many people have never set up a testing framework in a project and overestimate how hard it is. Automatic test generation or integration with monitoring services can be hard, but installing a test framework and write the first test is typically not. However, it is worth giving careful thought on what combination of tools to use, to enable a pleasant workflow and ensuring that the tests can be written in a desirable style.
+
+\subsection{Insights from interviews}
 
 It seems that in the last couple of years, the number of people testing their \gls{js} has increased significantly\cite[question~1]{Edelstam}. This has been observed through asking people that do it to raise their hands during tech talks, two years ago only a few raised their hands when asked such a question whereas now almost every single one does it.
 
