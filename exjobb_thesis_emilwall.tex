@@ -474,7 +474,13 @@ The first action was to strip away any redundant files such as iPad specific cod
 \label{fig:game6}
 \end{figure}
 
-Later on, tests were added in new directories \texttt{sprites-spec} and \texttt{core-spec}, Sinon.js was added to the \texttt{lib} directory for better stubbing, rendering.js was extracted from main.js to enable more selective execution and a reset.js file was added to the \texttt{core} directory that ensured that any old definitions in the asteroids namespace were overwritten before reading the files anew. This last change, reset.js, should not really be necessary, but was done in order to avoid emptying the cache in between each test run with JsTestDriver. For a more comprehensive picture of what all of this means, please see \url{https://github.com/emilwall/HTML5-Asteroids}.
+Later on, tests were added in new directories \texttt{sprites-spec} and \texttt{core-spec}, Sinon.js was added to the \texttt{lib} directory for better stubbing, rendering.js was extracted from main.js to enable more selective execution and a reset.js file was added to the \texttt{core} directory, containing just a single line:
+
+\begin{verbatim}
+var asteroids = {}
+\end{verbatim}
+
+This line ensured that any old definitions in the asteroids namespace were overwritten before reading the files anew. This should not really be necessary, but was done in order to avoid emptying the cache in between each test run with JsTestDriver. An updated version of the application can be found at \url{https://github.com/emilwall/HTML5-Asteroids}.
 
 \subsubsection{Attempts and Observations}
 
