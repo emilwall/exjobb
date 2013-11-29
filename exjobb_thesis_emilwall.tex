@@ -543,7 +543,7 @@ Efforts to load the contained code using ajax were of no gain, so the solution i
 \label{fig:game8}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[ht!]
 \centering
 \includegraphics[width=1.0\textwidth]{pics/game10.png}
 \caption{Game paused while accelerating and shooting towards an enemy ship}
@@ -622,7 +622,7 @@ In this subsection, problems that are common to not just the asteroids applicati
 
 When adding tests to an existing application, it is easy to lose track of what has and what has not been tested. Having access to a functional specification of the application can be of help but it might be unavailable, incomplete or outdated. Then you have to make a specification of your own, in order to be systematic about what tests you write. This can be done top-down by looking at user stories (if there are any), talking with the product owner and the users (if any) or identify features to test through manual testing. It can also be done bottom-up by looking at the source code that is to be tested and come up with ideas regarding what it appears like all the functions should be doing. The latter is what was done before adding tests to the asteroids application because there was no documentation available and the application was so small that a bottom-up approach seemed feasible and likely to generate better coverage than doing a top-down specification. The way this was done was by writing \emph{test plans}, in the form of source code comments about which tests that could be written, in the \gls{spec} files for each class. Arguably, it could have been beneficial to write actual \glspl{spec} but with empty function bodys, although that gives an impression that they are passing rather than waiting to be written.
 
-\begin{figure}[H]
+\begin{figure}[h]
 \centering
 \includegraphics[width=0.9\textwidth]{pics/coverage.jpg}
 \caption{Tests should be based on desirable behaviour}
