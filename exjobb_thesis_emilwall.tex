@@ -641,7 +641,7 @@ Traditionally, coverage criteria has been a central concept in software testing 
 % TODO Add citation for that coverage criteria has been and still is a central concept in software testing
 \label{subsec:coveragecriteria}
 
-To illustrate why achieving a certain coverage criteria should not be a goal in itself, I decided to write tests for the finite state machine (FSM) in the asteroids.Game object of the asteroids application. Achieving Clause Coverage\cite[p.~106]{AmmannOffutt} for 18 lines of production code (asteroids.Game.FSM.start) took almost 100 lines of test code, see commit 61713c of \url{https://github.com/emilwall/HTML5-Asteroids}. This is not that much, but it didn't provide much value either as it did not lead to any refactoring.
+To illustrate why achieving a certain coverage criteria should not be a goal in itself, I decided to write tests for the finite state machine (FSM) in the asteroids.Game object of the asteroids application. Achieving Clause Coverage \cite[p.~106]{AmmannOffutt} for 18 lines of production code (asteroids.Game.FSM.start) took almost 100 lines of test code, see commit 61713c of \url{https://github.com/emilwall/HTML5-Asteroids}. This is not that much, but it didn't provide much value either (except for increased confidence and safer future modification possibilities) as it did not lead to any changes.
 
 \subsubsection{(ML,JS)Stubbing vs refactoring}
 
