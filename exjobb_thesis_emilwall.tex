@@ -9,6 +9,7 @@
 
 \usepackage[swedish,english]{babel} % Enables swedish typesetting, needs to be at top of document
 \usepackage[utf8]{inputenc} % set input encoding (not needed with XeLaTeX
+\usepackage{csquotes} % Recommended to be loaded with babel
 \usepackage{textcomp} % Suppress unicode char error
 \usepackage{enumitem} % resume numbering in enumerations and customize list appearence
 \usepackage[bottom = 110pt]{geometry} % to change the page dimensions
@@ -453,7 +454,7 @@ The first step in the case study of adding tests in retrospect was selecting a s
 
 \subsubsection{Getting Started}
 
-The first action was to strip away any redundant files such as iPad specific code and sound files that were not used anyway. This led to a project structure of only game.js, index.html, the licence file, jquery 1.4.1 and a \gls{js} file containing the fonts (used to display score and messages in the game, see figures~\ref{fig:game7},~\ref{fig:game6} and~\ref{fig:game10}). The next step was to split game.js into separate files in order to test each ``class'' in isolation. This could have been done the other way around, guiding the structure by writing tests first, but it felt natural to work with the source in order to understand it. Refactoring without tests is typically not a good idea \cite[p.~17]{Refactoring}, but it turned out reasonably easy to change the code even without tests as long as care was taken to preserve the order in which the code was executed when moving things to separate files. Since the exercises in \emph{Test-Driven JavaScript Development} \cite{Tddjs} had introduced JsTestDriver, using that with a Jasmine plugin felt like a natural choice at the time, although it involved some issues with syncing the tests in the browser and find the correct versions for the Jasmine adapter to work. The project structure is displayed in figure~\ref{fig:tree}.
+The first action was to strip away any redundant files such as iPad specific code and sound files that were not used anyway. This led to a project structure of only game.js, index.html, the licence file, jquery 1.4.1 and a \gls{js} file containing the fonts (used to display score and messages in the game, see figures~\ref{fig:game6} and~\ref{fig:game10}). The next step was to split game.js into separate files in order to test each ``class'' in isolation. This could have been done the other way around, guiding the structure by writing tests first, but it felt natural to work with the source in order to understand it. Refactoring without tests is typically not a good idea \cite[p.~17]{Refactoring}, but it turned out reasonably easy to change the code even without tests as long as care was taken to preserve the order in which the code was executed when moving things to separate files. Since the exercises in \emph{Test-Driven JavaScript Development} \cite{Tddjs} had introduced JsTestDriver, using that with a Jasmine plugin felt like a natural choice at the time, although it involved some issues with syncing the tests in the browser and find the correct versions for the Jasmine adapter to work. The project structure is displayed in figure~\ref{fig:tree}.
 
 \begin{figure}[ht!]
 \centering
@@ -462,17 +463,10 @@ The first action was to strip away any redundant files such as iPad specific cod
 \label{fig:tree}
 \end{figure}
 
-\begin{figure}[h!]
-\centering
-\includegraphics[width=1.0\textwidth]{pics/game7.png}
-\caption{The game over screen, displayed for one second when all lives are lost}
-\label{fig:game7}
-\end{figure}
-
-\begin{figure}[h!]
+\begin{figure}[H]
 \centering
 \includegraphics[width=1.0\textwidth]{pics/game6.png}
-\caption{Text displayed after game over, enabling the user to see the score and start a new game}
+\caption{After a game over screen has been displayed for one second, the user sees this screen with score of previous game and the ability to start a new game}
 \label{fig:game6}
 \end{figure}
 
@@ -549,7 +543,7 @@ Efforts to load the contained code using ajax were of no gain, so the solution i
 \label{fig:game8}
 \end{figure}
 
-\begin{figure}[h!]
+\begin{figure}[H]
 \centering
 \includegraphics[width=1.0\textwidth]{pics/game10.png}
 \caption{Game paused while accelerating and shooting towards an enemy ship}
@@ -628,7 +622,7 @@ In this subsection, problems that are common to not just the asteroids applicati
 
 When adding tests to an existing application, it is easy to lose track of what has and what has not been tested. Having access to a functional specification of the application can be of help but it might be unavailable, incomplete or outdated. Then you have to make a specification of your own, in order to be systematic about what tests you write. This can be done top-down by looking at user stories (if there are any), talking with the product owner and the users (if any) or identify features to test through manual testing. It can also be done bottom-up by looking at the source code that is to be tested and come up with ideas regarding what it appears like all the functions should be doing. The latter is what was done before adding tests to the asteroids application because there was no documentation available and the application was so small that a bottom-up approach seemed feasible and likely to generate better coverage than doing a top-down specification. The way this was done was by writing \emph{test plans}, in the form of source code comments about which tests that could be written, in the \gls{spec} files for each class. Arguably, it could have been beneficial to write actual \glspl{spec} but with empty function bodys, although that gives an impression that they are passing rather than waiting to be written.
 
-\begin{figure}[h!]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.9\textwidth]{pics/coverage.jpg}
 \caption{Tests should be based on desirable behaviour}
