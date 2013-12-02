@@ -712,8 +712,9 @@ A key to successful testing of \gls{js} with \gls{dom} manipulation is to separa
 
 You can test your \gls{dom} manipulating code if you really need to, but be aware that there are many implementation differences depending on which browser or testing environment the tests are run in (on the other hand, this is one of the reasons why you might WANT to test the \gls{dom} manipulations) and that it can be hard to keep test fixtures up to date.
 
-There are free cloud-based tools such as TestSwarm that are designed to help you with running the tests in many different browsers, or you can do it manually using JsTestDriver, which also has built in support for setting up
-\gls{testfixture} DOMs. One way is to use different Selenium drivers, then you can check almost anything, but beware that the tests become even slower so even for a medium sized application you might end up being unable to run the tests more than a couple of times per day.
+There are free cloud-based tools such as TestSwarm that are designed to help you with running the tests in many different browsers, or you can do it manually using JsTestDriver, which also has built in support for setting up \gls{testfixture} \glspl{dom}. This is covered in \emph{Test-driven JavaScript Development}, which also shows how it can help to identify reusable components in views \gls{dom} \cite[p.~389-435]{Tddjs}. The qUnit testing framework is also well suited for testing \gls{dom} manipulation\footnote{\url{http://qunitjs.com/intro/\#testing-the-dom-manipulation}}. There are more techniques for unit testing \gls{dom} manipulation but they are not covered here due to space and time limitations.
+
+Aside from unit testing, you can use different Selenium drivers to check almost anything, but beware that such tests easily become slow so even for a medium sized application you might end up being unable to run the tests more than a couple of times per day. Tests can be made to run faster if they run in a headless browser such as PhantomJS, which has support both for Selenium, or by using more specialised tools such as CasperJS which can produce very similar results as Selenium but executes faster and is easily controlled using \gls{js} \cite[p.~142-146]{TestableJS}.
 
 \subsection{Form validation}
 
