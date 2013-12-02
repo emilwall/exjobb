@@ -963,14 +963,14 @@ Racket has rackunit as its built in testing framework, which aims to support bot
 Although feature-rich, compared to \gls{js} testing frameworks such as Jasmine and Mocha, rackunit is hard to write readable tests in.
 Alternative Racket testing frameworks such as test-engine does not hade \gls{bdd} support either, but there has been efforts to implement it: \url{https://github.com/damienklinnert/lisp/tree/master/bdd}
 
-Ruby has a great testing culture so finding suitable testing tools was no problem for that part, however in the introduction of the first assignment it said:
+Ruby has a great testing culture so finding suitable testing tools was no problem for that part, however in the introduction of the first Ruby assignment it said:
 
 \begin{quote}
 ``Because the primary challenge in this assignment is reading, understanding, and extending a program in a new-to-you programming language, we [have] not provided any example tests. We also acknowledge that testing this sort of graphical program is difficult.''
 \end{quote}
 
-Indeed it turned out to be difficult to test certain things, for instance that key bindings in the Tk \gls{gui} invoked the correct functions, since no way of triggering the events was found.
-In general, however, \gls{tdd} had great benefits in all of the assignments, regardless of programming language.
+Indeed it turned out to be difficult to test certain things, for instance that key bindings in the Tk \gls{gui} invoked the correct functions, since no way of triggering the events was found. The second Ruby assignment also had an \gls{sml} part. Due to time constraints only the \gls{sml} part was test driven, and the result was that it got full points whereas the Ruby part only got 54 out of 70 points. However, virtually no time was spent debugging and there were some provided tests that could be relied upon, so in this case the failure to reach a high grade was probably more due to the limited amount of time spent solving the assignment than whether \gls{tdd} was used or not.
+In conclusion, \gls{tdd} had benefits in terms of structure and solution robustness for all of the assignments regardless of programming language, although the benefits would arguably have been greater if the assignments had been bigger.
 
 
 \section{(JS,ML)Testing culture}
