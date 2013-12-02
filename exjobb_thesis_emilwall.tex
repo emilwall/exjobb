@@ -692,30 +692,23 @@ In order to get started with testing \gls{js}, you need to understand why you sh
 
 Two basic approaches to testing asynchronous code are to force the execution into a certain path by faking the asynchrony, and to set up waiting conditions for when assertions should be executed. When forcing the execution path, the code is not executed asynchronously but you can test different scenarios and thereby get a good feel of how the code will behave when run asynchronously. When using waiting conditions, timeouts need to be set for when tests should fail if waiting conditions are not met.
 
-Both Mocha and Jasmine supports waiting conditions, with some differences in syntax and how it works.
+Most unit testing frameworks supports asynchronous testing through waiting conditions or similar constructs, with some differences in syntax and how it works. There are guides for how to use these aspects of the frameworks in both literature and blogs, for many major testing frameworks: Jasmine \cite[p.~35]{JasmineBook}\cite[p.~45-49]{JSUT}, Mocha \cite[p.~59-65]{UsingNode}, YUI test (only explicit wait) \cite[p.~78-79]{JSUT} and qUnit \cite[p.~114-116]{JSUT}. There are also a large number of relevant blog posts for asynchronous \gls{js} testing
+\footnote{\url{http://lostechies.com/derickbailey/2012/08/18/jasmine-async-making-asynchronous-testing-with-jasmine-suck-less/}}
+\footnote{\url{http://lostechies.com/derickbailey/2012/08/17/asynchronous-unit-tests-with-mocha-promises-and-winjs/}}
+\footnote{\url{http://www.htmlgoodies.com/beyond/javascript/test-asynchronous-methods-using-the-jasmine-runs-and-waitfor-methods.html\#fbid=eILq_Eu-N_I}}
+\footnote{\url{http://www.htmlgoodies.com/beyond/javascript/how-mocha-makes-testing-asynchronous-javascript-processes-fun.html}}
+\footnote{\url{http://blog.caplin.com/2012/01/17/testing-asynchronous-javascript-with-jasmine/}}. %these should be in the bibliography and perhaps mentioned under previous work
+
+\emph{Test-driven JavaScript Development} claims that JsTestDriver has no built in support for asynchronous testing so it proposes other approaches \cite[p.~247-387]{Tddjs}, but the support was added to the development branch the same year (2010) and is now part of the release: \emph{JavaScript Unit Testing} provides an example of using the \texttt{AsyncTestCase} object in JsTestDriver to extend test methods with a queue parameter \cite[p.~143-145]{JSUT}.
 
 A common concern is that the large number of possible combinations in which asynchronous code can be executed leads to a combinatorial explosion. This is true, but it is also true that if there are few dependencies between the asynchronous code and if they do not share resources, the risk for data races and similar issues is smaller. Therefore, an important part in achieving testability of asynchronous code is to strive for such designs.
 
-The issue of testing asynchronous code is not unique to \gls{js}, e.g. Erlang message passing is also asynchronous, and has been used in systems with high demands on stability. One may ask how Erlang programmers test their code, answering that question and relating the answers to testing of \gls{js} could be an interesting study of its own. Many other languages with support for multiple threads or processes arguably have this issue as well.
+The issue of testing asynchronous code is not unique to \gls{js}, e.g. Erlang message passing is also asynchronous, and has been used in systems with high demands on stability. One may ask how Erlang programmers test their code, but answering that question and relating the answers to testing of \gls{js} is such a large project that it could make up for an interesting study of its own. Many other languages with support for multiple threads or processes arguably have this issue as well.
 
-JavaScript Unit Testing \cite{JSUT} goes into some detail of asynchronous testing.
-
-Blog posts (these should be in the bibliography and perhaps mentioned under previous work):
-\begin{verbatim}
-http://lostechies.com/derickbailey/2012/08/18/jasmine-async-making-asynchronous-testing-with-jasmine-suck-less/
-
-http://lostechies.com/derickbailey/2012/08/17/asynchronous-unit-tests-with-mocha-promises-and-winjs/
-
-http://www.htmlgoodies.com/beyond/javascript/test-asynchronous-methods-using-the-jasmine-runs-and-waitfor-methods.html#fbid=eILq_Eu-N_I
-
-http://www.htmlgoodies.com/beyond/javascript/how-mocha-makes-testing-asynchronous-javascript-processes-fun.html
-
-http://blog.caplin.com/2012/01/17/testing-asynchronous-javascript-with-jasmine/
-\end{verbatim}
 
 \subsection{DOM manipulation}
 
-A key to successful testing of \gls{js} with \gls{dom} manipulation is to separate the logic from the \gls{dom} manipulation as much as possible. One technique that was presented at the XP conference in Trondheim 2010\footnote{Agile Processes in Software Engineering and Extreme Programming 11th International Conference, XP 2010, Trondheim, Norway, June 1-4, 2010, Proceedings} was to define a view layer of jQuery-related and similar code, and update the view as a separate task in the business logic. This allows for test driven development to be carried out much more effortlessly than if the logic is tightly coupled with the \gls{dom} manipulation. \cite[question~4]{Ahnve}
+A key to successful testing of \gls{js} with \gls{dom} manipulation is to separate the logic from the \gls{dom} manipulation as much as possible. One technique that was presented at the XP conference in Trondheim 2010\footnote{Agile Processes in Software Engineering and Extreme Programming 11th International Conference, XP 2010, Trondheim, Norway, June 1-4, 2010, Proceedings} was to define a view layer of jQuery-related and similar code, and update the view as a separate task in the business logic. This allows for test driven development to be carried out much more effortlessly than if the logic is tightly coupled with the \gls{dom} manipulation. \cite[question~4]{Ahnve} %Put in bibliography
 
 You can test your \gls{dom} manipulating code if you really need to, but be aware that there are many implementation differences depending on which browser or testing environment the tests are run in (on the other hand, this is one of the reasons why you might WANT to test the \gls{dom} manipulations) and that it can be hard to keep test fixtures up to date.
 
