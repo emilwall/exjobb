@@ -678,14 +678,14 @@ During a talk at a meet-up on python APIs (2013-05-22 at Tictail's office, an e-
 The participants in the discussion were in agreement that testing appearance is the wrong way to go and that tests need to be fast and reliable. The experience with testing frameworks seemed to vary, some had used Jasmine and appreciated its \gls{bdd} approach and at least one had used Karma (under its former name Testacular). The idea that general \gls{js} frameworks such as AngularJS could help in making code testable and incorporating tests as a natural part of the development was shared and appreciated. The consensus seemed to be that in general, testing \gls{js} is good if done right, but also difficult.
 
 
-\section{(JS,ML0)Problems in JavaScript testing}
+\section{Problems in JavaScript testing}
 \label{sec:jsproblems}
 
 Considering all the different options in available frameworks, one may be decieved into believing that the main reason why people don't test their \gls{js} is because they are lazy or uninformed. This is of course not the case, there are indeed respectable obstacles for doing \gls{tdd} both in the process of fitting frameworks into your application and in writing the \gls{js} code in a testable way. % Stryk eller konkretisera (men då måste man gå in på ramverk, så att det blir för stort)
 
 In order to get started with testing \gls{js}, you need to understand why you should do it \cite[question~38]{Edelstam} and then practise with katas and begin to use testing in your projects. Coding katas focused on front-end \gls{js} development are not very common, but not impossible to do \cite[question~47]{Ahnve}.
 
-\subsection{(JS,ML0)Asynchronous events}
+\subsection{Asynchronous events}
 \label{subsec:asynchronous}
 
 \gls{js} is often loaded asynchronously in browsers to improve performance in page loads and minimise interference with the display of the page. Another asynchronous aspect of \gls{js} are events such as AJAX calls and timer dependent functions. Testing asynchronous events can be hard because execution order is not predetermined, so the number of possible states can be very large, thus demanding many convoluted tests to cover all the relevant cases. It can also be hard to know if the asynchronous code has finished execution or not, leading to assertions being executed at the wrong time.
@@ -713,7 +713,7 @@ http://www.htmlgoodies.com/beyond/javascript/how-mocha-makes-testing-asynchronou
 http://blog.caplin.com/2012/01/17/testing-asynchronous-javascript-with-jasmine/
 \end{verbatim}
 
-\subsection{(JS,ML0)DOM manipulation}
+\subsection{DOM manipulation}
 
 A key to successful testing of \gls{js} with \gls{dom} manipulation is to separate the logic from the \gls{dom} manipulation as much as possible. One technique that was presented at the XP conference in Trondheim 2010\footnote{Agile Processes in Software Engineering and Extreme Programming 11th International Conference, XP 2010, Trondheim, Norway, June 1-4, 2010, Proceedings} was to define a view layer of jQuery-related and similar code, and update the view as a separate task in the business logic. This allows for test driven development to be carried out much more effortlessly than if the logic is tightly coupled with the \gls{dom} manipulation. \cite[question~4]{Ahnve}
 
@@ -722,7 +722,7 @@ You can test your \gls{dom} manipulating code if you really need to, but be awar
 There are free cloud-based tools such as TestSwarm that are designed to help you with running the tests in many different browsers, or you can do it manually using JsTestDriver, which also has built in support for setting up
 \gls{testfixture} DOMs. One way is to use different Selenium drivers, then you can check almost anything, but beware that the tests become even slower so even for a medium sized application you might end up being unable to run the tests more than a couple of times per day.
 
-\subsection{(JS,ML0)Form validation}
+\subsection{Form validation}
 
 Validation of forms is commonly done both server and client side so that users do not have to wait for requests to be sent to and returned from a server in order to validate input, while maintaining the security that server side validation offers. Preferably, these validations are automatically kept in sync by frameworks and ideally it should be enough to test the server side validation, but that is sometimes just as hard and to be sure you should test both.
 
@@ -740,17 +740,17 @@ Depending on which framework you're using, you might have different options for 
 
 A common case is that you are using another programming language than \gls{js} for the back-end, and you specify the validation rules in that language and let for instance a jQuery plugin generate validations for the front-end. Here you can hopefully put regular expressions and the like as publicly available variables and access them directly in tests, whereas the plugin will have to be tested separately, using perhaps a single test that just checks for existence of validation.
 
-\subsection{(JS,ML0)GUI testing}
+\subsection{GUI testing}
 
 A \acrfull{gui} is usually the top layer of an application and is therefore a common target for system testing. It can consist of many components and typically provides a large number of possible interactions, which is why \gls{gui} testing is important, but also part of why it can be a time consuming activity both in terms of preparing and executing tests.
 
-\subsubsection{(JS,ML0)Application differences}
+\subsubsection{Application differences}
 
 A rather common opinion is that you should avoid automatic testing of an application's visual components. However, the value provided by \gls{gui} tests depends on how important the \gls{gui} is for the application. In web applications, the \gls{gui} and sequences in it are commonly more complex than the logic underneath, so testing the \gls{gui} makes more sense for such applications than for typical desktop or financial applications where backend logic tend to be more important. \cite[question~21]{Ahnve}
 
 Before deciding on whether you want to do automated \gls{gui} testing or not, think carefully about how important the \gls{gui} and its cross browser compatibility is to you. If you feel that the exact appearance is irrelevant, then there is little sense in doing it. If you on the other hand feel that it would be valuable but have concerns about the technical aspects of it, you should not dismiss it too easily.
 
-\subsubsection{(JS,ML0)Regression testing of GUI}
+\subsubsection{Regression testing of GUI}
 
 \gls{gui} testing should not be confused with integration testing. Testing graphical elements in tests that depend on system integration are hard to maintain and can fail for too many reasons. Instead of executing a sequence before making assertions about graphical components, you may benefit from keeping assertions simple in an integration test. The \gls{gui} testing can then be performed in a unit testing fashion as a separate activity, by creating a \gls{testfixture} that mimics the state of the application the way it looks after a certain sequence has finished.
 
@@ -758,7 +758,7 @@ This approach has a fairly obvious risk. What if a \gls{testfixture} fails to si
 
 Just as you might decide for or against implementing rounded corners that work in old browsers, based on the number of clients actually using such browsers and the maintenance cost of implementing it for every picture of a site, there is always a tradeoff regarding whether or not to test such graphical elements with automated regression tests or not. In the end, all that matters is cost versus gain, no matter what personal beliefs and preferences might be involved from the product owner or developers' personal point of view. \cite[questions~40-44]{Ahnve}
 
-\subsubsection{(JS,ML0)Automation of GUI testing}
+\subsubsection{Automation of GUI testing}
 
 Manually testing a web page with all the targeted combination of browsers, versions and system platforms is usually not a viable option \cite{TestSwarm} so multi-platform automated testing is required. This is true in general for web application testing, but also holds for \gls{gui} testing in particular, regardless of whether the \gls{sut} is a web application or not. Since the appearance of a \gls{gui} can depend on factors such as configuration of hardware, operating system, version of third party software, etc., and because of the many possible sequences of interactions to test, it is rarely feasible to test all combinations and unless the testing is automated on multiple platforms, you will be unable to test even a small fraction of them.
 
@@ -770,7 +770,7 @@ Another technique is capture-replay, which is based on the concept that a user i
 
 A more modern approach is model based (FSM) \gls{gui} testing, where graphs are used to represent how the \gls{sut} can be interacted with and which states should be possible to reach. From such a graph, test cases can be generated.
 
-\subsection{(JS,ML0)Private APIs}
+\subsection{Private APIs}
 
 Most problems with APIs, both external and private, are similar to problems with any external dependencies that you do not have full control over. The tests need to be kept up to date and in order to do so, integration tests are needed. Sometimes, testing towards a true implementation is problematic because it takes too long time, manipulates data that should not be touched or because the owner of the API does not accept large amounts of traffic or requires payment for it. Then you typically run the integration tests less often and stick to mocked APIs with fake objects to compensate. \cite[questions~19-20]{Stenmark}
 
@@ -780,7 +780,7 @@ Introducing versioning for private APIs is not always feasible, for at least two
 
 Testing a private API is not the same thing as testing a private method. In \gls{js} there is formally no private methods, only functions not exposed to the current scope, nevertheless methods that are not intended to be called from the outside can be considered private. It is a common principle that you do not test a private method, if you feel the need to, then that method is probably too complex to be private and the functionality that it is meant to provide should be moved into a new object or similar. Private methods represent implementation details, tests should be focused on behaviour and functionality, not implementation. \cite[questions~62-63]{Edelstam}
 
-\section{(JS0,ML)Problems in testing of Standard ML}
+\section{Problems in testing of Standard ML}
 \label{sec:smlproblems}
 
 \Gls{sml} and \gls{js} have at least two things in common: they are both functional languages (although JS is perhaps more rarely used as such) and they both have poor testing cultures. This section covers existing frameworks, formal verification, and introduces a new \gls{sml} testing framework that was developed as a part of this thesis, inspired by insights gained from looking at popular \gls{js} testing frameworks. In section~\ref{sec:testability}, we discussed how adding tests to an application written without testing in mind can introduce testability issues. Later in this section (~\ref{subsec:tddmooc}) the challenges of writing tests first is described based on a \gls{tdd} approach to solving \gls{sml} programming exercises in a \gls{mooc}.
@@ -807,7 +807,7 @@ The strict type system of \gls{sml} does not provide any generic toString method
 
 QuickCheck, the Haskell predecessor of QCheck, resolves this by using the \texttt{where} keyword to specify the types of properties\footnote{\url{http://www.cse.chalmers.se/~rjmh/QuickCheck/manual\_body.html\#4}}, which is elegant but unfortunately would not solve the problem in \gls{sml} because types and structures can not be passed as arguments to functions. % TODO gör om till riktig referens, helst annan källa
 
-\subsection{(JS0, ML)Formal Verification}
+\subsection{Formal Verification}
 \label{subsec:formalverification}
 
 It has already been mentioned that QCheck is based on generating tests for properties defined in terms of the code. A similar but more rigorous approach is formal verification, which is performed by manually constructing mathematical proof of correctness, theorem proving, or deciding whether a model satisfies a given property (known as model or property checking). Model checking is most easily automated, either by specialised software such as CADP\footnote{\url{http://cadp.inria.fr}}, UPPAAL\footnote{\url{http://www.uppaal.org}} and many more\footnote{\url{http://en.wikipedia.org/wiki/List_of_model_checking_tools}} (a couple of them written in \gls{sml}) or by using a constraint solver (see \url{http://www.cs.utah.edu/formal\_verification/pdf/ligd\_thesis.pdf}. % Add Formal verification to glossary. Make a real reference of thesis.
@@ -840,12 +840,12 @@ A problem with formal verification is its cost, because it can be so time consum
 An interesting discussion is whether formal verification can have similar effects on modularity and interface design as \gls{tdd}. Isolated units, for example short methods with few dependencies and side effects, are easier to construct proofs for, so modularity can certainly be positively affected by formal verification. It also favours simplicity, for good or ill. Whether it has benefits for interface design depends on what we mean by interface. Formal verification is unsuitable for \glspl{gui} but can help to keep APIs terse.
 
 
-\subsection{(JS0,ML)DescribeSML}
+\subsection{DescribeSML}
 \label{subsec:describesml}
 
 By the time I found out about existing SML testing frameworks (apart from QCheck) I had already started to write my own. I wanted to use my insights from using JS testing frameworks such as Jasmine and Mocha to write a \gls{bdd} framework which I would use in the Coursera \gls{mooc} course Programming Languages\footnote{\url{https://www.coursera.org/course/proglang}}, as mentioned in section~\ref{subsec:programming}. The working title of it became DescribeSML.
 
-\subsubsection{(JS0,ML)The framework}
+\subsubsection{The framework}
 
 \begin{figure}[ht!]
 \centering
@@ -866,7 +866,7 @@ Because of its modularity, DescribeSML could be used in many different ways. The
 
 The source code of the SML testing framework is supplied in the appendix. It can also be found at \url{https://github.com/emilwall/DescribeSML}.
 
-\subsubsection{(JS0,ML)Alternatives considered and discarded}
+\subsubsection{Alternatives considered and discarded}
 
 Although the strict type system, functional style and static analysis of \gls{sml} slightly reduces the need for testing compared to dynamic and imperative languages such as \gls{js}, it inevitably also results in more limiting testing frameworks. It is somewhat impractical in \gls{sml} to state several expectations in a single \gls{spec} or stub functions used by the \gls{sut}. However, this can also be a good thing, since it leads to more concise tests.
 
@@ -916,7 +916,7 @@ The first versions of DescribeSML did not have nested describes, in favour of th
 
 When a test throws an exception, the \texttt{should} function handles it and displays it as a failure (unless the expect toThrow matcher is used), so that the other specs can still be executed. This feature could be misused by writing tests that throws an exception instead of returning a failure message, but this would be bad practise since it might throw another exception than anticipated. The matcher toNotThrow is better to use in most situations, to make the test more precise, i.e. ensure that it fails for the right reason.
 
-\subsubsection{(JS0,ML)Using the framework}
+\subsubsection{Using the framework}
 
 When solving the first assignment, the instructions were often to use the "answer to the previous question". In this case, you would probably want to do a call assertion, which should be possible to do similar to how it is done in JavaScript, temporarily overwrite a definition of the function to stub, use side-effects to store information about calls to it, and then restore it (either automatically after the test has ended if the stubbing framework can be integrated with the testing framework, manually by calling a method, or super-manually by performing the stubbing using "vanilla-ML").
 
@@ -1120,14 +1120,14 @@ A large number of tests is not necessarily a good thing, it is harder to overvie
 
 Tests can serve to prevent people from breaking code and as examples that help new people understand how an application works and how to continue development \cite[questions~31-32]{Edelstam}. Tests also help to give a clear image of how components fit together and can be a way to concretise a feature or bug.
 
-\subsubsection{(JS,ML0)Why people do not test their JavaScript}
+\subsubsection{Why people do not test their JavaScript}
 \label{subsubsec:whynotjs}
 
 \Gls{js} has no notion of interfaces. This makes stubbing and mocking harder, reduces the ability to write tests for an interface before there is an implementation and impedes the ability to write modular (testable) code. This is both a reason why testing \gls{js} is hard, and a reason \emph{for} doing it, since testing can compensate for the lack of interfaces by enforcing modularity.
 
 \Gls{js} is often used in the front end layer of applications, an environment with many dependencies and very specific behaviour that can be difficult to handle in terms of code. Traditionally, browser automation tools have been used to cope with these challenges, and the tests often serve multiple purposes such as combining smoke testing with integration testing and system testing, with little or no mocking of dependencies. The main problems are that such tests take long to run, even with the introduction of headless browsers such as PhantomJS, and are typically brittle. Alternatives such as comparing screen shots automatically with diff tools and then manually inspect the ones that differ should probably be considered in many situations, despite the difficulty in making them self-checking. Under certain circumstances it is also possible to break out logic from the front-end code and test it with unit tests.
 
-\subsubsection{(JS0,ML)Why people do not test Standard ML}
+\subsubsection{Why people do not test Standard ML}
 \label{subsubsec:whynotsml}
 
 First off, people do test their \gls{sml} code, but not always, and it seems there are no standard ways of doing it. There is a need for a simple but good testing framework, QCheck has great benefits but is too hard to use for the average programmer or in scenarios where the process of writing tests need to be quick. Other frameworks, including DescribeSML, are too immature. The way forward could be to make QCheck easier to use, with new \gls{bdd} syntax options, customisable failure reports and autotest capabilities, or to merge and collaboratively develop emerging testing frameworks further.
