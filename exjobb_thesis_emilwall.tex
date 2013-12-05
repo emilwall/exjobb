@@ -153,7 +153,7 @@ nodes near coords, nodes near coords align={horizontal},
 \end{tikzpicture}
 \end{center}
 
-The main goal with this thesis was to investigate why \gls{js} and \gls{sml} testing has been performed to such a small extent historically, describe some benefits and practises of doing it, and identifying problems that are yet to be solved.
+The main goal with this thesis was to investigate why \gls{js} and \gls{sml} testing has been performed to such a small extent historically, describe some benefits and practises of doing it, and identifying problems that are yet to be solved. This section contains background and scope, and an overview of the organisation of the thesis.
 
 \subsection{Motivation}
 \label{subsec:motivation}
@@ -242,7 +242,7 @@ The glossary, which is located before this introduction, contains definitions of
 \section{Previous work}
 \label{sec:previouswork}
 
-This section contains an overview of what others have done within the fields of \gls{js} and \gls{sml} testing.
+This section contains an overview of what others have done within the fields of \gls{js} and \gls{sml} testing. Particular interest is paid to research -- lists of relevant frameworks and tools can be found in the Appendix.
 
 \subsection{JavaScript testing}
 \label{subsec:previousworkjs}
@@ -276,7 +276,7 @@ Articles on testing of \gls{sml} are hard to find, none cover \gls{sml} testing 
 \section{Methods}
 \label{sec:methods}
 
-The methods used in this thesis comprised situational analysis, interviews and programming activities in \gls{js} and \gls{sml}. The work of this thesis began with an extensive literature study and an overview of technologies and frameworks. Interviews of \gls{js} developers of different background were performed and analysed. There was also some hands on evaluation of tools and frameworks, assessment of testability and impact of adding tests to existing projects, and a small testing framework was developed in \gls{sml} and used in a \gls{mooc}.
+The methods that were used in this thesis comprise situational analysis, interviews, and programming activities in \gls{js} and \gls{sml}. The work of this thesis began with an extensive literature study and an overview of existing technologies and frameworks. Interviews of \gls{js} developers of different background were performed and analysed. There were also hands on evaluation of tools and frameworks, assessment of testability and impact of adding tests to existing projects, and a small testing framework was developed in \gls{sml} and used in a \gls{mooc}.
 
 \subsection{Literature Study}
 
@@ -344,9 +344,9 @@ As can be seen at the end of the Appendix, there were some additional email conv
 \section{Technical Background}
 \label{sec:technicalbackground}
 
-This section gives an overview of concepts and tools relevant to understanding this thesis. Readers with significant prior knowledge about web development and \gls{js} testing may skip this section.
+This section gives an overview of concepts and tools relevant to understanding this thesis. Readers with significant prior knowledge about web development and \gls{js} testing may skip this section. The topics covered are principles in testing, \gls{tdd}, \gls{bdd}, spikes, refactoring, stubbing, mocking, browser automation and build tools.
 
-\subsection{Basics of Testing}
+\subsection{Principles in Testing}
 \label{subsec:testingbasics}
 
 Every developer performs testing in one way or another. Running an application, interacting with it and observing the results is one form of testing. The more time spent on developing the application, the more evident the need for automated tests tends to become, to reduce the amount of manual work and time spent repeating the same procedures.
@@ -688,9 +688,7 @@ The participants in the discussion were in agreement that testing appearance is 
 \section{Problems in JavaScript testing}
 \label{sec:jsproblems}
 
-Considering all the different options in available frameworks, one may be decieved into believing that the main reason why people don't test their \gls{js} is because they are lazy or uninformed. This is of course not the case, there are indeed respectable obstacles for doing \gls{tdd} both in the process of fitting frameworks into your application and in writing the \gls{js} code in a testable way. % Stryk eller konkretisera (men då måste man gå in på ramverk, så att det blir för stort)
-
-In order to get started with testing \gls{js}, you need to understand why you should do it \cite[question~38]{Edelstam} and then practise with katas and begin to use testing in your projects. Coding katas focused on front-end \gls{js} development are not very common, but not impossible to do \cite[question~47]{Ahnve}.
+Considering the variety of available frameworks, one may be deceived into thinking that people do not test their \gls{js} because they are lazy or uninformed. However, there are respectable obstacles for \gls{tdd} of \gls{js}, both in the process of fitting testing frameworks into your application and in writing testable \gls{js}. This section covers how to test asynchronous events, \gls{dom} manipulation, form validation, the \gls{gui} and private APIs, in \gls{js}.
 
 \subsection{Asynchronous events}
 \label{subsec:asynchronous}
@@ -977,12 +975,12 @@ In conclusion, \gls{tdd} had benefits in terms of structure and solution robustn
 \section{(JS,ML)Testing culture}
 \label{sec:testingculture}
 
-Different people have different opinions about testing: how it should be done, when it pays off and how exciting it is. Some see testing as a tool that helps to provide structure and improve the design of code, whereas others see it as a way to detect bugs and prevent others from braking the code. Most people agree that testing is hard, but many struggle to do it anyway. Attitudes towards testing are essential to whether or not it is carried out or not, and to how worthwhile it turns out to be in the end.
+Different people have different opinions about testing: how it should be done, when it pays off and how exciting it is. Some see testing as a tool that helps to provide structure and improve the design of code, whereas others see it as a way to detect bugs and prevent others from braking the code. Most people agree that testing is hard, but many struggle to do it anyway. Attitudes towards testing are essential to whether or not it is carried out or not, and to how worthwhile it turns out to be in the end. Economic and technical circumstances, team culture and background of the developers have great impact on the level of testing, and in this section the impact of such aspects and viable ways forward are discussed.
 
 \subsection{(ML,JS1)State of events}
 \label{subsec:stateofevents}
 
-Many believe that testing of \gls{js} is uncommon because \gls{js} programmers are often web graphic designers, without that much experience of automated testing. Another common conception is that \gls{js} in practise is usually not testable because it has too much to do with the front-end parts of an application, so tests are inevitably slow, unmaintainable and/or unreliable because of the environment they have to run in. However, lately there seem to have been a turn of events.
+Testing of \gls{js} might be uncommon because \gls{js} programmers are often web graphic designers, without that much experience of automated testing \cite[question~10]{Stenmark}, or that many are new to \gls{js} \cite[question~16]{Ekelof}. A common conception is that \gls{js} in practise is usually not testable because it has too much to do with the front-end parts of an application, so tests are inevitably slow, unmaintainable and/or unreliable because of the environment they have to run in. However, lately there seem to have been a turn of events.
 
 The overall quality of \gls{js} code might have improved over the last few years due to improved toolsets and testing methodologies entering the \gls{js} community. The new application frameworks has brought not only technical possibilities (as mentioned in section~\ref{subsec:frameworks}) but has also brought people with background from test-driven backend-programming, experienced with for example Ruby on Rails development. In fact, most of the new frameworks have been developed by people with such background. This has influenced the way \gls{js} code is written and given birth to a novel testing culture. \cite[questions~12-15]{Ahnve}
 
@@ -1067,7 +1065,9 @@ This section contains a summary of the main points of this thesis, a discussion 
 
 Both the interviews, the literature studies and the practical work indicated that one of the most crucial things for successful testing is finding suitable abstraction levels. If tests contain too much details they will be harder to read, and the same applies to functions in the production code, except that will also impact testability. It is therefore useful to introduce domain-specific language in tests \cite[p.~127]{Clean} and thereby encourage proper modularisation in the production code.
 
-JS is used differently, it is not just another programming language. Because it is implemented in practically every browser, it is used by almost all web developers, regardless of their experience with programming. Frameworks such as jQuery also influence how people write their JavaScript code, often in a way that is negative to testing. On the other hand, other frameworks have the opposite effect and there is nothing inherently bad with using a powerful tool such as jQuery, you just need to be careful to separate code that does different things. If you don't know how the code works, as can be the case when copying code from an external source, then you can not do this. You also need to be aware of good practices.
+In order to get started with testing, one has to understand why it should be done \cite[question~38]{Edelstam} and then practise with katas and begin to use testing in projects. Coding katas focused on front-end \gls{js} development are not very common, but not impossible to do \cite[question~47]{Ahnve}.
+
+One reason for that \gls{js} has suffered from a poor testing culture could be that it is used differently, it is not just another programming language. Because it is implemented in practically every browser, it is used by almost all web developers, regardless of their experience with programming. Frameworks such as jQuery also influence how people write their \gls{js} code, often in a way that is negative to testing. On the other hand, other frameworks have the opposite effect and there is nothing inherently bad with using a powerful tool such as jQuery, you just need to be careful to separate code that does different things. If you don't know how the code works, as can be the case when copying code from an external source, then you can not do this. You also need to be aware of good practices.
 
 The web is a difficult environment for testing because of many dependencies and events. This makes it harder to test, but also more important.
 
