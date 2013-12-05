@@ -204,9 +204,9 @@ In contrast to examples often being simple and seldom providing a full picture, 
 
 \subsection{Scope and Delimitations}
 
-The scope of this thesis is mainly limited to \emph{automated} testing of \gls{sml} and \emph{client side} \gls{js}. This means that the impact of frameworks specialised for server side \gls{js} code such as vows\footnote{\url{http://vowsjs.org/}} and cucumis\footnote{\url{https://github.com/noblesamurai/cucumis}} has not been considered. Testing client side code is by no means more important than server side, but in many aspects it is different and sometimes harder. Reasons for choosing \gls{js} and \gls{sml} over other programming languages have already been covered in the introduction.
+The scope of this thesis is mainly limited to \emph{automated} testing of \gls{sml} and \emph{client side} \gls{js}. This means that the impact of frameworks specialised for server side \gls{js} code such as vows\footnote{\url{http://vowsjs.org/}} and cucumis\footnote{\url{https://github.com/noblesamurai/cucumis}} was not considered. Testing client side code is by no means more important than server side, but in many aspects it is different and sometimes harder. Reasons for choosing \gls{js} and \gls{sml} over other programming languages have already been covered in the introduction.
 
-\gls{js} testing frameworks that are no longer maintained such as JsUnit\footnote{\url{https://github.com/pivotal/jsunit}} and JSpec\footnote{\url{https://github.com/liblime/jspec}} was also deliberately left out of consideration. Others were left out because of a smaller user base or lack of unique functionality; among these we find TestSwarm, YUI Yeti and RhinoUnit and the majority of the \gls{sml} testing frameworks (see Appendix). These are useful tools but could not be included due to time limitations.
+\gls{js} testing frameworks that are no longer maintained such as JsUnit\footnote{\url{https://github.com/pivotal/jsunit}} and JSpec\footnote{\url{https://github.com/liblime/jspec}} was deliberately left out of consideration. Others were left out because of a smaller user base or lack of unique functionality; among these we find TestSwarm, YUI Yeti and RhinoUnit and the majority of the \gls{sml} testing frameworks (see Appendix). These are useful tools but could not be included due to time limitations.
 
 Manual testing was not covered to any significant extent, since it is outside the scope of test-driven development and automated testing. Naturally, there are many situations where manual testing is required, but in this thesis \emph{testing} typically refers to automated testing.
 
@@ -289,16 +289,9 @@ Since there was an abundance of material on \gls{js} testing, a full review was 
 
 In order to describe ways of writing tests for \gls{js}, the practical work involved adding tests to an existing \gls{js} application (see section \ref{subsec:asteriods}), performing \gls{tdd} exercises from Test-driven JavaScript Development \cite[part~III]{Tddjs} and doing some small \gls{tdd} projects during the framework evaluation. There were plans to have a workshop field study, where programmers would work in pairs to solve pre-defined problems using \gls{tdd}, but in the end it was decided that it would be too difficult to extract useful data from such an activity.
 
-The development of an \gls{sml} testing framework (see section \ref{subsec:describesml}) and using the developed framework in practise to solve programming assignments in a \gls{mooc}, namely the Coursera Programming Languages course (see section~\ref{subsec:tddmooc}), was also a substantial part of the work effort in this thesis.
+An \gls{sml} testing framework (see section \ref{subsec:describesml}) was developed and used to solve programming assignments in the Coursera Programming Languages \gls{mooc}. This provided experience of using \gls{tdd} in \gls{sml} (see section~\ref{subsec:tddmooc}), allowed for application of insights from looking at \gls{js} testing to \gls{sml} dito, and made clear which problems within \gls{sml} testing are specific to \gls{sml} and which are not (see section~\ref{sec:smlproblems}).
 
-A thorough evaluation of frameworks for \gls{js} and \gls{sml} was not part of the scope, but since they pose a significant part of how to solve problems with testing many were involved anyway. The following \gls{js} testing frameworks have been part of the practical work:
-Jasmine\footnote{\url{http://pivotal.github.com/jasmine/}},
-qUnit\footnote{\url{http://qunitjs.com/}},
-Karma\footnote{\url{http://karma-runner.github.io/}},
-Mocha\footnote{\url{http://visionmedia.github.com/mocha/}},
-JsTestDriver\footnote{\url{https://code.google.com/p/js-test-driver/}},
-Buster.JS\footnote{\url{http://docs.busterjs.org/}} and
-Sinon.JS\footnote{\url{http://sinonjs.org/}}. Apart from the \gls{mooc} programming assignments, all code is publicly available on my Github account \emph{emilwall}, together with the \LaTeX~code for this report.
+A thorough evaluation of frameworks for \gls{js} and \gls{sml} was not part of the scope, but since they pose a significant part of how to solve problems with testing, many were involved anyway. The testing frameworks that were part of the practical work are listed in the Appendix. Apart from the \gls{mooc} programming assignments, all code is publicly available on my Github account \emph{emilwall}, together with the \LaTeX~code for this report.
 
 \subsection{Interviews}
 
