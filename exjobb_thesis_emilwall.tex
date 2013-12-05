@@ -1058,21 +1058,40 @@ This section contains a summary of the main points of this thesis, a discussion 
 
 \subsection{(JS,ML)Lessons learned}
 
+The goal of this thesis was to investigate the main problems with automated testing of \gls{sml} and client side \gls{js}, and how they relate to development tools and practises.
+
 Both the interviews, the literature studies and the practical work indicated that one of the most crucial things for successful testing is finding suitable abstraction levels. If tests contain too much details they will be harder to read, and the same applies to functions in the production code, except that will also impact testability. It is therefore useful to introduce domain-specific language in tests \cite[p.~127]{Clean} and thereby encourage proper modularisation in the production code.
+
+\subsubsection{Testability issues in JavaScript}
+
+What are the testability issues in \gls{js}?
+
+The web is a difficult environment for testing because of many dependencies and events. This makes it harder to test, but also more important.
+
+\subsubsection{Testability issues in Standard ML}
+
+What are the testability issues in \gls{sml}?
+
+\subsubsection{Stable and maintainable tests}
+
+Which considerations need to be made in order to write stable and maintainable tests?
+
+Striving for full coverage is not compatible with \gls{bdd} and not being implementation specific. As a novice tester, it can be hard to find a good balance between writing many tests and writing good tests.
+
+\subsubsection{Testing culture}
+
+How does testing culture affect productivity and quality of software?
 
 In order to get started with testing, one has to understand why it should be done \cite[question~38]{Edelstam} and then practise with katas and begin to use testing in projects. Coding katas focused on front-end \gls{js} development are not very common, but not impossible to do \cite[question~47]{Ahnve}.
 
 One reason for that \gls{js} has suffered from a poor testing culture could be that it is used differently, it is not just another programming language. Because it is implemented in practically every browser, it is used by almost all web developers, regardless of their experience with programming. Frameworks such as jQuery also influence how people write their \gls{js} code, often in a way that is negative to testing. On the other hand, other frameworks have the opposite effect and there is nothing inherently bad with using a powerful tool such as jQuery, you just need to be careful to separate code that does different things. If you don't know how the code works, as can be the case when copying code from an external source, then you can not do this. You also need to be aware of good practices.
-
-The web is a difficult environment for testing because of many dependencies and events. This makes it harder to test, but also more important.
-
-Striving for full coverage is not compatible with \gls{bdd} and not being implementation specific. As a novice tester, it can be hard to find a good balance between writing many tests and writing good tests.
 
 In a project without any testing routines, you may save time initially but there is no way of confirming that everything works as it should. Without automated tests or testing protocols, bugs will be harder to reproduce. Testing routines in the form of test plans can be hard to keep up to date and execute regularly since the testing activity depends on someone actually taking the time to do it. If something goes wrong you may have to repeat the procedure to ensure that it was not just an error in the testing. An absence of unit tests can lead to exorbitant amount of debugging in order to find the source of an error.
 
 When automatic regression tests are missing, making changes to the code is error prone. Issues related to browser compatibility or subtle dependencies between functions and events are easier to overlook in the absence of tests, and a proper toolset is required to test multiple platforms.
 
 Many people have never set up a testing framework in a project and overestimate how hard it is. Automatic test generation or integration with monitoring services can be hard, but installing a test framework and write the first test is typically not. However, it is worth giving careful thought on what combination of tools to use, to enable a pleasant workflow and ensuring that the tests can be written in a desirable style.
+
 
 \subsection{Insights from interviews}
 
