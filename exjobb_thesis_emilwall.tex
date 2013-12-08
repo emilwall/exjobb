@@ -384,6 +384,8 @@ Counterintuitive it may seem, throwing away a prototype and starting from scratc
 A similar concept to Spike and Stabilise is to write markup without tests until a feature is needed that could use an API call. Then you write one or several acceptance tests for it, and can start to work with that feature in a \gls{tdd} fashion. \cite[question~30]{Ahnve} %Likheten är inte perfekt, kanske bör tillägga att det inte finns något stabilise-steg i den approachen.
 This way of thinking can lead to a useful rationale regarding when to test -- add tests whenever you introduce an external dependency to make sure that dependency is called correctly under certain circumstances, then if that dependency is something that already exists you can just add it, otherwise you can develop it in a test-driven fashion.
 
+Being too religious about testing principles leads to conflicts like ``writing tests take too much time from the real job''. If the tests do not provide enough value for them to be worth the effort then they should be written differently or not at all. There is no value in writing tests just for the sake of it. Thinking about architecture and the end product is usually a good thing, because you need awareness of the bigger picture in order to prioritise correctly and make sure everything fits together in the end. There is the same risk with tests as with other pieces of code, sometimes you are especially proud or fond of a certain test and unwilling to throw it away. In order to avoid that situation it is often better to think ahead and try things out than to immediately spend time writing tests. \cite[question~27]{Edelstam}
+
 \subsection{Refactoring and Lint-like tools}
 \label{subsec:refactor}
 
@@ -1134,8 +1136,6 @@ Many people have never set up a testing framework in a project and overestimate 
 
 
 \subsection{Insights from interviews}
-
-Being too religious about testing principles leads to conflicts like ``writing tests take too much time from the real job''. If the tests do not provide enough value for them to be worth the effort then they should be written differently or not at all. There is no value in writing tests just for the sake of it. Thinking about architecture and the end product is usually a good thing, because you need awareness of the bigger picture in order to prfioritize correctly and make sure everything will fit together in the end. There is the same risk with tests as with other pieces of code, sometimes you are especially proud or fond of a certain test and unwilling to throw it away. In order to avoid that situation it is often better to think ahead and try things out than to immediately spend time writing tests. \cite[question~27]{Edelstam}
 
 Writing implementation specific tests is a common phenomena that can stem from poor experience of writing tests, extreme testing ambitions or, perhaps most commonly, poor understanding of the system under test. It means that you write the tests based on details about the implementation that you have in mind rather than basing them on what the system should do from an interface point of view. These kind of tests should be avoided since they tend to be hard to understand and usually have to be changed whenever an improvement of the implementation is considered.
 
