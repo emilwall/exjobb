@@ -936,7 +936,7 @@ An interesting discussion regarding \gls{sml} testing is whether current framewo
 
 setup/teardown/beforeEach/beforeAll/afterEach/afterAll-metoder heller inte lika viktiga (just pga att stubbning är en vanlig del av setup), men har fortfarande flera användningsområden
 
-\subsection{(ML,JS0)Test-Driven Development of Programming Assignments}
+\subsection{Test-Driven Development of Programming Assignments}
 \label{subsec:tddmooc}
 
 Testing is arguably very useful for educational purposes, both for students when solving coding assignments and for teachers when grading.
@@ -981,13 +981,15 @@ Indeed it turned out to be difficult to test certain things, for instance that k
 In conclusion, \gls{tdd} had benefits in terms of structure and solution robustness for all of the assignments regardless of programming language, although the benefits would arguably have been greater if the assignments had been bigger.
 
 
-\section{(JS,ML)Testing culture}
+\section{Testing culture}
 \label{sec:testingculture}
 
 Different people have different opinions about testing: how it should be done, when it pays off and how exciting it is. Some see testing as a tool that helps to provide structure and improve the design of code, whereas others see it as a way to detect bugs and prevent others from braking the code. Most people agree that testing is hard, but many struggle to do it anyway. Attitudes towards testing are essential to whether or not it is carried out or not, and to how worthwhile it turns out to be in the end. Economic and technical circumstances, team culture and background of the developers have great impact on the level of testing, and in this section the impact of such aspects and viable ways forward are discussed.
 
-\subsection{(ML,JS1)State of events}
+\subsection{State of events}
 \label{subsec:stateofevents}
+
+Although it would certainly be interesting to discuss the extent to which \gls{sml} testing is carried out, and reasons for it, no statistical or qualitative research was carried within that area out as part of this thesis. Supposedly, many who engage in \gls{sml} programming are doing it for academic purposes rather than in true production environments, so the routines for testing are different than in typical server side languages such as Java and C\nolinebreak\hspace{-.05em}\raisebox{.3ex}{\scriptsize\bf \#}, but in this section we will focus on \gls{js} testing.
 
 Testing of \gls{js} might be uncommon because \gls{js} programmers are often web graphic designers, without that much experience of automated testing \cite[question~10]{Stenmark}, or that many are new to \gls{js} \cite[question~16]{Ekelof}. A common conception is that \gls{js} in practise is usually not testable because it has too much to do with the front-end parts of an application, so tests are inevitably slow, unmaintainable and/or unreliable because of the environment they have to run in. However, lately there seem to have been a turn of events.
 
