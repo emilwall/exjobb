@@ -666,6 +666,8 @@ As a programmer you have to be very methodical, principled and meticulous not to
 
 \subsubsection{Deciding when and what to test}
 
+When deciding what to test, it pays off to focus on parts that are central to how the application is perceived, for instance pure logic and calculations might be more important than pictures and graphs. An error that propagates through the entire application is more serious than if a single picture is not displayed properly. If a test turns out to be difficult to write or frequently needs to be replaced by another test, it is usually worth considering not testing that part at all. \cite[questions~9-10]{Edelstam}
+
 Testing is especially important for large applications. It is extra valuable when new functionality is added because it helps to verify that old functionality is not broken and that the new code is structured appropriately \cite[questions~6-7]{Stenmark}. You should then focus on testing behaviour rather than appearance and implementation details \cite[question~10]{Edelstam}. Rather than testing that a certain class inherits from another, test that the methods of that class behaves as one would expect. Whether or not that is dependent on the inheritance patterns is mainly relevant for stubbing considerations -- you may want to replace the prototype of an object in tests so that you can check that there are no unexpected dependencies.
 
 Something that came up during the interview with Edelstam was that when a certain section of code feels hard to test, it is likely that any test you write will become rather brittle as the code changes in the future. The proposed solution was to avoid testing it unless the code can be refactored so that testing becomes easier \cite[question~30]{Edelstam}. When writing the tests for the asteroids application, it was deliberately decided to write tests even when it felt hard, or when it felt like it provided little value, to see whether this made the application harder to test or modify later.
@@ -1110,8 +1112,6 @@ Many people have never set up a testing framework in a project and overestimate 
 
 
 \subsection{Insights from interviews}
-
-When deciding what to test, it pays off to focus on parts that are central to how the application is perceived, for instance pure logic and calculations might be more important than pictures and graphs. An error that propagates through the entire application is more serious than if a single picture is not displayed properly. If a test turns out to be difficult to write or frequently needs to be replaced by another test, it is usually worth considering not testing that part at all. \cite[questions~9-10]{Edelstam}
 
 In June this year, Kent Beck wrote the following tweet\footnote{A tweet is a message sent to many using the social media \url{www.twitter.com}}:
 
