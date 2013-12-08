@@ -598,7 +598,7 @@ Using Mocha with Zombie.js (or Phantom.js) as described in \emph{Using Node.js f
 
 \subsection{Tool Issues}
 
-Selecting which tools and frameworks to use usually has to be done fast and then you have to live with the decision. In this subsection, we will look at some issues that you might want to be aware of.
+Selecting which tools and frameworks to use usually has to be done fast and then you have to live with the decision. The decision is nevertheless important, regardless of whether a project has just started or if it is under a maintenance phase. Tools facilitates testing, so that people are not so deterred by the initial effort required to get started. There are many examples of frameworks and tools, such as Yeoman and Brunch, that can help you in quickly getting started with a project, and structure it so that testing becomes easier \cite[questions~11]{Edelstam}. In this subsection we will mainly discuss tools used to write and run the actual tests, and highlight some issues that you might want to be aware of.
 
 \subsubsection{JsTestDriver evaluation}
 \label{subsec:jstestdriver}
@@ -624,6 +624,12 @@ SyntaxError: Unexpected token )
 \end{verbatim}
 
 As a developer, you might miss the ``error loading file'' message and that not all 36 tests were run, because the first line seems to say that everything went fine. Sometimes Jasmine does not run any test at all when there is a syntax error, but does not report the syntax error either. It is therefore recommended to pay close attention to the terminal output and check that the correct number of tests were run rather than just that there was no failures. This is impractical when running the tests in a \gls{ci} build because the build screen will typically display success even if no tests were run. It can be of help to keep a close look on the order in which files are loaded and also to keep the console of a browser open in order to be notified of syntax errors \cite{MikeJansen}.
+
+\subsubsection{PhantomJS}
+
+The increased maturity of tools such as PhantomJS and Mocha can be truly helpful to get a smooth workflow when adding tests to already existing projects \cite[questions~11-12 and 20]{Edelstam}. An important difference between using a headless browser such as PhantomJS to run your tests compared to running them in ordinary browsers, using for instance JsTestDriver, is that a headless browser provides no information about how your code performs on different \gls{js} implementations. Reasons why you might still decide to do so include speed, easier integration with build tools such as Jenkins, and that it yields the same results as long as the tests focus on logic rather than compatibility. \cite[questions~13-15]{Edelstam}
+
+Error reports are useful feedback that tests provide. The quality of these reports vary depending on which testing frameworks you are using and how you write your tests. When using PhantomJS to run tests, some test failures require you to run the tests in a browser in order to get good error reports. \cite[question~12]{Edelstam}
 
 \subsubsection{sinon.JS}
 
@@ -1120,12 +1126,6 @@ Many people have never set up a testing framework in a project and overestimate 
 
 
 \subsection{Insights from interviews}
-
-Tools are an important part of facilitating testing, so that people are not so deterred by the initial effort required to get started. Yeoman is one example of a framework that can help you in quickly getting started with a project that is structured so that testing becomes easier. For already existing projects, the increased maturity of tools such as PhantomJS and Mocha is also truly helpful. \cite[questions~11-12 and 20]{Edelstam}
-
-Error reports are useful feedback that tests provide. The quality of these reports vary depending on which testing frameworks you are using and how you write your tests. When using PhantomJS to run tests, some test failures require you to run the tests in a browser in order to get good error reports. \cite[question~12]{Edelstam}
-
-An important difference between using a headless browser such as PhantomJS to run your tests compared to JsTestDriver, or other drivers that allow you to test in several browsers, is that a headless browser provides no information about how your code performs on different \gls{js} implementations. Reasons why you might still decide to do so include speed, easier integration with build tools such as Jenkins, and that it yields the same results as long as the tests focus on logic rather than compatibility. \cite[questions~13-15]{Edelstam}
 
 % TODO: section: Ways of testing, selenium vs unit test in browser. headless vs real browser.
 
