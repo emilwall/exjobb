@@ -758,6 +758,8 @@ A rather common opinion is that you should avoid automatic testing of an applica
 
 Before deciding on whether you want to do automated \gls{gui} testing or not, think carefully about how important the \gls{gui} and its cross browser compatibility is to you. If you feel that the exact appearance is irrelevant, then there is little sense in doing it. If you on the other hand feel that it would be valuable but have concerns about the technical aspects of it, you should not dismiss it too easily.
 
+The problems that some people experience with testing front end interfaces sometimes have to do with poor modularity. For instance, the presentation layer should not be responsible for calling large APIs. In order to improve the modularity, tools such as RequireJS can be used to handle dependencies but if each part of the application has too many or large dependencies, mocking still becomes a daunting task. Typically, these kinds of problems can be solved by introducing new layers of logic and services that separate responsibilities and allows for much cleaner tests. \cite[question~23]{Edelstam}
+
 \subsubsection{Regression testing of GUI}
 
 \gls{gui} testing should not be confused with integration testing. Testing graphical elements in tests that depend on system integration are hard to maintain and can fail for too many reasons. Instead of executing a sequence before making assertions about graphical components, you may benefit from keeping assertions simple in an integration test. The \gls{gui} testing can then be performed in a unit testing fashion as a separate activity, by creating a \gls{testfixture} that mimics the state of the application the way it looks after a certain sequence has finished.
@@ -1130,10 +1132,6 @@ Many people have never set up a testing framework in a project and overestimate 
 
 
 \subsection{Insights from interviews}
-
-% TODO: section: Ways of testing, selenium vs unit test in browser. headless vs real browser.
-
-The problems that some people experience with testing front end interfaces sometimes have to do with poor modularity. For instance, the presentation layer should not be responsible for calling large APIs. Tools such as RequireJS can be used to handle dependencies but if each part of the application has too many or large dependencies, mocking becomes a daunting task. Typically, these kinds of problems can be solved by introducing new layers of logic and services that separate responsibilities and allows for much cleaner tests. \cite[question~23]{Edelstam}
 
 A common case of user interface testing is form validation. Being test driven does not necessarily mean that you should test that the form exists, has a working submit button and other boilerplate things, unless the form is written in a way that is unique or new to you in some way. A typical approach would rather be to write the code for the form and then add a test that searches for a non-existing validation. The difficult part here is to strike a balance and be alert to when the code is getting so complicated that it is time to start testing, and to avoid writing tests when they are in the way and provide little value. \cite[questions~24-25]{Edelstam}
 
