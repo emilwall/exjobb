@@ -1000,6 +1000,14 @@ Tests that depend on the \gls{dom} tend to be relatively slow, so it would be im
 \subsection{(JS,ML)Culture, Collaboration and Consensus}
 \label{subsec:ccc}
 
+In June this year, Kent Beck wrote the following tweet\footnote{A tweet is a message sent to many using the social media \url{www.twitter.com}}:
+
+\begin{quote}
+``that was tough--it almost never takes me 6 hours to write one test. complicated domain required extensive research.''
+\end{quote}
+
+One of the responses was that many would have given up on writing that test. Beck replied that if you don't know how to write the test, you don't know how to write the code either \cite{TwitterKentBeck}. What many probably fail to realise about why testing can be time consuming and hard, is that when writing tests you encounter problems that you would have to solve anyway. The difference is that you solve the problems by formulating tests rather than staring at production code for the same amount of time. \cite[question~11]{Edelstam}
+
 Testing is not about eliminating the risk of bugs or ensuring that every line of code is executed exactly the way it was originally meant to be executed. In order to better understand the main benefits of testing, it is recommended to read books such as Clean Code\cite{Clean}, and to work together with experienced programmers and testers. Without this understanding there is a risk of frustration, inability to decide which tools to use and difficulties in motivating choices related to testing. Collaboration problems may occur when members of a team have different opinions about the purpose of testing. \cite[question~38]{Edelstam}
 
 To get as much benefit as possible from testing, every developer should be involved in the testing effort and preferably the product owner and other stakeholders too. The work of specifying stories can involve agreeing on testing scenarios, thinking about what the desired behaviour is and coming up with examples that can be used as input and expected output in end-to-end tests. \cite[questions~39-40]{Edelstam}\cite[question~30]{Stenmark}
@@ -1112,14 +1120,6 @@ Many people have never set up a testing framework in a project and overestimate 
 
 
 \subsection{Insights from interviews}
-
-In June this year, Kent Beck wrote the following tweet\footnote{A tweet is a message sent to many using the social media \url{www.twitter.com}}:
-
-\begin{quote}
-``that was tough--it almost never takes me 6 hours to write one test. complicated domain required extensive research.''
-\end{quote}
-
-One of the responses was that many would have given up on writing that test. Beck replied that if you don't know how to write the test, you don't know how to write the code either \cite{TwitterKentBeck}. What many probably fail to realise about why testing can be time consuming and hard, is that when writing tests you encounter problems that you would have to solve anyway. The difference is that you solve the problems by formulating tests rather than staring at production code for the same amount of time. \cite[question~11]{Edelstam}
 
 Tools are an important part of facilitating testing, so that people are not so deterred by the initial effort required to get started. Yeoman is one example of a framework that can help you in quickly getting started with a project that is structured so that testing becomes easier. For already existing projects, the increased maturity of tools such as PhantomJS and Mocha is also truly helpful. \cite[questions~11-12 and 20]{Edelstam}
 
