@@ -1069,14 +1069,20 @@ The goal of this thesis was to investigate the main problems with automated test
 Both the interviews, the literature studies and the practical work indicated that one of the most crucial things for successful testing is finding suitable abstraction levels. If tests contain too much details they will be harder to read, and the same applies to functions in the production code, except that will also impact testability. It is therefore useful to introduce domain-specific language in tests \cite[p.~127]{Clean} and thereby encourage proper modularisation in the production code.
 
 \subsubsection{Testability issues in JavaScript}
+\label{subsubsec:whynotjs}
 
 What are the testability issues in \gls{js}?
 
 The web is a difficult environment for testing because of many dependencies and events. This makes it harder to test, but also more important.
 
+\Gls{js} is often used in the front end layer of applications, an environment with many dependencies and very specific behaviour that can be difficult to handle in terms of code. Traditionally, browser automation tools have been used to cope with these challenges, and the tests often serve multiple purposes such as combining smoke testing with integration testing and system testing, with little or no mocking of dependencies. The main problems are that such tests take long to run, even with the introduction of headless browsers such as PhantomJS, and are typically brittle. Alternatives such as comparing screen shots automatically with diff tools and then manually inspect the ones that differ should probably be considered in many situations, despite the difficulty in making them self-checking. Under certain circumstances it is also possible to break out logic from the front-end code and test it with unit tests.
+
 \subsubsection{Testability issues in Standard ML}
+\label{subsubsec:whynotsml}
 
 What are the testability issues in \gls{sml}?
+
+First off, people do test their \gls{sml} code, but not always, and it seems there are no standard ways of doing it. There is a need for a simple but good testing framework, QCheck has great benefits but is too hard to use for the average programmer or in scenarios where the process of writing tests need to be quick. Other frameworks, including DescribeSML, are too immature. The way forward could be to make QCheck easier to use, with new \gls{bdd} syntax options, customisable failure reports and autotest capabilities, or to merge and collaboratively develop emerging testing frameworks further.
 
 \subsubsection{Stable and maintainable tests}
 
@@ -1137,15 +1143,6 @@ A large number of tests is not necessarily a good thing, it is harder to overvie
 
 Tests can serve to prevent people from breaking code and as examples that help new people understand how an application works and how to continue development \cite[questions~31-32]{Edelstam}. Tests also help to give a clear image of how components fit together and can be a way to concretise a feature or bug.
 
-\subsubsection{Why people do not test their JavaScript}
-\label{subsubsec:whynotjs}
-
-\Gls{js} is often used in the front end layer of applications, an environment with many dependencies and very specific behaviour that can be difficult to handle in terms of code. Traditionally, browser automation tools have been used to cope with these challenges, and the tests often serve multiple purposes such as combining smoke testing with integration testing and system testing, with little or no mocking of dependencies. The main problems are that such tests take long to run, even with the introduction of headless browsers such as PhantomJS, and are typically brittle. Alternatives such as comparing screen shots automatically with diff tools and then manually inspect the ones that differ should probably be considered in many situations, despite the difficulty in making them self-checking. Under certain circumstances it is also possible to break out logic from the front-end code and test it with unit tests.
-
-\subsubsection{Why people do not test Standard ML}
-\label{subsubsec:whynotsml}
-
-First off, people do test their \gls{sml} code, but not always, and it seems there are no standard ways of doing it. There is a need for a simple but good testing framework, QCheck has great benefits but is too hard to use for the average programmer or in scenarios where the process of writing tests need to be quick. Other frameworks, including DescribeSML, are too immature. The way forward could be to make QCheck easier to use, with new \gls{bdd} syntax options, customisable failure reports and autotest capabilities, or to merge and collaboratively develop emerging testing frameworks further.
 
 \subsection{(JS,ML)Future}
 
