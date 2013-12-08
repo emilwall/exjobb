@@ -986,10 +986,10 @@ In conclusion, \gls{tdd} had benefits in terms of structure and solution robustn
 
 Different people have different opinions about testing: how it should be done, when it pays off and how exciting it is. Some see testing as a tool that helps to provide structure and improve the design of code, whereas others see it as a way to detect bugs and prevent others from braking the code. Most people agree that testing is hard, but many struggle to do it anyway. Attitudes towards testing are essential to whether or not it is carried out or not, and to how worthwhile it turns out to be in the end. Economic and technical circumstances, team culture and background of the developers have great impact on the level of testing, and in this section the impact of such aspects and viable ways forward are discussed.
 
-\subsection{State of events}
-\label{subsec:stateofevents}
+Although it would certainly be interesting to discuss the extent to which \gls{sml} testing is carried out, and reasons for it, no statistical or qualitative research was carried out within this area as part of this thesis. Supposedly, many who engage in \gls{sml} programming are doing it for academic purposes rather than in true production environments, so the routines and cultures around testing are different than in typical server side languages such as Java and C\nolinebreak\hspace{-.05em}\raisebox{.3ex}{\scriptsize\bf \#}, but in this section we will focus on \gls{js} testing, except in the parts that are general to any programming language.
 
-Although it would certainly be interesting to discuss the extent to which \gls{sml} testing is carried out, and reasons for it, no statistical or qualitative research was carried within that area out as part of this thesis. Supposedly, many who engage in \gls{sml} programming are doing it for academic purposes rather than in true production environments, so the routines for testing are different than in typical server side languages such as Java and C\nolinebreak\hspace{-.05em}\raisebox{.3ex}{\scriptsize\bf \#}, but in this section we will focus on \gls{js} testing.
+\subsection{State of events for JavaScript}
+\label{subsec:stateofevents}
 
 Testing of \gls{js} might be uncommon because \gls{js} programmers are often web graphic designers, without that much experience of automated testing \cite[question~10]{Stenmark}, or that many are new to \gls{js} \cite[question~16]{Ekelof}. A common conception is that \gls{js} in practise is usually not testable because it has too much to do with the front-end parts of an application, so tests are inevitably slow, unmaintainable and/or unreliable because of the environment they have to run in. However, lately there seem to have been a turn of events.
 
@@ -1007,7 +1007,7 @@ Testing the right thing means focusing on the specifications and behaviour that 
 
 Tests that depend on the \gls{dom} tend to be relatively slow, so it would be impractical to have hundreds of unit tests with \gls{dom} manipulation if you want to be able to run them often \cite[questions~21-22]{Stenmark}. Selenium tests are also known to be slow, the same principle applies there. Only running tests that are connected with changes that have been made is one way to get around this, there is support for this in many testing tools. An alternative is to separate the fast tests from the slow, and configure Autotest\footnote{\url{http://autotest.github.io/}} or some tool based on Guard\footnote{\url{https://github.com/guard/guard/}} such as guard-jasmine\footnote{\url{https://github.com/netzpirat/guard-jasmine/}} to run the fast tests each time a file changes, and only run the slow tests before sending the code to a central source control repository or deploying the application.
 
-\subsection{(JS,ML)Culture, Collaboration and Consensus}
+\subsection{Culture, Collaboration and Consensus}
 \label{subsec:ccc}
 
 In June this year, Kent Beck wrote the following tweet\footnote{A tweet is a message sent to many using the social media \url{www.twitter.com}}:
@@ -1043,14 +1043,14 @@ The feeling of being limited and not productive when writing tests can stem from
 
 It is important to remember that people tend to care most of things related to their guild, i.e. what they are good at and take pride in. The most embarrassing thing for a seasoned tester might be that a bug has leaked into production, and an art director may be more concerned that everything looks good and care less about the actual functionality. This can be seen in projects where, despite having the same economic risk, completely different approaches to quality control may be taken. In some projects it is ok to release a bug and roll back or update when it is discovered whereas others can spend an entire week performing manual tests, as part of a ``hardening sprint''. Delaying a release by two weeks and having full time developers doing manual testing rather than implementing new functionality may give them a feeling similar to driving extremely slow in a sports car, not to mention the associated cost from a business perspective. This is why releasing and restoring previous versions should be as simple as possible. \cite[question~38]{Ahnve}
 
-\subsection{(ML,JS1)Project risks}
+\subsection{Project risks}
 \label{subsec:projectrisks}
 
 Different projects have different fault tolerance. Sometimes a single bug can cause loss of millions of dollars or even lives, whereas in other projects the impact of a failure can be relatively small. The risk with untested \gls{js} is especially high when the code supports business critical operations. For instance, there have been several cases of banks and finance systems being fined for not reporting transactions to the government \cite{Bug1} or giving faulty advice to investors \cite{Bug2} due to application failure. A web-shop may lose orders and any website that is perceived as broken can harm trademarks associated with it and change people's attitudes for the worse.
 
 The connection between how much testing is carried out and how much risk is involved with a project is not as strong as one might think. The company culture and the background of the developers have great impact too, especially when it comes to economic risks. If the stakeholders are not used to testing and the developers are inexperienced with the tools of the trade, chances are that they will rely on manual testing or no testing at all, whereas utilising \gls{ci} with good rollback capabilities can lead to qualitative and cost effective delivery without any manual testing. On the other hand, no company would rely on just \gls{ci} if the application is safety critical, for example regulating nuclear coolant or flight navigation. In such scenarios there should be both automatic tests, rigorous manual testing routines and frequent validation reviews. \cite[questions~14,~38]{Ahnve}
 
-\subsection{(ML,JS)Frameworks}
+\subsection{Frameworks}
 \label{subsec:frameworks}
 
 Programming languages in use today typically have frameworks to help with standard structure and other generic problems. \gls{js} is certainly no exception, the number of web application frameworks that focus on \gls{js} has increased a lot during the last few years alone. When application frameworks such as Backbone first appeared, they revolutionised scalability and structure of \gls{js} applications \cite[question~23]{Ahnve}\cite[question~11]{Rovegard}. The advent of application frameworks also gave new support for testing, for instance, the AngularJS framework uses Jasmine and Karma in the official tutorial.
@@ -1081,12 +1081,12 @@ Using a suitable application framework and doing test driven development can be 
 Aside from the increased awareness and knowledge of testing that Node.js has brought to the \gls{js} community from other communities such as Ruby on Rails, the runtime itself facilitates testing since it enables different testing tools to be distributed through npm (Node Package Manager) and run in the terminal. Previously, you had to load a HTML page in a browser in order to run your tests. \cite[question~9]{Stenmark}
 
 
-\section{(JS,ML)Conclusions}
+\section{Conclusions}
 \label{sec:conclusions}
 
 This section contains a summary of the main points of this thesis, a discussion about what could have been done differently, and suggestions for the future.
 
-\subsection{(JS,ML)Lessons learned}
+\subsection{Lessons learned}
 
 The goal of this thesis was to investigate the main problems with automated testing of \gls{sml} and client side \gls{js}, and how they relate to development tools and practises.
 
@@ -1146,7 +1146,7 @@ A large number of tests is not necessarily a good thing, it is harder to overvie
 Tests can serve to prevent people from breaking code and as examples that help new people understand how an application works and how to continue development \cite[questions~31-32]{Edelstam}. Tests also help to give a clear image of how components fit together and can be a way to concretise a feature or bug.
 
 
-\subsection{(JS,ML)Future}
+\subsection{Future}
 
 It would be useful to have a fully automated solution for comparing snapshots in a smart fashion. This is possibly an area for image analysis, which could be integrated in testing tools to handle scenarios that are hard today. This has already been done to some extent, see \url{http://www.imagemagick.org/} and \url{http://huddle.github.io/Resemble.js/}, but has not quite reached the industry yet.
 
@@ -1154,7 +1154,7 @@ As mentioned in section~\ref{subsec:asynchronous}, the issue of testing asynchro
 
 (new books, new attitudes, old problems, tool convergence and revenue/open source)
 
-\subsection{(JS,ML)TODO/ideas}
+\subsection{TODO/ideas}
 
 Översätta själv? Skriva tester på eget språk, domän/kommunicera med produktägare
 
