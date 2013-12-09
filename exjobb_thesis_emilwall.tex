@@ -635,6 +635,23 @@ Error reports are useful feedback that tests provide. The quality of these repor
 
 The unit tests for the asteroids application had an average execution time of roughly 1 ms per test, so there was little to gain from using a headless browser. However, it was done anyway for the sake of research, using \url{https://github.com/larrymyers/js-test-driver-phantomjs}. The results were somewhat surprising -- the execution time increased by up to 65 \% rather than decreasing as expected. The most likely reason for this is either that the \gls{js} engine of PhantomJS (1.9.2, installed using npm) was outdated compared to the non-headless browser (Safari 7.0, 537.71 for OS X 10.9) or that the integration with JsTestDriver was bad. Some efforts were made to run the tests in PhantomJS directly (using \url{https://github.com/jcarver989/phantom-jasmine}), to eliminate the overhead of the JsTestDriver integration and produce a better comparison, but either no tests were run or uninformative error messages were given, although the same test fixture worked in the non-headless browser (with a similar execution time as when running the tests with JsTestDriver).
 
+\begin{table}
+  \centering
+    \begin{tabular}{ c | c c}
+    Test run & PhantomJS & Safari \\ \hline
+    1 & 299 & 225 \\
+    2 & 348 & 323 \\
+    3 & 261 & 238 \\
+    4 & 299 & 204 \\
+    5 & 261 & 210 \\
+    6 & 303 & 180 \\
+    7 & 356 & 227 \\
+    8 & 363 & 271 \\
+    \end{tabular}
+  \caption{Time in ms to run 287 tests with JsTestDriver in headless and non-headless browsers}
+  \label{tab:testruns}
+\end{table}
+
 \subsubsection{Sinon.JS}
 
 Proper stubbing of dependencies can be a daunting task, and is closely connected to mocking and dependency injection. In \gls{js}, dependency injection is harder than in for instance C or Java because of the absence of class interfaces. The sinon.JS framework does make it easier to stub compared to if done manually (which on the other hand is exceptionally simple to do with \gls{js}) but there are still tradeoffs between dedicating many lines of code to stubbing, quite often having to repeat the same code in multiple places, or risk introducing bugs in the tests themselves.
