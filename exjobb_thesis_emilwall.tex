@@ -233,7 +233,7 @@ Rather than proposing best practices for \gls{js} testing, the reader should be 
 
 A full evaluation of the most popular testing and application frameworks is not within the scope of this thesis, but others have done it \cite{JackFranklin}\cite{SebastianPorto}. Popular \gls{js} testing frameworks include assertion frameworks such as Jasmine, qUnit, expect.js and chai, and drivers/test runners such as Mocha, JsTestDriver, Karma and Chutzpah\footnote{\url{http://chutzpah.codeplex.com/}} which may have their own assertion framework built in but are typically easy to integrate with other assertion frameworks using adapters or via built-in support.
 
-\subsection{Reading instructions}
+\subsection{Organisation of Thesis}
 
 This thesis is about difficulties and experiences with \gls{js} and \gls{sml} testing, and has been organised in favour of readers mainly interested in one of these programming languages. It contains a case study on testability aspects of adding tests to an existing \gls{js} application (section~\ref{sec:testability}), problems specific to \gls{js} and \gls{sml} testing (sections~\ref{sec:jsproblems} and~\ref{sec:smlproblems}), considerations from writing and using a \gls{bdd} framework in \gls{sml} (section~\ref{subsec:describesml}) and implications of testing culture that has been researched through interviews (section~\ref{sec:testingculture}). These sections are preceded by an overview of what others have done in the fields of \gls{js} and \gls{sml} testing (section~\ref{sec:previouswork}), the methods that were used for writing this thesis (section~\ref{sec:methods}) and a technical background that explains some of the concepts that appear in the rest of the thesis (section~\ref{sec:technicalbackground}). The final section is conclusions (section~\ref{sec:conclusions}), including summaries and proposals of future work.
 
@@ -241,12 +241,12 @@ Readers experienced with or uninterested in testing concepts and web application
 
 The glossary, which is located before this introduction, contains definitions of abbreviations and technical terms used throughout the text.
 
-\section{Previous work}
+\section{Previous Work}
 \label{sec:previouswork}
 
 This section contains an overview of what others have done within the fields of \gls{js} and \gls{sml} testing. Particular interest is paid to research -- lists of relevant frameworks and tools can be found in the Appendix.
 
-\subsection{JavaScript testing}
+\subsection{JavaScript Testing}
 \label{subsec:previousworkjs}
 
 In 2010, a student at the Swedish royal institute of technology called Jens Neubeck wrote a master thesis about test-driven \gls{js} application development \cite{Neubeck}. In his thesis, he evaluated Crosscheck, HtmlUnit och Selenium, with the conclusion that none of them were mature enough to be used for the considered applications. Today, HtmlUnit and Selenium have evolved and there are new tools available such as PhantomJS, Buster.JS and Karma, so the conclusion might not hold anymore. Tools such as JsTestDriver and Jasmine were not considered and the results were based purely on original work, with no \gls{js} specific academic sources, so it has not been possible to build upon his findings here.
@@ -267,7 +267,7 @@ Heidegger et al. cover unit testing of \gls{js} that manipulates the \gls{dom} o
 
 Phillip Heidegger and Peter Thiemann has addressed the issue of type related errors in \gls{js} by introducing JSConTest, a contract framework that enables guided random testing by specifying types and relations of the arguments and return value of functions \cite{ContractTesting}.
 
-\subsection{Standard ML testing}
+\subsection{Standard ML Testing}
 \label{subsec:previousworksml}
 
 Except for discussions on how to perform mathematical proofs and equality tests of polymorphic types, there are no books that cover testing of \gls{sml}. The main sources of reference for \gls{sml} are \emph{The Definition of Standard ML} \cite{DefinitionStandardML} which covers the language syntax and semantics, \emph{The Standard ML Basis Manual} \cite{BasisManual} which describes the standard library, \emph{Elements of ML Programming} \cite{ElementsML} which cover the features of \gls{sml} in a more comprehensible fashion, \emph{ML for the Working Programmer} \cite{WorkingProgrammer} which is somewhat outdated but comprehensive, and various lecture notes \cite{ProgSml97}\cite{ProgSmlHarper}\cite{FunctionalML}\cite{NotesSMLNJ}. None of these describe ways of doing automated testing and there seems to be an attitude against testing based on that it can not prove absence of errors in the way formal verification can \cite[p.~16]{ProgSmlHarper}.
