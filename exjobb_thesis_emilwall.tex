@@ -798,7 +798,7 @@ Introducing versioning for internal APIs is not always feasible due to the organ
 
 Testing an internal API is not the same thing as testing a private method. In \gls{js} there is formally no private methods, only functions not exposed to the current scope, nevertheless methods that are not intended to be called from the outside can be considered private. It is common practise not to test private methods. If a private method contains code that can not be tested through the public API, then that method is probably too complex to be private and its functionality should be moved into somewhere else. Private methods represent implementation details, tests should be focused on behaviour and functionality, not implementation. \cite[questions~62-63]{Edelstam}
 
-\section{Problems in testing of Standard ML}
+\section{Problems in Testing of Standard ML}
 \label{sec:smlproblems}
 
 \Gls{sml} and \gls{js} have at least two things in common: they are both functional languages (although JS is perhaps more rarely used as such) and they both have poor testing cultures. This section covers existing frameworks, formal verification, and introduces a new \gls{sml} testing framework that was developed as a part of this thesis, inspired by insights gained from looking at popular \gls{js} testing frameworks. In section~\ref{sec:testability}, we discussed how adding tests to an application written without testing in mind can introduce testability issues. Later in this section (~\ref{subsec:tddmooc}) the challenges of writing tests first is described based on a \gls{tdd} approach to solving \gls{sml} programming exercises in a \gls{mooc}.
@@ -863,7 +863,7 @@ An interesting discussion is whether formal verification can have similar effect
 
 By the time I found out about existing SML testing frameworks (apart from QCheck) I had already started to write my own. I wanted to use my insights from using JS testing frameworks such as Jasmine and Mocha to write a \gls{bdd} framework which I would use in the Coursera \gls{mooc} course Programming Languages\footnote{\url{https://www.coursera.org/course/proglang}}, as mentioned in section~\ref{subsec:programming}. The working title of it became DescribeSML.
 
-\subsubsection{The framework}
+\subsubsection{The Framework}
 
 \begin{figure}[ht!]
 \centering
@@ -884,7 +884,7 @@ Because of its modularity, DescribeSML could be used in many different ways. The
 
 The source code of the SML testing framework is supplied in the appendix. It can also be found at \url{https://github.com/emilwall/DescribeSML}.
 
-\subsubsection{Alternatives considered and discarded}
+\subsubsection{Alternatives Considered and Discarded}
 
 Although the strict type system, functional style and static analysis of \gls{sml} slightly reduces the need for testing compared to dynamic and imperative languages such as \gls{js}, it inevitably also results in more limiting testing frameworks. It is somewhat impractical in \gls{sml} to state several expectations in a single \gls{spec} or stub functions used by the \gls{sut}. However, this can also be a good thing, since it leads to more concise tests.
 
@@ -934,7 +934,7 @@ The first versions of DescribeSML did not have nested describes, in favour of th
 
 When a test throws an exception, the \texttt{should} function handles it and displays it as a failure (unless the expect toThrow matcher is used), so that the other specs can still be executed. This feature could be misused by writing tests that throws an exception instead of returning a failure message, but this would be bad practise since it might throw another exception than anticipated. The matcher toNotThrow is better to use in most situations, to make the test more precise, i.e. ensure that it fails for the right reason.
 
-\subsubsection{Using the framework}
+\subsubsection{Using the Framework}
 
 When solving the first assignment, the instructions were often to use the "answer to the previous question". In this case, you would probably want to do a call assertion, which should be possible to do similar to how it is done in JavaScript, temporarily overwrite a definition of the function to stub, use side-effects to store information about calls to it, and then restore it (either automatically after the test has ended if the stubbing framework can be integrated with the testing framework, manually by calling a method, or super-manually by performing the stubbing using "vanilla-ML").
 
@@ -991,14 +991,14 @@ Indeed it turned out to be difficult to test certain things, for instance that k
 In conclusion, \gls{tdd} had benefits in terms of structure and solution robustness for all of the assignments regardless of programming language, although the benefits would arguably have been greater if the assignments had been bigger.
 
 
-\section{Testing culture}
+\section{Testing Culture}
 \label{sec:testingculture}
 
 Different people have different opinions about testing: how it should be done, when it pays off and how exciting it is. Some see testing as a tool that helps to provide structure and improve the design of code, whereas others see it as a way to detect bugs and prevent others from braking the code. Most people agree that testing is hard, but many struggle to do it anyway. Attitudes towards testing are essential to whether or not it is carried out or not, and to how worthwhile it turns out to be in the end. Economic and technical circumstances, team culture and background of the developers have great impact on the level of testing, and in this section the impact of such aspects and viable ways forward are discussed.
 
 Although it would certainly be interesting to discuss the extent to which \gls{sml} testing is carried out, and reasons for it, no statistical or qualitative research was carried out within this area as part of this thesis. Supposedly, many who engage in \gls{sml} programming are doing it for academic purposes rather than in true production environments, so the routines and cultures around testing are different than in typical server side languages such as Java and C\nolinebreak\hspace{-.05em}\raisebox{.3ex}{\scriptsize\bf \#}, but in this section we will focus on \gls{js} testing, except in the parts that are general to any programming language.
 
-\subsection{State of events for JavaScript}
+\subsection{State of Events for JavaScript}
 \label{subsec:stateofevents}
 
 Testing of \gls{js} might be uncommon because \gls{js} programmers are often web graphic designers, without that much experience of automated testing \cite[question~10]{Stenmark}, or that many are new to \gls{js} \cite[question~16]{Ekelof}. A common conception is that \gls{js} in practise is usually not testable because it has too much to do with the front-end parts of an application, so tests are inevitably slow, unmaintainable and/or unreliable because of the environment they have to run in. However, lately there seem to have been a turn of events.
@@ -1053,7 +1053,7 @@ The feeling of being limited and not productive when writing tests can stem from
 
 It is important to remember that people tend to care most of things related to their guild, i.e. what they are good at and take pride in. The most embarrassing thing for a seasoned tester might be that a bug has leaked into production, and an art director may be more concerned that everything looks good and care less about the actual functionality. This can be seen in projects where, despite having the same economic risk, completely different approaches to quality control may be taken. In some projects it is ok to release a bug and roll back or update when it is discovered whereas others can spend an entire week performing manual tests, as part of a ``hardening sprint''. Delaying a release by two weeks and having full time developers doing manual testing rather than implementing new functionality may give them a feeling similar to driving extremely slow in a sports car, not to mention the associated cost from a business perspective. This is why releasing and restoring previous versions should be as simple as possible. \cite[question~38]{Ahnve}
 
-\subsection{Project risks}
+\subsection{Project Risks}
 \label{subsec:projectrisks}
 
 Different projects have different fault tolerance. Sometimes a single bug can cause loss of millions of dollars or even lives, whereas in other projects the impact of a failure can be relatively small. The risk with untested \gls{js} is especially high when the code supports business critical operations. For instance, there have been several cases of banks and finance systems being fined for not reporting transactions to the government \cite{Bug1} or giving faulty advice to investors \cite{Bug2} due to application failure. A web-shop may lose orders and any website that is perceived as broken can harm trademarks associated with it and change people's attitudes for the worse.
@@ -1096,13 +1096,13 @@ Aside from the increased awareness and knowledge of testing that Node.js has bro
 
 This section contains a summary of the main points of this thesis, a discussion about what could have been done differently, and suggestions for the future.
 
-\subsection{Lessons learned}
+\subsection{Lessons Learned}
 
 The goal of this thesis was to investigate the main problems with automated testing of \gls{sml} and client side \gls{js}, and how they relate to development tools and practises.
 
 Both the interviews, the literature studies and the practical work indicated that one of the most crucial things for successful testing is finding suitable abstraction levels. If tests contain too much details they will be harder to read, and the same applies to functions in the production code, except that will also impact testability. It is therefore useful to introduce domain-specific language in tests \cite[p.~127]{Clean} and thereby encourage proper modularisation in the production code.
 
-\subsubsection{Testability issues in JavaScript}
+\subsubsection{Testability Issues in JavaScript}
 \label{subsubsec:whynotjs}
 
 What are the testability issues in \gls{js}?
@@ -1111,20 +1111,20 @@ The web is a difficult environment for testing because of many dependencies and 
 
 \Gls{js} is often used in the front end layer of applications, an environment with many dependencies and very specific behaviour that can be difficult to handle in terms of code. Traditionally, browser automation tools have been used to cope with these challenges, and the tests often serve multiple purposes such as combining smoke testing with integration testing and system testing, with little or no mocking of dependencies. The main problems are that such tests take long to run, even with the introduction of headless browsers such as PhantomJS, and are typically brittle. Alternatives such as comparing screen shots automatically with diff tools and then manually inspect the ones that differ should probably be considered in many situations, despite the difficulty in making them self-checking. Under certain circumstances it is also possible to break out logic from the front-end code and test it with unit tests.
 
-\subsubsection{Testability issues in Standard ML}
+\subsubsection{Testability Issues in Standard ML}
 \label{subsubsec:whynotsml}
 
 What are the testability issues in \gls{sml}?
 
 First off, people do test their \gls{sml} code, but not always, and it seems there are no standard ways of doing it. There is a need for a simple but good testing framework, QCheck has great benefits but is too hard to use for the average programmer or in scenarios where the process of writing tests need to be quick. Other frameworks, including DescribeSML, are too immature. The way forward could be to make QCheck easier to use, with new \gls{bdd} syntax options, customisable failure reports and autotest capabilities, or to merge and collaboratively develop emerging testing frameworks further.
 
-\subsubsection{Stable and maintainable tests}
+\subsubsection{Stable and Maintainable Tests}
 
 Which considerations need to be made in order to write stable and maintainable tests?
 
 Striving for full coverage is not compatible with \gls{bdd} and not being implementation specific. As a novice tester, it can be hard to find a good balance between writing many tests and writing good tests.
 
-\subsubsection{Testing culture}
+\subsubsection{Testing Culture}
 
 How does testing culture affect productivity and quality of software?
 
