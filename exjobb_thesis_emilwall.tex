@@ -331,7 +331,7 @@ The interviewees received questions beforehand via mail which most of them answe
 \item Henrik Ekelöf, a front-end developer who has seven years of professional experience with \gls{js}. He has previously worked as webmaster and web developer at Statistics Sweden and SIX and is now technical consultant at Valtech. I met him in person during my introduction programme in Valtech where he had a session with us about idiomatic \gls{js}, linting and optimisations, but this interview was done over Skype since he works out of town.
 \end{enumerate}
 
-\subsubsection{Further contacts}
+\subsubsection{Further Contacts}
 
 As can be seen at the end of the Appendix, there were some additional email conversations. Among those were: Fredrik Wendt, a senior developer and consultant at Squeed specialising in team coaching with coding dojos, \gls{tdd} and agile methodologies. David Waller, teacher at Linnéuniversitetet in a course about Rich Internet Applications with JavaScript. Marcus Bendtsen, teacher at Linköpings Universitet in a course about Web Programming and Interactivity.
 
@@ -386,7 +386,7 @@ This way of thinking can lead to a useful rationale regarding when to test -- ad
 
 Being too religious about testing principles leads to conflicts like ``writing tests take too much time from the real job''. If the tests do not provide enough value for them to be worth the effort then they should be written differently or not at all. There is no value in writing tests just for the sake of it. Thinking about architecture and the end product is usually a good thing, because you need awareness of the bigger picture in order to prioritise correctly and make sure everything fits together in the end. There is the same risk with tests as with other pieces of code, sometimes you are especially proud or fond of a certain test and unwilling to throw it away. In order to avoid that situation it is often better to think ahead and try things out than to immediately spend time writing tests. \cite[question~27]{Edelstam}
 
-\subsection{Refactoring and Lint-like tools}
+\subsection{Refactoring and Lint-like Tools}
 \label{subsec:refactor}
 
 Refactoring is ``a change made to the internal structure of software to make it easier to understand and cheaper to modify without changing its observable behaviour'', or the act of applying such changes \cite[p.~46]{Refactoring}. As previously mentioned (section~\ref{subsec:motivation}, \nameref{subsec:motivation}), refactoring prevents program decay and helps to maintain productivity. Just like testing, refactoring is no magic bullet that solves all problems and it is important to know when to do it and when it might not be worth the effort. Suitable situations to refactor are when doing something similar for the third time (a pragmatic approach to the \gls{dry} principle), when it helps to understand a piece of code, when it facilitates addition of a new feature, when searching for a bug and when discussing the code with others, e.g. in code reviews \cite[p.~49-51]{Refactoring}.
@@ -433,7 +433,7 @@ Selenium WebDriver is a collection of language specific bindings to drive a brow
 
 There is also a Firefox plugin called Selenium IDE, that allows the user to record interactions and generate code for them that can be used to repeat the procedure or as a starting point in tests. In the remaining parts of this thesis, we will mean Selenium WebDriver when we say Selenium, and refer to Selenium IDE by its full name.
 
-\subsection{Build tools}
+\subsection{Build Tools}
 \label{subsec:build}
 
 Build programs play an important role in automating testing, and they are often integrated with version control systems. There exists some general build tools that can be used for any programming language, these are often installed on build servers and integrated with version control systems. Examples include Jenkins, which is often configured and controlled through its web interface although it also has a \gls{cli}, and GNU Make, which is typically configured using makefiles and controlled through \gls{cli}. In addition to these, there are also language specific tools: Ruby has Rake, Java has Maven, Gradle and Ant, C\nolinebreak\hspace{-.05em}\raisebox{.3ex}{\scriptsize\bf \#} has MSBuild and NAnt.
@@ -443,12 +443,12 @@ Naturally, there are build tools designed specifically for \gls{js} as well, Gru
 \Gls{sml} has several compilers such as mosmlc and the MLton whole-program optimizer and a large number of interpreters, but they typically have to be manually integrated with other build tools such as GNU Make.
 
 
-\section{Testability -- Real world experiences}
+\section{Testability -- Real World Experiences}
 \label{sec:testability}
 
 Adding tests for code that was written without testing in mind is challenging \cite[p.~18]{Tddjs}. In this section a case study for doing so in \gls{js} is described, in order to highlight problems and how some of them can be solved. After a short description of how the project was selected and set up, observations regarding the code and the tools used to test it are highlighted, followed by a more general discussion on what to think of when testing an existing application.
 
-\subsection{The asteroids HTML5 canvas game}
+\subsection{The Asteroids HTML5 Canvas Game}
 \label{subsec:asteriods}
 
 The first step in the case study of adding tests in retrospect was selecting a suitable application. The choice became an HTML5 canvas game, namely asteroids (see figure~\ref{fig:game3}), based on that it combined graphical elements with relatively complex logic and a bit of jQuery, making it a reasonable representative for the typical JavaScript application. Most of the code was reasonably well modularised already from the start and it was easy to get started by simply cloning the repository and opening the supplied HTML file with the canvas element and script locations already defined.
@@ -602,7 +602,7 @@ Using Mocha with Zombie.js (or Phantom.js) as described in \emph{Using Node.js f
 
 Selecting which tools and frameworks to use usually has to be done fast and then you have to live with the decision. The decision is nevertheless important, regardless of whether a project has just started or if it is under a maintenance phase. Tools facilitates testing, so that people are not so deterred by the initial effort required to get started. There are many examples of frameworks and tools, such as Yeoman and Brunch, that can help you in quickly getting started with a project, and structure it so that testing becomes easier \cite[questions~11]{Edelstam}. In this subsection we will mainly discuss tools used to write and run the actual tests, and highlight some issues that you might want to be aware of.
 
-\subsubsection{JsTestDriver evaluation}
+\subsubsection{JsTestDriver Evaluation}
 \label{subsec:jstestdriver}
 
 When setting up JsTestDriver\footnote{\url{https://code.google.com/p/js-test-driver/}} (JSTD) with the Jasmine adapter there are pitfalls in which version you're using. At the time of writing, the latest version of the Jasmine JSTD adapter (1.1) is not compatible with the latest version of Jasmine (1.3.1), so in order to use it you need to find an older version of Jasmine (such as 1.0.1 or 1.1.0) or figure out how to modify the adapter to make it compatible. Moreover, the latest version of JSTD (1.3.5) does not support relative paths to parent folders when referencing script files in jsTestDriver.conf although a few older versions do (such as 1.3.3d), which is a problem if you want to place the test driver separate from the system under test rather than in a parent folder, or if you want to reference another framework such as Jasmine if it is placed in another directory. % Glossary items for JSTD (and maybe Jasmine, Mocha, etc. too?)
@@ -633,7 +633,7 @@ The increased maturity of tools such as PhantomJS and Mocha can be truly helpful
 
 Error reports are useful feedback that tests provide. The quality of these reports vary depending on which testing frameworks you are using and how you write your tests. When using PhantomJS to run tests, some test failures require you to run the tests in a browser in order to get good error reports. \cite[question~12]{Edelstam}
 
-\subsubsection{sinon.JS}
+\subsubsection{Sinon.JS}
 
 Proper stubbing of dependencies can be a daunting task, and is closely connected to mocking and dependency injection. In \gls{js}, dependency injection is harder than in for instance C or Java because of the absence of class interfaces. The sinon.JS framework does make it easier to stub compared to if done manually (which on the other hand is exceptionally simple to do with \gls{js}) but there are still tradeoffs between dedicating many lines of code to stubbing, quite often having to repeat the same code in multiple places, or risk introducing bugs in the tests themselves.
 
@@ -647,11 +647,11 @@ JsTestDriver is not perfect. When refreshing and clearing the cache of a capture
 
 Having spent many hours debugging, I finally decided to do a thorough check that no test depended on another test or part of the application that is not supposed to be tested by a specific test. In short, I wanted to ensure that the tests I'd written were truly unit tests. In order to do this, I created a copy of the application repository, deleted every file in the copy except for one test and the corresponding part of the application. Then I configured a JSTD server with a browser to run only that test, and repeated the process for every test. This method does not guarantee absence of side effects or detecting tests that do not clean up after themselves, but being able to run a test multiple times without failing, in complete isolation with the part of the application that it is supposed to test, at least gives some degree of reassurance that all external dependencies have been stubbed. If any external dependency has been left unstubbed the only way for the test to pass is if the code exercising that dependency is not executed by the test, and if a test does not clean up after itself it is likely to fail the second time it runs although this too depends on how the tests are written.
 
-\subsection{Lessons learned}
+\subsection{Lessons Learned}
 
 In this subsection, problems that are common to not just the asteroids application and the selected set of tools and frameworks, are highlighted. There are typically ways to work around at least some of these problems.
 
-\subsubsection{General issues with adding tests to an existing application}
+\subsubsection{General Issues With Adding Tests to an Existing Application}
 
 Writing implementation specific tests is a common phenomena that can stem from poor experience of writing tests, extreme testing ambitions or, perhaps most commonly, poor understanding of the system under test. It means that you write the tests based on details about the implementation that you have in mind rather than basing them on what the system should do from an interface point of view. These kind of tests tend to be hard to understand and usually have to be changed whenever an improvement of the implementation is considered, but are unequivocally hard to avoid.
 
@@ -666,7 +666,7 @@ Traditionally, coverage criteria has been a central concept in software testing 
 % TODO Add citation for that coverage criteria has been and still is a central concept in software testing
 \label{subsec:coveragecriteria}
 
-\subsubsection{Stubbing vs refactoring}
+\subsubsection{Stubbing vs Refactoring}
 
 If refactoring is required in order to make code testable, the architecture likely needs to change. Sometimes introducing a new object or changing how some dependency is handled is all that is needed. The important thing is to not continue in a direction that will cause the codebase to deteriorate over time \cite[question~34]{Stenmark}. If a lot of work goes into mocking dependencies (see section~\ref{subsec:mocking}) then the tests take longer to write, require more maintenance and the need for integration tests increases. The proper remedy is usually not to reduce the isolation of the unit tests but to refactor the architecture so that each unit becomes easier to isolate. \cite[question~42]{Stenmark}
 
@@ -678,7 +678,7 @@ Sometimes during the process of adding tests to the asteroids application, the t
 
 As a programmer you have to be very methodical, principled and meticulous not to miss some detail and write an accidental integration test. Such mistakes leave you with misleading failure result messages and sometimes the tests fail because of the order in which they are executed or similar, rather than because of an actual bug in the \gls{sut}.
 
-\subsubsection{Deciding when and what to test}
+\subsubsection{Deciding When and What to Test}
 
 When deciding what to test, it pays off to focus on parts that are central to how the application is perceived, for instance pure logic and calculations might be more important than pictures and graphs. An error that propagates through the entire application is more serious than if a single picture is not displayed properly. If a test turns out to be difficult to write or frequently needs to be replaced by another test, it is usually worth considering not testing that part at all. \cite[questions~9-10]{Edelstam}
 
@@ -700,12 +700,12 @@ During a talk at a meet-up on python APIs (2013-05-22 at Tictail's office, an e-
 The participants in the discussion were in agreement that testing appearance is the wrong way to go and that tests need to be fast and reliable. The experience with testing frameworks seemed to vary, some had used Jasmine and appreciated its \gls{bdd} approach and at least one had used Karma (under its former name Testacular). The idea that general \gls{js} frameworks such as AngularJS could help in making code testable and incorporating tests as a natural part of the development was shared and appreciated. The consensus seemed to be that in general, testing \gls{js} is good if done right, but also difficult.
 
 
-\section{Problems in JavaScript testing}
+\section{Problems in JavaScript Testing}
 \label{sec:jsproblems}
 
 Considering the variety of available frameworks, one may be deceived into thinking that people do not test their \gls{js} because they are lazy or uninformed. However, there are respectable obstacles for \gls{tdd} of \gls{js}, both in the process of fitting testing frameworks into your application and in writing testable \gls{js}. This section covers how to test asynchronous events, \gls{dom} manipulation, form validation, the \gls{gui} and private APIs, in \gls{js}.
 
-\subsection{Asynchronous events}
+\subsection{Asynchronous Events}
 \label{subsec:asynchronous}
 
 \gls{js} is often loaded asynchronously in browsers to improve performance in page loads and minimise interference with the display of the page. Another asynchronous aspect of \gls{js} are events such as AJAX calls and timer dependent functions. Testing asynchronous events can be hard because execution order is not predetermined, so the number of possible states can be very large, thus demanding many convoluted tests to cover all the relevant cases. It can also be hard to know if the asynchronous code has finished execution or not, leading to assertions being executed at the wrong time.
@@ -726,7 +726,7 @@ A common concern is that the large number of possible combinations in which asyn
 The issue of testing asynchronous code is not unique to \gls{js}, e.g. Erlang message passing is also asynchronous, and has been used in systems with high demands on stability. One may ask how Erlang programmers test their code, but answering that question and relating the answers to testing of \gls{js} is such a large project that it could make up for an interesting study of its own. Many other languages with support for multiple threads or processes arguably have this issue as well.
 
 
-\subsection{DOM manipulation}
+\subsection{DOM Manipulation}
 
 A key to successful testing of \gls{js} with \gls{dom} manipulation is to separate the logic from the \gls{dom} manipulation as much as possible. One technique that was presented at the XP conference in Trondheim 2010\footnote{Agile Processes in Software Engineering and Extreme Programming 11th International Conference, XP 2010, Trondheim, Norway, June 1-4, 2010, Proceedings} was to define a view layer of jQuery-related and similar code, and update the view as a separate task in the business logic. This allows for test driven development to be carried out much more effortlessly than if the logic is tightly coupled with the \gls{dom} manipulation. \cite[question~4]{Ahnve} %Put in bibliography
 
@@ -736,7 +736,7 @@ There are free cloud-based tools such as TestSwarm that are designed to help you
 
 Aside from unit testing, you can use different Selenium drivers to check almost anything, but beware that such tests easily become slow so even for a medium sized application you might end up being unable to run the tests more than a couple of times per day. Tests can be made to run faster if they run in a headless browser such as PhantomJS, which has support both for Selenium, or by using more specialised tools such as CasperJS which can produce very similar results as Selenium but executes faster and is easily controlled using \gls{js} \cite[p.~142-146]{TestableJS}.
 
-\subsection{Form validation}
+\subsection{Form Validation}
 
 A common case of user interface testing is form validation. A \gls{tdd} extremist might think that you should test that the form exists, has a working submit button and other boilerplate things, but that is mostly irrelevant unless the form is written in a way that is unique or new in some way. A typical approach would rather be to write the code for the form and then add a test that searches for a non-existing validation. The difficult part here is to strike a balance and be alert to when the code is getting so complicated that it is time to start testing, and to avoid writing tests when they are in the way and provide little value. \cite[questions~24-25]{Edelstam}
 
@@ -756,11 +756,11 @@ Depending on which framework you're using, you might have different options for 
 
 A common case is that you are using another programming language than \gls{js} for the back-end, and you specify the validation rules in that language and let for instance a jQuery plugin generate validations for the front-end. Here you can hopefully put regular expressions and the like as publicly available variables and access them directly in tests, whereas the plugin will have to be tested separately, using perhaps a single test that just checks for existence of validation.
 
-\subsection{GUI testing}
+\subsection{GUI Testing}
 
 A \acrfull{gui} is usually the top layer of an application and is therefore a common target for system testing. It can consist of many components and typically provides a large number of possible interactions, which is why \gls{gui} testing is important, but also part of why it can be a time consuming activity both in terms of preparing and executing tests.
 
-\subsubsection{Application differences}
+\subsubsection{Application Differences}
 
 A rather common opinion is that you should avoid automatic testing of an application's visual components. However, the value provided by \gls{gui} tests depends on how important the \gls{gui} is for the application. In web applications, the \gls{gui} and sequences in it are commonly more complex than the logic underneath, so testing the \gls{gui} makes more sense for such applications than for typical desktop or financial applications where backend logic tend to be more important. \cite[question~21]{Ahnve}
 
@@ -768,7 +768,7 @@ Before deciding on whether you want to do automated \gls{gui} testing or not, th
 
 The problems that some people experience with testing front end interfaces sometimes have to do with poor modularity. For instance, the presentation layer should not be responsible for calling large APIs. In order to improve the modularity, tools such as RequireJS can be used to handle dependencies but if each part of the application has too many or large dependencies, mocking still becomes a daunting task. Typically, these kinds of problems can be solved by introducing new layers of logic and services that separate responsibilities and allows for much cleaner tests. \cite[question~23]{Edelstam}
 
-\subsubsection{Regression testing of GUI}
+\subsubsection{Regression Testing of GUI}
 
 \gls{gui} testing should not be confused with integration testing. Testing graphical elements in tests that depend on system integration are hard to maintain and can fail for too many reasons. Instead of executing a sequence before making assertions about graphical components, you may benefit from keeping assertions simple in an integration test. The \gls{gui} testing can then be performed in a unit testing fashion as a separate activity, by creating a \gls{testfixture} that mimics the state of the application the way it looks after a certain sequence has finished.
 
@@ -776,7 +776,7 @@ This approach has a fairly obvious risk. What if a \gls{testfixture} fails to si
 
 Just as you might decide for or against implementing rounded corners that work in old browsers, based on the number of clients actually using such browsers and the maintenance cost of implementing it for every picture of a site, there is always a tradeoff regarding whether or not to test such graphical elements with automated regression tests or not. In the end, all that matters is cost versus gain, no matter what personal beliefs and preferences might be involved from the product owner or developers' personal points of view. \cite[questions~40-44]{Ahnve}
 
-\subsubsection{Automation of GUI testing}
+\subsubsection{Automation of GUI Testing}
 
 Manually testing a web page with all the targeted combination of browsers, versions and system platforms is usually not a viable option \cite{TestSwarm} so multi-platform automated testing is required. This is true in general for web application testing, but also holds for \gls{gui} testing in particular, regardless of whether the \gls{sut} is a web application or not. Since the appearance of a \gls{gui} can depend on factors such as configuration of hardware, operating system, version of third party software, etc., and because of the many possible sequences of interactions to test, it is rarely feasible to test all combinations and unless the testing is automated on multiple platforms, you will be unable to test even a small fraction of them.
 
