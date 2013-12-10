@@ -634,26 +634,27 @@ The increased maturity of tools such as PhantomJS and Mocha can be truly helpful
 
 Error reports are useful feedback that tests provide. The quality of these reports vary depending on which testing frameworks you are using and how you write your tests. When using PhantomJS to run tests, some test failures require you to run the tests in a browser in order to get good error reports. \cite[question~12]{Edelstam}
 
-The unit tests for the asteroids application had an average execution time of roughly 1 ms per test, so there was little to gain from using a headless browser. However, it was done anyway for the sake of research, using \url{https://github.com/larrymyers/js-test-driver-phantomjs}. The results were somewhat surprising -- the execution time increased by an average of 33 \% (see table~\ref{tab:testruns}), rather than decreasing as would be expected. The experiment was later (2013-12-10) repeated but with Chrome (31.0.1650.63) also included among the browsers. Safari still outran PhantomJS, which in turn was roughly twice as fast as Chrome (except for a single outlier).
+The unit tests for the asteroids application had an average execution time of roughly 1 ms per test, so there was little to gain from using a headless browser. However, it was done anyway for the sake of research, using \url{https://github.com/larrymyers/js-test-driver-phantomjs}. The results were somewhat surprising -- the execution time increased by an average of 32 \% (see table~\ref{tab:testruns}), rather than decreasing as would be expected. The tests were run on OS X 10.9, using Safari 7.0 (537.71), PhantomJS 1.9.2 (534.34, installed using npm), Firefox 25.0.1, Opera 18.0.1284.63 and Chrome 31.0.1650.63. Nightly builds of Firefox (28.0a1) and Chrome (33.0.1734.0 canary) were also tested, with average runtimes of 718.5 ms (deterioration) and 482.3 ms (improvement), respectively.
 
 \begin{table}
   \centering
-    \begin{tabular}{ c | c c}
-    Test run & PhantomJS & Safari \\ \hline
-    1 & 299 & 225 \\
-    2 & 348 & 323 \\
-    3 & 261 & 238 \\
-    4 & 299 & 204 \\
-    5 & 261 & 210 \\
-    6 & 303 & 180 \\
-    7 & 356 & 227 \\
-    8 & 363 & 271 \\
+    \begin{tabular}{ c | c c c c c}
+    Test run & Safari  &  PhantomJS  &  Firefox  &  Opera  &  Chrome \\ \hline
+     1           &  190    &        246         &    472    &     524    &    486   \\
+     2           &  173    &        223         &    513    &     541    &    539   \\
+     3           &  180    &        233         &    460    &     465    &    492   \\
+     4           &  231    &        257         &    413    &     459    &    551   \\
+     5           &  177    &        228         &    467    &     554    &    564   \\
+     6           &  182    &        262         &    438    &     475    &    493   \\
+     7           &  179    &        239         &    452    &     481    &    617   \\
+     8           &  175    &        281         &    492    &     541    &    571   \\
+     \textbf{avg}  &  \textbf{185.9}  &    \textbf{246.1}    &    \textbf{463.4}  &   \textbf{505.0} &   \textbf{539.1} \\
     \end{tabular}
-  \caption{Time in ms to run 287 tests with JsTestDriver in headless and non-headless browsers. Average for PhantomJS was 311 ms, whereas Safari ran the tests in 234 ms on average -- 33 \% faster.}
+  \caption{Time in ms to run 287 tests with JsTestDriver in headless and non-headless browsers. Average for PhantomJS was 246 ms, whereas Safari ran the tests in 186 ms on average -- 32 \% faster. The other non-headless browsers lag behind at roughly half the speed of PhantomJS.}
   \label{tab:testruns}
 \end{table}
 
-Probably the \gls{js} engine of PhantomJS (1.9.2, installed using npm) was outdated compared to the non-headless browser (Safari 7.0, 537.71 for OS X 10.9) and since the tests contained no dom manipulation that would trigger rendering activities in a non-headless browser, the headless browser was unable to provide its usual benefits. Some efforts were made to run the tests in PhantomJS directly (using \url{https://github.com/jcarver989/phantom-jasmine}), to eliminate the overhead of the JsTestDriver integration, but either no tests were run or uninformative error messages were given, although the same test fixture worked in the non-headless browser (with a negligible difference in execution time compared to running the tests with JsTestDriver).
+The \gls{js} engine of PhantomJS was somewhat outdated compared to Safari (534.34 versus 537.71) and since the tests contained no dom manipulation that would trigger rendering activities in a non-headless browser, the Safari could perform well despite not being headless. Some efforts were made to run the tests in PhantomJS directly (using \url{https://github.com/jcarver989/phantom-jasmine}), to eliminate the overhead of the JsTestDriver integration, but either no tests were run or uninformative error messages were given, although the same test fixture worked in Safari (with a negligible difference in execution time compared to running the tests with JsTestDriver).
 
 \subsubsection{Sinon.JS}
 
