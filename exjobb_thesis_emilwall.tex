@@ -633,7 +633,7 @@ The increased maturity of tools such as PhantomJS and Mocha can be truly helpful
 
 Error reports are useful feedback that tests provide. The quality of these reports vary depending on which testing frameworks you are using and how you write your tests. When using PhantomJS to run tests, some test failures require you to run the tests in a browser in order to get good error reports. \cite[question~12]{Edelstam}
 
-The unit tests for the asteroids application had an average execution time of roughly 1 ms per test, so there was little to gain from using a headless browser. However, it was done anyway for the sake of research, using \url{https://github.com/larrymyers/js-test-driver-phantomjs}. The results were somewhat surprising -- the execution time increased by an average of 33 \% (see table~\ref{tab:testruns}), rather than decreasing as would be expected. The experiment was later repeated but with Chrome also included among the browsers. Safari still outran PhantomJS, which in turn was roughly twice as fast as Chrome (except for a single outlier).
+The unit tests for the asteroids application had an average execution time of roughly 1 ms per test, so there was little to gain from using a headless browser. However, it was done anyway for the sake of research, using \url{https://github.com/larrymyers/js-test-driver-phantomjs}. The results were somewhat surprising -- the execution time increased by an average of 33 \% (see table~\ref{tab:testruns}), rather than decreasing as would be expected. The experiment was later (2013-12-10) repeated but with Chrome (31.0.1650.63) also included among the browsers. Safari still outran PhantomJS, which in turn was roughly twice as fast as Chrome (except for a single outlier).
 
 \begin{table}
   \centering
