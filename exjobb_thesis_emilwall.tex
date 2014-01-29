@@ -221,7 +221,7 @@ In contrast to examples often being simple and seldom providing a full picture, 
 
 \subsection{Scope and Delimitations}
 
-As already mentioned in the beginning of this introduction, the scope of this thesis is mainly limited to \emph{automated} testing of \gls{sml} and \emph{client side} \gls{js}. The goal is to investigate what the main problems within these two areas are and how they relate to development tools and practices. What are the testability issues in each respective language? Which considerations need to be made in order to write stable and maintainable tests? How does testing culture affect productivity and quality of software?
+The scope of this thesis is mainly limited to \emph{automated} testing of \gls{sml} and \emph{client side} \gls{js}. As already mentioned in the beginning of this introduction, the goals are to investigate what the main problems within these two areas are and how they relate to development tools and practices. What are the testability issues in each respective language? Which considerations need to be made in order to write stable and maintainable tests? How does testing culture affect productivity and quality of software?
 
 The impact of testing frameworks specialised for server side \gls{js} code (node.js) such as vows\footnote{\url{http://vowsjs.org/}} and cucumis\footnote{\url{https://github.com/noblesamurai/cucumis}} was not considered during the project. Testing client side code is not necessarily more important than server side, but in many aspects client side testing is different and sometimes harder. Reasons for choosing \gls{js} and \gls{sml} over other programming languages have already been covered in the introduction.
 
@@ -1146,7 +1146,7 @@ Both the interviews, the literature studies and the practical work indicated tha
 \subsubsection{Testability Issues in JavaScript}
 \label{subsubsec:whynotjs}
 
-What are the testability issues in \gls{js}?
+What are the testability issues of client-side \gls{js}?
 
 The web is a difficult environment for testing because of many dependencies and events. This makes it harder to test, but also more important.
 
@@ -1155,7 +1155,7 @@ The web is a difficult environment for testing because of many dependencies and 
 \subsubsection{Testability Issues in Standard ML}
 \label{subsubsec:whynotsml}
 
-What are the testability issues in \gls{sml}?
+What are the testability issues of \gls{sml}?
 
 First off, people do test their \gls{sml} code, but not always, and it seems there are no standard ways of doing it. There is a need for a simple but good testing framework, QCheck has great benefits but is too hard to use for the average programmer or in scenarios where the process of writing tests need to be quick. Other frameworks, including DescribeSML, are too immature. The way forward could be to make QCheck easier to use, with new \gls{bdd} syntax options, customisable failure reports and autotest capabilities, or to merge and collaboratively develop emerging testing frameworks further.
 
