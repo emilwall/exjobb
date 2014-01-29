@@ -1,10 +1,54 @@
-structure Expect = struct
-fun expect it f = f(it)
+structure Expect :>
+sig
+    val expect : 'a -> ('a -> 'b) -> 'b
 
-local
+    val toEqual    : ''a -> ''a -> string
+    val toNotEqual : ''a -> ''a -> string
+    val toBe       : ''a -> ''a -> string
+    val toNotBe    : ''a -> ''a -> string
+
+    val toEqualStr    : string -> string -> string
+    val toNotEqualStr : string -> string -> string
+    val toBeStr       : string -> string -> string
+    val toNotBeStr    : string -> string -> string
+    val toHaveSize    : string -> int -> string
+    val toNotHaveSize : string -> int -> string
+
+    val toEqualInt      : int -> int -> string
+    val toNotEqualInt   : int -> int -> string
+    val toBeInt         : int -> int -> string
+    val toNotBeInt      : int -> int -> string
+    val toBeGreaterThan : int -> int -> string
+    val toBeLessThan    : int -> int -> string
+    val toBeAtLeast     : int -> int -> string
+    val toBeAtMost      : int -> int -> string
+
+    val toEqualReal     : real -> real -> string
+
+    val toContain       : ''a list -> ''a -> string
+    val toNotContain    : ''a list -> ''a -> string
+    val toBeginWith     : ''a list -> ''a -> string
+    val toNotBeginWith  : ''a list -> ''a -> string
+    val toEndWith       : ''a list -> ''a -> string
+    val toNotEndWith    : ''a list -> ''a -> string
+    val toHaveLength    : ''a list -> int -> string
+    val toNotHaveLength : ''a list -> int -> string
+
+    val toEqualPair     : (''a * ''b) -> (''a * ''b) -> string
+    val toEqualRealPair : (real * real) -> (real * real) -> string
+
+    val toMatch    : string -> string -> string
+    val toNotMatch : string -> string -> string
+
+    val toThrow    : (unit -> 'a) -> exn -> string
+    val toNotThrow : (unit -> 'a) -> exn -> string
+end =
+struct
+    fun expect it f = f(it)
+
     fun checkWith operator value result =
-        if operator(value, result) then "pass" else "FAIL"
-in
+        if operator(result, value) then "pass" else "FAIL"
+
     fun toEqual value = checkWith (op =) value
 
     fun toNotEqual value = checkWith (op <>) value
@@ -12,44 +56,67 @@ in
     val toBe = toEqual
 
     val toNotBe = toNotEqual
-end
 
-local
     fun checkStrWith operator relation result value =
-        if operator(value, result) then
-            "pass"
-        else
-            concat ["FAIL: expected \"", result, "\" to ", relation, " \"", value, "\""]
-in
-    fun toEqualStr result = checkStrWith (op =) "equal" result
+        if operator(result, value)
+        then "pass"
+        else concat ["FAIL: expected \"", result,
+                     "\" to ", relation, " \"", value, "\""]
 
-    fun toNotEqualStr result = checkStrWith (op <>) "NOT equal" result
+    val toEqualStr = checkStrWith (op =) "equal"
+
+    val toNotEqualStr = checkStrWith (op <>) "NOT equal"
 
     val toBeStr = toEqualStr
 
     val toNotBeStr = toNotEqualStr
-end
 
-local
+    fun toHaveSize result value =
+        if size result = value
+        then "pass"
+        else concat ["FAIL: expected \"", result,
+                     "\" to have size ", Int.toString(value)]
+
+    fun toNotHaveSize result value =
+        if size result <> value
+        then "pass"
+        else concat ["FAIL: expected \"", result,
+                     "\" to not have size ", Int.toString(value)]
+
     fun checkIntWith operator relation result value =
-        if operator(value, result) then
-            "pass"
-        else
-            concat ["FAIL: expected \"", Int.toString(result), "\" to ", relation, " \"", Int.toString(value), "\""]
-in
-    fun toEqualInt result = checkIntWith (op =) "equal" result
+        if operator(result, value)
+        then "pass"
+        else concat ["FAIL: expected \"", Int.toString(result),
+                     "\" to ", relation, " \"", Int.toString(value), "\""]
 
-    fun toNotEqualInt result = checkIntWith (op <>) "NOT equal" result
+    val toEqualInt = checkIntWith (op =) "equal"
+
+    val toNotEqualInt = checkIntWith (op <>) "NOT equal"
 
     val toBeInt = toEqualInt
 
     val toNotBeInt = toNotEqualInt
-end
 
-local
+    val toBeGreaterThan = checkIntWith (op >) "greater than"
+
+    val toBeLessThan = checkIntWith (op <) "less than"
+
+    val toBeAtLeast = checkIntWith (op >=) "greater than or equal"
+
+    val toBeAtMost = checkIntWith (op <=) "less than or equal"
+
+    fun toEqualReal result value =
+        if Real.abs(value - result) < 0.0000001 then
+            "pass"
+        else
+            concat ["FAIL: expected \"", Real.toString(result),
+                    "\" to equal \"", Real.toString(value), "\""]
+
     fun checkListWith relation result value =
     let
-        fun checkNth n = n >= 0 andalso length result > n andalso List.nth(result, n) = value
+        fun checkNth n = n >= 0
+                         andalso length result > n
+                         andalso List.nth(result, n) = value
         val containsValue = List.exists (fn a => a = value) result
         val success = case relation of
             "contain" => containsValue
@@ -59,12 +126,11 @@ local
           | "end with" => checkNth (length result - 1)
           | "not end with" => not (checkNth (length result - 1))
     in
-        if success then
-            "pass"
-        else
-            concat ["FAIL: Expected List to ", relation, " value"]
+        if success
+        then "pass"
+        else concat ["FAIL: Expected List to ", relation, " value"]
     end
-in
+
     fun toContain result = checkListWith "contain" result
 
     fun toNotContain result = checkListWith "not contain" result
@@ -76,23 +142,85 @@ in
     fun toEndWith result = checkListWith "end with" result
 
     fun toNotEndWith result = checkListWith "not end with" result
-end
 
-local
+    fun toHaveLength result = checkListWith "have length" result
+
+    fun toNotHaveLength result = checkListWith "not have length" result
+
+    fun toHaveLength result value =
+        if length result = value
+        then "pass"
+        else concat ["FAIL: expected list to have length ",
+                     Int.toString(value)]
+
+    fun toNotHaveLength result value =
+        if length result <> value
+        then "pass"
+        else concat ["FAIL: expected list to not have length ",
+                     Int.toString(value)]
+
+    fun toEqualPair (a1, b1) (a2, b2) =
+        let
+            val a = toEqual a1 a2
+            val b = toEqual b1 b2
+        in
+            if a = "pass" andalso b = "pass"
+            then "pass"
+            else "FAIL"
+        end
+
+    fun toEqualRealPair (a1, b1) (a2, b2) =
+        let
+            val a = toEqualReal a1 a2
+            val b = toEqualReal b1 b2
+        in
+            if a = "pass" andalso b = "pass"
+            then "pass"
+            else concat ["FAIL: expected \"(",
+                         Real.toString(a1), ", ", Real.toString(b1),
+                         ")\" to equal \"(",
+                         Real.toString(a2), ", ", Real.toString(b2), ")\""]
+        end
+
     structure RE = RegExpFn (
         structure P = AwkSyntax
         structure E = BackTrackEngine)
-in
-    fun toMatch result value =
-        case StringCvt.scanString (RE.find (RE.compileString value)) result of
-            NONE => concat ["FAIL: expected \"", result, "\" to match \"", value, "\""]
-          | SOME match => "pass"
-end
 
-fun toThrow callback exc1 =
-    (callback(); "FAIL: did not raise " ^ (exnName exc1))
-    handle exc2 => if exnName exc2 = exnName exc1 andalso exnMessage exc2 = exnMessage exc1 then
-        "pass"
-    else
-        "FAIL: raised " ^ (exnName exc2) ^ " with message \"" ^ (exnMessage exc2) ^ "\" instead of " ^ (exnName exc1) ^ " with message \"" ^ (exnMessage exc1) ^ "\""
-end
+    fun toMatch result value =
+        let
+            val (success, match) =
+                (true, StringCvt.scanString (RE.find (RE.compileString value)))
+            handle RegExpSyntax.CannotParse =>
+                (false, StringCvt.scanString (RE.find (RE.compileString "$")))
+        in
+            if success
+            then case match result of
+                    NONE => concat ["FAIL: expected \"", result,
+                                    "\" to match \"", value, "\""]
+                  | _ => "pass"
+            else "FAIL: raised CannotParse"
+        end
+
+    fun toNotMatch result value =
+        case toMatch result value of
+            "pass" => concat ["FAIL: expected \"", result,
+                              "\" not to match \"", value, "\""]
+          | _ => "pass"
+
+    fun toThrow callback exc1 =
+        (callback(); "FAIL: did not raise " ^ (exnName exc1))
+        handle exc2 =>
+            if String.isPrefix (exnMessage exc1) (exnMessage exc2)
+            then "pass"
+            else concat ["FAIL: raised ", exnName exc2,
+                         " with message \"", exnMessage exc2,
+                         "\" instead of ", exnName exc1,
+                         " with message \"", exnMessage exc1, "\""]
+
+    fun toNotThrow callback exc1 =
+        (callback(); "pass")
+        handle exc2 =>
+            if String.isPrefix (exnMessage exc1) (exnMessage exc2)
+            then concat ["FAIL: raised ", exnMessage exc2]
+            else "pass"
+end (* of struct *)
