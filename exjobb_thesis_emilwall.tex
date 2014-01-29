@@ -153,7 +153,15 @@ nodes near coords, nodes near coords align={horizontal},
 \end{tikzpicture}
 \end{center}
 
-The main goal with this thesis was to investigate why \gls{js} and \gls{sml} testing has been performed to such a small extent historically, describe some benefits and practises of doing it, and identifying problems that are yet to be solved. This section contains background and scope, and an overview of the organisation of the thesis.
+The goals of this thesis are to:
+
+\begin{enumerate}
+\item Highlight testability issues of client-side \gls{js} and \gls{sml}
+\item Describe practises for constructing stable and maintainable tests
+\item Identify and discuss problems related to developer culture and technology
+\end{enumerate}
+
+This section contains the background and scope, and an overview of the organisation of the thesis.
 
 \subsection{Motivation}
 \label{subsec:motivation}
@@ -213,7 +221,7 @@ In contrast to examples often being simple and seldom providing a full picture, 
 
 \subsection{Scope and Delimitations}
 
-The scope of this thesis is mainly limited to \emph{automated} testing of \gls{sml} and \emph{client side} \gls{js}. The goal is to investigate what the main problems within these two areas are and how they relate to development tools and practises. What are the testability issues in each respective language? Which considerations need to be made in order to write stable and maintainable tests? How does testing culture affect productivity and quality of software?
+As already mentioned in the beginning of this introduction, the scope of this thesis is mainly limited to \emph{automated} testing of \gls{sml} and \emph{client side} \gls{js}. The goal is to investigate what the main problems within these two areas are and how they relate to development tools and practises. What are the testability issues in each respective language? Which considerations need to be made in order to write stable and maintainable tests? How does testing culture affect productivity and quality of software?
 
 The impact of testing frameworks specialised for server side \gls{js} code (node.js) such as vows\footnote{\url{http://vowsjs.org/}} and cucumis\footnote{\url{https://github.com/noblesamurai/cucumis}} was not considered during the project. Testing client side code is not necessarily more important than server side, but in many aspects client side testing is different and sometimes harder. Reasons for choosing \gls{js} and \gls{sml} over other programming languages have already been covered in the introduction.
 
@@ -246,7 +254,7 @@ A full evaluation of the most popular testing and application frameworks is not 
 
 This thesis is about difficulties and experiences with \gls{js} and \gls{sml} testing, and has been organised in favour of readers mainly interested in one of these programming languages. It contains a case study on testability aspects of adding tests to an existing \gls{js} application (section~\ref{sec:testability}), problems specific to \gls{js} and \gls{sml} testing (sections~\ref{sec:jsproblems} and~\ref{sec:smlproblems}), considerations from writing and using a \gls{bdd} framework in \gls{sml} (section~\ref{subsec:describesml}) and implications of testing culture that has been researched through interviews (section~\ref{sec:testingculture}). These sections are preceded by an overview of what others have done in the fields of \gls{js} and \gls{sml} testing (section~\ref{sec:previouswork}), the methods that were used for writing this thesis (section~\ref{sec:methods}) and a technical background that explains some of the concepts that appear in the rest of the thesis (section~\ref{sec:technicalbackground}). The final section is conclusions (section~\ref{sec:conclusions}), including summaries and proposals of future work.
 
-Readers experienced with or uninterested in testing concepts and web application development may skip the technical background (section~\ref{sec:technicalbackground}). Readers interested mainly in \gls{js} testing may skip sections~\ref{subsec:previousworksml}, \ref{sec:smlproblems} and~\ref{subsubsec:whynotsml}. Readers interested mainly in \gls{sml} testing may skip sections~\ref{subsec:previousworkjs}, \ref{subsec:browserautomation}, \ref{sec:testability}, \ref{sec:jsproblems} and~\ref{subsubsec:whynotjs}.
+Readers experienced with or uninterested in basics of testing and web application development may skip the technical background (section~\ref{sec:technicalbackground}). Readers interested mainly in \gls{js} testing may skip sections~\ref{subsec:previousworksml}, \ref{sec:smlproblems} and~\ref{subsubsec:whynotsml}. Readers interested mainly in \gls{sml} testing may skip sections~\ref{subsec:previousworkjs}, \ref{subsec:browserautomation}, \ref{sec:testability}, \ref{sec:jsproblems} and~\ref{subsubsec:whynotjs}.
 
 The glossary, which is located before this introduction, contains definitions of abbreviations and technical terms used throughout the text.
 
