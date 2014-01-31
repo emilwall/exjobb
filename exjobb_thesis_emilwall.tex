@@ -137,7 +137,8 @@ The difference in testing efforts between programming languages is evident when 
 ``Around the beginning of 2012, I gave a presentation for the Boston Ruby Group, in which I asked the crowd of 100 people a few questions. I began, `Who here writes Ruby?' The entire audience raised their hands. Next I asked, `Who tests their Ruby?' Again, everyone raised their hands. `Who writes JavaScript or CoffeeScript?' Once more, 100 hands rose. My final question: `Who tests their JavaScript or CoffeeScript?' A hush fell over the crowd as a mere six hands rose. Of 100 people in that room, 94\% wrote in those languages, but didn't test their code. That number saddened me, but it didn't surprise me.''
 \end{quote}
 
-\begin{center}
+\begin{figure}
+\centering
 \begin{tikzpicture}
 \begin{axis}[
 title={Percentage of crowd testing their code \cite{TestingStatistics} (Boston Ruby Group presentation, 2012):},
@@ -151,7 +152,11 @@ nodes near coords, nodes near coords align={horizontal},
 \addplot coordinates {(6,JS) (100,Ruby)};
 \end{axis}
 \end{tikzpicture}
-\end{center}
+\caption{At a Ruby Group meeting in 2012, there was a clear distinction between how many participants were engaged in testing of \gls{js} compared to Ruby.}
+\label{fig:jsruby}
+\end{figure}
+
+\newpage
 
 The goals of this thesis are to:
 
@@ -332,7 +337,7 @@ The interviewees received questions beforehand via mail which most of them answe
 \begin{figure}[ht]
 \centering
 \includegraphics[width=\textwidth]{pics/interviewees.png}
-\caption{The interviewees, in order of appearance. Rightmost is Fredrik Wendt, exclusively interviewed by mail. Clearly, there is a skewed gender representation among \gls{js} developers, since all candidates were men.}
+\caption{The interviewees, in order of appearance. Clearly, there is a skewed gender representation among \gls{js} developers, since all candidates were men.}
 \label{fig:interviewees}
 \end{figure}
 
@@ -346,6 +351,8 @@ The interviewees received questions beforehand via mail which most of them answe
 \item Per Rovegård, a developer with a Ph.D. in Software Engineering from Blekinge Institute of Technology. He has worked for Ericsson and is currently a consultant at factor10 where he has spent the last year developing an AngularJS application, with over 3000 tests. He is the author of the programatically speaking blog and has given several talks at conferences and meet-ups, most recently about Angular and \gls{tdd} at sthlm.js on the 2nd of Oct 2013 but the interviews took place in August over Skype.
 
 \item Henrik Ekelöf, a front-end developer who has seven years of professional experience with \gls{js}. He has previously worked as webmaster and web developer at Statistics Sweden and SIX and is now technical consultant at Valtech. I met him in person during my introduction programme in Valtech where he had a session with us about idiomatic \gls{js}, linting and optimisations, but this interview was done over Skype since he works out of town.
+
+\item Fredrik Wendt, a software development teacher and consultant at Squeed AB, specialised in coding dojos and other skills development activities. Experienced in Scrum, TDD, Java and web development. The interviews were held exclusively by mail.
 \end{enumerate}
 
 \subsubsection{Further Contacts}
@@ -398,8 +405,7 @@ There is an ongoing discussion about whether or not you have to start over after
 
 Counterintuitive it may seem, throwing away a prototype and starting from scratch to test drive the same feature can improve efficiency in the long run. The hard part of coding is not typing, it is learning and problem solving. A spike \emph{should} be short and incomplete, its main purpose is to help you get your mind set on what tests you can write and what the main points in a solution would be. \cite[question~60]{Edelstam}
 
-A similar concept to Spike and Stabilise is to write markup without tests until a feature is needed that could use an API call. Then you write one or several acceptance tests for it, and can start to work with that feature in a \gls{tdd} fashion. \cite[question~30]{Ahnve} %Likheten är inte perfekt, kanske bör tillägga att det inte finns något stabilise-steg i den approachen.
-This way of thinking can lead to a useful rationale regarding when to test -- add tests whenever you introduce an external dependency to make sure that dependency is called correctly under certain circumstances, then if that dependency is something that already exists you can just add it, otherwise you can develop it in a test-driven fashion.
+A similar concept to Spike and Stabilise is to write markup without tests until a feature is needed that could use an API call. Then you write one or several acceptance tests for it, and can start to work with that feature in a \gls{tdd} fashion. \cite[question~30]{Ahnve} Although not a perfect metaphor due to the lack of a stabilise step, this way of thinking can lead to a useful rationale regarding when to test -- add tests whenever you introduce an external dependency to make sure that dependency is called correctly under certain circumstances, then if that dependency is something that already exists you can just add it, otherwise you can develop it in a test-driven fashion.
 
 Being too religious about testing principles leads to conflicts like ``writing tests take too much time from the real job''. If the tests do not provide enough value for them to be worth the effort then they should be written differently or not at all. There is no value in writing tests just for the sake of it. Thinking about architecture and the end product is usually a good thing, because you need awareness of the bigger picture in order to prioritise correctly and make sure everything fits together in the end. There is the same risk with tests as with other pieces of code, sometimes you are especially proud or fond of a certain test and unwilling to throw it away. In order to avoid that situation it is often better to think ahead and try things out than to immediately spend time writing tests. \cite[question~27]{Edelstam}
 
@@ -984,9 +990,6 @@ As DescribeSML is currently written, there is no standard way of defining severa
 An interesting discussion regarding \gls{sml} testing is whether current frameworks could be merged and unified into new, improved ones with collaborators joining efforts of maintaining them. Possibly, small testing frameworks such as DescribeSML could be made into plugins for others such as qCheck, in order to make them easier to use and provide additional functionality. Getting people aware that the plugin exists and finding ways of integrating might be difficult though. Since qCheck writes its output to stdout, changing the way results are reported in non-trivial. Therefore, modifying both frameworks might be necessary and then it could make more sense to merge small testing frameworks such as sml-testing and smell-spec, and keep them simple.
 
 
-
-setup/teardown/beforeEach/beforeAll/afterEach/afterAll-metoder heller inte lika viktiga (just pga att stubbning är en vanlig del av setup), men har fortfarande flera användningsområden
-
 \subsection{Test-Driven Development of Programming Assignments}
 \label{subsec:tddmooc}
 
@@ -1054,7 +1057,7 @@ As mentioned in section~\ref{subsec:motivation}, tests should be maintainable an
 
 The criteria for maintainability in this context are that the tests should have low complexity (typically short test methods without any control flow), consist of readable code, use informative variable names, have reasonably low level of repeated code (this can be accomplished through using Test Utility Methods \cite[599]{TestPatterns}), be independent of implementations and have meaningful comments (if any). Structuring the code according to a testing pattern such as the Arrange-Act-Assert \cite{C2} and writing the code so that it reads like sentences will help in making the code more readable, in essence by honouring the communicate intent principle \cite[p.~41]{TestPatterns}.
 
-Testing the right thing means focusing on the specifications and behaviour that provides true business value rather than e.g. coverage criteria, and to avoid writing tests for things that does not really matter. Typically some parts of the system will be more complex and require more rigorous testing but there should also be consistency in the level of ambition regarding testing across the entire application. If some part of the code is hard to test it is likely to be beneficial in the long run to refactor the design to provide better testability than to leave the code untested, or else refactoring will be even harder later on \cite{Refactoring}. % Vad är ett dåligt test?
+Testing the right thing means focusing on the specifications and behaviour that provides true business value rather than e.g. coverage criteria, and to avoid writing tests for things that does not really matter. Typically some parts of the system will be more complex and require more rigorous testing but there should also be consistency in the level of ambition regarding testing across the entire application. If some part of the code is hard to test it is likely to be beneficial in the long run to refactor the design to provide better testability than to leave the code untested, or else refactoring will be even harder later on \cite{Refactoring}. A bad test on the other hand is one that is hard to understand, fails for the wrong reasons or makes the code hard to change.
 
 Tests that depend on the \gls{dom} tend to be relatively slow, so it would be impractical to have hundreds of unit tests with \gls{dom} manipulation if you want to be able to run them often \cite[questions~21-22]{Stenmark}. Selenium tests are also known to be slow, the same principle applies there. Only running tests that are connected with changes that have been made is one way to get around this, there is support for this in many testing tools. An alternative is to separate the fast tests from the slow, and configure Autotest\footnote{\url{http://autotest.github.io/}} or some tool based on Guard\footnote{\url{https://github.com/guard/guard/}} such as guard-jasmine\footnote{\url{https://github.com/netzpirat/guard-jasmine/}} to run the fast tests each time a file changes, and only run the slow tests before sending the code to a central source control repository or deploying the application.
 
