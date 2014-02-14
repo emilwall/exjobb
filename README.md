@@ -24,7 +24,7 @@ productivity and quality of software?
 Through quantitative interviews, implementation of the DescribeSML testing
 framework and development with tests in different scenarios, answers to these
 questions have been sought. The dynamic nature of JavaScript makes it more
-important to test whereas there are limitation on how Standard ML can be tested
+important to test whereas there are limitations on how Standard ML can be tested
 imposed by its static type system and immutability.
 
 The conclusion was drawn that the main issues for testability are dependency
