@@ -5,7 +5,7 @@ This repository contains the report and appendix of my Master's thesis. If you
 have a question about my work or any other reason to contact me, please feel
 free to do so at erif89 at gmail.com or emil.wall at valtech.se.
 
-You'll find the appendix [here](Appendix.pdf).
+Report [HERE](Rationales and Approaches for Automated Testing of JavaScript and Standard ML.pdf). You'll find the appendix [here](Appendix.pdf).
 
 Abstract
 --------
