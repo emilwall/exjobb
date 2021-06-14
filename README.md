@@ -3,9 +3,9 @@ Rationales and Approaches for Automated Testing of JavaScript and Standard ML
 
 This repository contains the report and appendix of my Master's thesis. If you
 have a question about my work or any other reason to contact me, please feel
-free to do so at erif89 at gmail.com or emil.wall at valtech.se.
+free to do so by posting an issue in this repository.
 
-The report can be downloaded from [HERE](Rationales and Approaches for Automated Testing of JavaScript and Standard ML.pdf). You'll find the appendix [here](Appendix.pdf).
+The report can be downloaded from [HERE](Rationales%20and%20Approaches%20for%20Automated%20Testing%20of%20JavaScript%20and%20Standard%20ML.pdf). You'll find the appendix [here](Appendix.pdf).
 
 Abstract
 --------
